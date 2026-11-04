@@ -43,6 +43,13 @@ removing files.
 xcodebuild test -project Pair.xcodeproj -scheme Pair -destination 'platform=iOS Simulator,name=iPhone 17'
 ```
 
+GitHub Actions (`.github/workflows/ci.yml`) runs on every push to `main` and on pull requests. It checks the
+word lists with `tools/validate.py` and runs the unit tests on an iPhone simulator. If the tests fail, the
+results are attached to the run as `test-results`.
+
+Xcode Cloud builds and uploads to TestFlight separately. Its workflow lives in App Store Connect, not in this
+repo.
+
 ## Content
 
 Word lists live in `content/` and are bundled into the app as-is. See [content/FORMAT.md](content/FORMAT.md).
