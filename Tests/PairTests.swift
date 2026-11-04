@@ -16,7 +16,7 @@ private func day(_ d: Int, hour: Int = 10) -> Date {
 struct ContentTests {
     @Test func bundledContentLoadsAndEverySessionHasFivePerSide() throws {
         let content = try ContentLibrary.loadBundled()
-        #expect(content.sessionCount >= 30)
+        #expect(content.sessionCount >= 50)
         for session in content.sessions {
             #expect(content.words(in: session, language: .german).count == 5, "session \(session.number) de")
             #expect(content.words(in: session, language: .chinese).count == 5, "session \(session.number) zh")
@@ -272,5 +272,123 @@ struct WidgetTests {
 
         store.togglePin("de-haus")
         #expect(store.data.pinnedWordID == nil)
+    }
+}
+
+@MainActor
+struct GrammarDrillTests {
+    private struct SeededRNG: RandomNumberGenerator {
+        var state: UInt64
+        mutating func next() -> UInt64 {
+            state = state &* 6364136223846793005 &+ 1442695040888963407
+            return state
+        }
+    }
+
+    private func word(_ content: ContentLibrary, _ id: String) throws -> Word {
+        try #require(content.words[id])
+    }
+
+    @Test func germanQuestionsAreAlwaysDerDieDas() throws {
+        let content = try ContentLibrary.loadBundled()
+        var rng = SeededRNG(state: 1)
+        let q = try #require(GrammarDrill.question(for: try word(content, "de-haus"), using: &rng))
+        #expect(q.options == ["der", "die", "das"])
+        #expect(q.answer == "das")
+        #expect(q.isCorrect("das") && !q.isCorrect("der"))
+    }
+
+    @Test func measureWordQuestionsAcceptAlternativesAndOfferNone() throws {
+        let content = try ContentLibrary.loadBundled()
+        var rng = SeededRNG(state: 2)
+        let door = try #require(GrammarDrill.question(for: try word(content, "zh-men"), using: &rng))
+        #expect(door.answer == "扇")
+        #expect(door.isCorrect("个"))  // listed under "also"
+        #expect(!door.isCorrect("张"))
+        #expect(door.options.count == 5)
+        #expect(door.options.last == GrammarDrill.noMeasureWord)
+        #expect(Set(door.options).count == 5)
+
+        let car = try #require(GrammarDrill.question(for: try word(content, "zh-che"), using: &rng))
+        #expect(car.options.contains("个"))  // the tempting wrong answer
+        #expect(!car.isCorrect("个"))
+
+        let day = try #require(GrammarDrill.question(for: try word(content, "zh-tian"), using: &rng))
+        #expect(day.answer == GrammarDrill.noMeasureWord)
+        #expect(day.options.count == 5)
+    }
+
+    @Test func onlyCountableNounsAreDrilled() throws {
+        let content = try ContentLibrary.loadBundled()
+        #expect(!GrammarDrill.isEligible(try word(content, "zh-jin-tian")))  // counting: none
+        #expect(!GrammarDrill.isEligible(try word(content, "de-gehen")))
+        var rng = SeededRNG(state: 3)
+        let ids = ["de-haus", "de-gehen", "de-tuer", "de-hallo"]
+        let round = GrammarDrill.questions(wordIDs: ids, content: content, using: &rng)
+        #expect(Set(round.map(\.word.id)) == ["de-haus", "de-tuer"])
+    }
+
+    @Test func everyNounInTheContentCanBeDrilledOrIsMarkedUncountable() throws {
+        let content = try ContentLibrary.loadBundled()
+        for word in content.words.values where word.pos == "noun" {
+            #expect(GrammarDrill.isEligible(word) || word.counting == "none", "\(word.id)")
+        }
+    }
+
+    @Test func hintsAndCountingPhrases() throws {
+        let content = try ContentLibrary.loadBundled()
+        #expect(GenderHints.hint(for: try word(content, "de-entschuldigung")) == "Nouns ending in -ung are always die.")
+        #expect(GenderHints.hint(for: try word(content, "de-name"))?.contains("exceptions") == true)
+        #expect(GenderHints.hint(for: try word(content, "de-bahnhof"))?.contains("der Hof") == true)
+
+        let car = try #require(MeasureWords.countingPhrase(for: try word(content, "zh-che")))
+        #expect(car.text == "一辆车")
+        #expect(car.pinyin == "yí liàng chē")
+        #expect(MeasureWords.countingPhrase(for: try word(content, "zh-peng-you"))?.pinyin == "yí ge péngyou")
+        #expect(MeasureWords.countingPhrase(for: try word(content, "zh-tian"))?.text == "三天")
+        #expect(content.words["zh-tian"]?.grammarLine == "no measure word: 三天")
+    }
+
+    @Test func everyMeasureWordInTheContentIsExplained() throws {
+        let content = try ContentLibrary.loadBundled()
+        for word in content.words.values {
+            guard let measure = word.measureWord else { continue }
+            for mw in [measure.word] + (measure.also ?? []) {
+                #expect(MeasureWords.uses[mw] != nil, "\(word.id): \(mw)")
+            }
+        }
+        for mw in MeasureWords.distractors { #expect(MeasureWords.uses[mw] != nil, "\(mw)") }
+    }
+}
+
+@MainActor
+struct GrammarNotesTests {
+    private func word(_ content: ContentLibrary, _ id: String) throws -> Word {
+        try #require(content.words[id])
+    }
+
+    @Test func patternsExplainGenderAndMeasureWords() throws {
+        let content = try ContentLibrary.loadBundled()
+        #expect(GrammarNotes.pattern(for: try word(content, "de-entschuldigung")) == "Nouns ending in -ung are always die.")
+        #expect(GrammarNotes.pattern(for: try word(content, "zh-che")) == "辆 is for vehicles.")
+        #expect(GrammarNotes.pattern(for: try word(content, "zh-tian"))?.contains("straight in front") == true)
+        #expect(GrammarNotes.pattern(for: try word(content, "zh-jin-tian")) == nil)
+    }
+
+    @Test func teacherPromptsPractiseTheGrammar() throws {
+        let content = try ContentLibrary.loadBundled()
+        #expect(GrammarNotes.practice(for: try word(content, "de-haus"))
+                == "Say \"Haus\" on its own and have them add the article: das Haus. Then ask for two of them: zwei Häuser.")
+        #expect(GrammarNotes.practice(for: try word(content, "de-gehen"))?.hasSuffix("er geht, er ist gegangen.") == true)
+        #expect(GrammarNotes.practice(for: try word(content, "zh-che"))?.contains("两辆车") == true)
+        #expect(GrammarNotes.practice(for: try word(content, "zh-tian"))?.contains("三天") == true)
+        #expect(GrammarNotes.practice(for: try word(content, "de-hallo")) == nil)
+    }
+
+    @Test func everyMultiCharacterWordHasABreakdown() throws {
+        let content = try ContentLibrary.loadBundled()
+        for word in content.words.values where word.language == .chinese && word.word.count > 1 {
+            #expect(word.characters?.map(\.char).joined() == word.word, "\(word.id)")
+        }
     }
 }

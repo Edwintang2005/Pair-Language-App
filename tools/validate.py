@@ -59,6 +59,8 @@ def check_de(w):
             err(f"{wid}: noun needs noun.gender of m/f/n")
         if "plural" not in n:
             err(f"{wid}: noun needs noun.plural (null if none)")
+        if "hint" in n and (not isinstance(n["hint"], str) or not n["hint"].strip()):
+            err(f"{wid}: noun.hint must be a non-empty string")
         if not w.get("word", " ")[0].isupper():
             err(f"{wid}: German nouns are capitalised")
     elif "noun" in w:
@@ -90,8 +92,23 @@ def check_zh(w):
     elif len(w.get("word", "")) > 1:
         warn(f"{wid}: multi-character word has no 'characters' breakdown")
     mw = w.get("measureWord")
-    if mw is not None and (not mw.get("word") or not mw.get("pinyin")):
-        err(f"{wid}: measureWord needs word and pinyin")
+    if mw is not None:
+        if not mw.get("word") or not mw.get("pinyin"):
+            err(f"{wid}: measureWord needs word and pinyin")
+        also = mw.get("also", [])
+        if not isinstance(also, list) or not all(isinstance(a, str) and a for a in also):
+            err(f"{wid}: measureWord.also must be a list of measure words")
+        elif mw.get("word") in also:
+            err(f"{wid}: measureWord.also repeats the main measure word")
+    counting = w.get("counting")
+    if counting is not None and counting not in {"direct", "none"}:
+        err(f"{wid}: counting must be 'direct' or 'none'")
+    if w.get("pos") == "noun":
+        # The measure-word drill needs to know how every noun is counted.
+        if (mw is None) == (counting is None):
+            err(f"{wid}: nouns need exactly one of measureWord or counting")
+    elif counting is not None:
+        err(f"{wid}: 'counting' is for nouns only")
 
 
 def main():

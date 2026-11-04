@@ -210,6 +210,146 @@
       "conversationStarter": "Play Simon Says with head, hands and eyes, then talk about the last time you were sick.",
       "de": ["de-kopf", "de-hand", "de-auge", "de-krank", "de-arzt"],
       "zh": ["zh-tou", "zh-shou", "zh-yan-jing", "zh-sheng-bing", "zh-yi-sheng"]
+    },
+    {
+      "number": 31,
+      "theme": "Clothes",
+      "conversationStarter": "Open the wardrobe together and name what you're each wearing today, and what you'd wear to a wedding.",
+      "de": ["de-kleidung", "de-hose", "de-schuh", "de-tragen", "de-anziehen"],
+      "zh": ["zh-yi-fu", "zh-ku-zi", "zh-xie-shoe", "zh-chuan", "zh-dai-wear"]
+    },
+    {
+      "number": 32,
+      "theme": "In the kitchen",
+      "conversationStarter": "Cook something simple together and name every pot, plate and glass you touch.",
+      "de": ["de-kueche", "de-kochen", "de-tisch", "de-teller", "de-glas"],
+      "zh": ["zh-chu-fang", "zh-zuo-fan", "zh-zhuo-zi", "zh-pan-zi", "zh-bei-zi"]
+    },
+    {
+      "number": 33,
+      "theme": "Fruit, veg & more",
+      "conversationStarter": "Go through the fridge or fruit bowl: name everything, then each pick your favourite and least favourite.",
+      "de": ["de-apfel", "de-obst", "de-gemuese", "de-fleisch", "de-ei"],
+      "zh": ["zh-ping-guo", "zh-shui-guo", "zh-shu-cai", "zh-rou", "zh-ji-dan"]
+    },
+    {
+      "number": 34,
+      "theme": "Eating out",
+      "conversationStarter": "Play restaurant: one of you is the waiter with a made-up menu, the other orders and asks for the bill.",
+      "de": ["de-restaurant", "de-bestellen", "de-rechnung", "de-lecker", "de-speisekarte"],
+      "zh": ["zh-fan-guan", "zh-dian-cai", "zh-cai", "zh-hao-chi", "zh-fu-wu-yuan"]
+    },
+    {
+      "number": 35,
+      "theme": "Travel",
+      "conversationStarter": "Plan a dream trip together: where do you fly, what goes in the suitcase, how long is the holiday?",
+      "de": ["de-reise", "de-fliegen", "de-flugzeug", "de-koffer", "de-urlaub"],
+      "zh": ["zh-lv-xing", "zh-fei-ji", "zh-ji-chang", "zh-xing-li", "zh-hu-zhao"]
+    },
+    {
+      "number": 36,
+      "theme": "Near & far",
+      "conversationStarter": "Describe where things are in your home: what's upstairs, downstairs, next to the sofa, near or far from the door?",
+      "de": ["de-nah", "de-weit", "de-oben", "de-unten", "de-neben"],
+      "zh": ["zh-jin-near", "zh-yuan", "zh-shang", "zh-xia", "zh-pang-bian"]
+    },
+    {
+      "number": 37,
+      "theme": "Meeting up",
+      "conversationStarter": "Plan your next visit to friends or family: who do you visit, where do you meet, how long do you stay?",
+      "de": ["de-besuchen", "de-treffen", "de-ankommen", "de-bleiben", "de-zurueck"],
+      "zh": ["zh-jian-mian", "zh-dao", "zh-hui-return", "zh-chu-qu", "zh-jin-enter"]
+    },
+    {
+      "number": 38,
+      "theme": "Days & times",
+      "conversationStarter": "Go through last week day by day: what did you do yesterday, at the weekend, and who got up earliest?",
+      "de": ["de-montag", "de-wochenende", "de-gestern", "de-frueh", "de-spaet"],
+      "zh": ["zh-zuo-tian", "zh-zhou-mo", "zh-zao", "zh-wan-late", "zh-xing-qi-yi"]
+    },
+    {
+      "number": 39,
+      "theme": "Months & seasons",
+      "conversationStarter": "Share your favourite season and month, and what the seasons were like where each of you grew up.",
+      "de": ["de-monat", "de-sommer", "de-winter", "de-fruehling", "de-herbst"],
+      "zh": ["zh-yue", "zh-xia-tian", "zh-dong-tian", "zh-chun-tian", "zh-qiu-tian"]
+    },
+    {
+      "number": 40,
+      "theme": "Big feelings",
+      "conversationStarter": "Each tell a story about a film or moment that made you laugh or cry. The other asks how it felt.",
+      "de": ["de-traurig", "de-angst", "de-lieben", "de-lachen", "de-weinen"],
+      "zh": ["zh-nan-guo", "zh-pa", "zh-ai", "zh-xiao-laugh", "zh-ku"]
+    },
+    {
+      "number": 41,
+      "theme": "Phones & screens",
+      "conversationStarter": "Look through photos on your phones together and describe a few. Who did you last call or message?",
+      "de": ["de-handy", "de-anrufen", "de-nachricht", "de-foto", "de-computer"],
+      "zh": ["zh-shou-ji", "zh-da-dian-hua", "zh-xiao-xi", "zh-zhao-pian", "zh-dian-nao"]
+    },
+    {
+      "number": 42,
+      "theme": "Easy & hard",
+      "conversationStarter": "Rate things from easy to hard: cooking, learning German, learning Chinese, getting up early. Fast or slow?",
+      "de": ["de-einfach", "de-schwierig", "de-schnell", "de-langsam", "de-falsch"],
+      "zh": ["zh-rong-yi", "zh-nan", "zh-kuai", "zh-man", "zh-cuo"]
+    },
+    {
+      "number": 43,
+      "theme": "First, then, finally",
+      "conversationStarter": "Explain how to make tea or coffee step by step: first, then, and finally. The other follows the instructions.",
+      "de": ["de-anfangen", "de-aufhoeren", "de-zuerst", "de-dann", "de-zuletzt"],
+      "zh": ["zh-kai-shi", "zh-jie-shu", "zh-xian", "zh-ran-hou", "zh-zui-hou"]
+    },
+    {
+      "number": 44,
+      "theme": "Around the house",
+      "conversationStarter": "Play a hiding game: hide the keys and guide each other with clues about windows, chairs, lights and the sofa.",
+      "de": ["de-fenster", "de-stuhl", "de-schluessel", "de-licht", "de-sofa"],
+      "zh": ["zh-chuang-hu", "zh-yi-zi", "zh-yao-shi", "zh-deng-lamp", "zh-sha-fa"]
+    },
+    {
+      "number": 45,
+      "theme": "Animals & nature",
+      "conversationStarter": "Talk about pets you've had or would like, and your favourite trees, mountains and animals.",
+      "de": ["de-hund", "de-katze", "de-baum", "de-tier", "de-berg"],
+      "zh": ["zh-gou", "zh-mao", "zh-shu-tree", "zh-dong-wu", "zh-shan"]
+    },
+    {
+      "number": 46,
+      "theme": "Fun & hobbies",
+      "conversationStarter": "Each name a song, a film and a sport you love. Sing a line or show a dance move if you dare.",
+      "de": ["de-musik", "de-sport", "de-singen", "de-tanzen", "de-film"],
+      "zh": ["zh-yin-yue", "zh-yun-dong", "zh-chang-ge", "zh-tiao-wu", "zh-dian-ying"]
+    },
+    {
+      "number": 47,
+      "theme": "Questions & answers",
+      "conversationStarter": "Play twenty questions: one thinks of something, the other asks. Answer with 'maybe', 'of course' or 'definitely'.",
+      "de": ["de-frage", "de-antwort", "de-antworten", "de-vielleicht", "de-natuerlich"],
+      "zh": ["zh-wen-ti", "zh-hui-da", "zh-ye-xu", "zh-dang-ran", "zh-yi-ding"]
+    },
+    {
+      "number": 48,
+      "theme": "Shops & prices",
+      "conversationStarter": "Talk about the last thing you each bought: which shop, how much did it cost, was it cheap or expensive?",
+      "de": ["de-bezahlen", "de-billig", "de-laden", "de-firma", "de-ding"],
+      "zh": ["zh-pian-yi", "zh-shang-dian", "zh-fu", "zh-gong-si", "zh-dong-xi"]
+    },
+    {
+      "number": 49,
+      "theme": "Love & together",
+      "conversationStarter": "Tell each other a favourite memory of a wedding you've been to, and what you miss when you're apart.",
+      "de": ["de-heiraten", "de-hochzeit", "de-zusammen", "de-herz", "de-vermissen"],
+      "zh": ["zh-jie-hun", "zh-hun-li", "zh-yi-qi", "zh-xin-heart", "zh-xiang-nian"]
+    },
+    {
+      "number": 50,
+      "theme": "Celebrations",
+      "conversationStarter": "Plan a birthday party for a friend: what do you celebrate with, what present do you give, what do you wish them?",
+      "de": ["de-geburtstag", "de-geschenk", "de-feiern", "de-party", "de-gratulieren"],
+      "zh": ["zh-sheng-ri", "zh-li-wu", "zh-qing-zhu", "zh-ju-hui", "zh-zhu-wish"]
     }
   ]
 }

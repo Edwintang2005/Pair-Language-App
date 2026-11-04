@@ -12,6 +12,7 @@ struct ReviewView: View {
     @State private var reviewedThisRound = 0
     @State private var quizzing = false
     @State private var testingSelf = false
+    @State private var drillingGrammar = false
 
     var body: some View {
         NavigationStack {
@@ -77,6 +78,7 @@ struct ReviewView: View {
             Spacer()
             VStack(spacing: 10) {
                 testYourselfCard
+                grammarCard
                 quizCard
             }
         }
@@ -85,6 +87,11 @@ struct ReviewView: View {
         .sheet(isPresented: $quizzing) {
             NavigationStack {
                 DrillView(title: "Quiz your partner", kind: .partnerQuiz, cards: quizCards)
+            }
+        }
+        .sheet(isPresented: $drillingGrammar) {
+            if let learning = progress.learning {
+                GrammarDrillView(language: learning, wordIDs: progress.knownWordIDs)
             }
         }
         .sheet(isPresented: $testingSelf) {
@@ -104,6 +111,22 @@ struct ReviewView: View {
                 title: "Test yourself",
                 subtitle: "Flashcards by session, \(learning.name) → English or the other way round."
             ) { testingSelf = true }
+        }
+    }
+
+    // MARK: Grammar drill
+
+    @ViewBuilder
+    private var grammarCard: some View {
+        let count = progress.knownWordIDs.filter { content.words[$0].map(GrammarDrill.isEligible) ?? false }.count
+        if count > 0, let learning = progress.learning {
+            optionCard(
+                symbol: learning == .german ? "textformat" : "square.grid.2x2.fill",
+                title: GrammarDrill.title(for: learning),
+                subtitle: learning == .german
+                    ? "Tap the right article for your \(count) noun\(count == 1 ? "" : "s") so far."
+                    : "Tap the right measure word for your \(count) noun\(count == 1 ? "" : "s") so far."
+            ) { drillingGrammar = true }
         }
     }
 

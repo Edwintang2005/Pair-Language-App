@@ -172,8 +172,11 @@ final class ProgressStore {
         update { $0.pinnedWordID = $0.pinnedWordID == wordID ? nil : wordID }
     }
 
-    /// Your own words that you've been taught: what the widget rotates through when nothing is pinned.
-    var widgetPoolIDs: [String] {
+    /// What the widget rotates through when nothing is pinned.
+    var widgetPoolIDs: [String] { knownWordIDs }
+
+    /// Your own words that you've been taught or are reviewing. The drills use these.
+    var knownWordIDs: [String] {
         guard let learning else { return [] }
         let prefix = learning.rawValue + "-"
         return Set(data.reviews.keys).union(data.taught)

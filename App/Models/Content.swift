@@ -24,6 +24,8 @@ struct GermanNoun: Codable, Hashable {
     /// "m", "f" or "n"
     let gender: String
     let plural: String?
+    /// A rule that explains the gender when the word's ending doesn't. See `GenderHints`.
+    let hint: String?
 
     var article: String {
         switch gender {
@@ -44,6 +46,8 @@ struct GermanVerb: Codable, Hashable {
 struct MeasureWord: Codable, Hashable {
     let word: String
     let pinyin: String
+    /// Other measure words that are fine too, so the drill never marks them wrong.
+    let also: [String]?
 }
 
 struct CharacterPart: Codable, Hashable {
@@ -66,6 +70,8 @@ struct Word: Codable, Hashable, Identifiable {
     // Chinese only
     let pinyin: String?
     let measureWord: MeasureWord?
+    /// For Chinese nouns without a measure word: "direct" (三天) or "none" (not counted, like 今天).
+    let counting: String?
     let characters: [CharacterPart]?
 
     var language: Language { id.hasPrefix("zh-") ? .chinese : .german }
@@ -88,7 +94,19 @@ struct Word: Codable, Hashable, Identifiable {
         if let measureWord {
             return "measure word: \(measureWord.word) (\(measureWord.pinyin))"
         }
+        if countsDirectly {
+            return "no measure word: \(MeasureWords.countingPhrase(for: self)?.text ?? word)"
+        }
         return nil
+    }
+
+    /// Chinese nouns counted with no measure word in between: 三天, 两年.
+    var countsDirectly: Bool { counting == "direct" }
+
+    /// The English meaning up to the first comma or semicolon: "car" from "car, vehicle".
+    var shortGloss: String {
+        String(gloss.split(whereSeparator: { $0 == "," || $0 == ";" }).first ?? Substring(gloss))
+            .trimmingCharacters(in: .whitespaces)
     }
 
     var partOfSpeech: String { pos.prefix(1).uppercased() + pos.dropFirst() }

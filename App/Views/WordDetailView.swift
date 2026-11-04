@@ -25,7 +25,10 @@ struct WordDetailView: View {
 
                     pinButton
 
-                    if isTeaching { tipCard }
+                    if isTeaching {
+                        tipCard
+                        practiceCard
+                    }
 
                     grammar
 
@@ -99,12 +102,25 @@ struct WordDetailView: View {
     }
 
     @ViewBuilder
+    private var practiceCard: some View {
+        if let practice = GrammarNotes.practice(for: word) {
+            VStack(alignment: .leading, spacing: 6) {
+                Label("Try it with them", systemImage: "person.2.wave.2.fill")
+                    .font(.headline)
+                    .foregroundStyle(.tint)
+                Text(practice)
+            }
+            .card()
+        }
+    }
+
+    @ViewBuilder
     private var grammar: some View {
         if let noun = word.noun {
             grammarCard(rows: [
                 ("Gender", "\(noun.article) (\(genderName(noun.gender)))"),
                 ("Plural", noun.plural.map { "die \($0)" } ?? "usually none"),
-            ])
+            ], note: GrammarNotes.pattern(for: word))
         } else if let verb = word.verb {
             let aux = verb.auxiliary == "sein" ? "ist" : "hat"
             grammarCard(rows: [
@@ -114,12 +130,17 @@ struct WordDetailView: View {
         } else if let measure = word.measureWord {
             grammarCard(rows: [
                 ("Measure word", "\(measure.word) \(measure.pinyin)"),
-                ("e.g.", "一\(measure.word)\(word.word)"),
-            ])
+                ("One of them", MeasureWords.countingPhrase(for: word)?.text ?? "一\(measure.word)\(word.word)"),
+            ], note: GrammarNotes.pattern(for: word))
+        } else if word.countsDirectly, let phrase = MeasureWords.countingPhrase(for: word) {
+            grammarCard(rows: [
+                ("Measure word", "none"),
+                ("Three of them", phrase.text),
+            ], note: GrammarNotes.pattern(for: word))
         }
     }
 
-    private func grammarCard(rows: [(String, String)]) -> some View {
+    private func grammarCard(rows: [(String, String)], note: String? = nil) -> some View {
         VStack(alignment: .leading, spacing: 8) {
             ForEach(rows, id: \.0) { row in
                 HStack {
@@ -127,6 +148,10 @@ struct WordDetailView: View {
                     Spacer()
                     Text(row.1).fontWeight(.medium)
                 }
+            }
+            if let note {
+                Divider()
+                Text(note).font(.subheadline).foregroundStyle(.secondary)
             }
         }
         .card()

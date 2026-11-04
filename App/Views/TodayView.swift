@@ -207,6 +207,11 @@ struct LearnerCard: View {
                         Text(grammar).font(.subheadline).foregroundStyle(.secondary)
                     }
                 }
+                if let pattern = GrammarNotes.pattern(for: word) {
+                    Label(pattern, systemImage: "lightbulb")
+                        .font(.subheadline)
+                        .foregroundStyle(.orange)
+                }
                 if let example = word.examples.first {
                     ExampleView(example: example, language: word.language)
                 }

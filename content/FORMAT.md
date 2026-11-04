@@ -61,6 +61,8 @@ tools/
       "gloss": "house",
       "pos": "noun",                    // noun | verb | adjective | adverb | pronoun | numeral | conjunction | preposition | interjection | phrase | particle
       "noun": { "gender": "n", "plural": "Häuser" },   // nouns only. gender: m | f | n. plural: null if (practically) none
+      // optional "hint" on noun: a rule that explains the gender when the ending doesn't, e.g.
+      // "Compound nouns take the gender of their last part". Endings like -ung, -chen, -e are handled by the app.
       "verb": { "present3sg": "…", "participle": "…", "auxiliary": "haben" },  // verbs only. auxiliary: haben | sein
       "examples": [ { "text": "Das Haus ist groß.", "english": "The house is big." } ],
       "tip": "Two key phrases: nach Hause (going home) and zu Hause (at home)."
@@ -84,7 +86,12 @@ tools/
       "pinyin": "fángjiān",              // tone marks; neutral tone has no mark (péngyou)
       "gloss": "room",
       "pos": "noun",
-      "measureWord": { "word": "间", "pinyin": "jiān" },          // optional
+      "measureWord": { "word": "间", "pinyin": "jiān", "also": ["个"] },
+      // nouns need exactly one of:
+      //   measureWord          the usual measure word. "also" (optional) lists others that are fine too,
+      //                        so the measure-word drill never marks them wrong
+      //   "counting": "direct" numbers go straight in front, no measure word (三天, 两年)
+      //   "counting": "none"   not something you count (今天, 天气); left out of the drill
       "characters": [                                            // optional, multi-character words only
         { "char": "房", "pinyin": "fáng", "meaning": "house, room" },
         { "char": "间", "pinyin": "jiān", "meaning": "space, room" }
@@ -103,7 +110,7 @@ struct Example: Codable { let text: String; let pinyin: String?; let english: St
 
 struct GermanNoun: Codable { let gender: String; let plural: String? }
 struct GermanVerb: Codable { let present3sg: String; let participle: String; let auxiliary: String }
-struct MeasureWord: Codable { let word: String; let pinyin: String }
+struct MeasureWord: Codable { let word: String; let pinyin: String; let also: [String]? }
 struct CharacterPart: Codable { let char: String; let pinyin: String; let meaning: String }
 
 struct Word: Codable, Identifiable {
@@ -125,7 +132,7 @@ struct Word: Codable, Identifiable {
 
 ## Not covered yet
 
-- **Frequency source.** Sessions 1–30 are hand-picked from very common words. Before drafting the rest, pick
+- **Frequency source.** Sessions 1–50 are hand-picked from very common words. Before drafting the rest, pick
   the source lists (e.g. DeReWo or the Leipzig corpora for German, SUBTLEX-CH or the HSK lists for Chinese),
   check their licences, and add an optional `frequencyRank` field.
 - **Traditional characters.** These could be an optional `traditional` field if ever needed.
