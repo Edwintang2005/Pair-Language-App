@@ -273,6 +273,38 @@ struct WidgetTests {
         store.togglePin("de-haus")
         #expect(store.data.pinnedWordID == nil)
     }
+
+    @Test func widgetLabelsShowTheGrammar() throws {
+        let content = try ContentLibrary.loadBundled()
+        func widget(_ id: String) throws -> WidgetWord {
+            WidgetSync.widgetWord(try #require(content.words[id]))
+        }
+
+        let house = try widget("de-haus")
+        #expect(house.label == "das · noun")
+        #expect(house.circleLabel == "das")
+        #expect(house.detailLine == "house · die Häuser")
+
+        let go = try widget("de-gehen")
+        #expect(go.label == "verb")
+        #expect(go.circleLabel == nil)
+        #expect(go.detailLine?.hasSuffix("· er geht") == true)
+
+        let eyes = try widget("zh-yan-jing")
+        #expect(eyes.label == "yǎnjing")
+        #expect(eyes.circleLabel == "yǎnjing")
+        #expect(eyes.detailLine == "eye · 一双眼睛")
+
+        let hello = try widget("de-hallo")
+        #expect(hello.detailLine == hello.gloss)
+    }
+
+    @Test func oldWidgetFilesWithoutLabelsStillLoad() throws {
+        let json = #"{"pool":[{"id":"de-haus","headword":"das Haus","shortWord":"Haus","gloss":"house","languageName":"German"}]}"#
+        let snapshot = try JSONDecoder().decode(WidgetSnapshot.self, from: Data(json.utf8))
+        #expect(snapshot.pool.first?.label == nil)
+        #expect(snapshot.pool.first?.shortWord == "Haus")
+    }
 }
 
 @MainActor

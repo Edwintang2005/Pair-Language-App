@@ -71,7 +71,8 @@ struct WordProvider: TimelineProvider {
 extension WidgetWord {
     static let sample = WidgetWord(
         id: "sample", headword: "das Haus", shortWord: "Haus", pinyin: nil,
-        gloss: "house", languageName: "German"
+        gloss: "house", languageName: "German",
+        label: "das · noun", circleLabel: "das", detailLine: "house · die Häuser"
     )
 }
 
@@ -110,32 +111,47 @@ struct PairWidgetView: View {
         Text("\(word.headword) · \(word.gloss)")
     }
 
+    /// The article or pinyin small on top, the word below: "das / Haus", "yǎnjing / 眼睛".
     private func circular(_ word: WidgetWord) -> some View {
         ZStack {
             AccessoryWidgetBackground()
-            Text(word.shortWord)
-                .font(.system(size: 22, weight: .semibold))
-                .minimumScaleFactor(0.4)
-                .lineLimit(1)
-                .padding(6)
-                .widgetAccentable()
+            VStack(spacing: 0) {
+                if let circleLabel = word.circleLabel {
+                    Text(circleLabel)
+                        .font(.system(size: 11))
+                        .foregroundStyle(.secondary)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.6)
+                }
+                Text(word.shortWord)
+                    .font(.system(size: 20, weight: .semibold))
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.4)
+                    .widgetAccentable()
+            }
+            .padding(7)
         }
     }
 
+    /// A small grammar line on top, the word large, then its meaning with the plural or a counting example.
     private func rectangular(_ word: WidgetWord) -> some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text(word.headword)
-                .font(.headline)
-                .lineLimit(1)
-                .minimumScaleFactor(0.6)
-                .widgetAccentable()
-            if let pinyin = word.pinyin {
-                Text(pinyin).font(.caption)
+            if let label = word.label {
+                Text(label)
+                    .font(.caption2)
+                    .foregroundStyle(.secondary)
+                    .lineLimit(1)
             }
-            Text(word.gloss)
+            Text(word.label == nil ? word.headword : word.shortWord)
+                .font(.system(size: 22, weight: .semibold))
+                .lineLimit(1)
+                .minimumScaleFactor(0.5)
+                .widgetAccentable()
+            Text(word.detailLine ?? word.gloss)
                 .font(.caption)
                 .foregroundStyle(.secondary)
-                .lineLimit(word.pinyin == nil ? 2 : 1)
+                .lineLimit(1)
+                .minimumScaleFactor(0.8)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
     }
@@ -159,7 +175,7 @@ struct PairWidgetView: View {
             if let pinyin = word.pinyin {
                 Text(pinyin).font(.subheadline).opacity(0.85)
             }
-            Text(word.gloss)
+            Text(word.detailLine ?? word.gloss)
                 .font(.subheadline)
                 .lineLimit(2)
                 .opacity(0.85)

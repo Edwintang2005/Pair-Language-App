@@ -24,13 +24,34 @@ enum WidgetSync {
     }
 
     static func widgetWord(_ word: Word) -> WidgetWord {
-        WidgetWord(
+        var label: String?
+        var circleLabel: String?
+        var extra: String?
+        if let noun = word.noun {
+            label = "\(noun.article) · noun"
+            circleLabel = noun.article
+            extra = noun.plural.map { "die \($0)" }
+        } else if word.language == .german {
+            label = word.pos
+            extra = word.verb.map { "er \($0.present3sg)" }
+        } else {
+            label = word.pinyin
+            circleLabel = word.pinyin
+            extra = MeasureWords.countingPhrase(for: word)?.text
+        }
+        // With an extra on the line, keep the meaning short so both fit.
+        let detailLine = extra.map { "\(word.shortGloss) · \($0)" } ?? word.gloss
+
+        return WidgetWord(
             id: word.id,
             headword: word.headword,
             shortWord: word.word,
             pinyin: word.pinyin,
             gloss: word.gloss,
-            languageName: word.language.name
+            languageName: word.language.name,
+            label: label,
+            circleLabel: circleLabel,
+            detailLine: detailLine
         )
     }
 }

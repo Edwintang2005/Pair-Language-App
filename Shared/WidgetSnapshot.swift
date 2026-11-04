@@ -12,6 +12,13 @@ struct WidgetWord: Codable, Hashable {
     let pinyin: String?
     let gloss: String
     let languageName: String
+    /// Small line above the word on the rectangle: "das · noun", "verb" or the pinyin.
+    /// Optional fields like these keep older widget.json files readable.
+    var label: String? = nil
+    /// Small line above the word on the round widget: the article or the pinyin.
+    var circleLabel: String? = nil
+    /// The line under the word on the rectangle: "house · die Häuser", "eyes · 一双眼睛".
+    var detailLine: String? = nil
 }
 
 /// What the app hands to the widget, through the shared App Group container.
