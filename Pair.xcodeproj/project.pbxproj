@@ -50,7 +50,7 @@
 		87E4EC293B0B25029522814D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8B63AA68C9712DDBEB24D546 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		965BC46B66A2843A16D7B2C7 /* TodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayView.swift; sourceTree = "<group>"; };
-		98B3A7DE26938F0F9FB75843 /* Pair - Language  Learning.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pair - Language  Learning.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		98B3A7DE26938F0F9FB75843 /* Pair.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Pair.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2C27E9DC5CBC69B3818DAB0 /* WordDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDetailView.swift; sourceTree = "<group>"; };
 		B4A8B9C0905C1B6F78A049D3 /* PairTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairTests.swift; sourceTree = "<group>"; };
 		E35B9498016F5EDB11894842 /* PairTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = PairTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -105,7 +105,7 @@
 		A864B8A27BCFD5F542C6FBD1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				98B3A7DE26938F0F9FB75843 /* Pair - Language  Learning.app */,
+				98B3A7DE26938F0F9FB75843 /* Pair.app */,
 				E35B9498016F5EDB11894842 /* PairTests.xctest */,
 			);
 			name = Products;
@@ -168,7 +168,7 @@
 			packageProductDependencies = (
 			);
 			productName = Pair;
-			productReference = 98B3A7DE26938F0F9FB75843 /* Pair - Language  Learning.app */;
+			productReference = 98B3A7DE26938F0F9FB75843 /* Pair.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -276,7 +276,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.pairlanguage.app.tests;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pair.app/Pair";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pair - Language Learning.app/Pair - Language Learning";
 			};
 			name = Debug;
 		};
@@ -353,7 +353,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.pairlanguage.app.tests;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pair.app/Pair";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pair - Language Learning.app/Pair - Language Learning";
 			};
 			name = Release;
 		};
@@ -442,7 +442,8 @@
 				);
 				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pairlanguage.app;
-				PRODUCT_NAME = "Pair - Language  Learning";
+				PRODUCT_MODULE_NAME = Pair;
+				PRODUCT_NAME = "Pair - Language Learning";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -466,7 +467,8 @@
 				);
 				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pairlanguage.app;
-				PRODUCT_NAME = "Pair - Language  Learning";
+				PRODUCT_MODULE_NAME = Pair;
+				PRODUCT_NAME = "Pair - Language Learning";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

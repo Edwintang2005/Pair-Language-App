@@ -27,7 +27,9 @@ targets:
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.pairlanguage.app
-        PRODUCT_NAME: Pair
+        PRODUCT_NAME: "Pair - Language Learning"
+        # Keeps `@testable import Pair` working whatever the product is called.
+        PRODUCT_MODULE_NAME: Pair
         MARKETING_VERSION: "0.1.0"
         CURRENT_PROJECT_VERSION: "1"
         TARGETED_DEVICE_FAMILY: "1"
@@ -49,6 +51,9 @@ targets:
       base:
         GENERATE_INFOPLIST_FILE: YES
         PRODUCT_BUNDLE_IDENTIFIER: com.pairlanguage.app.tests
+        # Must match the app's PRODUCT_NAME.
+        TEST_HOST: "$(BUILT_PRODUCTS_DIR)/Pair - Language Learning.app/Pair - Language Learning"
+        BUNDLE_LOADER: "$(TEST_HOST)"
 schemes:
   Pair:
     build:
