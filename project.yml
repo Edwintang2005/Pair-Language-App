@@ -11,8 +11,8 @@ settings:
     SWIFT_VERSION: "6.0"
     SWIFT_DEFAULT_ACTOR_ISOLATION: MainActor
     SWIFT_APPROACHABLE_CONCURRENCY: YES
-    # Set this to your Apple Developer Team ID (Xcode > Signing & Capabilities) before installing on a phone.
-    DEVELOPMENT_TEAM: ""
+    # Apple Developer Team ID. Keep it here rather than only in Xcode, or `xcodegen generate` wipes it.
+    DEVELOPMENT_TEAM: 3L8Q3U3WY3
     CODE_SIGN_STYLE: Automatic
 targets:
   Pair:

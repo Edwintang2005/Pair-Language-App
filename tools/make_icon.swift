@@ -5,14 +5,15 @@ import AppKit
 let size = 1024
 let out = CommandLine.arguments.dropFirst().first ?? "AppIcon.png"
 
-guard let rep = NSBitmapImageRep(
-    bitmapDataPlanes: nil, pixelsWide: size, pixelsHigh: size, bitsPerSample: 8,
-    samplesPerPixel: 4, hasAlpha: true, isPlanar: false, colorSpaceName: .deviceRGB,
-    bytesPerRow: 0, bitsPerPixel: 0
+// App Store Connect rejects icons with an alpha channel, so draw into an opaque RGB context.
+guard let cg = CGContext(
+    data: nil, width: size, height: size, bitsPerComponent: 8, bytesPerRow: 0,
+    space: CGColorSpace(name: CGColorSpace.sRGB)!,
+    bitmapInfo: CGImageAlphaInfo.noneSkipLast.rawValue
 ) else { fatalError("could not create bitmap") }
 
 NSGraphicsContext.saveGraphicsState()
-NSGraphicsContext.current = NSGraphicsContext(bitmapImageRep: rep)
+NSGraphicsContext.current = NSGraphicsContext(cgContext: cg, flipped: false)
 
 func rgb(_ hex: Int) -> NSColor {
     NSColor(srgbRed: CGFloat((hex >> 16) & 0xFF) / 255, green: CGFloat((hex >> 8) & 0xFF) / 255,
@@ -68,6 +69,8 @@ label("字", in: right, color: .white, font: cjk)
 
 NSGraphicsContext.restoreGraphicsState()
 
+guard let image = cg.makeImage() else { fatalError("could not make image") }
+let rep = NSBitmapImageRep(cgImage: image)
 guard let png = rep.representation(using: .png, properties: [:]) else { fatalError("PNG encoding failed") }
 try png.write(to: URL(fileURLWithPath: out))
 print("wrote \(out)")
