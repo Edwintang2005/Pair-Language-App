@@ -140,6 +140,76 @@
       "conversationStarter": "Play shop with things on the table: one sells, one buys, and you haggle over every price.",
       "de": ["de-kaufen", "de-geld", "de-kosten", "de-viel", "de-teuer"],
       "zh": ["zh-mai-buy", "zh-mai-sell", "zh-qian", "zh-duo-shao", "zh-gui"]
+    },
+    {
+      "number": 21,
+      "theme": "Numbers 6–10",
+      "conversationStarter": "Swap phone numbers, birthdays and ages using only 1–10, then race each other counting backwards from ten.",
+      "de": ["de-sechs", "de-sieben", "de-acht", "de-neun", "de-zehn"],
+      "zh": ["zh-liu", "zh-qi", "zh-ba", "zh-jiu", "zh-shi-ten"]
+    },
+    {
+      "number": 22,
+      "theme": "People",
+      "conversationStarter": "Describe people in a photo or on the street: a man, a woman, a girl. Then explain what your names mean.",
+      "de": ["de-mann", "de-frau", "de-mensch", "de-maedchen", "de-name"],
+      "zh": ["zh-ren", "zh-nan-ren", "zh-nv-ren", "zh-nv-hai", "zh-ming-zi"]
+    },
+    {
+      "number": 23,
+      "theme": "Mine, yours & everyone's",
+      "conversationStarter": "Point at things around the house and argue playfully about whose they are.",
+      "de": ["de-mein", "de-dein", "de-unser", "de-ihr", "de-alle"],
+      "zh": ["zh-de", "zh-ni-men", "zh-ta-men", "zh-zi-ji", "zh-da-jia"]
+    },
+    {
+      "number": 24,
+      "theme": "Everyday activities",
+      "conversationStarter": "Take turns miming one of today's activities. The other names it in the language they're learning.",
+      "de": ["de-schlafen", "de-lesen", "de-schreiben", "de-spielen", "de-warten"],
+      "zh": ["zh-shui-jiao", "zh-du", "zh-xie", "zh-wan", "zh-deng"]
+    },
+    {
+      "number": 25,
+      "theme": "Giving & helping",
+      "conversationStarter": "Pass things back and forth across the table, saying what you give, take and need.",
+      "de": ["de-geben", "de-nehmen", "de-bringen", "de-helfen", "de-brauchen"],
+      "zh": ["zh-gei", "zh-na-take", "zh-dai", "zh-bang", "zh-xu-yao"]
+    },
+    {
+      "number": 26,
+      "theme": "Thinking & understanding",
+      "conversationStarter": "Each share an opinion starting 'I think…'. The other asks a question about it, and you both check you understood.",
+      "de": ["de-denken", "de-glauben", "de-sprechen", "de-fragen", "de-verstehen"],
+      "zh": ["zh-jue-de", "zh-wen", "zh-gao-su", "zh-dong", "zh-yi-si"]
+    },
+    {
+      "number": 27,
+      "theme": "Weather",
+      "conversationStarter": "Describe today's weather, then the weather where each of you grew up.",
+      "de": ["de-wetter", "de-sonne", "de-regen", "de-warm", "de-kalt"],
+      "zh": ["zh-tian-qi", "zh-tai-yang", "zh-xia-yu", "zh-re", "zh-leng"]
+    },
+    {
+      "number": 28,
+      "theme": "Colours",
+      "conversationStarter": "Play I-spy with colours: 'I see something red…'",
+      "de": ["de-rot", "de-blau", "de-gruen", "de-schwarz", "de-weiss"],
+      "zh": ["zh-hong", "zh-lan", "zh-lv", "zh-hei", "zh-bai"]
+    },
+    {
+      "number": 29,
+      "theme": "How often",
+      "conversationStarter": "Share something you always do, often do and never do. Then ask: have you already…? Not yet?",
+      "de": ["de-immer", "de-oft", "de-nie", "de-schon", "de-noch"],
+      "zh": ["zh-zong-shi", "zh-chang-chang", "zh-cong-lai-bu", "zh-yi-jing", "zh-hai"]
+    },
+    {
+      "number": 30,
+      "theme": "Body & health",
+      "conversationStarter": "Play Simon Says with head, hands and eyes, then talk about the last time you were sick.",
+      "de": ["de-kopf", "de-hand", "de-auge", "de-krank", "de-arzt"],
+      "zh": ["zh-tou", "zh-shou", "zh-yan-jing", "zh-sheng-bing", "zh-yi-sheng"]
     }
   ]
 }

@@ -17,6 +17,8 @@ struct ProgressData: Codable, Equatable {
     var reminders: ReminderSettings?
     /// The "turn on reminders" card on Today was dismissed.
     var reminderPromptDismissed = false
+    /// The word shown on the Lock Screen widget. `nil` rotates through learned words.
+    var pinnedWordID: String?
 
     init() {}
 
@@ -30,6 +32,7 @@ struct ProgressData: Codable, Equatable {
         completed = try c.decodeIfPresent([Int: Date].self, forKey: .completed) ?? [:]
         reminders = try c.decodeIfPresent(ReminderSettings.self, forKey: .reminders)
         reminderPromptDismissed = try c.decodeIfPresent(Bool.self, forKey: .reminderPromptDismissed) ?? false
+        pinnedWordID = try c.decodeIfPresent(String.self, forKey: .pinnedWordID)
     }
 }
 
@@ -160,6 +163,22 @@ final class ProgressStore {
 
     func dismissReminderPrompt() {
         update { $0.reminderPromptDismissed = true }
+    }
+
+    // MARK: Lock Screen widget
+
+    /// Shows this word on the widget, or clears the pin when it's already pinned.
+    func togglePin(_ wordID: String) {
+        update { $0.pinnedWordID = $0.pinnedWordID == wordID ? nil : wordID }
+    }
+
+    /// Your own words that you've been taught: what the widget rotates through when nothing is pinned.
+    var widgetPoolIDs: [String] {
+        guard let learning else { return [] }
+        let prefix = learning.rawValue + "-"
+        return Set(data.reviews.keys).union(data.taught)
+            .filter { $0.hasPrefix(prefix) }
+            .sorted()
     }
 
     /// Words of your partner's from sessions you've both finished, for quizzing them.

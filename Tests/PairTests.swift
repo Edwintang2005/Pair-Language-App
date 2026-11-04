@@ -16,7 +16,7 @@ private func day(_ d: Int, hour: Int = 10) -> Date {
 struct ContentTests {
     @Test func bundledContentLoadsAndEverySessionHasFivePerSide() throws {
         let content = try ContentLibrary.loadBundled()
-        #expect(content.sessionCount >= 20)
+        #expect(content.sessionCount >= 30)
         for session in content.sessions {
             #expect(content.words(in: session, language: .german).count == 5, "session \(session.number) de")
             #expect(content.words(in: session, language: .chinese).count == 5, "session \(session.number) zh")
@@ -223,5 +223,54 @@ struct ReminderPlannerTests {
         let decoded = try JSONDecoder().decode(ProgressData.self, from: Data(#"{"learning":"zh","currentSession":3}"#.utf8))
         #expect(decoded.reminders == nil)
         #expect(!decoded.reminderPromptDismissed)
+    }
+}
+
+@MainActor
+struct WidgetTests {
+    private func word(_ id: String) -> WidgetWord {
+        WidgetWord(id: id, headword: id, shortWord: id, pinyin: nil, gloss: "", languageName: "German")
+    }
+
+    @Test func pinnedWordAlwaysWins() {
+        let snapshot = WidgetSnapshot(pinned: word("de-haus"), pool: [word("de-ich"), word("de-du")])
+        #expect(snapshot.word(for: day(4), calendar: calendar)?.id == "de-haus")
+        #expect(snapshot.word(for: day(5), calendar: calendar)?.id == "de-haus")
+    }
+
+    @Test func unpinnedRotatesThroughThePoolDaily() throws {
+        let snapshot = WidgetSnapshot(pinned: nil, pool: [word("a"), word("b"), word("c")])
+        let ids = (1...6).compactMap { snapshot.word(for: day($0), calendar: calendar)?.id }
+        #expect(Set(ids) == ["a", "b", "c"])
+        #expect(ids[0] != ids[1])
+        #expect(ids[0] == ids[3]) // repeats every 3 days
+        #expect(WidgetSnapshot().word(for: day(4), calendar: calendar) == nil)
+    }
+
+    @Test func poolHasOnlyYourOwnTaughtWords() throws {
+        let content = try ContentLibrary.loadBundled()
+        let store = ProgressStore(fileURL: nil)
+        store.choose(learning: .german)
+        let s1 = try #require(content.session(1))
+        for id in s1.de { store.toggleTaught(id) }
+        store.finish(s1, now: day(4), calendar: calendar)
+        store.toggleTaught("de-ich")
+
+        #expect(Set(store.widgetPoolIDs) == Set(s1.de + ["de-ich"]))
+        #expect(store.widgetPoolIDs.allSatisfy { $0.hasPrefix("de-") })
+    }
+
+    @Test func pinningTogglesAndShowsTheArticle() throws {
+        let content = try ContentLibrary.loadBundled()
+        let store = ProgressStore(fileURL: nil)
+        store.choose(learning: .german)
+
+        store.togglePin("de-haus")
+        let snapshot = WidgetSync.snapshot(for: store.data, poolIDs: store.widgetPoolIDs, content: content)
+        #expect(snapshot.pinned?.headword == "das Haus")
+        #expect(snapshot.pinned?.shortWord == "Haus")
+
+        store.togglePin("de-haus")
+        #expect(store.data.pinnedWordID == nil)
     }
 }

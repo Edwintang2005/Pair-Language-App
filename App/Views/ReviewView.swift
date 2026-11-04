@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ReviewView: View {
-    private enum Mode { case idle, due, practice }
+    private enum Mode { case idle, due }
 
     @Environment(ProgressStore.self) private var progress
     @Environment(ContentLibrary.self) private var content
@@ -11,6 +11,7 @@ struct ReviewView: View {
     @State private var revealed = false
     @State private var reviewedThisRound = 0
     @State private var quizzing = false
+    @State private var testingSelf = false
 
     var body: some View {
         NavigationStack {
@@ -71,69 +72,91 @@ struct ReviewView: View {
                     }
                     .buttonStyle(.borderedProminent)
                 }
-                if progress.learnedCount > 0 {
-                    Button {
-                        start(.practice, with: Array(progress.learnedWordIDs.shuffled().prefix(20)))
-                    } label: {
-                        Text("Practise anyway").frame(maxWidth: .infinity).padding(.vertical, 6)
-                    }
-                    .buttonStyle(.bordered)
-                    Text("Practice doesn't change when words are next due.")
-                        .font(.footnote)
-                        .foregroundStyle(.secondary)
-                }
             }
             .padding(.top, 8)
             Spacer()
-            quizCard
+            VStack(spacing: 10) {
+                testYourselfCard
+                quizCard
+            }
         }
         .multilineTextAlignment(.center)
         .padding(24)
         .sheet(isPresented: $quizzing) {
-            if let teaching = progress.teaching {
-                QuizView(language: teaching, words: quizWords)
+            NavigationStack {
+                DrillView(title: "Quiz your partner", kind: .partnerQuiz, cards: quizCards)
             }
+        }
+        .sheet(isPresented: $testingSelf) {
+            if let learning = progress.learning {
+                PracticeSetupView(learning: learning)
+            }
+        }
+    }
+
+    // MARK: Test yourself
+
+    @ViewBuilder
+    private var testYourselfCard: some View {
+        if progress.learnedCount > 0, let learning = progress.learning {
+            optionCard(
+                symbol: "rectangle.stack.fill",
+                title: "Test yourself",
+                subtitle: "Flashcards by session, \(learning.name) → English or the other way round."
+            ) { testingSelf = true }
         }
     }
 
     // MARK: Quiz your partner
 
-    private var quizWords: [Word] {
-        progress.partnerWordIDs(in: content).compactMap { content.words[$0] }.shuffled().prefix(20).map { $0 }
+    private var quizCards: [DrillCard] {
+        progress.partnerWordIDs(in: content)
+            .compactMap { content.words[$0] }
+            .shuffled()
+            .prefix(20)
+            .map { DrillCard(word: $0, direction: .fromEnglish) }
     }
 
     @ViewBuilder
     private var quizCard: some View {
         let count = progress.partnerWordIDs(in: content).count
         if count > 0, let teaching = progress.teaching {
-            Button {
-                quizzing = true
-            } label: {
-                HStack(spacing: 12) {
-                    Image(systemName: "person.2.fill")
-                        .font(.title3)
-                        .foregroundStyle(.tint)
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text("Quiz your partner").font(.headline)
-                        Text("\(count) \(teaching.name) words so far. They answer out loud, you check.")
-                            .font(.subheadline)
-                            .foregroundStyle(.secondary)
-                    }
-                    .multilineTextAlignment(.leading)
-                    Spacer()
-                    Image(systemName: "chevron.right").foregroundStyle(.tertiary)
-                }
-                .card()
-            }
-            .buttonStyle(.plain)
+            optionCard(
+                symbol: "person.2.fill",
+                title: "Quiz your partner",
+                subtitle: "\(count) \(teaching.name) words so far. They answer out loud, you check."
+            ) { quizzing = true }
         }
+    }
+
+    private func optionCard(symbol: String, title: String, subtitle: String,
+                            action: @escaping () -> Void) -> some View {
+        Button(action: action) {
+            HStack(spacing: 12) {
+                Image(systemName: symbol)
+                    .font(.title3)
+                    .foregroundStyle(.tint)
+                    .frame(width: 32)
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(title).font(.headline)
+                    Text(subtitle)
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                }
+                .multilineTextAlignment(.leading)
+                Spacer()
+                Image(systemName: "chevron.right").foregroundStyle(.tertiary)
+            }
+            .card(padding: 14)
+        }
+        .buttonStyle(.plain)
     }
 
     // MARK: Flashcard
 
     private func flashcard(_ word: Word) -> some View {
         VStack(spacing: 16) {
-            Text(mode == .practice ? "Practice · \(queue.count) left" : "\(queue.count) left")
+            Text("\(queue.count) left")
                 .font(.subheadline.weight(.medium))
                 .foregroundStyle(.secondary)
 
@@ -189,7 +212,7 @@ struct ReviewView: View {
                 } label: {
                     VStack(spacing: 2) {
                         Text(grade.title).font(.headline)
-                        if mode == .due, let state = progress.review(for: word.id) {
+                        if let state = progress.review(for: word.id) {
                             Text(intervalLabel(Scheduler.days(after: state, grade: grade)))
                                 .font(.caption)
                         }
@@ -213,9 +236,7 @@ struct ReviewView: View {
     }
 
     private func submit(_ grade: ReviewGrade, for word: Word) {
-        if mode == .due {
-            progress.record(grade, for: word.id)
-        }
+        progress.record(grade, for: word.id)
         reviewedThisRound += 1
         withAnimation(.snappy) {
             queue.removeFirst()

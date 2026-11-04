@@ -60,6 +60,7 @@ struct RootView: View {
         }
         // Any change to progress (a finished session, a review, new settings) re-plans the reminders.
         .task(id: RefreshKey(data: progress.data, foregroundCount: foregroundCount)) {
+            WidgetSync.update(progress: progress, content: content)
             await ReminderScheduler.refresh(data: progress.data, sessions: content.sessions)
         }
         .onChange(of: scenePhase) { _, phase in

@@ -1,6 +1,7 @@
 import SwiftUI
 
 /// Every word so far, from session 1 up to the current one: yours and your partner's.
+/// Your own words only appear once your partner has taught them.
 struct LibraryView: View {
     let learning: Language
 
@@ -13,9 +14,20 @@ struct LibraryView: View {
 
     private var language: Language { showingTeaching ? learning.other : learning }
 
-    private var visibleSessions: [Session] {
+    /// Sessions up to the current one, newest first, each with the words that should be shown.
+    private var sections: [(session: Session, words: [Word])] {
         let last = min(progress.currentSession, content.sessionCount)
-        return content.sessions.filter { $0.number <= last }.reversed()
+        return content.sessions
+            .filter { $0.number <= last }
+            .reversed()
+            .map { session in
+                let words = content.words(in: session, language: language).filter { word in
+                    (showingTeaching || progress.isLearned(word.id) || progress.isTaught(word.id))
+                        && word.matches(search)
+                }
+                return (session, words)
+            }
+            .filter { !$0.words.isEmpty }
     }
 
     var body: some View {
@@ -31,14 +43,11 @@ struct LibraryView: View {
                     .listRowInsets(EdgeInsets())
                 }
 
-                ForEach(visibleSessions) { session in
-                    let words = content.words(in: session, language: language).filter { $0.matches(search) }
-                    if !words.isEmpty {
-                        Section {
-                            ForEach(words) { word in row(word) }
-                        } header: {
-                            Text("Session \(session.number) · \(session.theme)")
-                        }
+                ForEach(sections, id: \.session.id) { section in
+                    Section {
+                        ForEach(section.words) { word in row(word) }
+                    } header: {
+                        Text("Session \(section.session.number) · \(section.session.theme)")
                     }
                 }
             }
@@ -48,28 +57,38 @@ struct LibraryView: View {
                 WordDetailView(word: word, isTeaching: showingTeaching)
             }
             .overlay {
-                if visibleSessions.isEmpty {
-                    ContentUnavailableView("No words yet", systemImage: "books.vertical")
+                if sections.isEmpty {
+                    if !search.isEmpty {
+                        ContentUnavailableView.search(text: search)
+                    } else {
+                        ContentUnavailableView(
+                            "No words yet",
+                            systemImage: "books.vertical",
+                            description: Text("Your words appear here once your partner has taught them.")
+                        )
+                    }
                 }
             }
         }
     }
 
-    @ViewBuilder
     private func row(_ word: Word) -> some View {
-        // Your own words stay hidden until your partner has taught them.
-        let hidden = !showingTeaching && !progress.isLearned(word.id) && !progress.isTaught(word.id)
         Button {
             selected = word
         } label: {
             HStack {
                 VStack(alignment: .leading, spacing: 2) {
                     HeadwordView(word: word, style: .medium)
-                    Text(hidden ? "Not taught yet" : word.gloss)
+                    Text(word.gloss)
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
                 }
                 Spacer()
+                if progress.data.pinnedWordID == word.id {
+                    Image(systemName: "pin.fill")
+                        .foregroundStyle(.orange)
+                        .accessibilityLabel("Shown on Lock Screen")
+                }
                 if !showingTeaching, let state = progress.review(for: word.id) {
                     StrengthBadge(strength: Scheduler.strength(of: state))
                 }
@@ -77,6 +96,5 @@ struct LibraryView: View {
             .contentShape(.rect)
         }
         .buttonStyle(.plain)
-        .disabled(hidden)
     }
 }

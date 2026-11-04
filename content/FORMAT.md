@@ -125,7 +125,7 @@ struct Word: Codable, Identifiable {
 
 ## Not covered yet
 
-- **Frequency source.** Sessions 1–20 are hand-picked from very common words. Before drafting the rest, pick
+- **Frequency source.** Sessions 1–30 are hand-picked from very common words. Before drafting the rest, pick
   the source lists (e.g. DeReWo or the Leipzig corpora for German, SUBTLEX-CH or the HSK lists for Chinese),
   check their licences, and add an optional `frequencyRank` field.
 - **Traditional characters.** These could be an optional `traditional` field if ever needed.

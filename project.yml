@@ -14,24 +14,33 @@ settings:
     # Apple Developer Team ID. Keep it here rather than only in Xcode, or `xcodegen generate` wipes it.
     DEVELOPMENT_TEAM: 3L8Q3U3WY3
     CODE_SIGN_STYLE: Automatic
+    # Shared by the app and the widget: App Store Connect rejects builds where they differ.
+    MARKETING_VERSION: "0.1.0"
+    CURRENT_PROJECT_VERSION: "1"
 targets:
   Pair:
     type: application
     platform: iOS
     sources:
       - path: App
+      - path: Shared
       - path: content
         buildPhase: resources
         excludes:
           - "FORMAT.md"
+    dependencies:
+      - target: PairWidget
+    entitlements:
+      path: App/Pair.entitlements
+      properties:
+        com.apple.security.application-groups:
+          - group.com.pairlanguage.app
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.pairlanguage.app
         PRODUCT_NAME: "Pair - Language Learning"
         # Keeps `@testable import Pair` working whatever the product is called.
         PRODUCT_MODULE_NAME: Pair
-        MARKETING_VERSION: "0.1.0"
-        CURRENT_PROJECT_VERSION: "1"
         TARGETED_DEVICE_FAMILY: "1"
         GENERATE_INFOPLIST_FILE: YES
         INFOPLIST_KEY_CFBundleDisplayName: Pair
@@ -40,6 +49,31 @@ targets:
         INFOPLIST_KEY_ITSAppUsesNonExemptEncryption: NO
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+  PairWidget:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: PairWidget
+        excludes:
+          - "Info.plist"
+      - path: Shared
+    entitlements:
+      path: PairWidget/PairWidget.entitlements
+      properties:
+        com.apple.security.application-groups:
+          - group.com.pairlanguage.app
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.pairlanguage.app.widget
+        PRODUCT_NAME: PairWidget
+        TARGETED_DEVICE_FAMILY: "1"
+        # Xcode merges this file (which only declares the widget extension) with the generated keys.
+        INFOPLIST_FILE: PairWidget/Info.plist
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_CFBundleDisplayName: Pair
+        # WidgetKit's protocols aren't main-actor isolated.
+        SWIFT_DEFAULT_ACTOR_ISOLATION: nonisolated
+        SKIP_INSTALL: YES
   PairTests:
     type: bundle.unit-test
     platform: iOS

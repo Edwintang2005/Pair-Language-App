@@ -6,6 +6,7 @@ struct WordDetailView: View {
     let isTeaching: Bool
 
     @Environment(\.dismiss) private var dismiss
+    @Environment(ProgressStore.self) private var progress
 
     var body: some View {
         NavigationStack {
@@ -21,6 +22,8 @@ struct WordDetailView: View {
                         Text(word.gloss).font(.title2.weight(.medium))
                         Text(word.partOfSpeech).font(.subheadline).foregroundStyle(.secondary)
                     }
+
+                    pinButton
 
                     if isTeaching { tipCard }
 
@@ -62,6 +65,26 @@ struct WordDetailView: View {
                     Button("Done") { dismiss() }
                 }
             }
+        }
+    }
+
+    private var pinButton: some View {
+        let pinned = progress.data.pinnedWordID == word.id
+        return VStack(alignment: .leading, spacing: 6) {
+            Button {
+                withAnimation(.snappy) { progress.togglePin(word.id) }
+            } label: {
+                Label(pinned ? "On your Lock Screen" : "Show on Lock Screen",
+                      systemImage: pinned ? "pin.fill" : "pin")
+            }
+            .buttonStyle(.bordered)
+            .tint(pinned ? .orange : .accentColor)
+
+            Text(pinned
+                 ? "Tap again to go back to a different word each day."
+                 : "Needs the Pair widget: touch and hold your Lock Screen, tap Customise, then add Pair.")
+                .font(.footnote)
+                .foregroundStyle(.secondary)
         }
     }
 

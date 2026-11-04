@@ -574,6 +574,293 @@
       "id": "de-teuer", "word": "teuer", "gloss": "expensive", "pos": "adjective",
       "examples": [{ "text": "Das ist mir zu teuer.", "english": "That's too expensive for me." }],
       "tip": "The opposite is billig (cheap) or günstig (good value). Drops an e before endings: ein teures Auto."
+    },
+
+    {
+      "id": "de-sechs", "word": "sechs", "gloss": "six", "pos": "numeral",
+      "examples": [{ "text": "Ich stehe um sechs Uhr auf.", "english": "I get up at six." }],
+      "tip": "The chs sounds like 'x': zex."
+    },
+    {
+      "id": "de-sieben", "word": "sieben", "gloss": "seven", "pos": "numeral",
+      "examples": [{ "text": "Die Woche hat sieben Tage.", "english": "A week has seven days." }],
+      "tip": "The -en drops in bigger numbers: siebzehn (17), siebzig (70)."
+    },
+    {
+      "id": "de-acht", "word": "acht", "gloss": "eight", "pos": "numeral",
+      "examples": [{ "text": "Der Film beginnt um acht.", "english": "The film starts at eight." }],
+      "tip": "The ch is the throaty sound in 'Bach'. achten = to pay attention."
+    },
+    {
+      "id": "de-neun", "word": "neun", "gloss": "nine", "pos": "numeral",
+      "examples": [{ "text": "Neun Uhr ist zu früh.", "english": "Nine o'clock is too early." }],
+      "tip": "eu sounds like English 'oy': noyn."
+    },
+    {
+      "id": "de-zehn", "word": "zehn", "gloss": "ten", "pos": "numeral",
+      "examples": [{ "text": "Ich zähle bis zehn.", "english": "I'll count to ten." }],
+      "tip": "z sounds like 'ts'. The teens add -zehn: dreizehn, vierzehn. Bigger numbers say the ones first: neunundneunzig = 'nine-and-ninety'."
+    },
+
+    {
+      "id": "de-mann", "word": "Mann", "gloss": "man; husband", "pos": "noun",
+      "noun": { "gender": "m", "plural": "Männer" },
+      "examples": [{ "text": "Der Mann dort ist mein Vater.", "english": "The man over there is my father." }],
+      "tip": "mein Mann = my husband. Don't confuse with lowercase man (one, you): Man sagt… = people say…"
+    },
+    {
+      "id": "de-frau", "word": "Frau", "gloss": "woman; wife; Mrs", "pos": "noun",
+      "noun": { "gender": "f", "plural": "Frauen" },
+      "examples": [{ "text": "Frau Müller ist meine Lehrerin.", "english": "Mrs Müller is my teacher." }],
+      "tip": "Three in one: woman, wife (meine Frau) and the title Mrs/Ms (Frau Schmidt)."
+    },
+    {
+      "id": "de-mensch", "word": "Mensch", "gloss": "person, human being", "pos": "noun",
+      "noun": { "gender": "m", "plural": "Menschen" },
+      "examples": [{ "text": "Er ist ein guter Mensch.", "english": "He's a good person." }],
+      "tip": "Gets an -en in most cases: den Menschen. On its own, Mensch! is an exclamation like 'Man!'"
+    },
+    {
+      "id": "de-maedchen", "word": "Mädchen", "gloss": "girl", "pos": "noun",
+      "noun": { "gender": "n", "plural": "Mädchen" },
+      "examples": [{ "text": "Das Mädchen liest ein Buch.", "english": "The girl is reading a book." }],
+      "tip": "Neuter, because the -chen ending ('little') always makes a noun neuter. Grammar beats biology."
+    },
+    {
+      "id": "de-name", "word": "Name", "gloss": "name", "pos": "noun",
+      "noun": { "gender": "m", "plural": "Namen" },
+      "examples": [{ "text": "Mein Name ist Anna.", "english": "My name is Anna." }],
+      "tip": "Wie ist dein Name? is a bit more formal than Wie heißt du?"
+    },
+
+    {
+      "id": "de-mein", "word": "mein", "gloss": "my", "pos": "pronoun",
+      "examples": [{ "text": "Das ist mein Buch.", "english": "That's my book." }],
+      "tip": "Takes the same endings as ein: mein Buch, meine Tür, meinen Kaffee."
+    },
+    {
+      "id": "de-dein", "word": "dein", "gloss": "your (informal)", "pos": "pronoun",
+      "examples": [{ "text": "Ist das dein Auto?", "english": "Is that your car?" }],
+      "tip": "Goes with du. The formal 'your' is capitalised Ihr."
+    },
+    {
+      "id": "de-unser", "word": "unser", "gloss": "our", "pos": "pronoun",
+      "examples": [{ "text": "Unser Haus ist klein.", "english": "Our house is small." }],
+      "tip": "unsere Wohnung = our flat. The -er is part of the word, not an ending."
+    },
+    {
+      "id": "de-ihr", "word": "ihr", "gloss": "her; their", "pos": "pronoun",
+      "examples": [{ "text": "Das ist ihr Freund.", "english": "That's her boyfriend." }],
+      "tip": "Her and their, and capitalised Ihr is formal 'your'. Context decides, just like sie."
+    },
+    {
+      "id": "de-alle", "word": "alle", "gloss": "all, everyone", "pos": "pronoun",
+      "examples": [{ "text": "Alle sind da.", "english": "Everyone's here." }],
+      "tip": "Alle zusammen! = all together! Compare Chinese 大家 from the same session."
+    },
+
+    {
+      "id": "de-schlafen", "word": "schlafen", "gloss": "to sleep", "pos": "verb",
+      "verb": { "present3sg": "schläft", "participle": "geschlafen", "auxiliary": "haben" },
+      "examples": [{ "text": "Das Baby schläft.", "english": "The baby is sleeping." }],
+      "tip": "Schlaf gut! = sleep well. Schlafzimmer (bedroom) from session 8 uses it."
+    },
+    {
+      "id": "de-lesen", "word": "lesen", "gloss": "to read", "pos": "verb",
+      "verb": { "present3sg": "liest", "participle": "gelesen", "auxiliary": "haben" },
+      "examples": [{ "text": "Was liest du gerade?", "english": "What are you reading at the moment?" }],
+      "tip": "Irregular: du liest, er liest. vorlesen = to read aloud."
+    },
+    {
+      "id": "de-schreiben", "word": "schreiben", "gloss": "to write", "pos": "verb",
+      "verb": { "present3sg": "schreibt", "participle": "geschrieben", "auxiliary": "haben" },
+      "examples": [{ "text": "Schreib mir eine Nachricht!", "english": "Send me a message!" }],
+      "tip": "Wie schreibt man das? = how do you spell that? You'll ask it a lot."
+    },
+    {
+      "id": "de-spielen", "word": "spielen", "gloss": "to play", "pos": "verb",
+      "verb": { "present3sg": "spielt", "participle": "gespielt", "auxiliary": "haben" },
+      "examples": [{ "text": "Die Kinder spielen im Park.", "english": "The kids are playing in the park." }],
+      "tip": "Games, sports and instruments all use spielen: Fußball spielen, Klavier spielen. Chinese splits these up."
+    },
+    {
+      "id": "de-warten", "word": "warten", "gloss": "to wait", "pos": "verb",
+      "verb": { "present3sg": "wartet", "participle": "gewartet", "auxiliary": "haben" },
+      "examples": [{ "text": "Ich warte auf dich.", "english": "I'm waiting for you." }],
+      "tip": "warten auf = wait for. Warte mal! = hang on!"
+    },
+
+    {
+      "id": "de-geben", "word": "geben", "gloss": "to give", "pos": "verb",
+      "verb": { "present3sg": "gibt", "participle": "gegeben", "auxiliary": "haben" },
+      "examples": [{ "text": "Gib mir bitte das Buch.", "english": "Please give me the book." }],
+      "tip": "es gibt = there is / there are: Es gibt Kaffee. One of the most useful phrases in German."
+    },
+    {
+      "id": "de-nehmen", "word": "nehmen", "gloss": "to take", "pos": "verb",
+      "verb": { "present3sg": "nimmt", "participle": "genommen", "auxiliary": "haben" },
+      "examples": [{ "text": "Ich nehme den Kaffee.", "english": "I'll have the coffee." }],
+      "tip": "Ich nehme… is how you order. Irregular: du nimmst, er nimmt."
+    },
+    {
+      "id": "de-bringen", "word": "bringen", "gloss": "to bring", "pos": "verb",
+      "verb": { "present3sg": "bringt", "participle": "gebracht", "auxiliary": "haben" },
+      "examples": [{ "text": "Kannst du Brot mitbringen?", "english": "Can you bring some bread?" }],
+      "tip": "mitbringen = to bring along. The past gebracht is irregular, like denken → gedacht."
+    },
+    {
+      "id": "de-helfen", "word": "helfen", "gloss": "to help", "pos": "verb",
+      "verb": { "present3sg": "hilft", "participle": "geholfen", "auxiliary": "haben" },
+      "examples": [{ "text": "Kann ich dir helfen?", "english": "Can I help you?" }],
+      "tip": "Takes dir, not dich: ich helfe dir. Hilfe! = help!"
+    },
+    {
+      "id": "de-brauchen", "word": "brauchen", "gloss": "to need", "pos": "verb",
+      "verb": { "present3sg": "braucht", "participle": "gebraucht", "auxiliary": "haben" },
+      "examples": [{ "text": "Ich brauche Hilfe.", "english": "I need help." }],
+      "tip": "gebraucht also means second-hand. Du brauchst nicht zu kommen = you don't need to come."
+    },
+
+    {
+      "id": "de-denken", "word": "denken", "gloss": "to think", "pos": "verb",
+      "verb": { "present3sg": "denkt", "participle": "gedacht", "auxiliary": "haben" },
+      "examples": [{ "text": "Ich denke oft an dich.", "english": "I often think of you." }],
+      "tip": "denken an = to think of someone. Ich denke, dass… = I think that…"
+    },
+    {
+      "id": "de-glauben", "word": "glauben", "gloss": "to believe; to think", "pos": "verb",
+      "verb": { "present3sg": "glaubt", "participle": "geglaubt", "auxiliary": "haben" },
+      "examples": [{ "text": "Ich glaube, es regnet.", "english": "I think it's raining." }],
+      "tip": "Both 'believe' and the everyday 'I reckon'. Das glaube ich nicht! = I don't believe it!"
+    },
+    {
+      "id": "de-sprechen", "word": "sprechen", "gloss": "to speak", "pos": "verb",
+      "verb": { "present3sg": "spricht", "participle": "gesprochen", "auxiliary": "haben" },
+      "examples": [{ "text": "Sprichst du Englisch?", "english": "Do you speak English?" }],
+      "tip": "For languages and conversations. Irregular: du sprichst, er spricht. Compare sagen (to say) from session 15."
+    },
+    {
+      "id": "de-fragen", "word": "fragen", "gloss": "to ask", "pos": "verb",
+      "verb": { "present3sg": "fragt", "participle": "gefragt", "auxiliary": "haben" },
+      "examples": [{ "text": "Darf ich dich etwas fragen?", "english": "Can I ask you something?" }],
+      "tip": "die Frage = the question. fragen is asking a question; asking for something is bitten."
+    },
+    {
+      "id": "de-verstehen", "word": "verstehen", "gloss": "to understand", "pos": "verb",
+      "verb": { "present3sg": "versteht", "participle": "verstanden", "auxiliary": "haben" },
+      "examples": [{ "text": "Ich verstehe dich nicht.", "english": "I don't understand you." }],
+      "tip": "Verstanden? = got it? Ich verstehe nur Bahnhof from session 17 is its funnier cousin."
+    },
+
+    {
+      "id": "de-wetter", "word": "Wetter", "gloss": "weather", "pos": "noun",
+      "noun": { "gender": "n", "plural": null },
+      "examples": [{ "text": "Wie ist das Wetter heute?", "english": "What's the weather like today?" }],
+      "tip": "A favourite German small-talk topic. Schönes Wetter heute! = lovely weather today!"
+    },
+    {
+      "id": "de-sonne", "word": "Sonne", "gloss": "sun", "pos": "noun",
+      "noun": { "gender": "f", "plural": null },
+      "examples": [{ "text": "Die Sonne scheint.", "english": "The sun is shining." }],
+      "tip": "Feminine (die Sonne) but der Mond (the moon) is masculine. Sonntag = Sunday, the sun's day."
+    },
+    {
+      "id": "de-regen", "word": "Regen", "gloss": "rain", "pos": "noun",
+      "noun": { "gender": "m", "plural": null },
+      "examples": [{ "text": "Morgen kommt Regen.", "english": "Rain is coming tomorrow." }],
+      "tip": "Es regnet = it's raining. Regenschirm = umbrella ('rain shield')."
+    },
+    {
+      "id": "de-warm", "word": "warm", "gloss": "warm", "pos": "adjective",
+      "examples": [{ "text": "Heute ist es warm.", "english": "It's warm today." }],
+      "tip": "I'm warm is Mir ist warm (literally 'to me it's warm'). Ich bin warm means something else entirely."
+    },
+    {
+      "id": "de-kalt", "word": "kalt", "gloss": "cold", "pos": "adjective",
+      "examples": [{ "text": "Im Winter ist es sehr kalt.", "english": "It's very cold in winter." }],
+      "tip": "Same pattern: Mir ist kalt = I'm cold. Compare Chinese 我很冷, which says it directly."
+    },
+
+    {
+      "id": "de-rot", "word": "rot", "gloss": "red", "pos": "adjective",
+      "examples": [{ "text": "Das Auto ist rot.", "english": "The car is red." }],
+      "tip": "Rotwein = red wine. rot werden = to blush."
+    },
+    {
+      "id": "de-blau", "word": "blau", "gloss": "blue", "pos": "adjective",
+      "examples": [{ "text": "Der Himmel ist blau.", "english": "The sky is blue." }],
+      "tip": "blau sein also means to be drunk! blaumachen = to skip work."
+    },
+    {
+      "id": "de-gruen", "word": "grün", "gloss": "green", "pos": "adjective",
+      "examples": [{ "text": "Die Ampel ist grün.", "english": "The traffic light is green." }],
+      "tip": "Another ü to practise. Die Grünen = the Green party."
+    },
+    {
+      "id": "de-schwarz", "word": "schwarz", "gloss": "black", "pos": "adjective",
+      "examples": [{ "text": "Ich trinke meinen Kaffee schwarz.", "english": "I drink my coffee black." }],
+      "tip": "schwarzfahren = riding without a ticket. Take the sch-w-arz-tz slowly."
+    },
+    {
+      "id": "de-weiss", "word": "weiß", "gloss": "white", "pos": "adjective",
+      "examples": [{ "text": "Der Schnee ist weiß.", "english": "The snow is white." }],
+      "tip": "Spelled exactly like ich weiß (I know) from session 15. Context tells them apart."
+    },
+
+    {
+      "id": "de-immer", "word": "immer", "gloss": "always", "pos": "adverb",
+      "examples": [{ "text": "Er kommt immer zu spät.", "english": "He's always late." }],
+      "tip": "immer noch = still. für immer = forever."
+    },
+    {
+      "id": "de-oft", "word": "oft", "gloss": "often", "pos": "adverb",
+      "examples": [{ "text": "Wir essen oft zusammen.", "english": "We often eat together." }],
+      "tip": "Wie oft? = how often? Comparative: öfter."
+    },
+    {
+      "id": "de-nie", "word": "nie", "gloss": "never", "pos": "adverb",
+      "examples": [{ "text": "Ich trinke nie Kaffee.", "english": "I never drink coffee." }],
+      "tip": "noch nie = never yet: Ich war noch nie in China = I've never been to China."
+    },
+    {
+      "id": "de-schon", "word": "schon", "gloss": "already; yet", "pos": "adverb",
+      "examples": [{ "text": "Bist du schon fertig?", "english": "Are you done already?" }],
+      "tip": "Also a softener with no direct translation: Das ist schon gut = that's fine, really."
+    },
+    {
+      "id": "de-noch", "word": "noch", "gloss": "still; yet; another", "pos": "adverb",
+      "examples": [{ "text": "Noch einen Kaffee, bitte.", "english": "Another coffee, please." }],
+      "tip": "noch nicht = not yet. noch einmal = once more, handy when practising."
+    },
+
+    {
+      "id": "de-kopf", "word": "Kopf", "gloss": "head", "pos": "noun",
+      "noun": { "gender": "m", "plural": "Köpfe" },
+      "examples": [{ "text": "Mein Kopf tut weh.", "english": "My head hurts." }],
+      "tip": "… tut weh = … hurts. Kopfschmerzen = headache."
+    },
+    {
+      "id": "de-hand", "word": "Hand", "gloss": "hand", "pos": "noun",
+      "noun": { "gender": "f", "plural": "Hände" },
+      "examples": [{ "text": "Gib mir deine Hand.", "english": "Give me your hand." }],
+      "tip": "A mobile phone is a Handy in German, and 手机 ('hand machine') in Chinese."
+    },
+    {
+      "id": "de-auge", "word": "Auge", "gloss": "eye", "pos": "noun",
+      "noun": { "gender": "n", "plural": "Augen" },
+      "examples": [{ "text": "Sie hat blaue Augen.", "english": "She has blue eyes." }],
+      "tip": "Augenblick = moment ('blink of an eye'). unter vier Augen = in private."
+    },
+    {
+      "id": "de-krank", "word": "krank", "gloss": "sick, ill", "pos": "adjective",
+      "examples": [{ "text": "Ich bin krank.", "english": "I'm sick." }],
+      "tip": "Krankenhaus = hospital ('sick house'). Gute Besserung! = get well soon."
+    },
+    {
+      "id": "de-arzt", "word": "Arzt", "gloss": "doctor", "pos": "noun",
+      "noun": { "gender": "m", "plural": "Ärzte" },
+      "examples": [{ "text": "Ich muss zum Arzt.", "english": "I have to go to the doctor." }],
+      "tip": "A female doctor is die Ärztin. zum Arzt gehen = to go to the doctor."
     }
   ]
 }

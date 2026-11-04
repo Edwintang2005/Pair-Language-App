@@ -688,6 +688,362 @@
       "id": "zh-gui", "word": "贵", "pinyin": "guì", "gloss": "expensive; honourable", "pos": "adjective",
       "examples": [{ "text": "太贵了！", "pinyin": "Tài guì le!", "english": "Too expensive!" }],
       "tip": "太贵了! is essential at markets. Also 'honourable': 您贵姓? = may I ask your surname?"
+    },
+
+    {
+      "id": "zh-liu", "word": "六", "pinyin": "liù", "gloss": "six", "pos": "numeral",
+      "examples": [{ "text": "我六点起床。", "pinyin": "Wǒ liù diǎn qǐchuáng.", "english": "I get up at six." }],
+      "tip": "A lucky number: 六 sounds like 流 (flowing smoothly), so 666 means 'awesome' online."
+    },
+    {
+      "id": "zh-qi", "word": "七", "pinyin": "qī", "gloss": "seven", "pos": "numeral",
+      "examples": [{ "text": "一个星期有七天。", "pinyin": "Yí ge xīngqī yǒu qī tiān.", "english": "A week has seven days." }],
+      "tip": "Note the q, which sounds like 'ch' in 'cheese'. A good one for practising pinyin spelling."
+    },
+    {
+      "id": "zh-ba", "word": "八", "pinyin": "bā", "gloss": "eight", "pos": "numeral",
+      "examples": [{ "text": "电影八点开始。", "pinyin": "Diànyǐng bā diǎn kāishǐ.", "english": "The film starts at eight." }],
+      "tip": "The luckiest number: 八 sounds like 发 (fā, to prosper). The Beijing Olympics opened at 8:08 pm on 8/8/2008."
+    },
+    {
+      "id": "zh-jiu", "word": "九", "pinyin": "jiǔ", "gloss": "nine", "pos": "numeral",
+      "examples": [{ "text": "九点太早了。", "pinyin": "Jiǔ diǎn tài zǎo le.", "english": "Nine o'clock is too early." }],
+      "tip": "Sounds like 久 (jiǔ, long-lasting), so it's popular around weddings."
+    },
+    {
+      "id": "zh-shi-ten", "word": "十", "pinyin": "shí", "gloss": "ten", "pos": "numeral",
+      "examples": [{ "text": "我数到十。", "pinyin": "Wǒ shǔ dào shí.", "english": "I'll count to ten." }],
+      "tip": "Bigger numbers are perfectly regular: 十一 = 11, 二十 = 20, 九十九 = 99. Compare German neunundneunzig, which says the ones first."
+    },
+
+    {
+      "id": "zh-ren", "word": "人", "pinyin": "rén", "gloss": "person, people", "pos": "noun",
+      "measureWord": { "word": "个", "pinyin": "gè" },
+      "examples": [{ "text": "这里人很多。", "pinyin": "Zhèlǐ rén hěn duō.", "english": "There are lots of people here." }],
+      "tip": "A person walking on two legs. Nationalities add 人: 德国人 (German), 中国人 (Chinese)."
+    },
+    {
+      "id": "zh-nan-ren", "word": "男人", "pinyin": "nánrén", "gloss": "man", "pos": "noun",
+      "measureWord": { "word": "个", "pinyin": "gè" },
+      "characters": [
+        { "char": "男", "pinyin": "nán", "meaning": "male" },
+        { "char": "人", "pinyin": "rén", "meaning": "person" }
+      ],
+      "examples": [{ "text": "那个男人是谁？", "pinyin": "Nàge nánrén shì shéi?", "english": "Who's that man?" }],
+      "tip": "男 is a field 田 over strength 力: the one working the field. 男朋友 = boyfriend."
+    },
+    {
+      "id": "zh-nv-ren", "word": "女人", "pinyin": "nǚrén", "gloss": "woman", "pos": "noun",
+      "measureWord": { "word": "个", "pinyin": "gè" },
+      "characters": [
+        { "char": "女", "pinyin": "nǚ", "meaning": "female" },
+        { "char": "人", "pinyin": "rén", "meaning": "person" }
+      ],
+      "examples": [{ "text": "那个女人是老师。", "pinyin": "Nàge nǚrén shì lǎoshī.", "english": "That woman is a teacher." }],
+      "tip": "Note the ü in nǚ. The 女 radical has turned up in 她, 妈妈 and 好."
+    },
+    {
+      "id": "zh-nv-hai", "word": "女孩", "pinyin": "nǚhái", "gloss": "girl", "pos": "noun",
+      "measureWord": { "word": "个", "pinyin": "gè" },
+      "characters": [
+        { "char": "女", "pinyin": "nǚ", "meaning": "female" },
+        { "char": "孩", "pinyin": "hái", "meaning": "child" }
+      ],
+      "examples": [{ "text": "那个女孩在看书。", "pinyin": "Nàge nǚhái zài kàn shū.", "english": "The girl is reading a book." }],
+      "tip": "Also 女孩子. Boy = 男孩. Fun contrast: German das Mädchen is grammatically neuter."
+    },
+    {
+      "id": "zh-ming-zi", "word": "名字", "pinyin": "míngzi", "gloss": "name", "pos": "noun",
+      "characters": [
+        { "char": "名", "pinyin": "míng", "meaning": "name" },
+        { "char": "字", "pinyin": "zi", "meaning": "character (toneless here)" }
+      ],
+      "examples": [{ "text": "他的名字很好听。", "pinyin": "Tā de míngzi hěn hǎotīng.", "english": "His name sounds nice." }],
+      "tip": "Surnames come first: 王小明 = Wang Xiaoming. Talk about what each of your names means."
+    },
+
+    {
+      "id": "zh-de", "word": "的", "pinyin": "de", "gloss": "'s (shows possession)", "pos": "particle",
+      "examples": [{ "text": "这是谁的咖啡？", "pinyin": "Zhè shì shéi de kāfēi?", "english": "Whose coffee is this?" }],
+      "tip": "Turns anything into 'X's': 我的 (my), 妈妈的 (mum's). Often dropped for close family and friends: 我妈妈."
+    },
+    {
+      "id": "zh-ni-men", "word": "你们", "pinyin": "nǐmen", "gloss": "you (plural)", "pos": "pronoun",
+      "characters": [
+        { "char": "你", "pinyin": "nǐ", "meaning": "you" },
+        { "char": "们", "pinyin": "men", "meaning": "plural suffix for people" }
+      ],
+      "examples": [{ "text": "你们好！", "pinyin": "Nǐmen hǎo!", "english": "Hi, everyone!" }],
+      "tip": "Like German ihr (you all). Same 们 as 我们 from session 2."
+    },
+    {
+      "id": "zh-ta-men", "word": "他们", "pinyin": "tāmen", "gloss": "they, them", "pos": "pronoun",
+      "characters": [
+        { "char": "他", "pinyin": "tā", "meaning": "he" },
+        { "char": "们", "pinyin": "men", "meaning": "plural suffix for people" }
+      ],
+      "examples": [{ "text": "他们是我的朋友。", "pinyin": "Tāmen shì wǒ de péngyou.", "english": "They're my friends." }],
+      "tip": "她们 for an all-female group; mixed groups use 他们. All sound the same."
+    },
+    {
+      "id": "zh-zi-ji", "word": "自己", "pinyin": "zìjǐ", "gloss": "oneself; own", "pos": "pronoun",
+      "characters": [
+        { "char": "自", "pinyin": "zì", "meaning": "self" },
+        { "char": "己", "pinyin": "jǐ", "meaning": "oneself" }
+      ],
+      "examples": [{ "text": "我自己做饭。", "pinyin": "Wǒ zìjǐ zuò fàn.", "english": "I cook for myself." }],
+      "tip": "Adds 'myself / yourself': 你自己去吧 = go by yourself. 自己的 = one's own."
+    },
+    {
+      "id": "zh-da-jia", "word": "大家", "pinyin": "dàjiā", "gloss": "everyone", "pos": "pronoun",
+      "characters": [
+        { "char": "大", "pinyin": "dà", "meaning": "big" },
+        { "char": "家", "pinyin": "jiā", "meaning": "family" }
+      ],
+      "examples": [{ "text": "大家好！", "pinyin": "Dàjiā hǎo!", "english": "Hello, everyone!" }],
+      "tip": "Literally 'big family'. Matches German alle. 大家好 opens almost every speech."
+    },
+
+    {
+      "id": "zh-shui-jiao", "word": "睡觉", "pinyin": "shuìjiào", "gloss": "to sleep", "pos": "verb",
+      "characters": [
+        { "char": "睡", "pinyin": "shuì", "meaning": "sleep" },
+        { "char": "觉", "pinyin": "jiào", "meaning": "a sleep" }
+      ],
+      "examples": [{ "text": "孩子在睡觉。", "pinyin": "Háizi zài shuìjiào.", "english": "The child is sleeping." }],
+      "tip": "A verb-plus-object pair that can be split: 睡了一个好觉 = had a good sleep. 觉 is read jué in 觉得 (session 26)."
+    },
+    {
+      "id": "zh-du", "word": "读", "pinyin": "dú", "gloss": "to read (aloud); to study", "pos": "verb",
+      "examples": [{ "text": "你在读什么书？", "pinyin": "Nǐ zài dú shénme shū?", "english": "What book are you reading?" }],
+      "tip": "Reading aloud, or studying (读大学 = go to university). Reading for fun is often just 看书."
+    },
+    {
+      "id": "zh-xie", "word": "写", "pinyin": "xiě", "gloss": "to write", "pos": "verb",
+      "examples": [{ "text": "这个字怎么写？", "pinyin": "Zhège zì zěnme xiě?", "english": "How do you write this character?" }],
+      "tip": "这个字怎么写? will be your most-asked question. Practise stroke order together."
+    },
+    {
+      "id": "zh-wan", "word": "玩", "pinyin": "wán", "gloss": "to play; to have fun", "pos": "verb",
+      "examples": [{ "text": "孩子们在公园玩。", "pinyin": "Háizimen zài gōngyuán wán.", "english": "The kids are playing in the park." }],
+      "tip": "Also 'hang out': 周末去哪儿玩? Sports and instruments use other verbs (打篮球, 弹钢琴), unlike German spielen."
+    },
+    {
+      "id": "zh-deng", "word": "等", "pinyin": "děng", "gloss": "to wait", "pos": "verb",
+      "examples": [{ "text": "我等你。", "pinyin": "Wǒ děng nǐ.", "english": "I'll wait for you." }],
+      "tip": "等一下 = wait a moment. At the end of a list it means 'etc.'"
+    },
+
+    {
+      "id": "zh-gei", "word": "给", "pinyin": "gěi", "gloss": "to give; for", "pos": "verb",
+      "examples": [{ "text": "我给你一本书。", "pinyin": "Wǒ gěi nǐ yì běn shū.", "english": "I'll give you a book." }],
+      "tip": "Also 'for / to': 给你打电话 = call you. 给你! = here you go."
+    },
+    {
+      "id": "zh-na-take", "word": "拿", "pinyin": "ná", "gloss": "to take, to hold", "pos": "verb",
+      "examples": [{ "text": "你拿一下这个。", "pinyin": "Nǐ ná yíxià zhège.", "english": "Hold this for a second." }],
+      "tip": "There's a hand 手 at the bottom. 拿走 = take away, 拿来 = bring over."
+    },
+    {
+      "id": "zh-dai", "word": "带", "pinyin": "dài", "gloss": "to bring, to take along", "pos": "verb",
+      "examples": [{ "text": "别忘了带钥匙。", "pinyin": "Bié wàng le dài yàoshi.", "english": "Don't forget to bring your keys." }],
+      "tip": "Taking something or someone with you. 带孩子 = to look after the kids."
+    },
+    {
+      "id": "zh-bang", "word": "帮", "pinyin": "bāng", "gloss": "to help", "pos": "verb",
+      "examples": [{ "text": "你能帮我吗？", "pinyin": "Nǐ néng bāng wǒ ma?", "english": "Can you help me?" }],
+      "tip": "帮忙 (bāngmáng) is the 'help out' form: 谢谢你帮忙. 帮我 + verb = do something for me."
+    },
+    {
+      "id": "zh-xu-yao", "word": "需要", "pinyin": "xūyào", "gloss": "to need", "pos": "verb",
+      "characters": [
+        { "char": "需", "pinyin": "xū", "meaning": "need" },
+        { "char": "要", "pinyin": "yào", "meaning": "want" }
+      ],
+      "examples": [{ "text": "我需要你的帮助。", "pinyin": "Wǒ xūyào nǐ de bāngzhù.", "english": "I need your help." }],
+      "tip": "Stronger than 要. 不需要 = no need."
+    },
+
+    {
+      "id": "zh-jue-de", "word": "觉得", "pinyin": "juéde", "gloss": "to think, to feel", "pos": "verb",
+      "characters": [
+        { "char": "觉", "pinyin": "jué", "meaning": "feel" },
+        { "char": "得", "pinyin": "de", "meaning": "(toneless here)" }
+      ],
+      "examples": [{ "text": "你觉得怎么样？", "pinyin": "Nǐ juéde zěnmeyàng?", "english": "What do you think?" }],
+      "tip": "Opinions and feelings, like German glauben or finden. 我觉得很好 = I think it's good."
+    },
+    {
+      "id": "zh-wen", "word": "问", "pinyin": "wèn", "gloss": "to ask", "pos": "verb",
+      "examples": [{ "text": "我可以问你一个问题吗？", "pinyin": "Wǒ kěyǐ wèn nǐ yí ge wèntí ma?", "english": "Can I ask you a question?" }],
+      "tip": "A mouth 口 inside a door 门: asking at the door. 问题 = question; 没问题 = no problem."
+    },
+    {
+      "id": "zh-gao-su", "word": "告诉", "pinyin": "gàosu", "gloss": "to tell", "pos": "verb",
+      "characters": [
+        { "char": "告", "pinyin": "gào", "meaning": "tell" },
+        { "char": "诉", "pinyin": "su", "meaning": "tell (toneless here)" }
+      ],
+      "examples": [{ "text": "告诉我你的名字。", "pinyin": "Gàosu wǒ nǐ de míngzi.", "english": "Tell me your name." }],
+      "tip": "告诉 + person + thing. 我告诉你 = let me tell you."
+    },
+    {
+      "id": "zh-dong", "word": "懂", "pinyin": "dǒng", "gloss": "to understand", "pos": "verb",
+      "examples": [{ "text": "你懂吗？", "pinyin": "Nǐ dǒng ma?", "english": "Do you understand?" }],
+      "tip": "听懂 = understand by listening, 看懂 = understand by reading. 我不懂 = I don't get it."
+    },
+    {
+      "id": "zh-yi-si", "word": "意思", "pinyin": "yìsi", "gloss": "meaning", "pos": "noun",
+      "characters": [
+        { "char": "意", "pinyin": "yì", "meaning": "meaning, idea" },
+        { "char": "思", "pinyin": "si", "meaning": "think (toneless here)" }
+      ],
+      "examples": [{ "text": "这个字是什么意思？", "pinyin": "Zhège zì shì shénme yìsi?", "english": "What does this character mean?" }],
+      "tip": "A learner's best friend: …是什么意思? Also 有意思 = interesting, 不好意思 = excuse me."
+    },
+
+    {
+      "id": "zh-tian-qi", "word": "天气", "pinyin": "tiānqì", "gloss": "weather", "pos": "noun",
+      "characters": [
+        { "char": "天", "pinyin": "tiān", "meaning": "sky" },
+        { "char": "气", "pinyin": "qì", "meaning": "air" }
+      ],
+      "examples": [{ "text": "今天天气很好。", "pinyin": "Jīntiān tiānqì hěn hǎo.", "english": "The weather's nice today." }],
+      "tip": "Literally 'sky air'. 天气预报 = weather forecast."
+    },
+    {
+      "id": "zh-tai-yang", "word": "太阳", "pinyin": "tàiyáng", "gloss": "sun", "pos": "noun",
+      "characters": [
+        { "char": "太", "pinyin": "tài", "meaning": "great" },
+        { "char": "阳", "pinyin": "yáng", "meaning": "sun; yang" }
+      ],
+      "examples": [{ "text": "太阳出来了。", "pinyin": "Tàiyáng chūlái le.", "english": "The sun's come out." }],
+      "tip": "阳 is the 'yang' of yin and yang. The older word 日 lives on in 日本 (Japan, 'sun's origin')."
+    },
+    {
+      "id": "zh-xia-yu", "word": "下雨", "pinyin": "xià yǔ", "gloss": "to rain", "pos": "verb",
+      "characters": [
+        { "char": "下", "pinyin": "xià", "meaning": "down; to fall" },
+        { "char": "雨", "pinyin": "yǔ", "meaning": "rain" }
+      ],
+      "examples": [{ "text": "外面在下雨。", "pinyin": "Wàimiàn zài xià yǔ.", "english": "It's raining outside." }],
+      "tip": "Rain 'falls down': 下雨, and snow is 下雪. No 'it' needed, unlike German es regnet."
+    },
+    {
+      "id": "zh-re", "word": "热", "pinyin": "rè", "gloss": "hot", "pos": "adjective",
+      "examples": [{ "text": "今天太热了。", "pinyin": "Jīntiān tài rè le.", "english": "It's too hot today." }],
+      "tip": "The four dots at the bottom (灬) mean fire. 热水 (hot water) came up in session 7."
+    },
+    {
+      "id": "zh-leng", "word": "冷", "pinyin": "lěng", "gloss": "cold", "pos": "adjective",
+      "examples": [{ "text": "冬天很冷。", "pinyin": "Dōngtiān hěn lěng.", "english": "Winter is cold." }],
+      "tip": "The two strokes on the left (冫) mean ice. 我很冷 = I'm cold, simpler than German Mir ist kalt."
+    },
+
+    {
+      "id": "zh-hong", "word": "红", "pinyin": "hóng", "gloss": "red", "pos": "adjective",
+      "examples": [{ "text": "我喜欢红色。", "pinyin": "Wǒ xǐhuan hóngsè.", "english": "I like red." }],
+      "tip": "The colour of luck: red envelopes (红包) at New Year. Add 色 for the colour as a noun: 红色."
+    },
+    {
+      "id": "zh-lan", "word": "蓝", "pinyin": "lán", "gloss": "blue", "pos": "adjective",
+      "examples": [{ "text": "天很蓝。", "pinyin": "Tiān hěn lán.", "english": "The sky is really blue." }],
+      "tip": "The grass radical 艹 on top: blue dye originally came from a plant."
+    },
+    {
+      "id": "zh-lv", "word": "绿", "pinyin": "lǜ", "gloss": "green", "pos": "adjective",
+      "examples": [{ "text": "树叶是绿色的。", "pinyin": "Shùyè shì lǜsè de.", "english": "The leaves are green." }],
+      "tip": "Another ü: lǜ. 绿茶 (green tea) from session 7."
+    },
+    {
+      "id": "zh-hei", "word": "黑", "pinyin": "hēi", "gloss": "black; dark", "pos": "adjective",
+      "examples": [{ "text": "我喝黑咖啡。", "pinyin": "Wǒ hē hēi kāfēi.", "english": "I drink black coffee." }],
+      "tip": "Fire 灬 at the bottom: soot. 天黑了 = it's got dark."
+    },
+    {
+      "id": "zh-bai", "word": "白", "pinyin": "bái", "gloss": "white", "pos": "adjective",
+      "examples": [{ "text": "雪是白色的。", "pinyin": "Xuě shì báisè de.", "english": "Snow is white." }],
+      "tip": "Also 'for nothing': 白跑一趟 = a wasted trip. 明白 (clear and bright) = to understand."
+    },
+
+    {
+      "id": "zh-zong-shi", "word": "总是", "pinyin": "zǒngshì", "gloss": "always", "pos": "adverb",
+      "characters": [
+        { "char": "总", "pinyin": "zǒng", "meaning": "always; total" },
+        { "char": "是", "pinyin": "shì", "meaning": "to be" }
+      ],
+      "examples": [{ "text": "他总是迟到。", "pinyin": "Tā zǒngshì chídào.", "english": "He's always late." }],
+      "tip": "Goes before the verb like other adverbs. 一直 (yìzhí) means 'all along, continuously'."
+    },
+    {
+      "id": "zh-chang-chang", "word": "常常", "pinyin": "chángcháng", "gloss": "often", "pos": "adverb",
+      "examples": [{ "text": "我们常常一起吃饭。", "pinyin": "Wǒmen chángcháng yìqǐ chīfàn.", "english": "We often eat together." }],
+      "tip": "Doubled for emphasis. 经常 (jīngcháng) means the same."
+    },
+    {
+      "id": "zh-cong-lai-bu", "word": "从来不", "pinyin": "cónglái bù", "gloss": "never", "pos": "phrase",
+      "characters": [
+        { "char": "从", "pinyin": "cóng", "meaning": "from" },
+        { "char": "来", "pinyin": "lái", "meaning": "come" },
+        { "char": "不", "pinyin": "bù", "meaning": "not" }
+      ],
+      "examples": [{ "text": "我从来不喝咖啡。", "pinyin": "Wǒ cónglái bù hē kāfēi.", "english": "I never drink coffee." }],
+      "tip": "For past experiences use 从来没…过: 我从来没去过德国 = I've never been to Germany."
+    },
+    {
+      "id": "zh-yi-jing", "word": "已经", "pinyin": "yǐjīng", "gloss": "already", "pos": "adverb",
+      "characters": [
+        { "char": "已", "pinyin": "yǐ", "meaning": "already" },
+        { "char": "经", "pinyin": "jīng", "meaning": "pass through" }
+      ],
+      "examples": [{ "text": "我已经吃了。", "pinyin": "Wǒ yǐjīng chī le.", "english": "I've already eaten." }],
+      "tip": "Usually paired with 了 at the end: 已经…了."
+    },
+    {
+      "id": "zh-hai", "word": "还", "pinyin": "hái", "gloss": "still; also", "pos": "adverb",
+      "examples": [{ "text": "你还在家吗？", "pinyin": "Nǐ hái zài jiā ma?", "english": "Are you still at home?" }],
+      "tip": "Still, also, and 还没 = not yet: 我还没吃. The same character as in 还是 (session 14)."
+    },
+
+    {
+      "id": "zh-tou", "word": "头", "pinyin": "tóu", "gloss": "head", "pos": "noun",
+      "examples": [{ "text": "我头疼。", "pinyin": "Wǒ tóu téng.", "english": "I have a headache." }],
+      "tip": "…疼 = …hurts: 头疼, 肚子疼 (stomach ache). 头 is also the measure word for cattle."
+    },
+    {
+      "id": "zh-shou", "word": "手", "pinyin": "shǒu", "gloss": "hand", "pos": "noun",
+      "measureWord": { "word": "只", "pinyin": "zhī" },
+      "examples": [{ "text": "吃饭前要洗手。", "pinyin": "Chīfàn qián yào xǐ shǒu.", "english": "Wash your hands before eating." }],
+      "tip": "手机 = mobile phone ('hand machine'), just like German Handy."
+    },
+    {
+      "id": "zh-yan-jing", "word": "眼睛", "pinyin": "yǎnjing", "gloss": "eye", "pos": "noun",
+      "measureWord": { "word": "双", "pinyin": "shuāng" },
+      "characters": [
+        { "char": "眼", "pinyin": "yǎn", "meaning": "eye" },
+        { "char": "睛", "pinyin": "jing", "meaning": "eyeball (toneless here)" }
+      ],
+      "examples": [{ "text": "她的眼睛很大。", "pinyin": "Tā de yǎnjing hěn dà.", "english": "She has big eyes." }],
+      "tip": "A pair of eyes: 一双眼睛. The 目 radical (an eye) also appears in 看."
+    },
+    {
+      "id": "zh-sheng-bing", "word": "生病", "pinyin": "shēngbìng", "gloss": "to get sick", "pos": "verb",
+      "characters": [
+        { "char": "生", "pinyin": "shēng", "meaning": "to produce, to get" },
+        { "char": "病", "pinyin": "bìng", "meaning": "illness" }
+      ],
+      "examples": [{ "text": "我生病了。", "pinyin": "Wǒ shēngbìng le.", "english": "I'm sick." }],
+      "tip": "The 疒 radical means illness (also in 疼). 多喝热水 (drink lots of hot water) is the classic advice!"
+    },
+    {
+      "id": "zh-yi-sheng", "word": "医生", "pinyin": "yīshēng", "gloss": "doctor", "pos": "noun",
+      "measureWord": { "word": "位", "pinyin": "wèi" },
+      "characters": [
+        { "char": "医", "pinyin": "yī", "meaning": "medicine" },
+        { "char": "生", "pinyin": "shēng", "meaning": "person (as in 学生)" }
+      ],
+      "examples": [{ "text": "我要去看医生。", "pinyin": "Wǒ yào qù kàn yīshēng.", "english": "I need to see a doctor." }],
+      "tip": "看医生 = to see a doctor. 医院 = hospital."
     }
   ]
 }
