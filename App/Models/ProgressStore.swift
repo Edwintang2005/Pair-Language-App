@@ -13,6 +13,10 @@ struct ProgressData: Codable, Equatable {
     var reviews: [String: ReviewState] = [:]
     /// When each session was finished, keyed by session number.
     var completed: [Int: Date] = [:]
+    /// `nil` until reminders have been set up.
+    var reminders: ReminderSettings?
+    /// The "turn on reminders" card on Today was dismissed.
+    var reminderPromptDismissed = false
 
     init() {}
 
@@ -24,6 +28,8 @@ struct ProgressData: Codable, Equatable {
         taught = try c.decodeIfPresent(Set<String>.self, forKey: .taught) ?? []
         reviews = try c.decodeIfPresent([String: ReviewState].self, forKey: .reviews) ?? [:]
         completed = try c.decodeIfPresent([Int: Date].self, forKey: .completed) ?? [:]
+        reminders = try c.decodeIfPresent(ReminderSettings.self, forKey: .reminders)
+        reminderPromptDismissed = try c.decodeIfPresent(Bool.self, forKey: .reminderPromptDismissed) ?? false
     }
 }
 
@@ -137,6 +143,31 @@ final class ProgressStore {
             $0.currentSession = max(1, number)
             $0.taught = []
         }
+    }
+
+    // MARK: Reminders
+
+    var reminders: ReminderSettings? { data.reminders }
+
+    /// Offer reminders once you've finished a session, until they're set up or dismissed.
+    var showsReminderPrompt: Bool {
+        data.reminders == nil && !data.reminderPromptDismissed && !data.completed.isEmpty
+    }
+
+    func setReminders(_ settings: ReminderSettings) {
+        update { $0.reminders = settings }
+    }
+
+    func dismissReminderPrompt() {
+        update { $0.reminderPromptDismissed = true }
+    }
+
+    /// Words of your partner's from sessions you've both finished, for quizzing them.
+    func partnerWordIDs(in content: ContentLibrary) -> [String] {
+        guard let teaching else { return [] }
+        return content.sessions
+            .filter { $0.number < data.currentSession }
+            .flatMap { $0.wordIDs(for: teaching) }
     }
 
     func resetAll() {

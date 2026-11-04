@@ -286,6 +286,294 @@
       "id": "de-muede", "word": "müde", "gloss": "tired", "pos": "adjective",
       "examples": [{ "text": "Ich bin so müde.", "english": "I'm so tired." }],
       "tip": "todmüde = dead tired. Compare with Chinese 累死了 (tired to death) from the same session."
+    },
+
+    {
+      "id": "de-gut", "word": "gut", "gloss": "good; well", "pos": "adjective",
+      "examples": [{ "text": "Das Essen ist gut.", "english": "The food is good." }],
+      "tip": "Also the adverb 'well': Du sprichst gut Deutsch. Irregular comparison: gut, besser, am besten."
+    },
+    {
+      "id": "de-gross", "word": "groß", "gloss": "big; tall", "pos": "adjective",
+      "examples": [{ "text": "Mein Bruder ist sehr groß.", "english": "My brother is very tall." }],
+      "tip": "Big for things, tall for people. ß sounds like 'ss', and in capitals it's often written GROSS."
+    },
+    {
+      "id": "de-klein", "word": "klein", "gloss": "small, little", "pos": "adjective",
+      "examples": [{ "text": "Wir haben eine kleine Wohnung.", "english": "We have a small flat." }],
+      "tip": "The ending changes before a noun (ein kleines Haus, eine kleine Wohnung). Don't drill the endings yet, just point them out."
+    },
+    {
+      "id": "de-neu", "word": "neu", "gloss": "new", "pos": "adjective",
+      "examples": [{ "text": "Ist das Auto neu?", "english": "Is the car new?" }],
+      "tip": "You've met it already in Frohes neues Jahr. It shows up in place names too: Neustadt = new town."
+    },
+    {
+      "id": "de-alt", "word": "alt", "gloss": "old", "pos": "adjective",
+      "examples": [{ "text": "Wie alt bist du?", "english": "How old are you?" }],
+      "tip": "Works for people and things alike, unlike Chinese 老 / 旧. Practise: Ich bin … Jahre alt."
+    },
+
+    {
+      "id": "de-eins", "word": "eins", "gloss": "one", "pos": "numeral",
+      "examples": [{ "text": "Eins, zwei, drei – los!", "english": "One, two, three – go!" }],
+      "tip": "Eins when counting; before a noun it becomes ein / eine (ein Kaffee, eine Tür). Show German finger counting: it starts with the thumb."
+    },
+    {
+      "id": "de-zwei", "word": "zwei", "gloss": "two", "pos": "numeral",
+      "examples": [{ "text": "Zwei Kaffee, bitte.", "english": "Two coffees, please." }],
+      "tip": "On the phone people often say zwo so it can't be confused with drei."
+    },
+    {
+      "id": "de-drei", "word": "drei", "gloss": "three", "pos": "numeral",
+      "examples": [{ "text": "Das Kind ist drei Jahre alt.", "english": "The child is three years old." }],
+      "tip": "A good word for practising the German r, made at the back of the throat."
+    },
+    {
+      "id": "de-vier", "word": "vier", "gloss": "four", "pos": "numeral",
+      "examples": [{ "text": "Wir sind vier Personen.", "english": "There are four of us." }],
+      "tip": "Sounds like English 'fear'. Viertel (quarter) comes from it: Viertel nach vier = quarter past four."
+    },
+    {
+      "id": "de-fuenf", "word": "fünf", "gloss": "five", "pos": "numeral",
+      "examples": [{ "text": "Ich warte fünf Minuten.", "english": "I'll wait five minutes." }],
+      "tip": "A test of the ü sound: say 'ee' with your lips rounded."
+    },
+
+    {
+      "id": "de-hier", "word": "hier", "gloss": "here", "pos": "adverb",
+      "examples": [{ "text": "Ich bin hier!", "english": "I'm here!" }],
+      "tip": "Also the answer at roll call. Hier, bitte = here you go."
+    },
+    {
+      "id": "de-dort", "word": "dort", "gloss": "there", "pos": "adverb",
+      "examples": [{ "text": "Dort ist der Bahnhof.", "english": "The station is over there." }],
+      "tip": "Clearly 'over there'. Da is the casual all-rounder."
+    },
+    {
+      "id": "de-da", "word": "da", "gloss": "there; here", "pos": "adverb",
+      "examples": [{ "text": "Ist Anna da?", "english": "Is Anna there?" }],
+      "tip": "Very flexible: there, here (Ich bin gleich da = I'll be right there), and 'then'. Point and say da!"
+    },
+    {
+      "id": "de-links", "word": "links", "gloss": "on the left", "pos": "adverb",
+      "examples": [{ "text": "Die Tür ist links.", "english": "The door is on the left." }],
+      "tip": "Nach links = to the left. Practise giving each other directions around the house."
+    },
+    {
+      "id": "de-rechts", "word": "rechts", "gloss": "on the right", "pos": "adverb",
+      "examples": [{ "text": "Dann rechts abbiegen.", "english": "Then turn right." }],
+      "tip": "Fun fact for driving: rechts vor links (right before left) is the right-of-way rule at unmarked crossings."
+    },
+
+    {
+      "id": "de-und", "word": "und", "gloss": "and", "pos": "conjunction",
+      "examples": [{ "text": "Wir trinken Kaffee und essen Kuchen.", "english": "We drink coffee and eat cake." }],
+      "tip": "On its own, Und? means 'So? How did it go?'"
+    },
+    {
+      "id": "de-oder", "word": "oder", "gloss": "or", "pos": "conjunction",
+      "examples": [{ "text": "Tee oder Kaffee?", "english": "Tea or coffee?" }],
+      "tip": "At the end of a sentence it means 'right?': Du kommst mit, oder?"
+    },
+    {
+      "id": "de-aber", "word": "aber", "gloss": "but", "pos": "conjunction",
+      "examples": [{ "text": "Ich bin müde, aber glücklich.", "english": "I'm tired but happy." }],
+      "tip": "Also adds feeling: Das ist aber schön! = Oh, that's lovely!"
+    },
+    {
+      "id": "de-weil", "word": "weil", "gloss": "because", "pos": "conjunction",
+      "examples": [{ "text": "Ich bleibe zu Hause, weil ich müde bin.", "english": "I'm staying home because I'm tired." }],
+      "tip": "Sends the verb to the very end (weil ich müde bin). A first taste of German word order."
+    },
+    {
+      "id": "de-mit", "word": "mit", "gloss": "with", "pos": "preposition",
+      "examples": [{ "text": "Kommst du mit mir?", "english": "Are you coming with me?" }],
+      "tip": "mitkommen = to come along, from session 2's Kommst du mit? Also 'by': mit dem Auto = by car."
+    },
+
+    {
+      "id": "de-sagen", "word": "sagen", "gloss": "to say", "pos": "verb",
+      "verb": { "present3sg": "sagt", "participle": "gesagt", "auxiliary": "haben" },
+      "examples": [{ "text": "Wie sagt man das auf Deutsch?", "english": "How do you say that in German?" }],
+      "tip": "Wie sagt man … auf Deutsch? is the most useful sentence for these sessions."
+    },
+    {
+      "id": "de-sehen", "word": "sehen", "gloss": "to see", "pos": "verb",
+      "verb": { "present3sg": "sieht", "participle": "gesehen", "auxiliary": "haben" },
+      "examples": [{ "text": "Ich sehe dich.", "english": "I see you." }],
+      "tip": "Irregular: du siehst, er sieht. fernsehen = to watch TV, literally 'far-see'."
+    },
+    {
+      "id": "de-hoeren", "word": "hören", "gloss": "to hear, to listen", "pos": "verb",
+      "verb": { "present3sg": "hört", "participle": "gehört", "auxiliary": "haben" },
+      "examples": [{ "text": "Hörst du das?", "english": "Do you hear that?" }],
+      "tip": "Hearing and listening: Musik hören. gehören = to belong to."
+    },
+    {
+      "id": "de-wissen", "word": "wissen", "gloss": "to know (a fact)", "pos": "verb",
+      "verb": { "present3sg": "weiß", "participle": "gewusst", "auxiliary": "haben" },
+      "examples": [{ "text": "Ich weiß es nicht.", "english": "I don't know." }],
+      "tip": "Knowing facts. For people and places use kennen. Irregular: ich weiß, du weißt, er weiß."
+    },
+    {
+      "id": "de-kennen", "word": "kennen", "gloss": "to know (a person, place)", "pos": "verb",
+      "verb": { "present3sg": "kennt", "participle": "gekannt", "auxiliary": "haben" },
+      "examples": [{ "text": "Kennst du Anna?", "english": "Do you know Anna?" }],
+      "tip": "Being familiar with someone or something. Chinese makes exactly the same split (知道 vs 认识), so compare them together."
+    },
+
+    {
+      "id": "de-koennen", "word": "können", "gloss": "can, to be able to", "pos": "verb",
+      "verb": { "present3sg": "kann", "participle": "gekonnt", "auxiliary": "haben" },
+      "examples": [{ "text": "Kannst du mir helfen?", "english": "Can you help me?" }],
+      "tip": "A modal verb: the second verb goes to the end. Also 'know how to': Ich kann Deutsch."
+    },
+    {
+      "id": "de-muessen", "word": "müssen", "gloss": "must, to have to", "pos": "verb",
+      "verb": { "present3sg": "muss", "participle": "gemusst", "auxiliary": "haben" },
+      "examples": [{ "text": "Ich muss jetzt gehen.", "english": "I have to go now." }],
+      "tip": "Trap: ich muss nicht = I don't have to, not 'I mustn't'."
+    },
+    {
+      "id": "de-duerfen", "word": "dürfen", "gloss": "may, to be allowed to", "pos": "verb",
+      "verb": { "present3sg": "darf", "participle": "gedurft", "auxiliary": "haben" },
+      "examples": [{ "text": "Darf ich?", "english": "May I?" }],
+      "tip": "Permission. Du darfst nicht = you mustn't, which is the real 'mustn't'."
+    },
+    {
+      "id": "de-sollen", "word": "sollen", "gloss": "should, to be supposed to", "pos": "verb",
+      "verb": { "present3sg": "soll", "participle": "gesollt", "auxiliary": "haben" },
+      "examples": [{ "text": "Was soll ich machen?", "english": "What should I do?" }],
+      "tip": "Often about what someone else wants: Ich soll Brot kaufen = I'm supposed to buy bread."
+    },
+    {
+      "id": "de-werden", "word": "werden", "gloss": "to become; will", "pos": "verb",
+      "verb": { "present3sg": "wird", "participle": "geworden", "auxiliary": "sein" },
+      "examples": [{ "text": "Es wird kalt.", "english": "It's getting cold." }],
+      "tip": "Also makes the future: Ich werde kommen = I will come. Remember ich will = I want (session 10)."
+    },
+
+    {
+      "id": "de-stadt", "word": "Stadt", "gloss": "city, town", "pos": "noun",
+      "noun": { "gender": "f", "plural": "Städte" },
+      "examples": [{ "text": "Berlin ist eine große Stadt.", "english": "Berlin is a big city." }],
+      "tip": "in die Stadt gehen = to go into town. Umlaut in the plural: Städte."
+    },
+    {
+      "id": "de-strasse", "word": "Straße", "gloss": "street, road", "pos": "noun",
+      "noun": { "gender": "f", "plural": "Straßen" },
+      "examples": [{ "text": "Wir wohnen in dieser Straße.", "english": "We live on this street." }],
+      "tip": "Germans live in a street, not on it. Swiss German writes Strasse."
+    },
+    {
+      "id": "de-auto", "word": "Auto", "gloss": "car", "pos": "noun",
+      "noun": { "gender": "n", "plural": "Autos" },
+      "examples": [{ "text": "Das Auto ist neu.", "english": "The car is new." }],
+      "tip": "Plural with -s, unusual in German. mit dem Auto = by car."
+    },
+    {
+      "id": "de-fahren", "word": "fahren", "gloss": "to drive, to travel", "pos": "verb",
+      "verb": { "present3sg": "fährt", "participle": "gefahren", "auxiliary": "sein" },
+      "examples": [{ "text": "Wir fahren morgen nach Berlin.", "english": "We're going to Berlin tomorrow." }],
+      "tip": "Any trip by car, train or bike, whereas gehen is on foot. Past tense with sein: ich bin gefahren."
+    },
+    {
+      "id": "de-bahnhof", "word": "Bahnhof", "gloss": "train station", "pos": "noun",
+      "noun": { "gender": "m", "plural": "Bahnhöfe" },
+      "examples": [{ "text": "Wo ist der Bahnhof?", "english": "Where is the station?" }],
+      "tip": "Bahn (rail) + Hof (yard). Hauptbahnhof (Hbf) = main station. Ich verstehe nur Bahnhof = it's all Greek to me."
+    },
+
+    {
+      "id": "de-arbeit", "word": "Arbeit", "gloss": "work, job", "pos": "noun",
+      "noun": { "gender": "f", "plural": "Arbeiten" },
+      "examples": [{ "text": "Ich gehe zur Arbeit.", "english": "I'm going to work." }],
+      "tip": "zur Arbeit gehen = to go to work. Arbeitsplatz = workplace."
+    },
+    {
+      "id": "de-arbeiten", "word": "arbeiten", "gloss": "to work", "pos": "verb",
+      "verb": { "present3sg": "arbeitet", "participle": "gearbeitet", "auxiliary": "haben" },
+      "examples": [{ "text": "Wo arbeitest du?", "english": "Where do you work?" }],
+      "tip": "The extra e (du arbeitest, er arbeitet) keeps the t audible. Talk about what each of you does all day."
+    },
+    {
+      "id": "de-lernen", "word": "lernen", "gloss": "to learn, to study", "pos": "verb",
+      "verb": { "present3sg": "lernt", "participle": "gelernt", "auxiliary": "haben" },
+      "examples": [{ "text": "Ich lerne Deutsch.", "english": "I'm learning German." }],
+      "tip": "Learning anything, including revising for exams. studieren is only for university."
+    },
+    {
+      "id": "de-schule", "word": "Schule", "gloss": "school", "pos": "noun",
+      "noun": { "gender": "f", "plural": "Schulen" },
+      "examples": [{ "text": "Die Kinder sind in der Schule.", "english": "The kids are at school." }],
+      "tip": "For children. University is die Uni. Grundschule = primary school."
+    },
+    {
+      "id": "de-buch", "word": "Buch", "gloss": "book", "pos": "noun",
+      "noun": { "gender": "n", "plural": "Bücher" },
+      "examples": [{ "text": "Das Buch ist gut.", "english": "The book is good." }],
+      "tip": "Umlaut in the plural: Bücher. Bücherei = library, Buchhandlung = bookshop."
+    },
+
+    {
+      "id": "de-woche", "word": "Woche", "gloss": "week", "pos": "noun",
+      "noun": { "gender": "f", "plural": "Wochen" },
+      "examples": [{ "text": "Nächste Woche habe ich Urlaub.", "english": "I'm on holiday next week." }],
+      "tip": "Wochenende = weekend. diese Woche / nächste Woche = this week / next week."
+    },
+    {
+      "id": "de-abend", "word": "Abend", "gloss": "evening", "pos": "noun",
+      "noun": { "gender": "m", "plural": "Abende" },
+      "examples": [{ "text": "Guten Abend!", "english": "Good evening!" }],
+      "tip": "heute Abend = tonight. Abendessen = dinner."
+    },
+    {
+      "id": "de-nacht", "word": "Nacht", "gloss": "night", "pos": "noun",
+      "noun": { "gender": "f", "plural": "Nächte" },
+      "examples": [{ "text": "Gute Nacht!", "english": "Good night!" }],
+      "tip": "Gute Nacht is only for bedtime. As a greeting in the evening, use Guten Abend."
+    },
+    {
+      "id": "de-uhr", "word": "Uhr", "gloss": "clock, watch; o'clock", "pos": "noun",
+      "noun": { "gender": "f", "plural": "Uhren" },
+      "examples": [{ "text": "Es ist drei Uhr.", "english": "It's three o'clock." }],
+      "tip": "Wie spät ist es? = what time is it? Careful: halb vier means half past three (literally 'half to four')."
+    },
+    {
+      "id": "de-zeit", "word": "Zeit", "gloss": "time", "pos": "noun",
+      "noun": { "gender": "f", "plural": "Zeiten" },
+      "examples": [{ "text": "Hast du Zeit?", "english": "Do you have time?" }],
+      "tip": "Time as an amount (Zeit haben). For clock time use Uhr. Keine Zeit! = no time!"
+    },
+
+    {
+      "id": "de-kaufen", "word": "kaufen", "gloss": "to buy", "pos": "verb",
+      "verb": { "present3sg": "kauft", "participle": "gekauft", "auxiliary": "haben" },
+      "examples": [{ "text": "Ich kaufe Brot.", "english": "I'm buying bread." }],
+      "tip": "verkaufen = to sell, einkaufen = to go shopping. Prefixes change the meaning a lot in German."
+    },
+    {
+      "id": "de-geld", "word": "Geld", "gloss": "money", "pos": "noun",
+      "noun": { "gender": "n", "plural": null },
+      "examples": [{ "text": "Ich habe kein Geld.", "english": "I have no money." }],
+      "tip": "Usually no plural (Gelder means funds). Bargeld = cash. A good chance to practise kein."
+    },
+    {
+      "id": "de-kosten", "word": "kosten", "gloss": "to cost", "pos": "verb",
+      "verb": { "present3sg": "kostet", "participle": "gekostet", "auxiliary": "haben" },
+      "examples": [{ "text": "Was kostet das?", "english": "How much is that?" }],
+      "tip": "Was kostet das? is the shopping question. kosten also means 'to taste' food."
+    },
+    {
+      "id": "de-viel", "word": "viel", "gloss": "much, a lot", "pos": "adjective",
+      "examples": [{ "text": "Das kostet zu viel.", "english": "That costs too much." }],
+      "tip": "viel (much) vs viele (many): viel Geld, viele Leute. Vielen Dank = many thanks."
+    },
+    {
+      "id": "de-teuer", "word": "teuer", "gloss": "expensive", "pos": "adjective",
+      "examples": [{ "text": "Das ist mir zu teuer.", "english": "That's too expensive for me." }],
+      "tip": "The opposite is billig (cheap) or günstig (good value). Drops an e before endings: ein teures Auto."
     }
   ]
 }

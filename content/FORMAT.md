@@ -59,7 +59,7 @@ tools/
       "id": "de-haus",
       "word": "Haus",                   // headword without article; the app adds der/die/das from `noun.gender`
       "gloss": "house",
-      "pos": "noun",                    // noun | verb | adjective | adverb | pronoun | interjection | phrase | particle
+      "pos": "noun",                    // noun | verb | adjective | adverb | pronoun | numeral | conjunction | preposition | interjection | phrase | particle
       "noun": { "gender": "n", "plural": "Häuser" },   // nouns only. gender: m | f | n. plural: null if (practically) none
       "verb": { "present3sg": "…", "participle": "…", "auxiliary": "haben" },  // verbs only. auxiliary: haben | sein
       "examples": [ { "text": "Das Haus ist groß.", "english": "The house is big." } ],
@@ -125,7 +125,7 @@ struct Word: Codable, Identifiable {
 
 ## Not covered yet
 
-- **Frequency source.** Sessions 1–10 are hand-picked from very common words. Before drafting the rest, pick
+- **Frequency source.** Sessions 1–20 are hand-picked from very common words. Before drafting the rest, pick
   the source lists (e.g. DeReWo or the Leipzig corpora for German, SUBTLEX-CH or the HSK lists for Chinese),
   check their licences, and add an optional `frequencyRank` field.
 - **Traditional characters.** These could be an optional `traditional` field if ever needed.

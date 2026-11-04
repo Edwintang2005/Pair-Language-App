@@ -10,6 +10,7 @@ struct ReviewView: View {
     @State private var queue: [String] = []
     @State private var revealed = false
     @State private var reviewedThisRound = 0
+    @State private var quizzing = false
 
     var body: some View {
         NavigationStack {
@@ -84,9 +85,48 @@ struct ReviewView: View {
             }
             .padding(.top, 8)
             Spacer()
+            quizCard
         }
         .multilineTextAlignment(.center)
         .padding(24)
+        .sheet(isPresented: $quizzing) {
+            if let teaching = progress.teaching {
+                QuizView(language: teaching, words: quizWords)
+            }
+        }
+    }
+
+    // MARK: Quiz your partner
+
+    private var quizWords: [Word] {
+        progress.partnerWordIDs(in: content).compactMap { content.words[$0] }.shuffled().prefix(20).map { $0 }
+    }
+
+    @ViewBuilder
+    private var quizCard: some View {
+        let count = progress.partnerWordIDs(in: content).count
+        if count > 0, let teaching = progress.teaching {
+            Button {
+                quizzing = true
+            } label: {
+                HStack(spacing: 12) {
+                    Image(systemName: "person.2.fill")
+                        .font(.title3)
+                        .foregroundStyle(.tint)
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("Quiz your partner").font(.headline)
+                        Text("\(count) \(teaching.name) words so far. They answer out loud, you check.")
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                    }
+                    .multilineTextAlignment(.leading)
+                    Spacer()
+                    Image(systemName: "chevron.right").foregroundStyle(.tertiary)
+                }
+                .card()
+            }
+            .buttonStyle(.plain)
+        }
     }
 
     // MARK: Flashcard

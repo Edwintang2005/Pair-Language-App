@@ -70,6 +70,76 @@
       "conversationStarter": "Each share one thing you want, one thing you like doing, and how you feel today.",
       "de": ["de-wollen", "de-moegen", "de-gern", "de-gluecklich", "de-muede"],
       "zh": ["zh-yao", "zh-xiang", "zh-xi-huan", "zh-gao-xing", "zh-lei"]
+    },
+    {
+      "number": 11,
+      "theme": "Describing things",
+      "conversationStarter": "Take turns describing something in the room with today's words. The other one guesses what it is.",
+      "de": ["de-gut", "de-gross", "de-klein", "de-neu", "de-alt"],
+      "zh": ["zh-hao", "zh-da", "zh-xiao", "zh-xin", "zh-lao"]
+    },
+    {
+      "number": 12,
+      "theme": "Numbers 1–5",
+      "conversationStarter": "Count things around you in both languages, then show each other how you count on your fingers.",
+      "de": ["de-eins", "de-zwei", "de-drei", "de-vier", "de-fuenf"],
+      "zh": ["zh-yi", "zh-er", "zh-san", "zh-si", "zh-wu"]
+    },
+    {
+      "number": 13,
+      "theme": "Here & there",
+      "conversationStarter": "Hide something small, then guide the other one to it using only here, there, left and right.",
+      "de": ["de-hier", "de-dort", "de-da", "de-links", "de-rechts"],
+      "zh": ["zh-zhe", "zh-na-that", "zh-zhe-li", "zh-na-li-there", "zh-zai"]
+    },
+    {
+      "number": 14,
+      "theme": "Joining ideas",
+      "conversationStarter": "Build the longest sentence you can by chaining and, or, but and because. The sillier the better.",
+      "de": ["de-und", "de-oder", "de-aber", "de-weil", "de-mit"],
+      "zh": ["zh-he-and", "zh-hai-shi", "zh-dan-shi", "zh-yin-wei", "zh-suo-yi"]
+    },
+    {
+      "number": 15,
+      "theme": "Saying, seeing & knowing",
+      "conversationStarter": "Point at five things and ask how to say each one in the other's language. Who do you both know, and what do you know about them?",
+      "de": ["de-sagen", "de-sehen", "de-hoeren", "de-wissen", "de-kennen"],
+      "zh": ["zh-shuo", "zh-kan", "zh-ting", "zh-zhi-dao", "zh-ren-shi"]
+    },
+    {
+      "number": 16,
+      "theme": "Can, may & must",
+      "conversationStarter": "Each name three things you can do, one thing you must do this week, and ask permission for something silly.",
+      "de": ["de-koennen", "de-muessen", "de-duerfen", "de-sollen", "de-werden"],
+      "zh": ["zh-hui", "zh-neng", "zh-ke-yi", "zh-ying-gai", "zh-bi-xu"]
+    },
+    {
+      "number": 17,
+      "theme": "Getting around",
+      "conversationStarter": "Describe how you'd get from home to your favourite place in town: which streets, by car or by train?",
+      "de": ["de-stadt", "de-strasse", "de-auto", "de-fahren", "de-bahnhof"],
+      "zh": ["zh-cheng-shi", "zh-lu", "zh-che", "zh-zuo-sit", "zh-che-zhan"]
+    },
+    {
+      "number": 18,
+      "theme": "Work & study",
+      "conversationStarter": "Tell each other about your work or study day, then about your favourite teacher at school.",
+      "de": ["de-arbeit", "de-arbeiten", "de-lernen", "de-schule", "de-buch"],
+      "zh": ["zh-gong-zuo", "zh-xue-xi", "zh-xue-xiao", "zh-shu", "zh-lao-shi"]
+    },
+    {
+      "number": 19,
+      "theme": "Times of day",
+      "conversationStarter": "Walk through tomorrow by the clock: what happens in the morning, in the evening and at night?",
+      "de": ["de-woche", "de-abend", "de-nacht", "de-uhr", "de-zeit"],
+      "zh": ["zh-xing-qi", "zh-zao-shang", "zh-wan-shang", "zh-dian", "zh-shi-jian"]
+    },
+    {
+      "number": 20,
+      "theme": "Shopping",
+      "conversationStarter": "Play shop with things on the table: one sells, one buys, and you haggle over every price.",
+      "de": ["de-kaufen", "de-geld", "de-kosten", "de-viel", "de-teuer"],
+      "zh": ["zh-mai-buy", "zh-mai-sell", "zh-qian", "zh-duo-shao", "zh-gui"]
     }
   ]
 }

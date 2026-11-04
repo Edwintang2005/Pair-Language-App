@@ -55,6 +55,10 @@ struct TodayView: View {
     private func sessionBody(_ session: Session) -> some View {
         header(session)
 
+        if progress.showsReminderPrompt {
+            reminderPrompt
+        }
+
         HStack(alignment: .top, spacing: 12) {
             Image(systemName: "bubble.left.and.bubble.right.fill")
                 .font(.title3)
@@ -85,6 +89,37 @@ struct TodayView: View {
         }
 
         finishButton(session)
+    }
+
+    private var reminderPrompt: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack(alignment: .top, spacing: 12) {
+                Image(systemName: "bell.badge.fill")
+                    .font(.title3)
+                    .foregroundStyle(.orange)
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("Get a daily nudge").font(.subheadline.weight(.semibold))
+                    Text("One reminder in the evening when words are due or your next session is waiting.")
+                        .font(.subheadline)
+                }
+            }
+            HStack {
+                Button("Turn on reminders") {
+                    Task {
+                        if await ReminderScheduler.requestPermission() {
+                            progress.setReminders(ReminderSettings())
+                        } else {
+                            progress.dismissReminderPrompt()
+                        }
+                    }
+                }
+                .buttonStyle(.borderedProminent)
+                Button("Not now") { progress.dismissReminderPrompt() }
+                    .buttonStyle(.bordered)
+            }
+            .font(.subheadline)
+        }
+        .card()
     }
 
     private func header(_ session: Session) -> some View {

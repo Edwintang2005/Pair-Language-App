@@ -5,8 +5,11 @@ struct SettingsView: View {
     @Environment(ContentLibrary.self) private var content
     @Environment(\.dismiss) private var dismiss
 
+    @Environment(\.openURL) private var openURL
+
     @State private var confirmingReset = false
     @State private var confirmingSwitch = false
+    @State private var notificationsDenied = false
 
     var body: some View {
         NavigationStack {
@@ -20,6 +23,8 @@ struct SettingsView: View {
                         Text("This phone")
                     }
                 }
+
+                remindersSection
 
                 Section {
                     Stepper(value: Binding(
@@ -49,6 +54,7 @@ struct SettingsView: View {
             }
             .navigationTitle("Settings")
             .navigationBarTitleDisplayMode(.inline)
+            .task { notificationsDenied = await ReminderScheduler.isDenied() }
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Done") { dismiss() }
@@ -70,6 +76,69 @@ struct SettingsView: View {
                 }
             } message: {
                 Text("This deletes your sessions, streak and review history on this phone. It can't be undone.")
+            }
+        }
+    }
+
+    // MARK: Reminders
+
+    private var reminders: ReminderSettings { progress.reminders ?? ReminderSettings(enabled: false) }
+
+    private var remindersSection: some View {
+        Section {
+            Toggle("Daily reminder", isOn: Binding(
+                get: { reminders.enabled && !notificationsDenied },
+                set: { setEnabled($0) }
+            ))
+            if reminders.enabled && !notificationsDenied {
+                DatePicker("Time", selection: Binding(
+                    get: { Calendar.current.date(bySettingHour: reminders.hour, minute: reminders.minute, second: 0, of: .now) ?? .now },
+                    set: { date in
+                        let parts = Calendar.current.dateComponents([.hour, .minute], from: date)
+                        var updated = reminders
+                        updated.hour = parts.hour ?? 20
+                        updated.minute = parts.minute ?? 0
+                        progress.setReminders(updated)
+                    }
+                ), displayedComponents: .hourAndMinute)
+                Toggle("Remind me about sessions", isOn: Binding(
+                    get: { reminders.includeSessions },
+                    set: { value in
+                        var updated = reminders
+                        updated.includeSessions = value
+                        progress.setReminders(updated)
+                    }
+                ))
+            }
+            if notificationsDenied {
+                Button("Open notification settings") {
+                    if let url = URL(string: UIApplication.openNotificationSettingsURLString) { openURL(url) }
+                }
+            }
+        } header: {
+            Text("Reminders")
+        } footer: {
+            if notificationsDenied {
+                Text("Notifications are turned off for Pair in the Settings app.")
+            } else {
+                Text("At most one notification a day: when words are due for review, or your next session hasn't been done yet.")
+            }
+        }
+    }
+
+    private func setEnabled(_ enabled: Bool) {
+        var updated = reminders
+        guard enabled else {
+            updated.enabled = false
+            progress.setReminders(updated)
+            return
+        }
+        Task {
+            if await ReminderScheduler.requestPermission() {
+                updated.enabled = true
+                progress.setReminders(updated)
+            } else {
+                notificationsDenied = true
             }
         }
     }

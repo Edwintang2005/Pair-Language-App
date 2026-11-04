@@ -16,7 +16,7 @@ private func day(_ d: Int, hour: Int = 10) -> Date {
 struct ContentTests {
     @Test func bundledContentLoadsAndEverySessionHasFivePerSide() throws {
         let content = try ContentLibrary.loadBundled()
-        #expect(content.sessionCount >= 10)
+        #expect(content.sessionCount >= 20)
         for session in content.sessions {
             #expect(content.words(in: session, language: .german).count == 5, "session \(session.number) de")
             #expect(content.words(in: session, language: .chinese).count == 5, "session \(session.number) zh")
@@ -146,5 +146,82 @@ struct ProgressStoreTests {
         #expect(store.streak(now: day(3), calendar: calendar) == 3)
         #expect(store.streak(now: day(4), calendar: calendar) == 3) // yesterday still counts
         #expect(store.streak(now: day(5), calendar: calendar) == 0)
+    }
+}
+
+@MainActor
+struct ReminderPlannerTests {
+    private let sessions = [
+        Session(number: 1, theme: "Greetings", conversationStarter: "", de: [], zh: []),
+        Session(number: 2, theme: "Me, you & us", conversationStarter: "", de: [], zh: []),
+    ]
+
+    private func data(reminders: ReminderSettings? = ReminderSettings(), session: Int = 2,
+                      dueOn days: [Int] = [], completedOn: Int? = nil) -> ProgressData {
+        var d = ProgressData()
+        d.learning = .german
+        d.currentSession = session
+        d.reminders = reminders
+        for (i, dueDay) in days.enumerated() {
+            d.reviews["w\(i)"] = ReviewState(box: 1, due: day(dueDay, hour: 0))
+        }
+        if let completedOn { d.completed[1] = day(completedOn, hour: 9) }
+        return d
+    }
+
+    @Test func nothingWhenRemindersAreOffOrNeverSetUp() {
+        #expect(ReminderPlanner.plan(data: data(reminders: nil), sessions: sessions, now: day(4), calendar: calendar).isEmpty)
+        var off = ReminderSettings()
+        off.enabled = false
+        #expect(ReminderPlanner.plan(data: data(reminders: off), sessions: sessions, now: day(4), calendar: calendar).isEmpty)
+    }
+
+    @Test func dueWordsGiveAReviewReminderTonight() throws {
+        let plan = ReminderPlanner.plan(data: data(dueOn: [4, 4, 4]), sessions: sessions, now: day(4), calendar: calendar)
+        let first = try #require(plan.first)
+        #expect(first.date == day(4, hour: 20))
+        #expect(first.title == "3 words to review")
+        #expect(first.body.contains("session 2"))
+        #expect(first.badge == 3)
+        #expect(first.tab == .review)
+        #expect(plan.count == ReminderPlanner.daysAhead)
+    }
+
+    @Test func skipsTodayOnceTheTimeHasPassed() throws {
+        let plan = ReminderPlanner.plan(data: data(dueOn: [4]), sessions: sessions, now: day(4, hour: 21), calendar: calendar)
+        #expect(try #require(plan.first).date == day(5, hour: 20))
+        #expect(plan.count == ReminderPlanner.daysAhead - 1)
+    }
+
+    @Test func futureDaysCountWordsThatWillBeDueByThen() {
+        let plan = ReminderPlanner.plan(data: data(dueOn: [5, 6, 6]), sessions: sessions, now: day(4), calendar: calendar)
+        #expect(plan.map(\.badge).prefix(3) == [0, 1, 3])
+        #expect(plan[0].tab == .today) // nothing due yet, just the session nudge
+    }
+
+    @Test func noSessionNudgeTodayAfterFinishingOne() {
+        let plan = ReminderPlanner.plan(data: data(completedOn: 4), sessions: sessions, now: day(4), calendar: calendar)
+        #expect(plan.first?.date == day(5, hour: 20))
+        #expect(plan.first?.title == "Session 2: Me, you & us")
+    }
+
+    @Test func sessionNudgesCanBeTurnedOff() {
+        var settings = ReminderSettings()
+        settings.includeSessions = false
+        let plan = ReminderPlanner.plan(data: data(reminders: settings, dueOn: [6]), sessions: sessions, now: day(4), calendar: calendar)
+        #expect(plan.allSatisfy { $0.badge > 0 })
+        #expect(plan.first?.date == day(6, hour: 20))
+        #expect(plan.first?.body == "A few minutes now keeps them stuck.")
+    }
+
+    @Test func quietWhenAllSessionsAreDoneAndNothingIsDue() {
+        let plan = ReminderPlanner.plan(data: data(session: 3), sessions: sessions, now: day(4), calendar: calendar)
+        #expect(plan.isEmpty)
+    }
+
+    @Test func oldProgressFilesLoadWithoutReminderSettings() throws {
+        let decoded = try JSONDecoder().decode(ProgressData.self, from: Data(#"{"learning":"zh","currentSession":3}"#.utf8))
+        #expect(decoded.reminders == nil)
+        #expect(!decoded.reminderPromptDismissed)
     }
 }
