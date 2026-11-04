@@ -1,0 +1,291 @@
+{
+  "schemaVersion": 1,
+  "language": "de",
+  "speechLanguage": "de-DE",
+  "words": [
+    {
+      "id": "de-hallo", "word": "Hallo", "gloss": "hello, hi", "pos": "interjection",
+      "examples": [{ "text": "Hallo, wie geht's?", "english": "Hi, how's it going?" }],
+      "tip": "Casual and works almost anywhere. Show how greetings change through the day (Guten Morgen, Guten Tag, Guten Abend) and regional ones like Moin or Servus."
+    },
+    {
+      "id": "de-tschuess", "word": "Tschüss", "gloss": "bye", "pos": "interjection",
+      "examples": [{ "text": "Tschüss, bis morgen!", "english": "Bye, see you tomorrow!" }],
+      "tip": "Informal goodbye. Compare with the more formal Auf Wiedersehen, and with Bis später / Bis bald."
+    },
+    {
+      "id": "de-danke", "word": "danke", "gloss": "thanks, thank you", "pos": "interjection",
+      "examples": [{ "text": "Danke für den Kaffee.", "english": "Thanks for the coffee." }],
+      "tip": "Teach the reply too: Bitte! or Gern geschehen. Danke schön and Vielen Dank are stronger."
+    },
+    {
+      "id": "de-bitte", "word": "bitte", "gloss": "please; you're welcome", "pos": "interjection",
+      "examples": [{ "text": "Einen Tee, bitte.", "english": "A tea, please." }],
+      "tip": "A do-everything word: please, you're welcome, here you go, and 'Bitte?' for 'pardon?'. Act out each use."
+    },
+    {
+      "id": "de-entschuldigung", "word": "Entschuldigung", "gloss": "excuse me; sorry", "pos": "noun",
+      "noun": { "gender": "f", "plural": "Entschuldigungen" },
+      "examples": [{ "text": "Entschuldigung, wo ist der Bahnhof?", "english": "Excuse me, where is the station?" }],
+      "tip": "On its own it both gets attention and apologises. Es tut mir leid is a more heartfelt 'I'm sorry'."
+    },
+
+    {
+      "id": "de-ich", "word": "ich", "gloss": "I", "pos": "pronoun",
+      "examples": [{ "text": "Ich bin müde.", "english": "I am tired." }],
+      "tip": "Not capitalised unless it starts a sentence, unlike English 'I'."
+    },
+    {
+      "id": "de-du", "word": "du", "gloss": "you (informal, one person)", "pos": "pronoun",
+      "examples": [{ "text": "Kommst du mit?", "english": "Are you coming along?" }],
+      "tip": "For friends, family, kids and each other. When to switch to the formal Sie is a great discussion topic."
+    },
+    {
+      "id": "de-er", "word": "er", "gloss": "he", "pos": "pronoun",
+      "examples": [{ "text": "Er wohnt in Berlin.", "english": "He lives in Berlin." }],
+      "tip": "Also means 'it' for masculine nouns: Der Kaffee? Er ist kalt. (The coffee? It's cold.)"
+    },
+    {
+      "id": "de-sie", "word": "sie", "gloss": "she; they", "pos": "pronoun",
+      "examples": [{ "text": "Sie trinkt gern Tee.", "english": "She likes drinking tea." }],
+      "tip": "One word, three meanings: sie = she, sie = they, and capitalised Sie = formal 'you'. The verb ending and context tell them apart."
+    },
+    {
+      "id": "de-wir", "word": "wir", "gloss": "we", "pos": "pronoun",
+      "examples": [{ "text": "Wir lernen zusammen.", "english": "We're learning together." }],
+      "tip": "Easy win: with wir the verb looks like the infinitive (wir gehen, wir kommen)."
+    },
+
+    {
+      "id": "de-sein", "word": "sein", "gloss": "to be", "pos": "verb",
+      "verb": { "present3sg": "ist", "participle": "gewesen", "auxiliary": "sein" },
+      "examples": [{ "text": "Das ist gut.", "english": "That is good." }],
+      "tip": "Irregular: ich bin, du bist, er ist, wir sind, ihr seid, sie sind. Worth chanting together a few times."
+    },
+    {
+      "id": "de-haben", "word": "haben", "gloss": "to have", "pos": "verb",
+      "verb": { "present3sg": "hat", "participle": "gehabt", "auxiliary": "haben" },
+      "examples": [{ "text": "Ich habe Hunger.", "english": "I'm hungry. (lit. I have hunger)" }],
+      "tip": "German uses haben where English uses 'to be': Ich habe Hunger (I'm hungry), Ich habe Recht (I'm right)."
+    },
+    {
+      "id": "de-machen", "word": "machen", "gloss": "to do, to make", "pos": "verb",
+      "verb": { "present3sg": "macht", "participle": "gemacht", "auxiliary": "haben" },
+      "examples": [{ "text": "Was machst du?", "english": "What are you doing?" }],
+      "tip": "Covers both 'do' and 'make'. Handy phrase: Das macht nichts (never mind)."
+    },
+    {
+      "id": "de-gehen", "word": "gehen", "gloss": "to go, to walk", "pos": "verb",
+      "verb": { "present3sg": "geht", "participle": "gegangen", "auxiliary": "sein" },
+      "examples": [{ "text": "Wir gehen nach Hause.", "english": "We're going home." }],
+      "tip": "Mainly going on foot. By car, train or bike Germans usually say fahren. Also: Wie geht's? = how's it going?"
+    },
+    {
+      "id": "de-kommen", "word": "kommen", "gloss": "to come", "pos": "verb",
+      "verb": { "present3sg": "kommt", "participle": "gekommen", "auxiliary": "sein" },
+      "examples": [{ "text": "Woher kommst du?", "english": "Where are you from?" }],
+      "tip": "Practise asking and answering: Woher kommst du? Ich komme aus …"
+    },
+
+    {
+      "id": "de-was", "word": "was", "gloss": "what", "pos": "pronoun",
+      "examples": [{ "text": "Was ist das?", "english": "What is that?" }],
+      "tip": "Looks like English 'was' but means 'what'."
+    },
+    {
+      "id": "de-wer", "word": "wer", "gloss": "who", "pos": "pronoun",
+      "examples": [{ "text": "Wer ist das?", "english": "Who is that?" }],
+      "tip": "Classic trap for English speakers: wer = who, wo = where. Drill the pair together."
+    },
+    {
+      "id": "de-wo", "word": "wo", "gloss": "where", "pos": "adverb",
+      "examples": [{ "text": "Wo wohnst du?", "english": "Where do you live?" }],
+      "tip": "Location only. Woher = where from, wohin = where to."
+    },
+    {
+      "id": "de-wann", "word": "wann", "gloss": "when (in questions)", "pos": "adverb",
+      "examples": [{ "text": "Wann kommst du?", "english": "When are you coming?" }],
+      "tip": "Only for questions. In statements 'when' is wenn or als, which can wait until later."
+    },
+    {
+      "id": "de-wie", "word": "wie", "gloss": "how", "pos": "adverb",
+      "examples": [{ "text": "Wie heißt du?", "english": "What's your name? (lit. how are you called?)" }],
+      "tip": "Wie heißt du? is the normal way to ask someone's name."
+    },
+
+    {
+      "id": "de-ja", "word": "ja", "gloss": "yes", "pos": "interjection",
+      "examples": [{ "text": "Ja, gerne!", "english": "Yes, gladly!" }],
+      "tip": "Bonus word: doch is the 'yes' you use after a negative question (Kommst du nicht? Doch!). Nothing like it in English."
+    },
+    {
+      "id": "de-nein", "word": "nein", "gloss": "no", "pos": "interjection",
+      "examples": [{ "text": "Nein, danke.", "english": "No, thanks." }],
+      "tip": "Nein, danke is the polite refusal. kein ('not a, no' before nouns) comes later."
+    },
+    {
+      "id": "de-nicht", "word": "nicht", "gloss": "not", "pos": "adverb",
+      "examples": [{ "text": "Das ist nicht gut.", "english": "That's not good." }],
+      "tip": "Tends to drift towards the end of the sentence (Ich komme heute nicht), which feels odd at first."
+    },
+    {
+      "id": "de-auch", "word": "auch", "gloss": "also, too", "pos": "adverb",
+      "examples": [{ "text": "Ich auch!", "english": "Me too!" }],
+      "tip": "Ich auch = me too. Ich auch nicht = me neither."
+    },
+    {
+      "id": "de-sehr", "word": "sehr", "gloss": "very", "pos": "adverb",
+      "examples": [{ "text": "Das ist sehr gut.", "english": "That's very good." }],
+      "tip": "Also in Danke sehr and Bitte sehr."
+    },
+
+    {
+      "id": "de-heute", "word": "heute", "gloss": "today", "pos": "adverb",
+      "examples": [{ "text": "Heute ist Montag.", "english": "Today is Monday." }],
+      "tip": "Heute Abend = tonight. Heute Morgen = this morning."
+    },
+    {
+      "id": "de-morgen", "word": "morgen", "gloss": "tomorrow", "pos": "adverb",
+      "examples": [{ "text": "Bis morgen!", "english": "See you tomorrow!" }],
+      "tip": "Lowercase morgen = tomorrow, capitalised der Morgen = morning. So morgen früh = tomorrow morning."
+    },
+    {
+      "id": "de-jetzt", "word": "jetzt", "gloss": "now", "pos": "adverb",
+      "examples": [{ "text": "Ich habe jetzt keine Zeit.", "english": "I don't have time now." }],
+      "tip": "Bis jetzt = until now, so far."
+    },
+    {
+      "id": "de-tag", "word": "Tag", "gloss": "day", "pos": "noun",
+      "noun": { "gender": "m", "plural": "Tage" },
+      "examples": [{ "text": "Guten Tag!", "english": "Good day! / Hello!" }],
+      "tip": "Guten Tag is a polite hello. Jeden Tag = every day."
+    },
+    {
+      "id": "de-jahr", "word": "Jahr", "gloss": "year", "pos": "noun",
+      "noun": { "gender": "n", "plural": "Jahre" },
+      "examples": [{ "text": "Das Jahr ist fast vorbei.", "english": "The year is almost over." }],
+      "tip": "Frohes neues Jahr! = Happy New Year. Talk about how each of you celebrates it."
+    },
+
+    {
+      "id": "de-essen", "word": "essen", "gloss": "to eat", "pos": "verb",
+      "verb": { "present3sg": "isst", "participle": "gegessen", "auxiliary": "haben" },
+      "examples": [{ "text": "Was essen wir heute?", "english": "What are we eating today?" }],
+      "tip": "Irregular present: du isst, er isst. Capitalised, das Essen = the food / the meal."
+    },
+    {
+      "id": "de-trinken", "word": "trinken", "gloss": "to drink", "pos": "verb",
+      "verb": { "present3sg": "trinkt", "participle": "getrunken", "auxiliary": "haben" },
+      "examples": [{ "text": "Ich trinke gern Kaffee.", "english": "I like drinking coffee." }],
+      "tip": "trinken, trank, getrunken follows the same pattern as English drink, drank, drunk."
+    },
+    {
+      "id": "de-wasser", "word": "Wasser", "gloss": "water", "pos": "noun",
+      "noun": { "gender": "n", "plural": null },
+      "examples": [{ "text": "Ein Glas Wasser, bitte.", "english": "A glass of water, please." }],
+      "tip": "In restaurants you'll be asked mit oder ohne Kohlensäure? (sparkling or still?). Tap water is Leitungswasser."
+    },
+    {
+      "id": "de-brot", "word": "Brot", "gloss": "bread", "pos": "noun",
+      "noun": { "gender": "n", "plural": "Brote" },
+      "examples": [{ "text": "Das Brot ist frisch.", "english": "The bread is fresh." }],
+      "tip": "A point of German pride. Talk about favourites: Vollkornbrot, Brötchen (bread roll), Brezel."
+    },
+    {
+      "id": "de-kaffee", "word": "Kaffee", "gloss": "coffee", "pos": "noun",
+      "noun": { "gender": "m", "plural": "Kaffees" },
+      "examples": [{ "text": "Möchtest du einen Kaffee?", "english": "Would you like a coffee?" }],
+      "tip": "Kaffee und Kuchen (coffee and cake in the afternoon) is a tradition worth explaining."
+    },
+
+    {
+      "id": "de-haus", "word": "Haus", "gloss": "house", "pos": "noun",
+      "noun": { "gender": "n", "plural": "Häuser" },
+      "examples": [{ "text": "Das Haus ist groß.", "english": "The house is big." }],
+      "tip": "Two key phrases: nach Hause (going home) and zu Hause (at home)."
+    },
+    {
+      "id": "de-zimmer", "word": "Zimmer", "gloss": "room", "pos": "noun",
+      "noun": { "gender": "n", "plural": "Zimmer" },
+      "examples": [{ "text": "Mein Zimmer ist klein.", "english": "My room is small." }],
+      "tip": "Same in singular and plural. Builds Wohnzimmer (living room), Schlafzimmer (bedroom), Badezimmer (bathroom)."
+    },
+    {
+      "id": "de-tuer", "word": "Tür", "gloss": "door", "pos": "noun",
+      "noun": { "gender": "f", "plural": "Türen" },
+      "examples": [{ "text": "Mach bitte die Tür zu.", "english": "Please close the door." }],
+      "tip": "Tür auf / Tür zu = door open / door shut."
+    },
+    {
+      "id": "de-wohnen", "word": "wohnen", "gloss": "to live (somewhere)", "pos": "verb",
+      "verb": { "present3sg": "wohnt", "participle": "gewohnt", "auxiliary": "haben" },
+      "examples": [{ "text": "Wir wohnen zusammen.", "english": "We live together." }],
+      "tip": "wohnen = to reside somewhere. leben = to be alive, to live a life. die Wohnung = flat/apartment."
+    },
+    {
+      "id": "de-bett", "word": "Bett", "gloss": "bed", "pos": "noun",
+      "noun": { "gender": "n", "plural": "Betten" },
+      "examples": [{ "text": "Ich gehe ins Bett.", "english": "I'm going to bed." }],
+      "tip": "ins Bett gehen = go to bed. Pair it with Gute Nacht!"
+    },
+
+    {
+      "id": "de-mutter", "word": "Mutter", "gloss": "mother", "pos": "noun",
+      "noun": { "gender": "f", "plural": "Mütter" },
+      "examples": [{ "text": "Meine Mutter heißt Anna.", "english": "My mother's name is Anna." }],
+      "tip": "Mama in everyday speech. The plural adds an umlaut: Mütter."
+    },
+    {
+      "id": "de-vater", "word": "Vater", "gloss": "father", "pos": "noun",
+      "noun": { "gender": "m", "plural": "Väter" },
+      "examples": [{ "text": "Mein Vater kocht gern.", "english": "My father likes cooking." }],
+      "tip": "Papa in everyday speech. Umlaut in the plural again: Väter."
+    },
+    {
+      "id": "de-kind", "word": "Kind", "gloss": "child", "pos": "noun",
+      "noun": { "gender": "n", "plural": "Kinder" },
+      "examples": [{ "text": "Das Kind spielt im Garten.", "english": "The child is playing in the garden." }],
+      "tip": "Neuter (das Kind) whatever the child's gender. Plural Kinder, as in kindergarten."
+    },
+    {
+      "id": "de-freund", "word": "Freund", "gloss": "friend; boyfriend", "pos": "noun",
+      "noun": { "gender": "m", "plural": "Freunde" },
+      "examples": [{ "text": "Das ist mein Freund Tom.", "english": "This is my friend Tom." }],
+      "tip": "mein Freund often means 'my boyfriend'. To be clear, say ein Freund (von mir). Feminine die Freundin works the same way."
+    },
+    {
+      "id": "de-familie", "word": "Familie", "gloss": "family", "pos": "noun",
+      "noun": { "gender": "f", "plural": "Familien" },
+      "examples": [{ "text": "Meine Familie wohnt in Hamburg.", "english": "My family lives in Hamburg." }],
+      "tip": "Stress the second syllable: fa-MI-li-e, four syllables."
+    },
+
+    {
+      "id": "de-wollen", "word": "wollen", "gloss": "to want", "pos": "verb",
+      "verb": { "present3sg": "will", "participle": "gewollt", "auxiliary": "haben" },
+      "examples": [{ "text": "Ich will nach Hause.", "english": "I want to go home." }],
+      "tip": "False friend: ich will = I want, not I will. The future uses werden."
+    },
+    {
+      "id": "de-moegen", "word": "mögen", "gloss": "to like", "pos": "verb",
+      "verb": { "present3sg": "mag", "participle": "gemocht", "auxiliary": "haben" },
+      "examples": [{ "text": "Ich mag Schokolade.", "english": "I like chocolate." }],
+      "tip": "ich mag = I like. ich möchte = I would like, the polite form for ordering."
+    },
+    {
+      "id": "de-gern", "word": "gern", "gloss": "gladly; (verb +) like doing", "pos": "adverb",
+      "examples": [{ "text": "Ich lese gern.", "english": "I like reading." }],
+      "tip": "Put gern after a verb to say you like doing it: Ich koche gern. Gern geschehen = you're welcome."
+    },
+    {
+      "id": "de-gluecklich", "word": "glücklich", "gloss": "happy; lucky", "pos": "adjective",
+      "examples": [{ "text": "Ich bin sehr glücklich.", "english": "I'm very happy." }],
+      "tip": "Glück means both luck and happiness, so glücklich can be either. Viel Glück! = good luck."
+    },
+    {
+      "id": "de-muede", "word": "müde", "gloss": "tired", "pos": "adjective",
+      "examples": [{ "text": "Ich bin so müde.", "english": "I'm so tired." }],
+      "tip": "todmüde = dead tired. Compare with Chinese 累死了 (tired to death) from the same session."
+    }
+  ]
+}

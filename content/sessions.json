@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "sessions": [
+    {
+      "number": 1,
+      "theme": "Greetings & manners",
+      "conversationStarter": "Role-play bumping into each other in a café: greet, apologise, order, thank, and say goodbye, once in each language.",
+      "de": ["de-hallo", "de-tschuess", "de-danke", "de-bitte", "de-entschuldigung"],
+      "zh": ["zh-ni-hao", "zh-zai-jian", "zh-xie-xie", "zh-qing", "zh-dui-bu-qi"]
+    },
+    {
+      "number": 2,
+      "theme": "Me, you & us",
+      "conversationStarter": "Pick a group photo and point at people: who is he, who is she, which one is us?",
+      "de": ["de-ich", "de-du", "de-er", "de-sie", "de-wir"],
+      "zh": ["zh-wo", "zh-ni", "zh-ta-he", "zh-ta-she", "zh-wo-men"]
+    },
+    {
+      "number": 3,
+      "theme": "Everyday verbs",
+      "conversationStarter": "Each say three true sentences about your day using today's verbs. The teacher corrects gently.",
+      "de": ["de-sein", "de-haben", "de-machen", "de-gehen", "de-kommen"],
+      "zh": ["zh-shi", "zh-you", "zh-zuo", "zh-qu", "zh-lai"]
+    },
+    {
+      "number": 4,
+      "theme": "Asking questions",
+      "conversationStarter": "Take turns asking each other five questions using only today's question words. Answers can be in English.",
+      "de": ["de-was", "de-wer", "de-wo", "de-wann", "de-wie"],
+      "zh": ["zh-shen-me", "zh-shei", "zh-na-li", "zh-shen-me-shi-hou", "zh-zen-me"]
+    },
+    {
+      "number": 5,
+      "theme": "Yes, no & little words",
+      "conversationStarter": "Play quick-fire: one of you asks yes/no questions and the other answers using only these words.",
+      "de": ["de-ja", "de-nein", "de-nicht", "de-auch", "de-sehr"],
+      "zh": ["zh-dui", "zh-bu", "zh-mei", "zh-ye", "zh-hen"]
+    },
+    {
+      "number": 6,
+      "theme": "Time",
+      "conversationStarter": "Plan tomorrow together out loud: what are we doing now, today and tomorrow?",
+      "de": ["de-heute", "de-morgen", "de-jetzt", "de-tag", "de-jahr"],
+      "zh": ["zh-jin-tian", "zh-ming-tian", "zh-xian-zai", "zh-tian", "zh-nian"]
+    },
+    {
+      "number": 7,
+      "theme": "Food & drink",
+      "conversationStarter": "Do this session over a meal: name everything on the table in both languages.",
+      "de": ["de-essen", "de-trinken", "de-wasser", "de-brot", "de-kaffee"],
+      "zh": ["zh-chi", "zh-he", "zh-shui", "zh-fan", "zh-cha"]
+    },
+    {
+      "number": 8,
+      "theme": "Home",
+      "conversationStarter": "Walk around your home together and name the rooms and things you pass.",
+      "de": ["de-haus", "de-zimmer", "de-tuer", "de-wohnen", "de-bett"],
+      "zh": ["zh-jia", "zh-fang-jian", "zh-men", "zh-zhu", "zh-chuang"]
+    },
+    {
+      "number": 9,
+      "theme": "Family & friends",
+      "conversationStarter": "Show each other family photos and introduce everyone, using as many of today's words as you can.",
+      "de": ["de-mutter", "de-vater", "de-kind", "de-freund", "de-familie"],
+      "zh": ["zh-ma-ma", "zh-ba-ba", "zh-hai-zi", "zh-peng-you", "zh-jia-ren"]
+    },
+    {
+      "number": 10,
+      "theme": "Wants & feelings",
+      "conversationStarter": "Each share one thing you want, one thing you like doing, and how you feel today.",
+      "de": ["de-wollen", "de-moegen", "de-gern", "de-gluecklich", "de-muede"],
+      "zh": ["zh-yao", "zh-xiang", "zh-xi-huan", "zh-gao-xing", "zh-lei"]
+    }
+  ]
+}
