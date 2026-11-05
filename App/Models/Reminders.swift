@@ -124,16 +124,32 @@ enum ReminderScheduler {
 final class NotificationRouter: NSObject, UNUserNotificationCenterDelegate {
     var requestedTab: AppTab?
 
+    // Use the completion-handler versions, not the async ones. With the async versions, iOS runs the
+    // completion off the main thread, and UIKit aborts when a notification tap launches the app.
+
     nonisolated func userNotificationCenter(_ center: UNUserNotificationCenter,
-                                            didReceive response: UNNotificationResponse) async {
+                                            didReceive response: UNNotificationResponse,
+                                            withCompletionHandler completionHandler: @escaping () -> Void) {
         let raw = response.notification.request.content.userInfo["tab"] as? String
-        await MainActor.run {
-            self.requestedTab = raw.flatMap(AppTab.init(rawValue:))
+        let done = MainThreadCallback(completionHandler)
+        DispatchQueue.main.async {
+            MainActor.assumeIsolated {
+                self.requestedTab = raw.flatMap(AppTab.init(rawValue:))
+            }
+            done.run()
         }
     }
 
     nonisolated func userNotificationCenter(_ center: UNUserNotificationCenter,
-                                            willPresent notification: UNNotification) async -> UNNotificationPresentationOptions {
-        [.banner, .sound, .badge]
+                                            willPresent notification: UNNotification,
+                                            withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.banner, .sound, .badge])
     }
+}
+
+/// Carries a system completion handler to the main queue. Only ever called there, once.
+nonisolated private struct MainThreadCallback: @unchecked Sendable {
+    private let callback: () -> Void
+    init(_ callback: @escaping () -> Void) { self.callback = callback }
+    func run() { callback() }
 }
