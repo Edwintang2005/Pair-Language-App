@@ -30,18 +30,33 @@ struct DrillView: View {
 
     @Environment(\.dismiss) private var dismiss
 
-    @State private var queue: [DrillCard] = []
+    @State private var queue: [DrillCard]
     @State private var revealed = false
     @State private var correct = 0
     @State private var missed: [DrillCard] = []
-    @State private var total = 0
-    @State private var started = false
+    @State private var total: Int
+
+    /// What "Done" does. Defaults to closing this screen; Test yourself passes one that closes the
+    /// whole sheet, so Done doesn't just step back to the setup screen.
+    private let onClose: (() -> Void)?
+
+    init(title: String, kind: Kind, cards: [DrillCard], onClose: (() -> Void)? = nil) {
+        self.title = title
+        self.kind = kind
+        self.cards = cards
+        self.onClose = onClose
+        // Deal the round here rather than in onAppear, so the first card is there on the first frame.
+        // (An onAppear on an empty Group never fires, which left this screen blank.)
+        let shuffled = cards.shuffled()
+        _queue = State(initialValue: shuffled)
+        _total = State(initialValue: shuffled.count)
+    }
 
     var body: some View {
-        Group {
+        ZStack {
             if let card = queue.first {
                 cardView(card)
-            } else if started {
+            } else {
                 results
             }
         }
@@ -51,11 +66,8 @@ struct DrillView: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .confirmationAction) {
-                Button("Done") { dismiss() }
+                Button("Done") { close() }
             }
-        }
-        .onAppear {
-            if !started { start(with: cards) }
         }
     }
 
@@ -183,7 +195,7 @@ struct DrillView: View {
                     .buttonStyle(.borderedProminent)
                 }
 
-                Button("Done") { dismiss() }
+                Button("Done") { close() }
                     .padding(.top, 4)
             }
             .padding(16)
@@ -201,6 +213,10 @@ struct DrillView: View {
 
     // MARK: Actions
 
+    private func close() {
+        if let onClose { onClose() } else { dismiss() }
+    }
+
     private func start(with list: [DrillCard]) {
         // Fresh card identities, so a retry round animates like a new deck.
         queue = list.map { DrillCard(word: $0.word, direction: $0.direction) }.shuffled()
@@ -208,7 +224,6 @@ struct DrillView: View {
         correct = 0
         missed = []
         revealed = false
-        started = true
     }
 
     private func next(gotIt: Bool) {

@@ -104,7 +104,7 @@ struct PracticeSetupView: View {
                 .background(.bar)
             }
             .navigationDestination(isPresented: $drilling) {
-                DrillView(title: "Test yourself", kind: .selfTest, cards: drillCards)
+                DrillView(title: "Test yourself", kind: .selfTest, cards: drillCards) { dismiss() }
             }
             .onAppear {
                 if selected.isEmpty { selected = Set(sessions.map(\.session.number)) }

@@ -18,7 +18,9 @@ struct GrammarDrillView: View {
 
     var body: some View {
         NavigationStack {
-            Group {
+            // A ZStack, not a Group: modifiers on an empty Group (the first frame, before the
+            // questions are dealt) are dropped.
+            ZStack {
                 if let question = queue.first {
                     questionView(question)
                 } else if started {
