@@ -31,6 +31,30 @@ struct ContentTests {
         #expect(content.words["de-gehen"]?.grammarLine == "er geht · ist gegangen")
     }
 
+    @Test func everyWordAppearsInItsExample() throws {
+        let content = try ContentLibrary.loadBundled()
+        for word in content.words.values {
+            let used = word.examples.contains { example in
+                switch word.language {
+                case .chinese:
+                    return example.text.contains(word.word)
+                case .german:
+                    // Whole words only, ignoring case: "Haus" in "Das Haus ist groß."
+                    let words = example.text.lowercased().split { !$0.isLetter }
+                    return words.contains(Substring(word.word.lowercased()))
+                }
+            }
+            #expect(used, "\(word.id): '\(word.word)' isn't in its example")
+        }
+    }
+
+    @Test func seinIsTaughtAsIst() throws {
+        let content = try ContentLibrary.loadBundled()
+        let ist = try #require(content.words["de-sein"])
+        #expect(ist.headword == "ist")
+        #expect(ist.examples.first?.text == "Das ist gut.")
+    }
+
     @Test func searchMatchesPinyinAndMeaning() throws {
         let content = try ContentLibrary.loadBundled()
         let room = try #require(content.words["zh-fang-jian"])

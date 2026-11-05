@@ -50,8 +50,23 @@ def check_common(w, lang):
     return wid
 
 
+def appears_in_examples(w, lang):
+    """The word itself must show up in its example sentence, exactly as it's taught."""
+    word = w.get("word", "")
+    for ex in w.get("examples") or []:
+        text = ex.get("text", "")
+        if lang == "zh":
+            if word in text:
+                return True
+        elif re.search(r"(?<![^\W\d_])" + re.escape(word.lower()) + r"(?![^\W\d_])", text.lower()):
+            return True
+    return False
+
+
 def check_de(w):
     wid = check_common(w, "de")
+    if not appears_in_examples(w, "de"):
+        err(f"{wid}: '{w.get('word')}' doesn't appear in its example sentence")
     pos = w.get("pos")
     if pos == "noun":
         n = w.get("noun") or {}
@@ -78,6 +93,8 @@ def check_de(w):
 
 def check_zh(w):
     wid = check_common(w, "zh")
+    if not appears_in_examples(w, "zh"):
+        err(f"{wid}: '{w.get('word')}' doesn't appear in its example sentence")
     if not w.get("pinyin"):
         err(f"{wid}: missing 'pinyin'")
     elif re.search(r"\d", w["pinyin"]):

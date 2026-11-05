@@ -57,21 +57,21 @@
     },
 
     {
-      "id": "de-sein", "word": "sein", "gloss": "to be", "pos": "verb",
+      "id": "de-sein", "word": "ist", "gloss": "is (from sein, to be)", "pos": "verb",
       "verb": { "present3sg": "ist", "participle": "gewesen", "auxiliary": "sein" },
       "examples": [{ "text": "Das ist gut.", "english": "That is good." }],
-      "tip": "Irregular: ich bin, du bist, er ist, wir sind, ihr seid, sie sind. Worth chanting together a few times."
+      "tip": "ist is the most common form of sein (to be). The whole set is irregular: ich bin, du bist, er ist, wir sind, ihr seid, sie sind. Worth chanting together a few times."
     },
     {
       "id": "de-haben", "word": "haben", "gloss": "to have", "pos": "verb",
       "verb": { "present3sg": "hat", "participle": "gehabt", "auxiliary": "haben" },
-      "examples": [{ "text": "Ich habe Hunger.", "english": "I'm hungry. (lit. I have hunger)" }],
+      "examples": [{ "text": "Wir haben Hunger.", "english": "We're hungry. (lit. we have hunger)" }],
       "tip": "German uses haben where English uses 'to be': Ich habe Hunger (I'm hungry), Ich habe Recht (I'm right)."
     },
     {
       "id": "de-machen", "word": "machen", "gloss": "to do, to make", "pos": "verb",
       "verb": { "present3sg": "macht", "participle": "gemacht", "auxiliary": "haben" },
-      "examples": [{ "text": "Was machst du?", "english": "What are you doing?" }],
+      "examples": [{ "text": "Was machen wir heute?", "english": "What are we doing today?" }],
       "tip": "Covers both 'do' and 'make'. Handy phrase: Das macht nichts (never mind)."
     },
     {
@@ -83,7 +83,7 @@
     {
       "id": "de-kommen", "word": "kommen", "gloss": "to come", "pos": "verb",
       "verb": { "present3sg": "kommt", "participle": "gekommen", "auxiliary": "sein" },
-      "examples": [{ "text": "Woher kommst du?", "english": "Where are you from?" }],
+      "examples": [{ "text": "Woher kommen Sie?", "english": "Where are you from? (formal)" }],
       "tip": "Practise asking and answering: Woher kommst du? Ich komme aus …"
     },
 
@@ -176,7 +176,7 @@
     {
       "id": "de-trinken", "word": "trinken", "gloss": "to drink", "pos": "verb",
       "verb": { "present3sg": "trinkt", "participle": "getrunken", "auxiliary": "haben" },
-      "examples": [{ "text": "Ich trinke gern Kaffee.", "english": "I like drinking coffee." }],
+      "examples": [{ "text": "Wir trinken gern Kaffee.", "english": "We like drinking coffee." }],
       "tip": "trinken, trank, getrunken follows the same pattern as English drink, drank, drunk."
     },
     {
@@ -263,13 +263,13 @@
     {
       "id": "de-wollen", "word": "wollen", "gloss": "to want", "pos": "verb",
       "verb": { "present3sg": "will", "participle": "gewollt", "auxiliary": "haben" },
-      "examples": [{ "text": "Ich will nach Hause.", "english": "I want to go home." }],
+      "examples": [{ "text": "Wir wollen nach Hause.", "english": "We want to go home." }],
       "tip": "False friend: ich will = I want, not I will. The future uses werden."
     },
     {
       "id": "de-moegen", "word": "mögen", "gloss": "to like", "pos": "verb",
       "verb": { "present3sg": "mag", "participle": "gemocht", "auxiliary": "haben" },
-      "examples": [{ "text": "Ich mag Schokolade.", "english": "I like chocolate." }],
+      "examples": [{ "text": "Wir mögen Schokolade.", "english": "We like chocolate." }],
       "tip": "ich mag = I like. ich möchte = I would like, the polite form for ordering."
     },
     {
@@ -300,7 +300,7 @@
     },
     {
       "id": "de-klein", "word": "klein", "gloss": "small, little", "pos": "adjective",
-      "examples": [{ "text": "Wir haben eine kleine Wohnung.", "english": "We have a small flat." }],
+      "examples": [{ "text": "Unsere Wohnung ist klein.", "english": "Our flat is small." }],
       "tip": "The ending changes before a noun (ein kleines Haus, eine kleine Wohnung). Don't drill the endings yet, just point them out."
     },
     {
@@ -395,62 +395,62 @@
     {
       "id": "de-sagen", "word": "sagen", "gloss": "to say", "pos": "verb",
       "verb": { "present3sg": "sagt", "participle": "gesagt", "auxiliary": "haben" },
-      "examples": [{ "text": "Wie sagt man das auf Deutsch?", "english": "How do you say that in German?" }],
+      "examples": [{ "text": "Wie kann man das auf Deutsch sagen?", "english": "How do you say that in German?" }],
       "tip": "Wie sagt man … auf Deutsch? is the most useful sentence for these sessions."
     },
     {
       "id": "de-sehen", "word": "sehen", "gloss": "to see", "pos": "verb",
       "verb": { "present3sg": "sieht", "participle": "gesehen", "auxiliary": "haben" },
-      "examples": [{ "text": "Ich sehe dich.", "english": "I see you." }],
+      "examples": [{ "text": "Wir sehen uns morgen!", "english": "See you tomorrow!" }],
       "tip": "Irregular: du siehst, er sieht. fernsehen = to watch TV, literally 'far-see'."
     },
     {
       "id": "de-hoeren", "word": "hören", "gloss": "to hear, to listen", "pos": "verb",
       "verb": { "present3sg": "hört", "participle": "gehört", "auxiliary": "haben" },
-      "examples": [{ "text": "Hörst du das?", "english": "Do you hear that?" }],
+      "examples": [{ "text": "Wir hören gern Musik.", "english": "We like listening to music." }],
       "tip": "Hearing and listening: Musik hören. gehören = to belong to."
     },
     {
       "id": "de-wissen", "word": "wissen", "gloss": "to know (a fact)", "pos": "verb",
       "verb": { "present3sg": "weiß", "participle": "gewusst", "auxiliary": "haben" },
-      "examples": [{ "text": "Ich weiß es nicht.", "english": "I don't know." }],
+      "examples": [{ "text": "Das wissen wir nicht.", "english": "We don't know that." }],
       "tip": "Knowing facts. For people and places use kennen. Irregular: ich weiß, du weißt, er weiß."
     },
     {
       "id": "de-kennen", "word": "kennen", "gloss": "to know (a person, place)", "pos": "verb",
       "verb": { "present3sg": "kennt", "participle": "gekannt", "auxiliary": "haben" },
-      "examples": [{ "text": "Kennst du Anna?", "english": "Do you know Anna?" }],
+      "examples": [{ "text": "Wir kennen uns schon lange.", "english": "We've known each other for a long time." }],
       "tip": "Being familiar with someone or something. Chinese makes exactly the same split (知道 vs 认识), so compare them together."
     },
 
     {
       "id": "de-koennen", "word": "können", "gloss": "can, to be able to", "pos": "verb",
       "verb": { "present3sg": "kann", "participle": "gekonnt", "auxiliary": "haben" },
-      "examples": [{ "text": "Kannst du mir helfen?", "english": "Can you help me?" }],
+      "examples": [{ "text": "Können Sie mir helfen?", "english": "Can you help me? (formal)" }],
       "tip": "A modal verb: the second verb goes to the end. Also 'know how to': Ich kann Deutsch."
     },
     {
       "id": "de-muessen", "word": "müssen", "gloss": "must, to have to", "pos": "verb",
       "verb": { "present3sg": "muss", "participle": "gemusst", "auxiliary": "haben" },
-      "examples": [{ "text": "Ich muss jetzt gehen.", "english": "I have to go now." }],
+      "examples": [{ "text": "Wir müssen jetzt gehen.", "english": "We have to go now." }],
       "tip": "Trap: ich muss nicht = I don't have to, not 'I mustn't'."
     },
     {
       "id": "de-duerfen", "word": "dürfen", "gloss": "may, to be allowed to", "pos": "verb",
       "verb": { "present3sg": "darf", "participle": "gedurft", "auxiliary": "haben" },
-      "examples": [{ "text": "Darf ich?", "english": "May I?" }],
+      "examples": [{ "text": "Dürfen wir reinkommen?", "english": "May we come in?" }],
       "tip": "Permission. Du darfst nicht = you mustn't, which is the real 'mustn't'."
     },
     {
       "id": "de-sollen", "word": "sollen", "gloss": "should, to be supposed to", "pos": "verb",
       "verb": { "present3sg": "soll", "participle": "gesollt", "auxiliary": "haben" },
-      "examples": [{ "text": "Was soll ich machen?", "english": "What should I do?" }],
+      "examples": [{ "text": "Was sollen wir machen?", "english": "What should we do?" }],
       "tip": "Often about what someone else wants: Ich soll Brot kaufen = I'm supposed to buy bread."
     },
     {
       "id": "de-werden", "word": "werden", "gloss": "to become; will", "pos": "verb",
       "verb": { "present3sg": "wird", "participle": "geworden", "auxiliary": "sein" },
-      "examples": [{ "text": "Es wird kalt.", "english": "It's getting cold." }],
+      "examples": [{ "text": "Wir werden sehen.", "english": "We'll see." }],
       "tip": "Also makes the future: Ich werde kommen = I will come. Remember ich will = I want (session 10)."
     },
 
@@ -494,13 +494,13 @@
     {
       "id": "de-arbeiten", "word": "arbeiten", "gloss": "to work", "pos": "verb",
       "verb": { "present3sg": "arbeitet", "participle": "gearbeitet", "auxiliary": "haben" },
-      "examples": [{ "text": "Wo arbeitest du?", "english": "Where do you work?" }],
+      "examples": [{ "text": "Wir arbeiten beide in der Stadt.", "english": "We both work in town." }],
       "tip": "The extra e (du arbeitest, er arbeitet) keeps the t audible. Talk about what each of you does all day."
     },
     {
       "id": "de-lernen", "word": "lernen", "gloss": "to learn, to study", "pos": "verb",
       "verb": { "present3sg": "lernt", "participle": "gelernt", "auxiliary": "haben" },
-      "examples": [{ "text": "Ich lerne Deutsch.", "english": "I'm learning German." }],
+      "examples": [{ "text": "Wir lernen Deutsch und Chinesisch.", "english": "We're learning German and Chinese." }],
       "tip": "Learning anything, including revising for exams. studieren is only for university."
     },
     {
@@ -550,7 +550,7 @@
     {
       "id": "de-kaufen", "word": "kaufen", "gloss": "to buy", "pos": "verb",
       "verb": { "present3sg": "kauft", "participle": "gekauft", "auxiliary": "haben" },
-      "examples": [{ "text": "Ich kaufe Brot.", "english": "I'm buying bread." }],
+      "examples": [{ "text": "Wir müssen noch Brot kaufen.", "english": "We still need to buy bread." }],
       "tip": "verkaufen = to sell, einkaufen = to go shopping. Prefixes change the meaning a lot in German."
     },
     {
@@ -562,7 +562,7 @@
     {
       "id": "de-kosten", "word": "kosten", "gloss": "to cost", "pos": "verb",
       "verb": { "present3sg": "kostet", "participle": "gekostet", "auxiliary": "haben" },
-      "examples": [{ "text": "Was kostet das?", "english": "How much is that?" }],
+      "examples": [{ "text": "Was kosten die Äpfel?", "english": "How much are the apples?" }],
       "tip": "Was kostet das? is the shopping question. kosten also means 'to taste' food."
     },
     {
@@ -662,19 +662,19 @@
     {
       "id": "de-schlafen", "word": "schlafen", "gloss": "to sleep", "pos": "verb",
       "verb": { "present3sg": "schläft", "participle": "geschlafen", "auxiliary": "haben" },
-      "examples": [{ "text": "Das Baby schläft.", "english": "The baby is sleeping." }],
+      "examples": [{ "text": "Die Kinder schlafen schon.", "english": "The kids are already asleep." }],
       "tip": "Schlaf gut! = sleep well. Schlafzimmer (bedroom) from session 8 uses it."
     },
     {
       "id": "de-lesen", "word": "lesen", "gloss": "to read", "pos": "verb",
       "verb": { "present3sg": "liest", "participle": "gelesen", "auxiliary": "haben" },
-      "examples": [{ "text": "Was liest du gerade?", "english": "What are you reading at the moment?" }],
+      "examples": [{ "text": "Was willst du lesen?", "english": "What do you want to read?" }],
       "tip": "Irregular: du liest, er liest. vorlesen = to read aloud."
     },
     {
       "id": "de-schreiben", "word": "schreiben", "gloss": "to write", "pos": "verb",
       "verb": { "present3sg": "schreibt", "participle": "geschrieben", "auxiliary": "haben" },
-      "examples": [{ "text": "Schreib mir eine Nachricht!", "english": "Send me a message!" }],
+      "examples": [{ "text": "Kannst du mir eine Nachricht schreiben?", "english": "Can you send me a message?" }],
       "tip": "Wie schreibt man das? = how do you spell that? You'll ask it a lot."
     },
     {
@@ -686,26 +686,26 @@
     {
       "id": "de-warten", "word": "warten", "gloss": "to wait", "pos": "verb",
       "verb": { "present3sg": "wartet", "participle": "gewartet", "auxiliary": "haben" },
-      "examples": [{ "text": "Ich warte auf dich.", "english": "I'm waiting for you." }],
+      "examples": [{ "text": "Wir warten auf dich.", "english": "We're waiting for you." }],
       "tip": "warten auf = wait for. Warte mal! = hang on!"
     },
 
     {
       "id": "de-geben", "word": "geben", "gloss": "to give", "pos": "verb",
       "verb": { "present3sg": "gibt", "participle": "gegeben", "auxiliary": "haben" },
-      "examples": [{ "text": "Gib mir bitte das Buch.", "english": "Please give me the book." }],
+      "examples": [{ "text": "Kannst du mir bitte das Buch geben?", "english": "Can you give me the book, please?" }],
       "tip": "es gibt = there is / there are: Es gibt Kaffee. One of the most useful phrases in German."
     },
     {
       "id": "de-nehmen", "word": "nehmen", "gloss": "to take", "pos": "verb",
       "verb": { "present3sg": "nimmt", "participle": "genommen", "auxiliary": "haben" },
-      "examples": [{ "text": "Ich nehme den Kaffee.", "english": "I'll have the coffee." }],
+      "examples": [{ "text": "Wir nehmen zwei Kaffee, bitte.", "english": "We'll have two coffees, please." }],
       "tip": "Ich nehme… is how you order. Irregular: du nimmst, er nimmt."
     },
     {
       "id": "de-bringen", "word": "bringen", "gloss": "to bring", "pos": "verb",
       "verb": { "present3sg": "bringt", "participle": "gebracht", "auxiliary": "haben" },
-      "examples": [{ "text": "Kannst du Brot mitbringen?", "english": "Can you bring some bread?" }],
+      "examples": [{ "text": "Kannst du Brot bringen?", "english": "Can you bring some bread?" }],
       "tip": "mitbringen = to bring along. The past gebracht is irregular, like denken → gedacht."
     },
     {
@@ -717,26 +717,26 @@
     {
       "id": "de-brauchen", "word": "brauchen", "gloss": "to need", "pos": "verb",
       "verb": { "present3sg": "braucht", "participle": "gebraucht", "auxiliary": "haben" },
-      "examples": [{ "text": "Ich brauche Hilfe.", "english": "I need help." }],
+      "examples": [{ "text": "Wir brauchen Hilfe.", "english": "We need help." }],
       "tip": "gebraucht also means second-hand. Du brauchst nicht zu kommen = you don't need to come."
     },
 
     {
       "id": "de-denken", "word": "denken", "gloss": "to think", "pos": "verb",
       "verb": { "present3sg": "denkt", "participle": "gedacht", "auxiliary": "haben" },
-      "examples": [{ "text": "Ich denke oft an dich.", "english": "I often think of you." }],
+      "examples": [{ "text": "Wir denken oft an dich.", "english": "We often think of you." }],
       "tip": "denken an = to think of someone. Ich denke, dass… = I think that…"
     },
     {
       "id": "de-glauben", "word": "glauben", "gloss": "to believe; to think", "pos": "verb",
       "verb": { "present3sg": "glaubt", "participle": "geglaubt", "auxiliary": "haben" },
-      "examples": [{ "text": "Ich glaube, es regnet.", "english": "I think it's raining." }],
+      "examples": [{ "text": "Das kann ich nicht glauben!", "english": "I can't believe it!" }],
       "tip": "Both 'believe' and the everyday 'I reckon'. Das glaube ich nicht! = I don't believe it!"
     },
     {
       "id": "de-sprechen", "word": "sprechen", "gloss": "to speak", "pos": "verb",
       "verb": { "present3sg": "spricht", "participle": "gesprochen", "auxiliary": "haben" },
-      "examples": [{ "text": "Sprichst du Englisch?", "english": "Do you speak English?" }],
+      "examples": [{ "text": "Sprechen Sie Englisch?", "english": "Do you speak English? (formal)" }],
       "tip": "For languages and conversations. Irregular: du sprichst, er spricht. Compare sagen (to say) from session 15."
     },
     {
@@ -748,7 +748,7 @@
     {
       "id": "de-verstehen", "word": "verstehen", "gloss": "to understand", "pos": "verb",
       "verb": { "present3sg": "versteht", "participle": "verstanden", "auxiliary": "haben" },
-      "examples": [{ "text": "Ich verstehe dich nicht.", "english": "I don't understand you." }],
+      "examples": [{ "text": "Ich kann dich nicht verstehen.", "english": "I can't understand you." }],
       "tip": "Verstanden? = got it? Ich verstehe nur Bahnhof from session 17 is its funnier cousin."
     },
 
@@ -848,7 +848,7 @@
     {
       "id": "de-auge", "word": "Auge", "gloss": "eye", "pos": "noun",
       "noun": { "gender": "n", "plural": "Augen" },
-      "examples": [{ "text": "Sie hat blaue Augen.", "english": "She has blue eyes." }],
+      "examples": [{ "text": "Mein Auge tut weh.", "english": "My eye hurts." }],
       "tip": "Augenblick = moment ('blink of an eye'). unter vier Augen = in private."
     },
     {
@@ -878,19 +878,19 @@
     {
       "id": "de-schuh", "word": "Schuh", "gloss": "shoe", "pos": "noun",
       "noun": { "gender": "m", "plural": "Schuhe" },
-      "examples": [{ "text": "Zieh bitte die Schuhe aus.", "english": "Please take your shoes off." }],
+      "examples": [{ "text": "Wo ist mein anderer Schuh?", "english": "Where's my other shoe?" }],
       "tip": "Hausschuhe = slippers, Handschuh = glove ('hand shoe'). Talk about whether shoes come off at the door in your homes."
     },
     {
       "id": "de-tragen", "word": "tragen", "gloss": "to wear; to carry", "pos": "verb",
       "verb": { "present3sg": "trägt", "participle": "getragen", "auxiliary": "haben" },
-      "examples": [{ "text": "Du trägst heute die blaue Hose.", "english": "You're wearing the blue trousers today." }],
+      "examples": [{ "text": "Was willst du heute tragen?", "english": "What do you want to wear today?" }],
       "tip": "Both 'wear' and 'carry': Ich trage den Koffer. Umlaut in du trägst, er trägt."
     },
     {
       "id": "de-anziehen", "word": "anziehen", "gloss": "to put on (clothes)", "pos": "verb",
       "verb": { "present3sg": "zieht an", "participle": "angezogen", "auxiliary": "haben" },
-      "examples": [{ "text": "Ich ziehe mich schnell an.", "english": "I'll get dressed quickly." }],
+      "examples": [{ "text": "Ich muss mich noch anziehen.", "english": "I still have to get dressed." }],
       "tip": "Separable: the an jumps to the end (Ich ziehe die Schuhe an). sich anziehen = to get dressed, ausziehen = to take off."
     },
 
@@ -903,7 +903,7 @@
     {
       "id": "de-kochen", "word": "kochen", "gloss": "to cook; to boil", "pos": "verb",
       "verb": { "present3sg": "kocht", "participle": "gekocht", "auxiliary": "haben" },
-      "examples": [{ "text": "Heute koche ich für dich.", "english": "I'm cooking for you today." }],
+      "examples": [{ "text": "Wir kochen heute zusammen.", "english": "We're cooking together today." }],
       "tip": "Also 'to boil': Das Wasser kocht. der Koch / die Köchin = the cook."
     },
     {
@@ -952,7 +952,7 @@
     {
       "id": "de-ei", "word": "Ei", "gloss": "egg", "pos": "noun",
       "noun": { "gender": "n", "plural": "Eier" },
-      "examples": [{ "text": "Zum Frühstück esse ich zwei Eier.", "english": "I have two eggs for breakfast." }],
+      "examples": [{ "text": "Ich esse jeden Morgen ein Ei.", "english": "I eat an egg every morning." }],
       "tip": "Plural Eier. Spiegelei = fried egg ('mirror egg'), Rührei = scrambled egg."
     },
 
@@ -1058,13 +1058,13 @@
     {
       "id": "de-ankommen", "word": "ankommen", "gloss": "to arrive", "pos": "verb",
       "verb": { "present3sg": "kommt an", "participle": "angekommen", "auxiliary": "sein" },
-      "examples": [{ "text": "Wann kommt der Zug an?", "english": "When does the train arrive?" }],
+      "examples": [{ "text": "Wann soll der Zug ankommen?", "english": "When is the train supposed to arrive?" }],
       "tip": "Separable, with sein in the past. Bist du gut angekommen? (did you get there OK?) is the classic caring text."
     },
     {
       "id": "de-bleiben", "word": "bleiben", "gloss": "to stay", "pos": "verb",
       "verb": { "present3sg": "bleibt", "participle": "geblieben", "auxiliary": "sein" },
-      "examples": [{ "text": "Bleib doch noch ein bisschen!", "english": "Stay a little longer!" }],
+      "examples": [{ "text": "Wir bleiben heute zu Hause.", "english": "We're staying at home today." }],
       "tip": "Uses sein in the past even though nobody moves: Ich bin zu Hause geblieben. Bleib gesund! = stay healthy."
     },
     {
@@ -1146,7 +1146,7 @@
     {
       "id": "de-lieben", "word": "lieben", "gloss": "to love", "pos": "verb",
       "verb": { "present3sg": "liebt", "participle": "geliebt", "auxiliary": "haben" },
-      "examples": [{ "text": "Ich liebe dich.", "english": "I love you." }],
+      "examples": [{ "text": "Ich werde dich immer lieben.", "english": "I'll always love you." }],
       "tip": "Strong and serious. Ich hab dich lieb is a warmer, lighter 'love you', also for family and friends. For things, use mögen or gern."
     },
     {
@@ -1158,7 +1158,7 @@
     {
       "id": "de-weinen", "word": "weinen", "gloss": "to cry", "pos": "verb",
       "verb": { "present3sg": "weint", "participle": "geweint", "auxiliary": "haben" },
-      "examples": [{ "text": "Das Baby weint.", "english": "The baby is crying." }],
+      "examples": [{ "text": "Du musst nicht weinen.", "english": "You don't have to cry." }],
       "tip": "Sounds like der Wein (wine) but has nothing to do with it. Wein nicht! = don't cry."
     },
 
@@ -1171,7 +1171,7 @@
     {
       "id": "de-anrufen", "word": "anrufen", "gloss": "to call, to phone", "pos": "verb",
       "verb": { "present3sg": "ruft an", "participle": "angerufen", "auxiliary": "haben" },
-      "examples": [{ "text": "Ich rufe dich heute Abend an.", "english": "I'll call you tonight." }],
+      "examples": [{ "text": "Ich kann dich heute Abend anrufen.", "english": "I can call you tonight." }],
       "tip": "Separable, and it takes dich, not dir: Ruf mich an! der Anruf = the call."
     },
     {
@@ -1210,7 +1210,7 @@
     },
     {
       "id": "de-langsam", "word": "langsam", "gloss": "slow", "pos": "adjective",
-      "examples": [{ "text": "Bitte sprich langsamer.", "english": "Please speak more slowly." }],
+      "examples": [{ "text": "Bitte sprich langsam.", "english": "Please speak slowly." }],
       "tip": "Also 'gradually, by now': Ich habe langsam Hunger = I'm starting to get hungry."
     },
     {
@@ -1222,13 +1222,13 @@
     {
       "id": "de-anfangen", "word": "anfangen", "gloss": "to begin, to start", "pos": "verb",
       "verb": { "present3sg": "fängt an", "participle": "angefangen", "auxiliary": "haben" },
-      "examples": [{ "text": "Wann fängt der Film an?", "english": "When does the film start?" }],
+      "examples": [{ "text": "Wann wollen wir anfangen?", "english": "When shall we start?" }],
       "tip": "Separable and irregular: du fängst an, er fängt an. beginnen means the same but isn't separable."
     },
     {
       "id": "de-aufhoeren", "word": "aufhören", "gloss": "to stop", "pos": "verb",
       "verb": { "present3sg": "hört auf", "participle": "aufgehört", "auxiliary": "haben" },
-      "examples": [{ "text": "Hör auf, das kitzelt!", "english": "Stop it, that tickles!" }],
+      "examples": [{ "text": "Wir müssen jetzt aufhören.", "english": "We have to stop now." }],
       "tip": "Separable: Es hört auf zu regnen. Hör auf! = stop it! aufhören mit = to quit (a habit)."
     },
     {
@@ -1299,13 +1299,13 @@
     {
       "id": "de-tier", "word": "Tier", "gloss": "animal", "pos": "noun",
       "noun": { "gender": "n", "plural": "Tiere" },
-      "examples": [{ "text": "Magst du Tiere?", "english": "Do you like animals?" }],
+      "examples": [{ "text": "Welches Tier magst du am liebsten?", "english": "Which animal do you like best?" }],
       "tip": "Haustier = pet, Tierarzt = vet (Arzt from session 30). Related to English 'deer'."
     },
     {
       "id": "de-berg", "word": "Berg", "gloss": "mountain", "pos": "noun",
       "noun": { "gender": "m", "plural": "Berge" },
-      "examples": [{ "text": "Am Wochenende fahren wir in die Berge.", "english": "We're going to the mountains at the weekend." }],
+      "examples": [{ "text": "Der Berg ist sehr hoch.", "english": "The mountain is very high." }],
       "tip": "in die Berge fahren = to go to the mountains. über den Berg sein = to be over the worst."
     },
 
@@ -1324,7 +1324,7 @@
     {
       "id": "de-singen", "word": "singen", "gloss": "to sing", "pos": "verb",
       "verb": { "present3sg": "singt", "participle": "gesungen", "auxiliary": "haben" },
-      "examples": [{ "text": "Sie singt unter der Dusche.", "english": "She sings in the shower." }],
+      "examples": [{ "text": "Wollen wir zusammen singen?", "english": "Shall we sing together?" }],
       "tip": "singen, sang, gesungen, just like sing, sang, sung. Teach each other a song!"
     },
     {
@@ -1355,7 +1355,7 @@
     {
       "id": "de-antworten", "word": "antworten", "gloss": "to answer, to reply", "pos": "verb",
       "verb": { "present3sg": "antwortet", "participle": "geantwortet", "auxiliary": "haben" },
-      "examples": [{ "text": "Warum antwortest du nicht?", "english": "Why aren't you answering?" }],
+      "examples": [{ "text": "Du musst nicht sofort antworten.", "english": "You don't have to answer straight away." }],
       "tip": "Answer a person with the dative (Antworte mir!), a question with auf (auf eine Frage antworten). Extra e like arbeiten."
     },
     {
@@ -1425,7 +1425,7 @@
     {
       "id": "de-vermissen", "word": "vermissen", "gloss": "to miss (someone)", "pos": "verb",
       "verb": { "present3sg": "vermisst", "participle": "vermisst", "auxiliary": "haben" },
-      "examples": [{ "text": "Ich vermisse dich.", "english": "I miss you." }],
+      "examples": [{ "text": "Ich werde dich vermissen.", "english": "I'll miss you." }],
       "tip": "No ge- in the past: ich habe dich vermisst. Du fehlst mir is a softer way to say it."
     },
 
@@ -1456,7 +1456,7 @@
     {
       "id": "de-gratulieren", "word": "gratulieren", "gloss": "to congratulate", "pos": "verb",
       "verb": { "present3sg": "gratuliert", "participle": "gratuliert", "auxiliary": "haben" },
-      "examples": [{ "text": "Ich gratuliere dir zum Geburtstag!", "english": "Happy birthday to you!" }],
+      "examples": [{ "text": "Wir gratulieren dir zum Geburtstag!", "english": "Happy birthday from both of us!" }],
       "tip": "Takes dir, not dich. -ieren verbs have no ge-: ich habe gratuliert. Herzlichen Glückwunsch! is the set phrase."
     }
   ]
