@@ -69,6 +69,14 @@ enum MeasureWords {
         "次": "times something happens",
         "颗": "small round things: hearts, stars, teeth",
         "斤": "half a kilo, for food at the market",
+        "门": "school subjects and languages",
+        "片": "slices, and stretches of forest or land",
+        "朵": "flowers and clouds",
+        "匹": "horses",
+        "头": "big farm animals: pigs, cows",
+        "面": "flat things you look at: mirrors, flags",
+        "列": "trains",
+        "句": "sentences and lines of speech",
     ]
 
     /// Wrong answers the drill can offer. 个 comes first because it's the tempting guess.
@@ -116,6 +124,11 @@ enum GrammarDrill {
     /// What the drill is called for someone learning this language.
     static func title(for language: Language) -> String {
         language == .german ? "der, die or das?" : "Measure words"
+    }
+
+    /// The drill's short name, for its tile and screen title.
+    static func drillTitle(for language: Language) -> String {
+        language == .german ? "Articles" : "Measure words"
     }
 
     /// Whether a word has something to drill: German nouns, and Chinese nouns that can be counted.

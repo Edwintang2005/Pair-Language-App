@@ -91,6 +91,18 @@ final class ProgressStore {
         data.reviews.values.filter { Scheduler.strength(of: $0) == .strong }.count
     }
 
+    /// How many learned words are new, learning and strong.
+    func strengthCounts() -> [Strength: Int] {
+        Dictionary(grouping: data.reviews.values, by: Scheduler.strength(of:)).mapValues(\.count)
+    }
+
+    /// The next day with reviews due after `now`, and how many words fall due that day.
+    func upcomingReview(after now: Date = .now, calendar: Calendar = .current) -> (date: Date, count: Int)? {
+        let future = data.reviews.values.map(\.due).filter { $0 > now }
+        guard let first = future.min() else { return nil }
+        return (first, future.filter { calendar.isDate($0, inSameDayAs: first) }.count)
+    }
+
     /// Consecutive days, ending today or yesterday, on which at least one session was finished.
     func streak(now: Date = .now, calendar: Calendar = .current) -> Int {
         let days = Set(data.completed.values.map { calendar.startOfDay(for: $0) })

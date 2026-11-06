@@ -16,7 +16,7 @@ private func day(_ d: Int, hour: Int = 10) -> Date {
 struct ContentTests {
     @Test func bundledContentLoadsAndEverySessionHasFivePerSide() throws {
         let content = try ContentLibrary.loadBundled()
-        #expect(content.sessionCount >= 50)
+        #expect(content.sessionCount >= 70)
         for session in content.sessions {
             #expect(content.words(in: session, language: .german).count == 5, "session \(session.number) de")
             #expect(content.words(in: session, language: .chinese).count == 5, "session \(session.number) zh")
@@ -39,9 +39,18 @@ struct ContentTests {
                 case .chinese:
                     return example.text.contains(word.word)
                 case .german:
-                    // Whole words only, ignoring case: "Haus" in "Das Haus ist groß."
-                    let words = example.text.lowercased().split { !$0.isLetter }
-                    return words.contains(Substring(word.word.lowercased()))
+                    // Whole words or phrases only, ignoring case: "Haus" in "Das Haus ist groß.",
+                    // "gute Nacht" in "Gute Nacht, schlaf gut!", but not "Haus" in "Hausaufgaben".
+                    let text = example.text.lowercased()
+                    let target = word.word.lowercased()
+                    var searchStart = text.startIndex
+                    while let range = text.range(of: target, range: searchStart..<text.endIndex) {
+                        let before = range.lowerBound == text.startIndex ? nil : text[text.index(before: range.lowerBound)]
+                        let after = range.upperBound == text.endIndex ? nil : text[range.upperBound]
+                        if !(before?.isLetter ?? false) && !(after?.isLetter ?? false) { return true }
+                        searchStart = range.upperBound
+                    }
+                    return false
                 }
             }
             #expect(used, "\(word.id): '\(word.word)' isn't in its example")
@@ -156,6 +165,27 @@ struct ProgressStoreTests {
         #expect(store.learning == .german)
         #expect(store.currentSession == 7)
         #expect(store.learnedCount == 0)
+    }
+
+    @Test func strengthCountsAndNextReview() throws {
+        var data = ProgressData()
+        data.learning = .german
+        data.reviews = [
+            "a": ReviewState(box: 1, due: day(4, hour: 0)),
+            "b": ReviewState(box: 3, due: day(6, hour: 0)),
+            "c": ReviewState(box: 4, due: day(6, hour: 0)),
+            "d": ReviewState(box: 6, due: day(9, hour: 0)),
+        ]
+        let url = FileManager.default.temporaryDirectory.appending(path: "pair-\(UUID().uuidString).json")
+        defer { try? FileManager.default.removeItem(at: url) }
+        try JSONEncoder().encode(data).write(to: url)
+        let store = ProgressStore(fileURL: url)
+
+        #expect(store.strengthCounts() == [.new: 1, .learning: 2, .strong: 1])
+        let next = try #require(store.upcomingReview(after: day(4, hour: 12), calendar: calendar))
+        #expect(next.date == day(6, hour: 0))
+        #expect(next.count == 2)
+        #expect(store.upcomingReview(after: day(10), calendar: calendar) == nil)
     }
 
     @Test func streakCountsConsecutiveDays() throws {

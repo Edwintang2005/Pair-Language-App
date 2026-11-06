@@ -1,89 +1,38 @@
 import SwiftUI
 
 struct ReviewView: View {
-    private enum Mode { case idle, due }
+    /// One review round, shown full screen.
+    private struct Round: Identifiable {
+        let id = UUID()
+        let wordIDs: [String]
+    }
 
     @Environment(ProgressStore.self) private var progress
     @Environment(ContentLibrary.self) private var content
 
-    @State private var mode: Mode = .idle
-    @State private var queue: [String] = []
-    @State private var revealed = false
-    @State private var reviewedThisRound = 0
+    @State private var round: Round?
     @State private var quizzing = false
     @State private var testingSelf = false
     @State private var drillingGrammar = false
 
     var body: some View {
         NavigationStack {
-            Group {
-                if mode != .idle, let id = queue.first, let word = content.words[id] {
-                    flashcard(word)
-                } else {
-                    summary
+            ScrollView {
+                VStack(alignment: .leading, spacing: 16) {
+                    if progress.learnedCount > 0 {
+                        strengthSummary
+                    }
+                    reviewCard
+                    practice
                 }
+                .padding(16)
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color(.systemGroupedBackground))
             .navigationTitle("Review")
-            .toolbar {
-                if mode != .idle {
-                    ToolbarItem(placement: .topBarTrailing) {
-                        Button("End") { endRound() }
-                    }
-                }
-            }
         }
-    }
-
-    // MARK: Summary
-
-    private var summary: some View {
-        let due = progress.dueWordIDs()
-        return VStack(spacing: 16) {
-            Spacer()
-            Image(systemName: due.isEmpty ? "checkmark.circle.fill" : "rectangle.on.rectangle.angled")
-                .font(.system(size: 60))
-                .foregroundStyle(due.isEmpty ? Color.green : Color.accentColor)
-
-            if reviewedThisRound > 0 && due.isEmpty {
-                Text("Review done").font(.title.bold())
-                Text("You went through \(reviewedThisRound) cards.").foregroundStyle(.secondary)
-            } else if !due.isEmpty {
-                Text("\(due.count) word\(due.count == 1 ? "" : "s") to review").font(.title.bold())
-                Text("A few minutes a day keeps them stuck.").foregroundStyle(.secondary)
-            } else if progress.learnedCount == 0 {
-                Text("Nothing to review yet").font(.title.bold())
-                Text("Words appear here once you finish your first session.")
-                    .foregroundStyle(.secondary)
-            } else {
-                Text("All caught up").font(.title.bold())
-                if let next = progress.nextDueDate {
-                    Text("Next review \(next.formatted(.relative(presentation: .named))).")
-                        .foregroundStyle(.secondary)
-                }
-            }
-
-            VStack(spacing: 10) {
-                if !due.isEmpty {
-                    Button {
-                        start(.due, with: due)
-                    } label: {
-                        Text("Start review").font(.headline).frame(maxWidth: .infinity).padding(.vertical, 6)
-                    }
-                    .buttonStyle(.borderedProminent)
-                }
-            }
-            .padding(.top, 8)
-            Spacer()
-            VStack(spacing: 10) {
-                testYourselfCard
-                grammarCard
-                quizCard
-            }
+        .fullScreenCover(item: $round) { round in
+            ReviewRoundView(wordIDs: round.wordIDs)
         }
-        .multilineTextAlignment(.center)
-        .padding(24)
         .sheet(isPresented: $quizzing) {
             NavigationStack {
                 DrillView(title: "Quiz your partner", kind: .partnerQuiz, cards: quizCards)
@@ -101,36 +50,134 @@ struct ReviewView: View {
         }
     }
 
-    // MARK: Test yourself
+    // MARK: How your words are doing
+
+    private var strengthSummary: some View {
+        let counts = progress.strengthCounts()
+        let levels: [(Strength, Color)] = [(.new, .orange), (.learning, .blue), (.strong, .green)]
+        let total = max(progress.learnedCount, 1)
+        return VStack(spacing: 10) {
+            HStack(spacing: 10) {
+                ForEach(levels, id: \.0) { level, color in
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(level.rawValue)
+                            .font(.caption.weight(.medium))
+                            .foregroundStyle(color)
+                        Text("\(counts[level] ?? 0)")
+                            .font(.title2.weight(.semibold))
+                            .monospacedDigit()
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .card(padding: 12)
+                }
+            }
+            GeometryReader { geo in
+                HStack(spacing: 2) {
+                    ForEach(levels, id: \.0) { level, color in
+                        let count = counts[level] ?? 0
+                        if count > 0 {
+                            Capsule()
+                                .fill(color)
+                                .frame(width: max(6, geo.size.width * CGFloat(count) / CGFloat(total) - 2))
+                        }
+                    }
+                }
+            }
+            .frame(height: 8)
+        }
+        .accessibilityElement(children: .combine)
+    }
+
+    // MARK: Today's review
+
+    private var reviewCard: some View {
+        let due = progress.dueWordIDs()
+        return VStack(alignment: .leading, spacing: 12) {
+            HStack(alignment: .top) {
+                VStack(alignment: .leading, spacing: 3) {
+                    Text(headline(dueCount: due.count)).font(.title3.weight(.semibold))
+                    Text(detail(dueCount: due.count))
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                }
+                Spacer()
+                Image(systemName: due.isEmpty ? "checkmark.circle.fill" : "rectangle.on.rectangle.angled")
+                    .font(.title)
+                    .foregroundStyle(due.isEmpty ? Color.green : Color.accentColor)
+            }
+            if !due.isEmpty {
+                Button {
+                    round = Round(wordIDs: due)
+                } label: {
+                    Text("Start review").font(.headline).frame(maxWidth: .infinity).padding(.vertical, 6)
+                }
+                .buttonStyle(.borderedProminent)
+            }
+        }
+        .card(padding: 16)
+    }
+
+    private func headline(dueCount: Int) -> String {
+        if dueCount > 0 { return "\(dueCount) word\(dueCount == 1 ? "" : "s") due" }
+        return progress.learnedCount == 0 ? "Nothing to review yet" : "All caught up"
+    }
+
+    private func detail(dueCount: Int) -> String {
+        if dueCount > 0 {
+            // Roughly 15 seconds a card.
+            let minutes = max(1, Int((Double(dueCount) * 15 / 60).rounded()))
+            return "About \(minutes) minute\(minutes == 1 ? "" : "s")"
+        }
+        if progress.learnedCount == 0 {
+            return "Words appear here once you finish your first session."
+        }
+        guard let next = progress.upcomingReview() else { return "" }
+        let when = Calendar.current.isDateInTomorrow(next.date)
+            ? "tomorrow"
+            : next.date.formatted(.relative(presentation: .named))
+        return "Next review \(when): \(next.count) word\(next.count == 1 ? "" : "s")"
+    }
+
+    // MARK: Practice
 
     @ViewBuilder
-    private var testYourselfCard: some View {
-        if progress.learnedCount > 0, let learning = progress.learning {
-            optionCard(
-                symbol: "rectangle.stack.fill",
-                title: "Test yourself",
-                subtitle: "Flashcards by session, \(learning.name) → English or the other way round."
-            ) { testingSelf = true }
+    private var practice: some View {
+        let tiles = practiceTiles
+        if !tiles.isEmpty {
+            Text("Practise")
+                .font(.title3.bold())
+                .padding(.top, 4)
+            LazyVGrid(columns: [GridItem(.flexible(), spacing: 12), GridItem(.flexible(), spacing: 12)],
+                      spacing: 12) {
+                ForEach(tiles) { tile in
+                    PracticeTile(tile: tile)
+                }
+            }
         }
     }
 
-    // MARK: Grammar drill
-
-    @ViewBuilder
-    private var grammarCard: some View {
-        let count = progress.knownWordIDs.filter { content.words[$0].map(GrammarDrill.isEligible) ?? false }.count
-        if count > 0, let learning = progress.learning {
-            optionCard(
-                symbol: learning == .german ? "textformat" : "square.grid.2x2.fill",
-                title: GrammarDrill.title(for: learning),
-                subtitle: learning == .german
-                    ? "Tap the right article for your \(count) noun\(count == 1 ? "" : "s") so far."
-                    : "Tap the right measure word for your \(count) noun\(count == 1 ? "" : "s") so far."
-            ) { drillingGrammar = true }
+    private var practiceTiles: [PracticeTile.Model] {
+        guard let learning = progress.learning else { return [] }
+        var tiles: [PracticeTile.Model] = []
+        if progress.learnedCount > 0 {
+            tiles.append(.init(id: "self", icon: .symbol("rectangle.stack.fill"), title: "Test yourself",
+                               subtitle: "Flashcards by session") { testingSelf = true })
         }
+        let nouns = progress.knownWordIDs.filter { content.words[$0].map(GrammarDrill.isEligible) ?? false }.count
+        if nouns > 0 {
+            let icon: PracticeTile.Icon = learning == .german
+                ? .articles
+                : .text("个张条")
+            tiles.append(.init(id: "grammar", icon: icon, title: GrammarDrill.drillTitle(for: learning),
+                               subtitle: "\(nouns) noun\(nouns == 1 ? "" : "s")") { drillingGrammar = true })
+        }
+        let partnerCount = progress.partnerWordIDs(in: content).count
+        if partnerCount > 0 {
+            tiles.append(.init(id: "quiz", icon: .symbol("person.2.fill"), title: "Quiz your partner",
+                               subtitle: "\(partnerCount) \(learning.other.name) words") { quizzing = true })
+        }
+        return tiles
     }
-
-    // MARK: Quiz your partner
 
     private var quizCards: [DrillCard] {
         progress.partnerWordIDs(in: content)
@@ -139,56 +186,137 @@ struct ReviewView: View {
             .prefix(20)
             .map { DrillCard(word: $0, direction: .fromEnglish) }
     }
+}
 
-    @ViewBuilder
-    private var quizCard: some View {
-        let count = progress.partnerWordIDs(in: content).count
-        if count > 0, let teaching = progress.teaching {
-            optionCard(
-                symbol: "person.2.fill",
-                title: "Quiz your partner",
-                subtitle: "\(count) \(teaching.name) words so far. They answer out loud, you check."
-            ) { quizzing = true }
-        }
+/// One square-ish practice option on the Review tab.
+struct PracticeTile: View {
+    enum Icon {
+        case symbol(String)
+        case text(String)
+        /// "der die das" in the gender colours.
+        case articles
     }
 
-    private func optionCard(symbol: String, title: String, subtitle: String,
-                            action: @escaping () -> Void) -> some View {
-        Button(action: action) {
-            HStack(spacing: 12) {
-                Image(systemName: symbol)
-                    .font(.title3)
-                    .foregroundStyle(.tint)
-                    .frame(width: 32)
-                VStack(alignment: .leading, spacing: 2) {
-                    Text(title).font(.headline)
-                    Text(subtitle)
-                        .font(.subheadline)
-                        .foregroundStyle(.secondary)
-                }
-                .multilineTextAlignment(.leading)
-                Spacer()
-                Image(systemName: "chevron.right").foregroundStyle(.tertiary)
+    struct Model: Identifiable {
+        let id: String
+        let icon: Icon
+        let title: String
+        let subtitle: String
+        let action: () -> Void
+    }
+
+    let tile: Model
+
+    var body: some View {
+        Button(action: tile.action) {
+            VStack(alignment: .leading, spacing: 6) {
+                icon.frame(height: 26, alignment: .leading)
+                Spacer(minLength: 0)
+                Text(tile.title)
+                    .font(.headline)
+                    .foregroundStyle(.primary)
+                    .lineLimit(2)
+                    .minimumScaleFactor(0.8)
+                Text(tile.subtitle)
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+                    .lineLimit(1)
             }
+            .multilineTextAlignment(.leading)
+            .frame(maxWidth: .infinity, minHeight: 104, alignment: .leading)
             .card(padding: 14)
         }
         .buttonStyle(.plain)
     }
 
-    // MARK: Flashcard
+    @ViewBuilder
+    private var icon: some View {
+        switch tile.icon {
+        case .symbol(let name):
+            Image(systemName: name).font(.title2).foregroundStyle(.tint)
+        case .text(let text):
+            Text(text).font(.title3.weight(.semibold)).foregroundStyle(.tint)
+        case .articles:
+            HStack(spacing: 5) {
+                Text("der").foregroundStyle(Color.gender("m"))
+                Text("die").foregroundStyle(Color.gender("f"))
+                Text("das").foregroundStyle(Color.gender("n"))
+            }
+            .font(.headline)
+        }
+    }
+}
 
-    private func flashcard(_ word: Word) -> some View {
+/// A full-screen review round: one card at a time, nothing else on screen.
+struct ReviewRoundView: View {
+    @Environment(ProgressStore.self) private var progress
+    @Environment(ContentLibrary.self) private var content
+    @Environment(\.dismiss) private var dismiss
+
+    @State private var queue: [String]
+    @State private var revealed = false
+    @State private var reviewed = 0
+
+    init(wordIDs: [String]) {
+        _queue = State(initialValue: wordIDs)
+    }
+
+    var body: some View {
         VStack(spacing: 16) {
-            Text("\(queue.count) left")
-                .font(.subheadline.weight(.medium))
-                .foregroundStyle(.secondary)
+            HStack(spacing: 12) {
+                Button {
+                    dismiss()
+                } label: {
+                    Image(systemName: "xmark")
+                        .font(.body.weight(.semibold))
+                        .frame(width: 44, height: 44)
+                }
+                .buttonStyle(.borderless)
+                .tint(.secondary)
+                .accessibilityLabel("End review")
 
-            VStack(spacing: 18) {
-                Spacer(minLength: 0)
+                RoundProgress(done: reviewed, total: reviewed + queue.count)
+                Text(queue.isEmpty ? "Done" : "\(queue.count) left")
+                    .font(.subheadline.weight(.medium))
+                    .foregroundStyle(.secondary)
+                    .monospacedDigit()
+                    .frame(minWidth: 56, alignment: .trailing)
+            }
+
+            if let id = queue.first, let word = content.words[id] {
+                card(word)
+                if revealed {
+                    gradeButtons(for: word)
+                } else {
+                    Button {
+                        withAnimation(.snappy) { revealed = true }
+                    } label: {
+                        Text("Show answer").font(.headline).frame(maxWidth: .infinity).padding(.vertical, 6)
+                    }
+                    .buttonStyle(.borderedProminent)
+                }
+            } else {
+                finished
+            }
+        }
+        .padding(.horizontal, 16)
+        .padding(.bottom, 8)
+        .background(Color(.systemGroupedBackground))
+    }
+
+    private func card(_ word: Word) -> some View {
+        // Centred when it fits, scrollable when a long example doesn't.
+        GeometryReader { geo in
+        ScrollView {
+            VStack(spacing: 16) {
+                if !revealed {
+                    Text("What does it mean?")
+                        .font(.subheadline.weight(.medium))
+                        .foregroundStyle(.secondary)
+                }
                 // Chinese pinyin stays hidden until the reveal, so you practise reading the characters.
                 HeadwordView(word: word, style: .flashcard, showsPinyin: revealed)
                 SpeakButton(word: word, size: .title2)
-
                 if revealed {
                     Divider()
                     VStack(spacing: 6) {
@@ -201,30 +329,17 @@ struct ReviewView: View {
                         ExampleView(example: example, language: word.language)
                             .multilineTextAlignment(.leading)
                     }
-                } else {
-                    Text("What does it mean?")
-                        .foregroundStyle(.secondary)
                 }
-                Spacer(minLength: 0)
             }
             .multilineTextAlignment(.center)
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .card(padding: 20)
-            .contentShape(.rect)
-            .onTapGesture { withAnimation(.snappy) { revealed = true } }
-
-            if revealed {
-                gradeButtons(for: word)
-            } else {
-                Button {
-                    withAnimation(.snappy) { revealed = true }
-                } label: {
-                    Text("Show answer").font(.headline).frame(maxWidth: .infinity).padding(.vertical, 6)
-                }
-                .buttonStyle(.borderedProminent)
-            }
+            .padding(20)
+            .frame(maxWidth: .infinity, minHeight: geo.size.height)
         }
-        .padding(16)
+        .scrollBounceBehavior(.basedOnSize)
+        }
+        .background(Color(.secondarySystemGroupedBackground), in: .rect(cornerRadius: 18))
+        .contentShape(.rect)
+        .onTapGesture { withAnimation(.snappy) { revealed = true } }
     }
 
     private func gradeButtons(for word: Word) -> some View {
@@ -236,8 +351,8 @@ struct ReviewView: View {
                     VStack(spacing: 2) {
                         Text(grade.title).font(.headline)
                         if let state = progress.review(for: word.id) {
-                            Text(intervalLabel(Scheduler.days(after: state, grade: grade)))
-                                .font(.caption)
+                            let days = Scheduler.days(after: state, grade: grade)
+                            Text(days == 1 ? "tomorrow" : "\(days) days").font(.caption)
                         }
                     }
                     .frame(maxWidth: .infinity)
@@ -249,31 +364,34 @@ struct ReviewView: View {
         }
     }
 
-    // MARK: Actions
-
-    private func start(_ newMode: Mode, with ids: [String]) {
-        queue = ids
-        revealed = false
-        reviewedThisRound = 0
-        mode = ids.isEmpty ? .idle : newMode
+    private var finished: some View {
+        VStack(spacing: 14) {
+            Spacer()
+            Image(systemName: "checkmark.seal.fill")
+                .font(.system(size: 64))
+                .foregroundStyle(.green)
+            Text("Review done").font(.title.bold())
+            Text("You went through \(reviewed) card\(reviewed == 1 ? "" : "s").")
+                .foregroundStyle(.secondary)
+            Spacer()
+            Button {
+                dismiss()
+            } label: {
+                Text("Done").font(.headline).frame(maxWidth: .infinity).padding(.vertical, 6)
+            }
+            .buttonStyle(.borderedProminent)
+        }
     }
 
     private func submit(_ grade: ReviewGrade, for word: Word) {
         progress.record(grade, for: word.id)
-        reviewedThisRound += 1
         withAnimation(.snappy) {
+            reviewed += 1
             queue.removeFirst()
             // Forgotten words come round again at the end of this round.
             if grade == .again { queue.append(word.id) }
             revealed = false
-            if queue.isEmpty { mode = .idle }
         }
-    }
-
-    private func endRound() {
-        queue = []
-        revealed = false
-        mode = .idle
     }
 
     private func tint(for grade: ReviewGrade) -> Color {
@@ -282,9 +400,5 @@ struct ReviewView: View {
         case .good: .accentColor
         case .easy: .green
         }
-    }
-
-    private func intervalLabel(_ days: Int) -> String {
-        days == 1 ? "tomorrow" : "\(days) days"
     }
 }

@@ -34,6 +34,7 @@ struct DrillView: View {
     @State private var revealed = false
     @State private var correct = 0
     @State private var missed: [DrillCard] = []
+    @State private var answers: [Bool] = []
     @State private var total: Int
 
     /// What "Done" does. Defaults to closing this screen; Test yourself passes one that closes the
@@ -76,9 +77,13 @@ struct DrillView: View {
     private func cardView(_ card: DrillCard) -> some View {
         let word = card.word
         return VStack(spacing: 16) {
-            Text("\(total - queue.count + 1) of \(total)")
-                .font(.subheadline.weight(.medium))
-                .foregroundStyle(.secondary)
+            HStack(spacing: 12) {
+                RoundProgress(results: answers, total: total)
+                Text("\(total - queue.count + 1) / \(total)")
+                    .font(.subheadline.weight(.medium))
+                    .foregroundStyle(.secondary)
+                    .monospacedDigit()
+            }
 
             VStack(spacing: 18) {
                 Spacer(minLength: 0)
@@ -223,12 +228,14 @@ struct DrillView: View {
         total = queue.count
         correct = 0
         missed = []
+        answers = []
         revealed = false
     }
 
     private func next(gotIt: Bool) {
         guard let card = queue.first else { return }
         if gotIt { correct += 1 } else { missed.append(card) }
+        answers.append(gotIt)
         withAnimation(.snappy) {
             queue.removeFirst()
             revealed = false

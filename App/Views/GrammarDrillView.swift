@@ -14,6 +14,7 @@ struct GrammarDrillView: View {
     @State private var picked: String?
     @State private var correct = 0
     @State private var missed: [Word] = []
+    @State private var answers: [Bool] = []
     @State private var started = false
 
     var body: some View {
@@ -29,7 +30,7 @@ struct GrammarDrillView: View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color(.systemGroupedBackground))
-            .navigationTitle(GrammarDrill.title(for: language))
+            .navigationTitle(GrammarDrill.drillTitle(for: language))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
@@ -47,10 +48,16 @@ struct GrammarDrillView: View {
     private func questionView(_ question: GrammarQuestion) -> some View {
         let word = question.word
         return VStack(spacing: 16) {
-            Text("\(total - queue.count + 1) of \(total)")
-                .font(.subheadline.weight(.medium))
-                .foregroundStyle(.secondary)
+            HStack(spacing: 12) {
+                RoundProgress(results: answers, total: total, showsCurrent: picked == nil)
+                Text("\(total - queue.count + 1) / \(total)")
+                    .font(.subheadline.weight(.medium))
+                    .foregroundStyle(.secondary)
+                    .monospacedDigit()
+            }
 
+            // Centred when it fits, scrollable when the explanation doesn't.
+            GeometryReader { geo in
             ScrollView {
                 VStack(spacing: 14) {
                     Text(prompt)
@@ -73,14 +80,16 @@ struct GrammarDrillView: View {
                     }
                 }
                 .multilineTextAlignment(.center)
-                .frame(maxWidth: .infinity)
-                .padding(.vertical, 24)
+                .padding(20)
+                .frame(maxWidth: .infinity, minHeight: geo.size.height)
             }
-            .card(padding: 20)
+            .scrollBounceBehavior(.basedOnSize)
+            }
+            .background(Color(.secondarySystemGroupedBackground), in: .rect(cornerRadius: 18))
 
-            if picked == nil {
-                optionButtons(question)
-            } else {
+            // The options stay on screen after answering, showing your pick and the right answer.
+            optionButtons(question)
+            if picked != nil {
                 Button {
                     next()
                 } label: {
@@ -169,7 +178,8 @@ struct GrammarDrillView: View {
     }
 
     private func optionButton(_ option: String, in question: GrammarQuestion, font: Font) -> some View {
-        Button {
+        let outline = outlineColor(for: option, in: question)
+        return Button {
             answer(question, with: option)
         } label: {
             Text(label(option))
@@ -178,7 +188,22 @@ struct GrammarDrillView: View {
                 .padding(.vertical, 6)
         }
         .buttonStyle(.bordered)
-        .tint(tint(for: option, in: question))
+        .buttonBorderShape(.capsule)
+        .tint(outline ?? tint(for: option, in: question))
+        .overlay {
+            if let outline { Capsule().strokeBorder(outline, lineWidth: 2.5) }
+        }
+        .opacity(picked != nil && outline == nil ? 0.35 : 1)
+        .allowsHitTesting(picked == nil)
+        .accessibilityAddTraits(picked == option ? .isSelected : [])
+    }
+
+    /// After answering: green for the right answer (and your pick, if it's also right), red for a wrong pick.
+    private func outlineColor(for option: String, in question: GrammarQuestion) -> Color? {
+        guard let picked else { return nil }
+        if option == question.answer || (option == picked && question.isCorrect(option)) { return .green }
+        if option == picked { return .red }
+        return nil
     }
 
     private func label(_ option: String) -> String {
@@ -248,12 +273,16 @@ struct GrammarDrillView: View {
         total = queue.count
         correct = 0
         missed = []
+        answers = []
         picked = nil
         started = true
     }
 
     private func answer(_ question: GrammarQuestion, with option: String) {
-        withAnimation(.snappy) { picked = option }
+        withAnimation(.snappy) {
+            picked = option
+            answers.append(question.isCorrect(option))
+        }
         if question.isCorrect(option) {
             correct += 1
         } else {

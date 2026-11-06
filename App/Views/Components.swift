@@ -134,3 +134,68 @@ struct SectionTitle: View {
         .padding(.top, 8)
     }
 }
+
+/// Progress through a round. Marked rounds of up to 30 cards show one segment per card, coloured
+/// as you go: green right, red wrong, accent for the current card. Other rounds get a single bar.
+struct RoundProgress: View {
+    private let results: [Bool]
+    private let marked: Bool
+    private let done: Int
+    private let total: Int
+    private var showsCurrent = true
+
+    /// A round where each answer is right or wrong (drills). `showsCurrent` is false while an
+    /// answer is on screen, so the highlight doesn't run ahead to the next card.
+    init(results: [Bool], total: Int, showsCurrent: Bool = true) {
+        self.results = results
+        self.showsCurrent = showsCurrent
+        self.marked = true
+        self.done = results.count
+        self.total = total
+    }
+
+    /// A round without right or wrong answers (reviews).
+    init(done: Int, total: Int) {
+        self.results = []
+        self.marked = false
+        self.done = done
+        self.total = total
+    }
+
+    var body: some View {
+        Group {
+            if marked && total <= 30 {
+                segments
+            } else {
+                bar
+            }
+        }
+        .frame(height: 6)
+        .accessibilityElement()
+        .accessibilityLabel("\(done) of \(total) done")
+    }
+
+    private var segments: some View {
+        HStack(spacing: 4) {
+            ForEach(0..<total, id: \.self) { index in
+                Capsule().fill(color(at: index))
+            }
+        }
+    }
+
+    private var bar: some View {
+        GeometryReader { geo in
+            ZStack(alignment: .leading) {
+                Capsule().fill(Color(.systemFill))
+                Capsule().fill(Color.accentColor)
+                    .frame(width: total == 0 ? 0 : geo.size.width * CGFloat(done) / CGFloat(total))
+            }
+        }
+    }
+
+    private func color(at index: Int) -> Color {
+        if index < results.count { return results[index] ? .green : .red }
+        if index == results.count && showsCurrent { return .accentColor }
+        return Color(.systemFill)
+    }
+}

@@ -350,6 +350,146 @@
       "conversationStarter": "Plan a birthday party for a friend: what do you celebrate with, what present do you give, what do you wish them?",
       "de": ["de-geburtstag", "de-geschenk", "de-feiern", "de-party", "de-gratulieren"],
       "zh": ["zh-sheng-ri", "zh-li-wu", "zh-qing-zhu", "zh-ju-hui", "zh-zhu-wish"]
+    },
+    {
+      "number": 51,
+      "theme": "Morning routine",
+      "conversationStarter": "Walk each other through your morning, step by step, from the alarm to the front door.",
+      "de": ["de-aufstehen", "de-duschen", "de-putzen", "de-spiegel", "de-handtuch"],
+      "zh": ["zh-qi-chuang", "zh-xi-zao", "zh-shua-ya", "zh-jing-zi", "zh-mao-jin"]
+    },
+    {
+      "number": 52,
+      "theme": "Salty & sweet",
+      "conversationStarter": "Taste-test something from the kitchen together: is it sweet, salty, or both?",
+      "de": ["de-salz", "de-zucker", "de-schneiden", "de-waschen", "de-suess"],
+      "zh": ["zh-yan", "zh-tang", "zh-qie", "zh-xi", "zh-tian-sweet"]
+    },
+    {
+      "number": 53,
+      "theme": "Breakfast",
+      "conversationStarter": "Describe your ideal breakfast, then compare a German breakfast with a Chinese one.",
+      "de": ["de-fruehstueck", "de-milch", "de-kaese", "de-butter", "de-saft"],
+      "zh": ["zh-zao-fan", "zh-niu-nai", "zh-mian-bao", "zh-zhou", "zh-guo-zhi"]
+    },
+    {
+      "number": 54,
+      "theme": "Around town",
+      "conversationStarter": "Draw a quick map of your neighbourhood and mark the supermarket, park, bank and post office.",
+      "de": ["de-supermarkt", "de-park", "de-krankenhaus", "de-bank", "de-post"],
+      "zh": ["zh-chao-shi", "zh-gong-yuan", "zh-yi-yuan", "zh-yin-hang", "zh-you-ju"]
+    },
+    {
+      "number": 55,
+      "theme": "Getting about",
+      "conversationStarter": "Plan a trip across your city using only buses, trains and bikes. Who gets there fastest?",
+      "de": ["de-bus", "de-zug", "de-fahrrad", "de-u-bahn", "de-fahrkarte"],
+      "zh": ["zh-gong-jiao-che", "zh-huo-che", "zh-zi-xing-che", "zh-di-tie", "zh-piao"]
+    },
+    {
+      "number": 56,
+      "theme": "More of the body",
+      "conversationStarter": "Play Simon Says again, this time with legs, arms, mouth, nose and ears.",
+      "de": ["de-bein", "de-arm", "de-mund", "de-nase", "de-ohr"],
+      "zh": ["zh-tui", "zh-ge-bo", "zh-zui-mouth", "zh-bi-zi", "zh-er-duo"]
+    },
+    {
+      "number": 57,
+      "theme": "Feeling unwell",
+      "conversationStarter": "Role-play a visit to the pharmacy: one is sick, the other is the pharmacist.",
+      "de": ["de-schmerz", "de-fieber", "de-medikament", "de-gesund", "de-apotheke"],
+      "zh": ["zh-teng", "zh-fa-shao", "zh-yao-medicine", "zh-jian-kang", "zh-yao-dian"]
+    },
+    {
+      "number": 58,
+      "theme": "Describing people",
+      "conversationStarter": "Describe three friends or family members using today's words. The other guesses who.",
+      "de": ["de-nett", "de-lustig", "de-klug", "de-ruhig", "de-schoen"],
+      "zh": ["zh-piao-liang", "zh-cong-ming", "zh-you-yi-si", "zh-an-jing", "zh-ke-ai"]
+    },
+    {
+      "number": 59,
+      "theme": "How much?",
+      "conversationStarter": "Cook or bake something and argue about the amounts: a little, enough, or more?",
+      "de": ["de-wenig", "de-genug", "de-mehr", "de-halb", "de-ganz"],
+      "zh": ["zh-shao", "zh-gou-enough", "zh-geng", "zh-ban", "zh-yi-dian-er"]
+    },
+    {
+      "number": 60,
+      "theme": "Comparing",
+      "conversationStarter": "Compare two things you each love, like your home towns, and say which is better.",
+      "de": ["de-besser", "de-gleich", "de-anders", "de-lieber", "de-unterschied"],
+      "zh": ["zh-bi", "zh-yi-yang", "zh-zui-most", "zh-cha-bu-duo", "zh-qu-bie"]
+    },
+    {
+      "number": 61,
+      "theme": "Chores",
+      "conversationStarter": "Split this week's chores between you, then name everything that's broken in your home.",
+      "de": ["de-aufraeumen", "de-muell", "de-kaputt", "de-reparieren", "de-sauber"],
+      "zh": ["zh-da-sao", "zh-la-ji", "zh-huai", "zh-xiu", "zh-gan-jing"]
+    },
+    {
+      "number": 62,
+      "theme": "Plans",
+      "conversationStarter": "Make a plan for next weekend together, and then share one big plan for the future.",
+      "de": ["de-plan", "de-naechste", "de-bald", "de-spaeter", "de-zukunft"],
+      "zh": ["zh-ji-hua", "zh-da-suan", "zh-yi-hou", "zh-ma-shang", "zh-jiang-lai"]
+    },
+    {
+      "number": 63,
+      "theme": "Memories",
+      "conversationStarter": "Share a favourite childhood memory each. What do you remember, and what have you forgotten?",
+      "de": ["de-erinnern", "de-vergessen", "de-frueher", "de-damals", "de-letzte"],
+      "zh": ["zh-ji-de", "zh-wang", "zh-yi-qian", "zh-xiao-shi-hou", "zh-shang-ci"]
+    },
+    {
+      "number": 64,
+      "theme": "Talking & explaining",
+      "conversationStarter": "Each explain a word from your language that has no good translation.",
+      "de": ["de-erklaeren", "de-erzaehlen", "de-wort", "de-satz", "de-sprache"],
+      "zh": ["zh-jie-shi", "zh-jiang", "zh-ci", "zh-ju-zi", "zh-yu-yan"]
+    },
+    {
+      "number": 65,
+      "theme": "Big numbers",
+      "conversationStarter": "Read out phone numbers, prices and years to each other. The other writes them down.",
+      "de": ["de-null", "de-hundert", "de-tausend", "de-erste", "de-nummer"],
+      "zh": ["zh-ling", "zh-bai-hundred", "zh-qian-thousand", "zh-di-yi", "zh-hao-ma"]
+    },
+    {
+      "number": 66,
+      "theme": "Rivers, lakes & forests",
+      "conversationStarter": "Show each other photos of a river, lake, sea or forest you love, and describe them.",
+      "de": ["de-fluss", "de-see", "de-meer", "de-blume", "de-wald"],
+      "zh": ["zh-he-river", "zh-hu", "zh-hai-sea", "zh-hua", "zh-sen-lin"]
+    },
+    {
+      "number": 67,
+      "theme": "More animals",
+      "conversationStarter": "Make animal sounds in turn; the other names the animal in the language they're learning.",
+      "de": ["de-vogel", "de-fisch", "de-pferd", "de-schwein", "de-maus"],
+      "zh": ["zh-niao", "zh-yu-fish", "zh-ma-horse", "zh-zhu-pig", "zh-lao-shu"]
+    },
+    {
+      "number": 68,
+      "theme": "Sport & games",
+      "conversationStarter": "Play a quick game together: cards, rock-paper-scissors or anything with a winner and a loser.",
+      "de": ["de-ball", "de-gewinnen", "de-verlieren", "de-spiel", "de-mannschaft"],
+      "zh": ["zh-qiu", "zh-ying", "zh-shu-lose", "zh-bi-sai", "zh-dui-team"]
+    },
+    {
+      "number": 69,
+      "theme": "Hopes & dreams",
+      "conversationStarter": "Share one hope, one dream and one wish for the next year.",
+      "de": ["de-hoffen", "de-traum", "de-wuenschen", "de-moeglich", "de-glueck"],
+      "zh": ["zh-xi-wang", "zh-meng", "zh-yuan-wang", "zh-ke-neng", "zh-yun-qi"]
+    },
+    {
+      "number": 70,
+      "theme": "Little phrases",
+      "conversationStarter": "Practise saying each little phrase at the right moment: welcome each other, raise a glass, say good night.",
+      "de": ["de-willkommen", "de-prost", "de-gute-nacht", "de-viel-spass", "de-gute-besserung"],
+      "zh": ["zh-huan-ying", "zh-gan-bei", "zh-wan-an", "zh-jia-you", "zh-man-zou"]
     }
   ]
 }
