@@ -46,6 +46,19 @@ struct SettingsView: View {
                     LabeledContent("Current streak", value: "\(progress.streak()) days")
                 }
 
+                Section("About") {
+                    Link(destination: AppLinks.privacyPolicy) {
+                        Label("Privacy Policy", systemImage: "hand.raised")
+                    }
+                    Link(destination: AppLinks.support) {
+                        Label("Help and support", systemImage: "questionmark.circle")
+                    }
+                    Link(destination: AppLinks.email) {
+                        Label("Report a mistake or send feedback", systemImage: "envelope")
+                    }
+                    LabeledContent("Version", value: AppLinks.version)
+                }
+
                 Section {
                     Button("Reset all progress", role: .destructive) { confirmingReset = true }
                 } footer: {
@@ -141,5 +154,20 @@ struct SettingsView: View {
                 notificationsDenied = true
             }
         }
+    }
+}
+
+/// Where the app's web pages live (served by GitHub Pages from the repo's docs folder).
+enum AppLinks {
+    static let privacyPolicy = URL(string: "https://edwintang2005.github.io/Pair-Language-App/privacy.html")!
+    static let support = URL(string: "https://edwintang2005.github.io/Pair-Language-App/")!
+    static let email = URL(string: "mailto:edwintang2005@gmail.com?subject=Pair%20feedback")!
+
+    /// "1.0 (12)": the App Store version and build number.
+    static var version: String {
+        let info = Bundle.main.infoDictionary
+        let short = info?["CFBundleShortVersionString"] as? String ?? "?"
+        let build = info?["CFBundleVersion"] as? String ?? "?"
+        return "\(short) (\(build))"
     }
 }

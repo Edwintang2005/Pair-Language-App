@@ -15,7 +15,7 @@ settings:
     DEVELOPMENT_TEAM: 3L8Q3U3WY3
     CODE_SIGN_STYLE: Automatic
     # Shared by the app and the widget: App Store Connect rejects builds where they differ.
-    MARKETING_VERSION: "0.1.0"
+    MARKETING_VERSION: "1.0"
     CURRENT_PROJECT_VERSION: "1"
 targets:
   Pair:

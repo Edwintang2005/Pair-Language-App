@@ -4,3 +4,4 @@ DerivedData/
 build/
 *.xcuserstate
 .DS_Store
+appstore/listing.md
