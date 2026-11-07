@@ -15,8 +15,8 @@ settings:
     DEVELOPMENT_TEAM: 3L8Q3U3WY3
     CODE_SIGN_STYLE: Automatic
     # Shared by the app and the widget: App Store Connect rejects builds where they differ.
-    MARKETING_VERSION: "1.0"
-    CURRENT_PROJECT_VERSION: "1"
+    MARKETING_VERSION: "1.1"
+    CURRENT_PROJECT_VERSION: "2"
 targets:
   Pair:
     type: application
@@ -47,6 +47,9 @@ targets:
         INFOPLIST_KEY_UILaunchScreen_Generation: YES
         INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone: UIInterfaceOrientationPortrait
         INFOPLIST_KEY_ITSAppUsesNonExemptEncryption: NO
+        # Speaking practice: recordings and speech recognition stay on the phone.
+        INFOPLIST_KEY_NSMicrophoneUsageDescription: "Pair records you saying a sentence so you can compare it with the original. Recordings stay on your phone and are deleted when you move on."
+        INFOPLIST_KEY_NSSpeechRecognitionUsageDescription: "Pair only uses speech recognition offline, on your iPhone, to show which words it understood in your recording. Your recordings are never sent to Apple or anyone else."
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
   PairWidget:

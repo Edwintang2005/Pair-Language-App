@@ -495,7 +495,7 @@ struct PracticeDrillTests {
 
     @Test func drillsDependOnTheLanguage() {
         #expect(ChoiceDrill.drills(for: .german) == [.grammar, .plurals, .pastTense, .listening])
-        #expect(ChoiceDrill.drills(for: .chinese) == [.grammar, .listening])
+        #expect(ChoiceDrill.drills(for: .chinese) == [.grammar, .tones, .listening])
     }
 
     // MARK: Plurals
@@ -666,5 +666,121 @@ struct PracticeDrillEdgeCaseTests {
             else { continue }
             #expect(!["Kannst", "Können", "Woher", "Mach", "Zuerst"].contains(first), "\(word.id)")
         }
+    }
+}
+
+@MainActor
+struct SpeakingAndTonesTests {
+    private struct SeededRNG: RandomNumberGenerator {
+        var state: UInt64
+        mutating func next() -> UInt64 {
+            state = state &* 6364136223846793005 &+ 1442695040888963407
+            return state
+        }
+    }
+
+    private func word(_ content: ContentLibrary, _ id: String) throws -> Word {
+        try #require(content.words[id])
+    }
+
+    // MARK: Tones
+
+    @Test func tonesComeFromThePinyin() {
+        #expect(Tones.pattern(ofPinyin: "lǎoshī") == [3, 1])
+        #expect(Tones.pattern(ofPinyin: "péngyou") == [2, 0])
+        #expect(Tones.pattern(ofPinyin: "yìdiǎnr") == [4, 3])
+        #expect(Tones.pattern(ofPinyin: "nǚ'ér") == [3, 2])
+        #expect(Tones.pattern(ofPinyin: "nǐ hǎo") == [3, 3])
+        #expect(Tones.pattern(ofPinyin: "Wǎn'ān") == [3, 1])
+        #expect(Tones.spoken([3, 3]) == [2, 3])
+        #expect(Tones.spoken([3, 3, 3]) == [2, 2, 3])
+        #expect(Tones.spoken([1, 3]) == nil)
+    }
+
+    @Test func toneQuestions() throws {
+        let content = try ContentLibrary.loadBundled()
+        var rng = SeededRNG(state: 8)
+        let no = try #require(Tones.question(for: try word(content, "zh-bu"), using: &rng))
+        #expect(no.options == ["1", "2", "3", "4"])
+        #expect(no.answer == "4")
+
+        // 你好 is written 3-3 and said 2-3: both count.
+        let hello = try #require(Tones.question(for: try word(content, "zh-ni-hao"), using: &rng))
+        #expect(hello.answer == "3-3")
+        #expect(hello.isCorrect("2-3") && hello.options.contains("2-3"))
+        #expect(Tones.explanation(for: try word(content, "zh-ni-hao"))?.contains("said as a 2nd") == true)
+        #expect(!Tones.isEligible(try word(content, "zh-de")))  // no tone of its own
+
+        for word in content.words.values where Tones.isEligible(word) {
+            let q = try #require(Tones.question(for: word, using: &rng), "\(word.id)")
+            #expect(q.options.count == 4 && Set(q.options).count == 4, "\(word.id): \(q.options)")
+            #expect(q.options.contains(q.answer), "\(word.id)")
+        }
+        let eligible = content.words.values.filter { $0.language == .chinese && Tones.isEligible($0) }.count
+        #expect(eligible > 330)
+    }
+
+    // MARK: Speaking
+
+    @Test func speechCheckMatchesWords() {
+        #expect(SpeechMatch.heard(["Das", "ist", "nicht", "gut"], in: "das ist gut", language: .german)
+                == [true, true, false, true])
+        #expect(SpeechMatch.heard(["geht's"], in: "Gehts", language: .german) == [true])
+        #expect(SpeechMatch.heard(["我", "的", "房间", "很", "小"], in: "我的房间很小。", language: .chinese)
+                == [true, true, true, true, true])
+        // Sound-alikes and digits count.
+        #expect(SpeechMatch.heard(["她", "有", "两", "个"], in: "他有2个", language: .chinese) == [true, true, true, true])
+        #expect(SpeechMatch.heard(["房间"], in: "放假", language: .chinese) == [false])
+    }
+
+    @Test func speakingItemsCoverEverySentence() throws {
+        let content = try ContentLibrary.loadBundled()
+        let ids = Array(content.words.keys)
+        // Unlike Build the sentence, short sentences count: 你好! is worth saying.
+        #expect(SpeakingItem.eligibleCount(in: ids, content: content) == ids.count)
+        var rng = SeededRNG(state: 9)
+        let items = SpeakingItem.items(wordIDs: content.sessions.prefix(3).flatMap(\.zh), content: content, using: &rng)
+        #expect(items.count == 10)
+        #expect(Set(items.map(\.word.id)).count == 10)
+    }
+
+    // MARK: Practise
+
+    @Test func practiseMixesDrillsAndPrefersWeakWords() throws {
+        let content = try ContentLibrary.loadBundled()
+        var rng = SeededRNG(state: 10)
+        let chinese = content.sessions.prefix(20).flatMap(\.zh)
+        let round = PractiseRound.items(language: .chinese, knownIDs: chinese, box: { _ in 3 },
+                                        content: content, using: &rng)
+        #expect(round.count == 8)
+        #expect(round.filter { !$0.isMarked }.count == 1)  // one speaking item
+        let ids = round.map { item -> String in
+            switch item {
+            case .choice(let q): q.word.id
+            case .sentence(let p): p.word.id
+            case .speaking(let s): s.word.id
+            }
+        }
+        #expect(Set(ids).count == ids.count, "no word twice")
+        if case .choice(let first) = round[0] { #expect(first.kind == .tones) } else { Issue.record("starts with tones") }
+
+        // Every word strong except ten: those come first wherever they fit the drill.
+        let weak = Set(chinese.prefix(10))
+        let focused = PractiseRound.items(language: .chinese, knownIDs: chinese, box: { weak.contains($0) ? 1 : 8 },
+                                          content: content, using: &rng)
+        let firstIDs = focused.prefix(5).map { item -> String in
+            switch item {
+            case .choice(let q): q.word.id
+            case .sentence(let p): p.word.id
+            case .speaking(let s): s.word.id
+            }
+        }
+        #expect(firstIDs.filter(weak.contains).count >= 4, "\(firstIDs)")
+
+        let german = PractiseRound.items(language: .german, knownIDs: content.sessions.prefix(20).flatMap(\.de),
+                                         box: { _ in nil }, content: content, using: &rng)
+        #expect(german.count == 8)
+        #expect(PractiseRound.items(language: .german, knownIDs: ["de-haus", "de-tuer"], box: { _ in nil },
+                                    content: content, using: &rng).isEmpty)
     }
 }

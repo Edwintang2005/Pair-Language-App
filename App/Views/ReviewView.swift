@@ -15,6 +15,8 @@ struct ReviewView: View {
     @State private var testingSelf = false
     @State private var choiceDrill: ChoiceDrill?
     @State private var buildingSentences = false
+    @State private var speaking = false
+    @State private var practising = false
 
     var body: some View {
         NavigationStack {
@@ -42,6 +44,16 @@ struct ReviewView: View {
         .sheet(item: $choiceDrill) { drill in
             if let learning = progress.learning {
                 ChoiceDrillView(drill: drill, language: learning, wordIDs: progress.knownWordIDs)
+            }
+        }
+        .fullScreenCover(isPresented: $practising) {
+            if let learning = progress.learning {
+                PractiseView(language: learning)
+            }
+        }
+        .sheet(isPresented: $speaking) {
+            if let learning = progress.learning {
+                SpeakingDrillView(language: learning, wordIDs: progress.knownWordIDs)
             }
         }
         .sheet(isPresented: $buildingSentences) {
@@ -153,6 +165,10 @@ struct ReviewView: View {
             Text("Practise")
                 .font(.title3.bold())
                 .padding(.top, 4)
+            if let learning = progress.learning,
+               progress.knownWordIDs.count >= PractiseRound.minimumWords {
+                practiseCard(for: learning)
+            }
             LazyVGrid(columns: [GridItem(.flexible(), spacing: 12), GridItem(.flexible(), spacing: 12)],
                       spacing: 12) {
                 ForEach(tiles) { tile in
@@ -160,6 +176,33 @@ struct ReviewView: View {
                 }
             }
         }
+    }
+
+    /// The one-tap mixed round, above the individual drills.
+    private func practiseCard(for learning: Language) -> some View {
+        Button {
+            practising = true
+        } label: {
+            HStack(spacing: 14) {
+                Image(systemName: "play.fill")
+                    .font(.title2)
+                    .foregroundStyle(.white)
+                    .frame(width: 52, height: 52)
+                    .background(Color.accentColor, in: .circle)
+                VStack(alignment: .leading, spacing: 3) {
+                    Text("Practise · 5 minutes").font(.headline).foregroundStyle(.primary)
+                    Text(learning == .chinese
+                         ? "Tones, listening, sentences and speaking"
+                         : "Grammar, listening, sentences and speaking")
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                }
+                Spacer(minLength: 0)
+                Image(systemName: "chevron.right").foregroundStyle(.tertiary)
+            }
+            .card(padding: 14)
+        }
+        .buttonStyle(.plain)
     }
 
     private var practiceTiles: [PracticeTile.Model] {
@@ -186,6 +229,11 @@ struct ReviewView: View {
         }
         // Listening needs a few words to choose between.
         addDrill(.listening, minimum: 4)
+        let spoken = SpeakingItem.eligibleCount(in: known, content: content)
+        if spoken > 0 {
+            tiles.append(.init(id: "speaking", icon: .symbol("waveform.and.mic"), title: "Speaking",
+                               subtitle: "Copy what you hear") { speaking = true })
+        }
         let partnerCount = progress.partnerWordIDs(in: content).count
         if partnerCount > 0 {
             tiles.append(.init(id: "quiz", icon: .symbol("person.2.fill"), title: "Quiz your partner",
@@ -200,6 +248,7 @@ struct ReviewView: View {
         case .plurals: .text("-e -er -n")
         case .pastTense: .text("hat · ist")
         case .listening: .symbol("ear")
+        case .tones: .text("ā á ǎ à")
         }
     }
 
@@ -208,7 +257,7 @@ struct ReviewView: View {
         switch drill {
         case .grammar, .plurals: return "\(count) noun\(plural)"
         case .pastTense: return "\(count) verb\(plural)"
-        case .listening: return "\(count) word\(plural)"
+        case .listening, .tones: return "\(count) word\(plural)"
         }
     }
 

@@ -7,6 +7,7 @@ struct SettingsView: View {
 
     @Environment(\.openURL) private var openURL
 
+    @AppStorage("checksSpeaking") private var checksSpeaking = true
     @State private var confirmingReset = false
     @State private var confirmingSwitch = false
     @State private var notificationsDenied = false
@@ -25,6 +26,14 @@ struct SettingsView: View {
                 }
 
                 remindersSection
+
+                Section {
+                    Toggle("Check my speaking", isOn: $checksSpeaking)
+                } header: {
+                    Text("Speaking practice")
+                } footer: {
+                    Text("After you record yourself, your iPhone's speech recognition shows which words it understood. It only runs offline, and your voice never leaves your phone.")
+                }
 
                 Section {
                     Stepper(value: Binding(

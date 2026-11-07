@@ -11,12 +11,14 @@ enum ChoiceDrill: String, Identifiable, CaseIterable {
     case pastTense
     /// Hear a word, pick its meaning. Both languages.
     case listening
+    /// Chinese: hear a word, pick its tones (老师: 3 + 1).
+    case tones
 
     var id: String { rawValue }
 
     /// The drills someone learning this language gets, in the order the Review tab shows them.
     static func drills(for language: Language) -> [ChoiceDrill] {
-        language == .german ? [.grammar, .plurals, .pastTense, .listening] : [.grammar, .listening]
+        language == .german ? [.grammar, .plurals, .pastTense, .listening] : [.grammar, .tones, .listening]
     }
 
     func title(for language: Language) -> String {
@@ -25,6 +27,7 @@ enum ChoiceDrill: String, Identifiable, CaseIterable {
         case .plurals: "Plurals"
         case .pastTense: "Past tense"
         case .listening: "Listening"
+        case .tones: "Tones"
         }
     }
 
@@ -35,6 +38,7 @@ enum ChoiceDrill: String, Identifiable, CaseIterable {
         case .plurals: "What's the plural?"
         case .pastTense: "Say it in the past"
         case .listening: "What did you hear?"
+        case .tones: "Which tones did you hear?"
         }
     }
 
@@ -44,6 +48,7 @@ enum ChoiceDrill: String, Identifiable, CaseIterable {
         case .plurals: Plurals.isEligible(word)
         case .pastTense: PastTense.isEligible(word)
         case .listening: true
+        case .tones: Tones.isEligible(word)
         }
     }
 
@@ -56,6 +61,7 @@ enum ChoiceDrill: String, Identifiable, CaseIterable {
         case .plurals: Plurals.question(for: word, using: &rng)
         case .pastTense: PastTense.question(for: word, using: &rng)
         case .listening: Listening.question(for: word, pool: pool, content: content, using: &rng)
+        case .tones: Tones.question(for: word, using: &rng)
         }
     }
 
@@ -364,6 +370,116 @@ enum Listening {
     }
 }
 
+// MARK: - Tones
+
+/// Chinese tones, read from the pinyin's tone marks: 1–4, and 0 for the neutral tone.
+enum Tones {
+    /// The syllables a tone question can have: one to three (老师, 不客气).
+    static let syllableRange = 1...3
+
+    /// One tone per syllable: "lǎoshī" → [3, 1], "péngyou" → [2, 0], "yìdiǎnr" → [4, 3].
+    /// Syllables are runs of vowels, as in `SentenceBuilder.characterCount`.
+    static func pattern(ofPinyin pinyin: String) -> [Int] {
+        var tones: [Int] = []
+        for part in pinyin.split(whereSeparator: { $0.isWhitespace || $0 == "'" || $0 == "-" }) {
+            var syllable: Int?
+            for character in part.lowercased() {
+                let scalars = String(character).decomposedStringWithCanonicalMapping.unicodeScalars
+                guard let base = scalars.first, "aeiou".unicodeScalars.contains(base) else {
+                    if let tone = syllable { tones.append(tone); syllable = nil }
+                    continue
+                }
+                let mark = scalars.dropFirst().compactMap(toneMarks.firstIndex(of:)).first.map { $0 + 1 }
+                syllable = max(syllable ?? 0, mark ?? 0)
+            }
+            if let tone = syllable { tones.append(tone) }
+        }
+        return tones
+    }
+
+    /// Combining macron, acute, caron and grave: tones 1 to 4.
+    private static let toneMarks: [Unicode.Scalar] = ["\u{0304}", "\u{0301}", "\u{030C}", "\u{0300}"]
+
+    static func pattern(of word: Word) -> [Int] {
+        word.pinyin.map(pattern(ofPinyin:)) ?? []
+    }
+
+    static func isEligible(_ word: Word) -> Bool {
+        let tones = pattern(of: word)
+        // A word can't start on a neutral tone; if it seems to, the pinyin is missing a mark.
+        return word.language == .chinese && syllableRange.contains(tones.count) && tones.first != 0
+    }
+
+    /// "3-1": how a pattern is stored as an answer option.
+    static func label(_ tones: [Int]) -> String { tones.map(String.init).joined(separator: "-") }
+
+    static func tones(fromLabel label: String) -> [Int] { label.split(separator: "-").compactMap { Int($0) } }
+
+    /// How it sounds when two 3rd tones meet: the first becomes a 2nd (你好: 3-3 is said 2-3).
+    /// Nil when nothing changes.
+    static func spoken(_ tones: [Int]) -> [Int]? {
+        var said = tones
+        for i in said.indices.dropLast() where said[i] == 3 && said[i + 1] == 3 { said[i] = 2 }
+        return said == tones ? nil : said
+    }
+
+    static func question<G: RandomNumberGenerator>(for word: Word, using rng: inout G) -> ChoiceQuestion? {
+        guard isEligible(word) else { return nil }
+        let tones = pattern(of: word)
+        let answer = label(tones)
+        if tones.count == 1 {
+            // Always 1 2 3 4, so your thumb learns where each one is.
+            return ChoiceQuestion(word: word, options: ["1", "2", "3", "4"], answer: answer,
+                                  accepted: [answer], kind: .tones)
+        }
+        // 你好 is written 3-3 but heard 2-3: both are right, and the explanation says why.
+        let said = spoken(tones).map(label)
+        var options = [answer] + (said.map { [$0] } ?? [])
+        // Wrong answers differ by one tone first, so it's your ear doing the work.
+        var oneOff: [String] = []
+        for i in tones.indices {
+            for tone in (i == 0 ? [1, 2, 3, 4] : [1, 2, 3, 4, 0]) where tone != tones[i] {
+                var other = tones
+                other[i] = tone
+                oneOff.append(label(other))
+            }
+        }
+        for option in oneOff.shuffled(using: &rng) where options.count < 4 && !options.contains(option) {
+            options.append(option)
+        }
+        return ChoiceQuestion(word: word, options: options.shuffled(using: &rng), answer: answer,
+                              accepted: Set([answer] + (said.map { [$0] } ?? [])), kind: .tones)
+    }
+
+    static func name(of tone: Int) -> String {
+        switch tone {
+        case 1: "1st, high and level"
+        case 2: "2nd, rising"
+        case 3: "3rd, low and dipping"
+        case 4: "4th, falling"
+        default: "neutral, light and short"
+        }
+    }
+
+    /// What each tone is, plus the tone changes that catch people out.
+    static func explanation(for word: Word) -> String? {
+        let tones = pattern(of: word)
+        guard !tones.isEmpty else { return nil }
+        // Words never start on a neutral tone, so this always starts with a number: "3rd, low… + 1st, high…".
+        var lines = [tones.map(name(of:)).joined(separator: " + ") + "."]
+        if let said = spoken(tones) {
+            lines.append("Two 3rd tones in a row: the first is said as a 2nd, so you hear \(said.map(String.init).joined(separator: " + ")).")
+        }
+        if word.word.contains("不") {
+            lines.append("不 is bù, but bú before a 4th tone.")
+        }
+        if word.word.contains("一") {
+            lines.append("一 is yī on its own, yì before a 1st, 2nd or 3rd tone, and yí before a 4th.")
+        }
+        return lines.joined(separator: " ")
+    }
+}
+
 // MARK: - Sentence building
 
 /// One word (German) or one pinyin-spaced word (Chinese) of an example sentence.
@@ -438,11 +554,17 @@ enum SentenceBuilder {
     /// The sentence cut into tiles, without punctuation. Nil when it's too short or too long, or
     /// (Chinese) when the pinyin doesn't line up with the characters.
     static func tiles(for example: Example, language: Language, content: ContentLibrary) -> [SentenceTile]? {
-        let tiles = language == .german
+        guard let tiles = words(of: example, language: language, content: content),
+              (minTiles...maxTiles).contains(tiles.count) else { return nil }
+        return tiles
+    }
+
+    /// The sentence cut into words, however many there are. Nil when (Chinese) the pinyin doesn't
+    /// line up with the characters.
+    static func words(of example: Example, language: Language, content: ContentLibrary) -> [SentenceTile]? {
+        language == .german
             ? germanTiles(example.text, content: content)
             : chineseTiles(example.text, pinyin: example.pinyin)
-        guard let tiles, (minTiles...maxTiles).contains(tiles.count) else { return nil }
-        return tiles
     }
 
     private static func strip(_ token: some StringProtocol) -> String {

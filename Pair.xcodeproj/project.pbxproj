@@ -23,6 +23,7 @@
 		70174DF68A42C29936DCF95C /* PracticeSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74819A2D6214AD022F21EBE4 /* PracticeSetupView.swift */; };
 		714D972E7562780475F48BDD /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 9E731E053AAB058F6E438F7D /* PrivacyInfo.xcprivacy */; };
 		76FFF1698CF90BD1ABE212DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87E4EC293B0B25029522814D /* Assets.xcassets */; };
+		8E05F00CF3D46B922778D5BA /* PractiseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA16D8C8FDA2A87255128F7 /* PractiseView.swift */; };
 		918C6599313956CC4E1FA143 /* Scheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129A384F5911B9EB52EAB545 /* Scheduler.swift */; };
 		9254B1B07F14DA22C0EE77A5 /* ProgressStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB85BCA6889A66632DE96BC /* ProgressStore.swift */; };
 		93A7CBEA5420405BF8FBC809 /* words-zh.json in Resources */ = {isa = PBXBuildFile; fileRef = 267D28D0AD9DA9ABE6F6C866 /* words-zh.json */; };
@@ -30,8 +31,11 @@
 		A3890C56ADF182ED123A43D9 /* Reminders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D423A42224014480A7A96A2 /* Reminders.swift */; };
 		A3AFC73081F7CEAA5F421E69 /* WordDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C27E9DC5CBC69B3818DAB0 /* WordDetailView.swift */; };
 		A84BE82FBC21613BDFCDF4D2 /* Speaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18566666E6C4ADA9A3F1EF3 /* Speaker.swift */; };
+		AA37F34EAE74C03C4CDD5379 /* SpeakingDrillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF60BE4F5D96A5080F42FC5E /* SpeakingDrillView.swift */; };
+		AC37068D198F3BE3F2EAD3F7 /* PractiseRound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAA843B73D6966D421E9201 /* PractiseRound.swift */; };
 		B3167A3D81D0B577329D8289 /* WidgetSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3655F45D3F60272CAC6213 /* WidgetSnapshot.swift */; };
 		B69C15C45F87B46C50E12CF9 /* WidgetSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03268430705BF0A5883594AC /* WidgetSync.swift */; };
+		D7C7783DBB863737CF8D3BAB /* SpeechPractice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACBBC4790D618A412F8B78D /* SpeechPractice.swift */; };
 		D7E9156989D17EFE2216E21A /* ReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2014A7651F7E34A48ADA638A /* ReviewView.swift */; };
 		E5B2DDF80A993F566C4EAABE /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 656ABB12310E45FB0269130E /* PrivacyInfo.xcprivacy */; };
 		EDEC23584C5D128D9D1D09CD /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965BC46B66A2843A16D7B2C7 /* TodayView.swift */; };
@@ -80,6 +84,7 @@
 		2014A7651F7E34A48ADA638A /* ReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewView.swift; sourceTree = "<group>"; };
 		21A7883C15514C54239250D1 /* words-de.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "words-de.json"; sourceTree = "<group>"; };
 		267D28D0AD9DA9ABE6F6C866 /* words-zh.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "words-zh.json"; sourceTree = "<group>"; };
+		2ACBBC4790D618A412F8B78D /* SpeechPractice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechPractice.swift; sourceTree = "<group>"; };
 		3611F55CF000A87E14A5307F /* ChoiceDrillView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceDrillView.swift; sourceTree = "<group>"; };
 		4586E464D1A8BC85A163397F /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
 		4ED37B72D5E16C2A7C31560E /* Pair.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Pair.entitlements; sourceTree = "<group>"; };
@@ -90,14 +95,17 @@
 		690C505298FEF0F1B9F24335 /* Content.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
 		6D2A386643B9DDFD51E910CD /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		74819A2D6214AD022F21EBE4 /* PracticeSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeSetupView.swift; sourceTree = "<group>"; };
+		7EAA843B73D6966D421E9201 /* PractiseRound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PractiseRound.swift; sourceTree = "<group>"; };
 		87E4EC293B0B25029522814D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8B63AA68C9712DDBEB24D546 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		8BA16D8C8FDA2A87255128F7 /* PractiseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PractiseView.swift; sourceTree = "<group>"; };
 		965BC46B66A2843A16D7B2C7 /* TodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayView.swift; sourceTree = "<group>"; };
 		98B3A7DE26938F0F9FB75843 /* Pair.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Pair.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E731E053AAB058F6E438F7D /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		A2C27E9DC5CBC69B3818DAB0 /* WordDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDetailView.swift; sourceTree = "<group>"; };
 		A2FE92115E8721E2DF1B71B0 /* PairWidget.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = PairWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6ADE1B6A87FED228480B47C /* PairWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairWidget.swift; sourceTree = "<group>"; };
+		AF60BE4F5D96A5080F42FC5E /* SpeakingDrillView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakingDrillView.swift; sourceTree = "<group>"; };
 		B4A8B9C0905C1B6F78A049D3 /* PairTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairTests.swift; sourceTree = "<group>"; };
 		CC3655F45D3F60272CAC6213 /* WidgetSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetSnapshot.swift; sourceTree = "<group>"; };
 		D13C8AACADF5777AA1D811B5 /* PairWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PairWidget.entitlements; sourceTree = "<group>"; };
@@ -134,9 +142,11 @@
 				4586E464D1A8BC85A163397F /* LibraryView.swift */,
 				8B63AA68C9712DDBEB24D546 /* OnboardingView.swift */,
 				74819A2D6214AD022F21EBE4 /* PracticeSetupView.swift */,
+				8BA16D8C8FDA2A87255128F7 /* PractiseView.swift */,
 				2014A7651F7E34A48ADA638A /* ReviewView.swift */,
 				EB870D64CE63CA9AF0610E39 /* SentenceDrillView.swift */,
 				6D2A386643B9DDFD51E910CD /* SettingsView.swift */,
+				AF60BE4F5D96A5080F42FC5E /* SpeakingDrillView.swift */,
 				965BC46B66A2843A16D7B2C7 /* TodayView.swift */,
 				A2C27E9DC5CBC69B3818DAB0 /* WordDetailView.swift */,
 			);
@@ -192,10 +202,12 @@
 				690C505298FEF0F1B9F24335 /* Content.swift */,
 				E8BAEFB63D5D5A17F7708CBF /* GrammarDrill.swift */,
 				1BD725FB43175D468EA0F7EE /* PracticeDrills.swift */,
+				7EAA843B73D6966D421E9201 /* PractiseRound.swift */,
 				0DB85BCA6889A66632DE96BC /* ProgressStore.swift */,
 				5D423A42224014480A7A96A2 /* Reminders.swift */,
 				129A384F5911B9EB52EAB545 /* Scheduler.swift */,
 				F18566666E6C4ADA9A3F1EF3 /* Speaker.swift */,
+				2ACBBC4790D618A412F8B78D /* SpeechPractice.swift */,
 				03268430705BF0A5883594AC /* WidgetSync.swift */,
 			);
 			path = Models;
@@ -363,6 +375,8 @@
 				60E48CD82963D678820BAA87 /* PairApp.swift in Sources */,
 				21F26E46D257F51F853F8C5C /* PracticeDrills.swift in Sources */,
 				70174DF68A42C29936DCF95C /* PracticeSetupView.swift in Sources */,
+				AC37068D198F3BE3F2EAD3F7 /* PractiseRound.swift in Sources */,
+				8E05F00CF3D46B922778D5BA /* PractiseView.swift in Sources */,
 				9254B1B07F14DA22C0EE77A5 /* ProgressStore.swift in Sources */,
 				A3890C56ADF182ED123A43D9 /* Reminders.swift in Sources */,
 				D7E9156989D17EFE2216E21A /* ReviewView.swift in Sources */,
@@ -370,6 +384,8 @@
 				369CCCBFD94FAFD0549446FF /* SentenceDrillView.swift in Sources */,
 				29AE260488FA16F97C98CE34 /* SettingsView.swift in Sources */,
 				A84BE82FBC21613BDFCDF4D2 /* Speaker.swift in Sources */,
+				AA37F34EAE74C03C4CDD5379 /* SpeakingDrillView.swift in Sources */,
+				D7C7783DBB863737CF8D3BAB /* SpeechPractice.swift in Sources */,
 				EDEC23584C5D128D9D1D09CD /* TodayView.swift in Sources */,
 				33E4B429092DE85CE3A6EC1A /* WidgetSnapshot.swift in Sources */,
 				B69C15C45F87B46C50E12CF9 /* WidgetSync.swift in Sources */,
@@ -474,7 +490,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 3L8Q3U3WY3;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -488,7 +504,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -574,7 +590,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 3L8Q3U3WY3;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -594,7 +610,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -618,6 +634,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Pair;
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Pair records you saying a sentence so you can compare it with the original. Recordings stay on your phone and are deleted when you move on.";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Pair only uses speech recognition offline, on your iPhone, to show which words it understood in your recording. Your recordings are never sent to Apple or anyone else.";
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -642,6 +660,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Pair;
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Pair records you saying a sentence so you can compare it with the original. Recordings stay on your phone and are deleted when you move on.";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Pair only uses speech recognition offline, on your iPhone, to show which words it understood in your recording. Your recordings are never sent to Apple or anyone else.";
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
