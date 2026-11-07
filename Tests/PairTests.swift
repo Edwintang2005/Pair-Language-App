@@ -478,3 +478,193 @@ struct GrammarNotesTests {
         }
     }
 }
+
+@MainActor
+struct PracticeDrillTests {
+    private struct SeededRNG: RandomNumberGenerator {
+        var state: UInt64
+        mutating func next() -> UInt64 {
+            state = state &* 6364136223846793005 &+ 1442695040888963407
+            return state
+        }
+    }
+
+    private func word(_ content: ContentLibrary, _ id: String) throws -> Word {
+        try #require(content.words[id])
+    }
+
+    @Test func drillsDependOnTheLanguage() {
+        #expect(ChoiceDrill.drills(for: .german) == [.grammar, .plurals, .pastTense, .listening])
+        #expect(ChoiceDrill.drills(for: .chinese) == [.grammar, .listening])
+    }
+
+    // MARK: Plurals
+
+    @Test func umlauts() {
+        #expect(Plurals.umlauted("Haus") == "Häus")
+        #expect(Plurals.umlauted("Apfel") == "Äpfel")
+        #expect(Plurals.umlauted("Bahnhof") == "Bahnhöf")
+        #expect(Plurals.umlauted("Freund") == nil)
+        #expect(Plurals.umlauted("Tier") == nil)
+        #expect(Plurals.umlauted("Arbeit") == nil)
+        #expect(Plurals.umlauted("Apotheke") == nil)
+        #expect(Plurals.umlauted("Auto") == nil)
+        #expect(Plurals.umlauted("Mutter") == "Mütter")
+        #expect(Plurals.umlauted("Laden") == "Läden")
+    }
+
+    @Test func pluralQuestionsHaveFourDifferentOptions() throws {
+        let content = try ContentLibrary.loadBundled()
+        var rng = SeededRNG(state: 4)
+        let house = try #require(Plurals.question(for: try word(content, "de-haus"), using: &rng))
+        #expect(house.answer == "Häuser")
+        #expect(house.kind == .plurals)
+        #expect(Plurals.explanation(for: try word(content, "de-haus"))?.hasPrefix("It adds -er and an umlaut: die Häuser.") == true)
+        #expect(!Plurals.isEligible(try word(content, "de-wasser")))  // no plural
+
+        for word in content.words.values where Plurals.isEligible(word) {
+            let q = try #require(Plurals.question(for: word, using: &rng), "\(word.id)")
+            #expect(q.options.count == 4 && Set(q.options).count == 4, "\(word.id): \(q.options)")
+            #expect(q.options.contains(q.answer), "\(word.id)")
+            #expect(Plurals.explanation(for: word) != nil, "\(word.id)")
+        }
+    }
+
+    // MARK: Past tense
+
+    @Test func madeUpParticiplesAreTheClassicMistakes() throws {
+        let content = try ContentLibrary.loadBundled()
+        let cases = [
+            "de-gehen": "gegeht",          // irregular → regular -t
+            "de-machen": "gemachen",       // regular → -en
+            "de-aufstehen": "aufgesteht",  // ge- after the prefix
+            "de-verstehen": "geverstanden",  // no ge- → a stray one
+            "de-reparieren": "gerepariert",
+            "de-arbeiten": "gearbeiten",
+        ]
+        for (id, expected) in cases {
+            #expect(PastTense.madeUpParticiple(for: try word(content, id)) == expected, "\(id)")
+        }
+        #expect(PastTense.gePlacement(infinitive: "vergessen", participle: "vergessen") == .none)
+        #expect(PastTense.gePlacement(infinitive: "gewinnen", participle: "gewonnen") == .none)
+        #expect(PastTense.gePlacement(infinitive: "geben", participle: "gegeben") == .front)
+        #expect(PastTense.gePlacement(infinitive: "anrufen", participle: "angerufen") == .afterPrefix("an"))
+    }
+
+    @Test func pastTenseQuestionsMixHabenAndSein() throws {
+        let content = try ContentLibrary.loadBundled()
+        var rng = SeededRNG(state: 5)
+        let go = try #require(PastTense.question(for: try word(content, "de-gehen"), using: &rng))
+        #expect(go.answer == "ist gegangen")
+        #expect(Set(go.options) == ["ist gegangen", "hat gegangen", "ist gegeht", "hat gegeht"])
+        #expect(PastTense.explanation(for: try word(content, "de-gehen"))?.contains("sein") == true)
+        #expect(!PastTense.isEligible(try word(content, "de-koennen")))  // modal
+        #expect(!PastTense.isEligible(try word(content, "de-sein")))  // taught as "ist"
+
+        for word in content.words.values where PastTense.isEligible(word) {
+            let q = try #require(PastTense.question(for: word, using: &rng), "\(word.id)")
+            #expect(Set(q.options).count == 4, "\(word.id): \(q.options)")
+        }
+    }
+
+    // MARK: Listening
+
+    @Test func listeningOffersFourDifferentMeanings() throws {
+        let content = try ContentLibrary.loadBundled()
+        var rng = SeededRNG(state: 6)
+        let house = try word(content, "de-haus")
+        // Knowing only one word still works: the wrong answers come from the rest of the content.
+        let q = try #require(Listening.question(for: house, pool: [house], content: content, using: &rng))
+        #expect(q.answer == "house")
+        #expect(Set(q.options.map { $0.lowercased() }).count == 4)
+
+        let ids = content.sessions.prefix(3).flatMap(\.zh)
+        let round = ChoiceDrill.listening.questions(wordIDs: ids, content: content, using: &rng)
+        #expect(round.count == ids.count)
+        for question in round {
+            #expect(question.options.count == 4)
+            #expect(question.options.contains(question.answer))
+        }
+    }
+
+    // MARK: Sentences
+
+    @Test func pinyinSyllablesCountCharacters() {
+        #expect(SentenceBuilder.characterCount(forPinyin: "fángjiān") == 2)
+        #expect(SentenceBuilder.characterCount(forPinyin: "yìdiǎnr") == 3)
+        #expect(SentenceBuilder.characterCount(forPinyin: "zhèr") == 2)
+        #expect(SentenceBuilder.characterCount(forPinyin: "èr") == 1)
+        #expect(SentenceBuilder.characterCount(forPinyin: "Wǎn'ān") == 2)
+        #expect(SentenceBuilder.characterCount(forPinyin: "nǚ'ér") == 2)
+        #expect(SentenceBuilder.characterCount(forPinyin: "péngyou") == 2)
+    }
+
+    @Test func chineseSentencesSplitAlongThePinyin() throws {
+        let content = try ContentLibrary.loadBundled()
+        let room = try word(content, "zh-fang-jian")
+        let tiles = try #require(SentenceBuilder.tiles(for: room.examples[0], language: .chinese, content: content))
+        #expect(tiles.map(\.text) == ["我", "的", "房间", "很", "小"])
+        #expect(tiles.map(\.pinyin) == ["wǒ", "de", "fángjiān", "hěn", "xiǎo"])
+
+        let little = try word(content, "zh-yi-dian-er")
+        let littleTiles = try #require(SentenceBuilder.tiles(for: little.examples[0], language: .chinese, content: content))
+        #expect(littleTiles.map(\.text) == ["我", "会", "说", "一点儿", "中文"])
+        #expect(littleTiles.last?.pinyin == "Zhōngwén")
+    }
+
+    @Test func germanSentencesHideTheCapitalOnlyWhenItGivesTheGameAway() throws {
+        let content = try ContentLibrary.loadBundled()
+        let house = try word(content, "de-haus")
+        let tiles = try #require(SentenceBuilder.tiles(for: house.examples[0], language: .german, content: content))
+        #expect(tiles.map(\.text) == ["das", "Haus", "ist", "groß"])
+
+        var rng = SeededRNG(state: 7)
+        let puzzle = try #require(SentenceBuilder.puzzle(for: house, content: content, using: &rng))
+        #expect(!puzzle.isCorrect(puzzle.shuffled))
+        #expect(puzzle.isCorrect(puzzle.tiles))
+    }
+
+    @Test func almostEverySentenceCanBeBuilt() throws {
+        let content = try ContentLibrary.loadBundled()
+        for language in Language.allCases {
+            let words = content.words.values.filter { $0.language == language }
+            let usable = words.filter { SentenceBuilder.isEligible($0, content: content) }
+            // Only two-word sentences ("Danke schön!") are left out.
+            #expect(Double(usable.count) / Double(words.count) > 0.9, "\(language): \(usable.count) of \(words.count)")
+            for word in usable {
+                let tiles = try #require(SentenceBuilder.tiles(for: word.examples[0], language: language, content: content))
+                let joined = tiles.map(\.text).joined(separator: language == .german ? " " : "")
+                let letters = { (s: String) in s.filter { $0.isLetter || $0.isNumber }.lowercased() }
+                #expect(letters(joined) == letters(word.examples[0].text), "\(word.id)")
+            }
+        }
+    }
+}
+
+@MainActor
+struct PracticeDrillEdgeCaseTests {
+    @Test func edgeCases() throws {
+        let content = try ContentLibrary.loadBundled()
+        let lose = try #require(content.words["de-verlieren"])
+        #expect(PastTense.explanation(for: lose)?.contains("-ieren") == false)
+        let stay = try #require(content.words["de-bleiben"])
+        #expect(PastTense.explanation(for: stay)?.contains("exception") == true)
+
+        #expect(Plurals.endsInUnstressedSyllable("vogel"))
+        #expect(!Plurals.endsInUnstressedSyllable("spiel"))
+        #expect(!Plurals.endsInUnstressedSyllable("meer"))
+        var rng = SystemRandomNumberGenerator()
+        let wordWord = try #require(content.words["de-wort"])
+        for _ in 0..<20 {
+            let question = try #require(Plurals.question(for: wordWord, using: &rng))
+            #expect(!question.options.contains("Worte"))
+        }
+
+        // "Kannst du …?" starts lower-case: kannst is never a noun.
+        for word in content.words.values where word.language == .german {
+            guard let first = SentenceBuilder.tiles(for: word.examples[0], language: .german, content: content)?.first?.text
+            else { continue }
+            #expect(!["Kannst", "Können", "Woher", "Mach", "Zuerst"].contains(first), "\(word.id)")
+        }
+    }
+}

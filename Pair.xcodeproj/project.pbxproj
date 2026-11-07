@@ -8,13 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		02740F32771D399E4EC89C71 /* words-de.json in Resources */ = {isa = PBXBuildFile; fileRef = 21A7883C15514C54239250D1 /* words-de.json */; };
+		0C418B901AFD7BE4D89A7FF2 /* ChoiceDrillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3611F55CF000A87E14A5307F /* ChoiceDrillView.swift */; };
 		0EC9291721FBB262135377BE /* PairTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A8B9C0905C1B6F78A049D3 /* PairTests.swift */; };
 		11B6BB4CCB856B7BEAE4268E /* sessions.json in Resources */ = {isa = PBXBuildFile; fileRef = 652A48479BC812F0E57551B0 /* sessions.json */; };
+		21F26E46D257F51F853F8C5C /* PracticeDrills.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD725FB43175D468EA0F7EE /* PracticeDrills.swift */; };
 		247B73F781BD177A6BD80C8B /* PairWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6ADE1B6A87FED228480B47C /* PairWidget.swift */; };
 		29AE260488FA16F97C98CE34 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2A386643B9DDFD51E910CD /* SettingsView.swift */; };
 		33E4B429092DE85CE3A6EC1A /* WidgetSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3655F45D3F60272CAC6213 /* WidgetSnapshot.swift */; };
 		365F76522408817178E49E1B /* DrillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FF7D80DFA3F2C41670A2BB /* DrillView.swift */; };
-		4AC6D9036BFA7AC7FBC01E15 /* GrammarDrillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C60F0E91FFF939ADD1547C8 /* GrammarDrillView.swift */; };
+		369CCCBFD94FAFD0549446FF /* SentenceDrillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB870D64CE63CA9AF0610E39 /* SentenceDrillView.swift */; };
 		5B06C457FFB6A2BF73BE07D2 /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4586E464D1A8BC85A163397F /* LibraryView.swift */; };
 		60E48CD82963D678820BAA87 /* PairApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB37A3EA96D7163711F5DEE /* PairApp.swift */; };
 		63D0A484043C09CD8A389335 /* GrammarDrill.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BAEFB63D5D5A17F7708CBF /* GrammarDrill.swift */; };
@@ -74,12 +76,13 @@
 		0DB85BCA6889A66632DE96BC /* ProgressStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressStore.swift; sourceTree = "<group>"; };
 		129A384F5911B9EB52EAB545 /* Scheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scheduler.swift; sourceTree = "<group>"; };
 		1AB37A3EA96D7163711F5DEE /* PairApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairApp.swift; sourceTree = "<group>"; };
+		1BD725FB43175D468EA0F7EE /* PracticeDrills.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeDrills.swift; sourceTree = "<group>"; };
 		2014A7651F7E34A48ADA638A /* ReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewView.swift; sourceTree = "<group>"; };
 		21A7883C15514C54239250D1 /* words-de.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "words-de.json"; sourceTree = "<group>"; };
 		267D28D0AD9DA9ABE6F6C866 /* words-zh.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "words-zh.json"; sourceTree = "<group>"; };
+		3611F55CF000A87E14A5307F /* ChoiceDrillView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceDrillView.swift; sourceTree = "<group>"; };
 		4586E464D1A8BC85A163397F /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
 		4ED37B72D5E16C2A7C31560E /* Pair.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Pair.entitlements; sourceTree = "<group>"; };
-		5C60F0E91FFF939ADD1547C8 /* GrammarDrillView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrammarDrillView.swift; sourceTree = "<group>"; };
 		5D423A42224014480A7A96A2 /* Reminders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reminders.swift; sourceTree = "<group>"; };
 		64FF7D80DFA3F2C41670A2BB /* DrillView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrillView.swift; sourceTree = "<group>"; };
 		652A48479BC812F0E57551B0 /* sessions.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = sessions.json; sourceTree = "<group>"; };
@@ -101,6 +104,7 @@
 		E35B9498016F5EDB11894842 /* PairTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = PairTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E47A02A2EA7B36E28484F5FC /* Components.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Components.swift; sourceTree = "<group>"; };
 		E8BAEFB63D5D5A17F7708CBF /* GrammarDrill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrammarDrill.swift; sourceTree = "<group>"; };
+		EB870D64CE63CA9AF0610E39 /* SentenceDrillView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentenceDrillView.swift; sourceTree = "<group>"; };
 		F18566666E6C4ADA9A3F1EF3 /* Speaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Speaker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -124,13 +128,14 @@
 		491B1B5E2199FFAA2DF46600 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				3611F55CF000A87E14A5307F /* ChoiceDrillView.swift */,
 				E47A02A2EA7B36E28484F5FC /* Components.swift */,
 				64FF7D80DFA3F2C41670A2BB /* DrillView.swift */,
-				5C60F0E91FFF939ADD1547C8 /* GrammarDrillView.swift */,
 				4586E464D1A8BC85A163397F /* LibraryView.swift */,
 				8B63AA68C9712DDBEB24D546 /* OnboardingView.swift */,
 				74819A2D6214AD022F21EBE4 /* PracticeSetupView.swift */,
 				2014A7651F7E34A48ADA638A /* ReviewView.swift */,
+				EB870D64CE63CA9AF0610E39 /* SentenceDrillView.swift */,
 				6D2A386643B9DDFD51E910CD /* SettingsView.swift */,
 				965BC46B66A2843A16D7B2C7 /* TodayView.swift */,
 				A2C27E9DC5CBC69B3818DAB0 /* WordDetailView.swift */,
@@ -186,6 +191,7 @@
 			children = (
 				690C505298FEF0F1B9F24335 /* Content.swift */,
 				E8BAEFB63D5D5A17F7708CBF /* GrammarDrill.swift */,
+				1BD725FB43175D468EA0F7EE /* PracticeDrills.swift */,
 				0DB85BCA6889A66632DE96BC /* ProgressStore.swift */,
 				5D423A42224014480A7A96A2 /* Reminders.swift */,
 				129A384F5911B9EB52EAB545 /* Scheduler.swift */,
@@ -347,19 +353,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C418B901AFD7BE4D89A7FF2 /* ChoiceDrillView.swift in Sources */,
 				EE66EDAB3EAD0F253C789789 /* Components.swift in Sources */,
 				95A286391A6F4C864FA49477 /* Content.swift in Sources */,
 				365F76522408817178E49E1B /* DrillView.swift in Sources */,
 				63D0A484043C09CD8A389335 /* GrammarDrill.swift in Sources */,
-				4AC6D9036BFA7AC7FBC01E15 /* GrammarDrillView.swift in Sources */,
 				5B06C457FFB6A2BF73BE07D2 /* LibraryView.swift in Sources */,
 				EE5C8FA0FABE26B0FB96E62D /* OnboardingView.swift in Sources */,
 				60E48CD82963D678820BAA87 /* PairApp.swift in Sources */,
+				21F26E46D257F51F853F8C5C /* PracticeDrills.swift in Sources */,
 				70174DF68A42C29936DCF95C /* PracticeSetupView.swift in Sources */,
 				9254B1B07F14DA22C0EE77A5 /* ProgressStore.swift in Sources */,
 				A3890C56ADF182ED123A43D9 /* Reminders.swift in Sources */,
 				D7E9156989D17EFE2216E21A /* ReviewView.swift in Sources */,
 				918C6599313956CC4E1FA143 /* Scheduler.swift in Sources */,
+				369CCCBFD94FAFD0549446FF /* SentenceDrillView.swift in Sources */,
 				29AE260488FA16F97C98CE34 /* SettingsView.swift in Sources */,
 				A84BE82FBC21613BDFCDF4D2 /* Speaker.swift in Sources */,
 				EDEC23584C5D128D9D1D09CD /* TodayView.swift in Sources */,

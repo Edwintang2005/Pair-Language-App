@@ -7,6 +7,7 @@ Exits non-zero if any error is found. Warnings don't fail the run.
 import json
 import re
 import sys
+import unicodedata
 from pathlib import Path
 
 POS = {"noun", "verb", "adjective", "adverb", "pronoun", "interjection", "phrase", "particle",
@@ -91,10 +92,50 @@ def check_de(w):
         err(f"{wid}: 'verb' block on a non-verb")
 
 
+PUNCTUATION = ",.?!:;\"'„“”‚‘’«»…–—，。？！、：；“”‘’《》（）"
+
+
+def is_vowel(c):
+    return unicodedata.normalize("NFD", c)[0].lower() in "aeiou"
+
+
+def pinyin_char_count(word):
+    """Characters a pinyin word stands for: one per syllable (runs of vowels), plus 儿 for erhua.
+    Mirrors SentenceBuilder.characterCount in the app."""
+    count = 0
+    for part in word.split("'"):
+        prev = False
+        for c in part:
+            v = is_vowel(c)
+            if v and not prev:
+                count += 1
+            prev = v
+    letters = word.lower()
+    if len(letters) >= 2 and letters[-1] == "r":
+        before = letters[-2]
+        if not is_vowel(before) or unicodedata.normalize("NFD", before)[0] != "e":
+            count += 1
+        elif len(letters) >= 3 and letters[-3] != "'" and not is_vowel(letters[-3]):
+            count += 1
+    return count
+
+
+def pinyin_lines_up(example):
+    """The "Build the sentence" drill cuts Chinese sentences where the pinyin has spaces, so the
+    pinyin's syllables have to match the characters one for one."""
+    text = [c for c in example.get("text", "") if c not in PUNCTUATION and not c.isspace()]
+    words = [t.strip(PUNCTUATION) for t in example.get("pinyin", "").split()]
+    return sum(pinyin_char_count(t) for t in words if t) == len(text)
+
+
 def check_zh(w):
     wid = check_common(w, "zh")
     if not appears_in_examples(w, "zh"):
         err(f"{wid}: '{w.get('word')}' doesn't appear in its example sentence")
+    for ex in w.get("examples", []):
+        if ex.get("pinyin") and not pinyin_lines_up(ex):
+            err(f"{wid}: example pinyin doesn't line up with the characters (one syllable per character, "
+                f"apostrophes between syllables that could run together: Wǎn'ān)")
     if not w.get("pinyin"):
         err(f"{wid}: missing 'pinyin'")
     elif re.search(r"\d", w["pinyin"]):

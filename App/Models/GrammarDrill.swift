@@ -102,9 +102,9 @@ enum MeasureWords {
     }
 }
 
-/// One multiple-choice question in the grammar drill:
+/// One multiple-choice question in a tap-the-answer drill (see `ChoiceDrill`):
 /// "Haus: der, die or das?" or "车: which measure word?"
-struct GrammarQuestion: Identifiable, Hashable {
+struct ChoiceQuestion: Identifiable, Hashable {
     let id = UUID()
     let word: Word
     /// The buttons, in order.
@@ -113,6 +113,8 @@ struct GrammarQuestion: Identifiable, Hashable {
     let answer: String
     /// Every option that counts as right (the usual answer plus any alternatives).
     let accepted: Set<String>
+    /// Which drill asked it.
+    var kind: ChoiceDrill = .grammar
 
     func isCorrect(_ option: String) -> Bool { accepted.contains(option) }
 }
@@ -140,11 +142,11 @@ enum GrammarDrill {
         }
     }
 
-    static func question<G: RandomNumberGenerator>(for word: Word, using rng: inout G) -> GrammarQuestion? {
+    static func question<G: RandomNumberGenerator>(for word: Word, using rng: inout G) -> ChoiceQuestion? {
         guard isEligible(word) else { return nil }
         if let noun = word.noun {
             // Always in the same order, so your thumb learns where each one is.
-            return GrammarQuestion(word: word, options: ["der", "die", "das"],
+            return ChoiceQuestion(word: word, options: ["der", "die", "das"],
                                    answer: noun.article, accepted: [noun.article])
         }
         let answer = word.measureWord?.word ?? noMeasureWord
@@ -156,12 +158,12 @@ enum GrammarDrill {
         choices += wrong.dropFirst().shuffled(using: &rng).prefix(4 - choices.count)
         // "No measure word" is always last, so it's a real choice on every question.
         let options = choices.shuffled(using: &rng) + [noMeasureWord]
-        return GrammarQuestion(word: word, options: options, answer: answer, accepted: accepted)
+        return ChoiceQuestion(word: word, options: options, answer: answer, accepted: accepted)
     }
 
     /// A round of up to `limit` questions from these words, in random order.
     static func questions<G: RandomNumberGenerator>(wordIDs: [String], content: ContentLibrary,
-                                                    limit: Int = 20, using rng: inout G) -> [GrammarQuestion] {
+                                                    limit: Int = 20, using rng: inout G) -> [ChoiceQuestion] {
         wordIDs
             .compactMap { content.words[$0] }
             .filter(isEligible)
@@ -170,7 +172,7 @@ enum GrammarDrill {
             .compactMap { question(for: $0, using: &rng) }
     }
 
-    static func questions(wordIDs: [String], content: ContentLibrary, limit: Int = 20) -> [GrammarQuestion] {
+    static func questions(wordIDs: [String], content: ContentLibrary, limit: Int = 20) -> [ChoiceQuestion] {
         var rng = SystemRandomNumberGenerator()
         return questions(wordIDs: wordIDs, content: content, limit: limit, using: &rng)
     }

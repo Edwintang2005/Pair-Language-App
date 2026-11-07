@@ -13,7 +13,8 @@ struct ReviewView: View {
     @State private var round: Round?
     @State private var quizzing = false
     @State private var testingSelf = false
-    @State private var drillingGrammar = false
+    @State private var choiceDrill: ChoiceDrill?
+    @State private var buildingSentences = false
 
     var body: some View {
         NavigationStack {
@@ -38,9 +39,14 @@ struct ReviewView: View {
                 DrillView(title: "Quiz your partner", kind: .partnerQuiz, cards: quizCards)
             }
         }
-        .sheet(isPresented: $drillingGrammar) {
+        .sheet(item: $choiceDrill) { drill in
             if let learning = progress.learning {
-                GrammarDrillView(language: learning, wordIDs: progress.knownWordIDs)
+                ChoiceDrillView(drill: drill, language: learning, wordIDs: progress.knownWordIDs)
+            }
+        }
+        .sheet(isPresented: $buildingSentences) {
+            if let learning = progress.learning {
+                SentenceDrillView(language: learning, wordIDs: progress.knownWordIDs)
             }
         }
         .sheet(isPresented: $testingSelf) {
@@ -163,20 +169,47 @@ struct ReviewView: View {
             tiles.append(.init(id: "self", icon: .symbol("rectangle.stack.fill"), title: "Test yourself",
                                subtitle: "Flashcards by session") { testingSelf = true })
         }
-        let nouns = progress.knownWordIDs.filter { content.words[$0].map(GrammarDrill.isEligible) ?? false }.count
-        if nouns > 0 {
-            let icon: PracticeTile.Icon = learning == .german
-                ? .articles
-                : .text("个张条")
-            tiles.append(.init(id: "grammar", icon: icon, title: GrammarDrill.drillTitle(for: learning),
-                               subtitle: "\(nouns) noun\(nouns == 1 ? "" : "s")") { drillingGrammar = true })
+        let known = progress.knownWordIDs
+        func addDrill(_ drill: ChoiceDrill, minimum: Int = 1) {
+            let count = drill.eligibleCount(in: known, content: content)
+            guard count >= minimum else { return }
+            tiles.append(.init(id: drill.id, icon: icon(for: drill, learning: learning), title: drill.title(for: learning),
+                               subtitle: subtitle(for: drill, count: count)) { choiceDrill = drill })
         }
+        for drill in ChoiceDrill.drills(for: learning) where drill != .listening {
+            addDrill(drill)
+        }
+        let sentences = SentenceBuilder.eligibleCount(in: known, content: content)
+        if sentences > 0 {
+            tiles.append(.init(id: "sentences", icon: .symbol("text.word.spacing"), title: "Build the sentence",
+                               subtitle: "\(sentences) sentence\(sentences == 1 ? "" : "s")") { buildingSentences = true })
+        }
+        // Listening needs a few words to choose between.
+        addDrill(.listening, minimum: 4)
         let partnerCount = progress.partnerWordIDs(in: content).count
         if partnerCount > 0 {
             tiles.append(.init(id: "quiz", icon: .symbol("person.2.fill"), title: "Quiz your partner",
                                subtitle: "\(partnerCount) \(learning.other.name) words") { quizzing = true })
         }
         return tiles
+    }
+
+    private func icon(for drill: ChoiceDrill, learning: Language) -> PracticeTile.Icon {
+        switch drill {
+        case .grammar: learning == .german ? .articles : .text("个张条")
+        case .plurals: .text("-e -er -n")
+        case .pastTense: .text("hat · ist")
+        case .listening: .symbol("ear")
+        }
+    }
+
+    private func subtitle(for drill: ChoiceDrill, count: Int) -> String {
+        let plural = count == 1 ? "" : "s"
+        switch drill {
+        case .grammar, .plurals: return "\(count) noun\(plural)"
+        case .pastTense: return "\(count) verb\(plural)"
+        case .listening: return "\(count) word\(plural)"
+        }
     }
 
     private var quizCards: [DrillCard] {

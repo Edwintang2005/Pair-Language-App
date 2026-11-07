@@ -1,19 +1,20 @@
 import SwiftUI
 
-/// A quick tap-the-answer round: der/die/das for German nouns, the measure word for Chinese ones.
+/// A quick tap-the-answer round: der/die/das or measure words, plurals, the past tense, or listening.
 /// Marked by the app, and never touches the review schedule.
-struct GrammarDrillView: View {
+struct ChoiceDrillView: View {
+    let drill: ChoiceDrill
     let language: Language
     let wordIDs: [String]
 
     @Environment(ContentLibrary.self) private var content
     @Environment(\.dismiss) private var dismiss
 
-    @State private var queue: [GrammarQuestion] = []
+    @State private var queue: [ChoiceQuestion] = []
     @State private var total = 0
     @State private var picked: String?
     @State private var correct = 0
-    @State private var missed: [Word] = []
+    @State private var missed: [ChoiceQuestion] = []
     @State private var answers: [Bool] = []
     @State private var started = false
 
@@ -30,7 +31,7 @@ struct GrammarDrillView: View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color(.systemGroupedBackground))
-            .navigationTitle(GrammarDrill.drillTitle(for: language))
+            .navigationTitle(drill.title(for: language))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
@@ -45,7 +46,7 @@ struct GrammarDrillView: View {
 
     // MARK: Question
 
-    private func questionView(_ question: GrammarQuestion) -> some View {
+    private func questionView(_ question: ChoiceQuestion) -> some View {
         let word = question.word
         return VStack(spacing: 16) {
             HStack(spacing: 12) {
@@ -60,20 +61,17 @@ struct GrammarDrillView: View {
             GeometryReader { geo in
             ScrollView {
                 VStack(spacing: 14) {
-                    Text(prompt)
+                    Text(drill.prompt(for: language))
                         .font(.headline)
                         .foregroundStyle(.secondary)
                     if picked == nil {
-                        // The bare word: no coloured article, no measure word.
-                        Text(word.word)
-                            .font(.system(size: word.language == .chinese ? 72 : 44, weight: .bold))
-                        if let pinyin = word.pinyin {
-                            Text(pinyin).font(.title3).foregroundStyle(.secondary)
-                        }
+                        unansweredHeadline(word)
                     } else {
-                        answerHeadline(word)
+                        answerHeadline(question)
                     }
-                    Text(word.gloss).font(.title3).foregroundStyle(.secondary)
+                    if picked != nil || drill != .listening {
+                        Text(word.gloss).font(.title3).foregroundStyle(.secondary)
+                    }
 
                     if let picked {
                         feedback(question, picked: picked)
@@ -100,27 +98,74 @@ struct GrammarDrillView: View {
             }
         }
         .padding(16)
-    }
-
-    private var prompt: String {
-        language == .german ? "der, die or das?" : "Which measure word?"
-    }
-
-    @ViewBuilder
-    private func answerHeadline(_ word: Word) -> some View {
-        if word.noun != nil {
-            HeadwordView(word: word, style: .flashcard)
-            SpeakButton(word: word, size: .title2)
-        } else if let phrase = MeasureWords.countingPhrase(for: word) {
-            VStack(spacing: 2) {
-                Text(phrase.text).font(.system(size: 56, weight: .bold))
-                Text(phrase.pinyin).font(.title3).foregroundStyle(.secondary)
-            }
-            SpeakButton(text: phrase.text, language: .chinese, size: .title2)
+        .task(id: question.id) {
+            // Listening plays each word as it comes up.
+            if drill == .listening { say(word) }
         }
     }
 
-    private func feedback(_ question: GrammarQuestion, picked: String) -> some View {
+    @ViewBuilder
+    private func unansweredHeadline(_ word: Word) -> some View {
+        switch drill {
+        case .grammar:
+            // The bare word: no coloured article, no measure word.
+            Text(word.word)
+                .font(.system(size: word.language == .chinese ? 72 : 44, weight: .bold))
+            if let pinyin = word.pinyin {
+                Text(pinyin).font(.title3).foregroundStyle(.secondary)
+            }
+        case .plurals:
+            HeadwordView(word: word, style: .flashcard)
+            Text("die …").font(.title).foregroundStyle(.secondary)
+        case .pastTense:
+            Text(word.word).font(.system(size: 44, weight: .bold))
+            Text("er …").font(.title).foregroundStyle(.secondary)
+        case .listening:
+            Button {
+                say(word)
+            } label: {
+                Image(systemName: "speaker.wave.3.fill")
+                    .font(.system(size: 44))
+                    .frame(width: 112, height: 112)
+                    .background(Color.accentColor.opacity(0.12), in: .circle)
+            }
+            .buttonStyle(.plain)
+            .foregroundStyle(.tint)
+            .accessibilityLabel("Play the word again")
+            Text("Tap to hear it again").font(.subheadline).foregroundStyle(.secondary)
+        }
+    }
+
+    @ViewBuilder
+    private func answerHeadline(_ question: ChoiceQuestion) -> some View {
+        let word = question.word
+        switch drill {
+        case .grammar:
+            if word.noun != nil {
+                HeadwordView(word: word, style: .flashcard)
+                SpeakButton(word: word, size: .title2)
+            } else if let phrase = MeasureWords.countingPhrase(for: word) {
+                VStack(spacing: 2) {
+                    Text(phrase.text).font(.system(size: 56, weight: .bold))
+                    Text(phrase.pinyin).font(.title3).foregroundStyle(.secondary)
+                }
+                SpeakButton(text: phrase.text, language: .chinese, size: .title2)
+            }
+        case .plurals:
+            HeadwordView(word: word, style: .medium)
+            Text("die \(question.answer)").font(.system(size: 40, weight: .bold))
+            SpeakButton(text: "die \(question.answer)", language: .german, size: .title2)
+        case .pastTense:
+            Text(word.word).font(.title3.weight(.semibold))
+            Text("er \(question.answer)").font(.system(size: 36, weight: .bold))
+            SpeakButton(text: "er \(question.answer)", language: .german, size: .title2)
+        case .listening:
+            HeadwordView(word: word, style: .flashcard)
+            SpeakButton(word: word, size: .title2)
+        }
+    }
+
+    private func feedback(_ question: ChoiceQuestion, picked: String) -> some View {
         let right = question.isCorrect(picked)
         return VStack(spacing: 10) {
             Label(verdict(question, picked: picked),
@@ -128,7 +173,12 @@ struct GrammarDrillView: View {
                 .font(.headline)
                 .foregroundStyle(right ? .green : .red)
 
-            if let note = explanation(for: question.word) {
+            if drill == .listening, let example = question.word.examples.first {
+                ExampleView(example: example, language: question.word.language)
+                    .multilineTextAlignment(.leading)
+                    .padding(12)
+                    .background(Color(.tertiarySystemGroupedBackground), in: .rect(cornerRadius: 12))
+            } else if let note = explanation(for: question.word) {
                 Text(note)
                     .font(.subheadline)
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -140,13 +190,22 @@ struct GrammarDrillView: View {
         .padding(.top, 6)
     }
 
-    private func verdict(_ question: GrammarQuestion, picked: String) -> String {
+    private func verdict(_ question: ChoiceQuestion, picked: String) -> String {
         if picked == question.answer { return "Right" }
         if question.isCorrect(picked) { return "Also right. \(label(question.answer)) is the usual one." }
-        return "It's \(label(question.answer))"
+        return drill == .listening ? "It means \"\(question.answer)\"" : "It's \(label(question.answer))"
     }
 
     private func explanation(for word: Word) -> String? {
+        switch drill {
+        case .grammar: grammarExplanation(for: word)
+        case .plurals: Plurals.explanation(for: word)
+        case .pastTense: PastTense.explanation(for: word)
+        case .listening: nil
+        }
+    }
+
+    private func grammarExplanation(for word: Word) -> String? {
         if word.noun != nil { return GenderHints.hint(for: word) }
         if word.countsDirectly {
             return "\(word.word) takes no measure word: the number goes straight in front."
@@ -162,28 +221,44 @@ struct GrammarDrillView: View {
         return lines.isEmpty ? nil : lines.joined(separator: " ")
     }
 
-    private func optionButtons(_ question: GrammarQuestion) -> some View {
-        let words = question.options.filter { $0 != GrammarDrill.noMeasureWord }
-        let columns = Array(repeating: GridItem(.flexible(), spacing: 10), count: words.count)
-        return VStack(spacing: 10) {
-            LazyVGrid(columns: columns, spacing: 10) {
-                ForEach(words, id: \.self) { option in
-                    optionButton(option, in: question, font: .title2.weight(.semibold))
+    // MARK: Options
+
+    @ViewBuilder
+    private func optionButtons(_ question: ChoiceQuestion) -> some View {
+        if drill == .grammar {
+            let words = question.options.filter { $0 != GrammarDrill.noMeasureWord }
+            let columns = Array(repeating: GridItem(.flexible(), spacing: 10), count: words.count)
+            VStack(spacing: 10) {
+                LazyVGrid(columns: columns, spacing: 10) {
+                    ForEach(words, id: \.self) { option in
+                        optionButton(option, in: question, font: .title2.weight(.semibold))
+                    }
+                }
+                if question.options.contains(GrammarDrill.noMeasureWord) {
+                    optionButton(GrammarDrill.noMeasureWord, in: question, font: .headline)
                 }
             }
-            if question.options.contains(GrammarDrill.noMeasureWord) {
-                optionButton(GrammarDrill.noMeasureWord, in: question, font: .headline)
+        } else {
+            // Longer answers: two by two.
+            LazyVGrid(columns: [GridItem(.flexible(), spacing: 10), GridItem(.flexible(), spacing: 10)],
+                      spacing: 10) {
+                ForEach(question.options, id: \.self) { option in
+                    optionButton(option, in: question,
+                                 font: drill == .plurals ? .title3.weight(.semibold) : .headline)
+                }
             }
         }
     }
 
-    private func optionButton(_ option: String, in question: GrammarQuestion, font: Font) -> some View {
+    private func optionButton(_ option: String, in question: ChoiceQuestion, font: Font) -> some View {
         let outline = outlineColor(for: option, in: question)
         return Button {
             answer(question, with: option)
         } label: {
             Text(label(option))
                 .font(font)
+                .lineLimit(2)
+                .minimumScaleFactor(0.8)
                 .frame(maxWidth: .infinity, minHeight: 44)
                 .padding(.vertical, 6)
         }
@@ -199,7 +274,7 @@ struct GrammarDrillView: View {
     }
 
     /// After answering: green for the right answer (and your pick, if it's also right), red for a wrong pick.
-    private func outlineColor(for option: String, in question: GrammarQuestion) -> Color? {
+    private func outlineColor(for option: String, in question: ChoiceQuestion) -> Color? {
         guard let picked else { return nil }
         if option == question.answer || (option == picked && question.isCorrect(option)) { return .green }
         if option == picked { return .red }
@@ -210,8 +285,8 @@ struct GrammarDrillView: View {
         option == GrammarDrill.noMeasureWord ? "No measure word" : option
     }
 
-    private func tint(for option: String, in question: GrammarQuestion) -> Color {
-        guard question.word.language == .german else { return .accentColor }
+    private func tint(for option: String, in question: ChoiceQuestion) -> Color {
+        guard drill == .grammar, question.word.language == .german else { return .accentColor }
         switch option {
         case "der": return .gender("m")
         case "die": return .gender("f")
@@ -234,16 +309,11 @@ struct GrammarDrillView: View {
 
                 if !missed.isEmpty {
                     VStack(spacing: 10) {
-                        ForEach(missed) { word in
+                        ForEach(missed) { question in
                             HStack {
                                 VStack(alignment: .leading, spacing: 2) {
-                                    if word.noun != nil {
-                                        HeadwordView(word: word, style: .medium)
-                                    } else if let phrase = MeasureWords.countingPhrase(for: word) {
-                                        Text(phrase.text).font(.system(size: 26, weight: .semibold))
-                                        Text(phrase.pinyin).font(.subheadline).foregroundStyle(.secondary)
-                                    }
-                                    Text(word.gloss).font(.subheadline).foregroundStyle(.secondary)
+                                    missedHeadline(question)
+                                    Text(question.word.gloss).font(.subheadline).foregroundStyle(.secondary)
                                 }
                                 Spacer()
                             }
@@ -252,7 +322,7 @@ struct GrammarDrillView: View {
                     }
 
                     Button {
-                        start(with: missed.map(\.id))
+                        start(with: missed.map(\.word.id))
                     } label: {
                         Text("Try the missed ones again").font(.headline).frame(maxWidth: .infinity).padding(.vertical, 6)
                     }
@@ -266,10 +336,30 @@ struct GrammarDrillView: View {
         }
     }
 
+    @ViewBuilder
+    private func missedHeadline(_ question: ChoiceQuestion) -> some View {
+        let word = question.word
+        switch drill {
+        case .grammar:
+            if word.noun != nil {
+                HeadwordView(word: word, style: .medium)
+            } else if let phrase = MeasureWords.countingPhrase(for: word) {
+                Text(phrase.text).font(.system(size: 26, weight: .semibold))
+                Text(phrase.pinyin).font(.subheadline).foregroundStyle(.secondary)
+            }
+        case .plurals:
+            Text("\(word.headword) → die \(question.answer)").font(.title3.weight(.semibold))
+        case .pastTense:
+            Text("\(word.word) → er \(question.answer)").font(.title3.weight(.semibold))
+        case .listening:
+            HeadwordView(word: word, style: .medium)
+        }
+    }
+
     // MARK: Actions
 
     private func start(with ids: [String]) {
-        queue = GrammarDrill.questions(wordIDs: ids, content: content)
+        queue = drill.questions(wordIDs: ids, content: content)
         total = queue.count
         correct = 0
         missed = []
@@ -278,7 +368,7 @@ struct GrammarDrillView: View {
         started = true
     }
 
-    private func answer(_ question: GrammarQuestion, with option: String) {
+    private func answer(_ question: ChoiceQuestion, with option: String) {
         withAnimation(.snappy) {
             picked = option
             answers.append(question.isCorrect(option))
@@ -286,7 +376,7 @@ struct GrammarDrillView: View {
         if question.isCorrect(option) {
             correct += 1
         } else {
-            missed.append(question.word)
+            missed.append(question)
         }
     }
 
@@ -295,5 +385,9 @@ struct GrammarDrillView: View {
             queue.removeFirst()
             picked = nil
         }
+    }
+
+    private func say(_ word: Word) {
+        Speaker.shared.say(word.headword, in: word.language)
     }
 }
