@@ -155,14 +155,34 @@ nonisolated enum SpeechCheck {
         case heard(String)
         /// It ran but caught nothing.
         case nothing
-        /// This iPhone can't recognise the language offline, or permission was refused.
-        case unavailable
+        /// It can't run yet; `Availability` says why and what to do about it.
+        case unavailable(Availability)
     }
 
-    /// Whether this iPhone can recognise the language (e.g. "zh-CN") without a network connection.
-    static func isAvailable(locale: String) -> Bool {
-        guard let recognizer = SFSpeechRecognizer(locale: Locale(identifier: locale)) else { return false }
-        return recognizer.supportsOnDeviceRecognition
+    /// Whether the check can run, and if not, why.
+    enum Availability: Equatable {
+        case ready
+        /// Speech recognition is turned off for Pair (or restricted by Screen Time).
+        case needsPermission
+        /// The iPhone hasn't got this language for offline recognition yet. Adding the language's
+        /// keyboard with Dictation on downloads it; some older iPhones can't do it at all.
+        case needsDownload
+        /// iOS doesn't recognise this language at all.
+        case unsupported
+        /// Recognition is briefly unavailable (e.g. still setting up); trying again usually works.
+        case busy
+    }
+
+    /// `locale` is the language's speech code, e.g. "zh-CN". Doesn't ask for anything: permission
+    /// that hasn't been asked for yet counts as ready, since the check asks the first time.
+    static func availability(locale: String) -> Availability {
+        guard let recognizer = SFSpeechRecognizer(locale: Locale(identifier: locale)) else { return .unsupported }
+        guard recognizer.supportsOnDeviceRecognition else { return .needsDownload }
+        switch SFSpeechRecognizer.authorizationStatus() {
+        case .denied, .restricted: return .needsPermission
+        default: break
+        }
+        return recognizer.isAvailable ? .ready : .busy
     }
 
     static func authorize() async -> Bool {
@@ -180,9 +200,12 @@ nonisolated enum SpeechCheck {
     /// `locale` is the language's speech code, e.g. "zh-CN".
     static func check(_ url: URL, locale: String) async -> Outcome {
         // Only ask for permission when it can actually be used: offline recognition for this language.
-        guard let recognizer = SFSpeechRecognizer(locale: Locale(identifier: locale)),
-              recognizer.supportsOnDeviceRecognition, recognizer.isAvailable,
-              await authorize() else { return .unavailable }
+        let availability = availability(locale: locale)
+        guard availability == .ready else { return .unavailable(availability) }
+        guard await authorize() else { return .unavailable(.needsPermission) }
+        guard let recognizer = SFSpeechRecognizer(locale: Locale(identifier: locale)) else {
+            return .unavailable(.unsupported)
+        }
         let request = SFSpeechURLRecognitionRequest(url: url)
         request.requiresOnDeviceRecognition = true
         request.shouldReportPartialResults = false

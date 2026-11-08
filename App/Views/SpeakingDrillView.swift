@@ -82,6 +82,7 @@ struct SpeakingCard: View {
 
     @AppStorage("checksSpeaking") private var checksSpeaking = true
     @Environment(\.openURL) private var openURL
+    @Environment(\.scenePhase) private var scenePhase
 
     @State private var recorder = VoiceRecorder()
     @State private var check: SpeechCheck.Outcome?
@@ -125,6 +126,15 @@ struct SpeakingCard: View {
             Speaker.shared.say(item.example.text, in: language)
         }
         .onDisappear { recorder.discard() }
+        .onChange(of: recorder.state) { old, new in
+            guard old == .recording, case .recorded = new else { return }
+            attempts += 1
+            Task { await afterRecording() }
+        }
+        // Back from the Settings app after following the setup steps: try the check again.
+        .onChange(of: scenePhase) { _, phase in
+            if phase == .active, case .unavailable = check { recheck() }
+        }
     }
 
     // MARK: The sentence
@@ -194,9 +204,9 @@ struct SpeakingCard: View {
 
     private func toggleRecording() async {
         if recorder.state == .recording {
+            // The comparison and check follow in onChange(of: recorder.state), which also catches
+            // a recording that stops itself at the time limit.
             recorder.stop()
-            attempts += 1
-            await afterRecording()
             return
         }
         guard await VoiceRecorder.requestPermission() else {
@@ -222,6 +232,21 @@ struct SpeakingCard: View {
         withAnimation(.snappy) {
             check = result
             checking = false
+        }
+    }
+
+    /// Runs the check again on the same recording, after the setup steps.
+    private func recheck() {
+        guard let url = recorder.recording, !checking else { return }
+        let locale = language.speechCode
+        checking = true
+        Task {
+            let result = await Task.detached { await SpeechCheck.check(url, locale: locale) }.value
+            guard recorder.recording == url else { return }
+            withAnimation(.snappy) {
+                check = result
+                checking = false
+            }
         }
     }
 
@@ -292,10 +317,13 @@ struct SpeakingCard: View {
             Label("It didn't catch anything. Try again a little closer to the phone.", systemImage: "ear.trianglebadge.exclamationmark")
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
-        case .unavailable:
-            Text("Checking isn't available on this iPhone for \(language.name), so trust your ears: compare the two.")
-                .font(.footnote)
-                .foregroundStyle(.secondary)
+        case .unavailable(let availability):
+            VStack(alignment: .leading, spacing: 8) {
+                Text("Compare the two by ear for now.")
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
+                SpeechSetupGuide(availability: availability, language: language, onRecheck: recheck)
+            }
         }
     }
 

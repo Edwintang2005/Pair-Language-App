@@ -8,6 +8,8 @@ struct SettingsView: View {
     @Environment(\.openURL) private var openURL
 
     @AppStorage("checksSpeaking") private var checksSpeaking = true
+    @State private var speechAvailability: SpeechCheck.Availability = .ready
+    @Environment(\.scenePhase) private var scenePhase
     @State private var confirmingReset = false
     @State private var confirmingSwitch = false
     @State private var notificationsDenied = false
@@ -29,10 +31,17 @@ struct SettingsView: View {
 
                 Section {
                     Toggle("Check my speaking", isOn: $checksSpeaking)
+                    if checksSpeaking, let learning = progress.learning {
+                        NavigationLink {
+                            SpeechSetupView(language: learning)
+                        } label: {
+                            speechStatus(for: learning)
+                        }
+                    }
                 } header: {
                     Text("Speaking practice")
                 } footer: {
-                    Text("After you record yourself, your iPhone's speech recognition shows which words it understood. It only runs offline, and your voice never leaves your phone.")
+                    Text("After you record yourself, your iPhone's speech recognition shows which words it understood. It only runs offline, so your voice never leaves your phone. Without it, you compare by ear.")
                 }
 
                 Section {
@@ -77,6 +86,11 @@ struct SettingsView: View {
             .navigationTitle("Settings")
             .navigationBarTitleDisplayMode(.inline)
             .task { notificationsDenied = await ReminderScheduler.isDenied() }
+            .onAppear(perform: refreshSpeechAvailability)
+            .onChange(of: scenePhase) { _, phase in
+                if phase == .active { refreshSpeechAvailability() }
+            }
+            .onChange(of: progress.learning) { refreshSpeechAvailability() }
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Done") { dismiss() }
@@ -100,6 +114,35 @@ struct SettingsView: View {
                 Text("This deletes your sessions, streak and review history on this phone. It can't be undone.")
             }
         }
+    }
+
+    // MARK: Speaking
+
+    /// "Ready for Chinese", or what needs doing first.
+    @ViewBuilder
+    private func speechStatus(for language: Language) -> some View {
+        switch speechAvailability {
+        case .ready:
+            Label("Ready for \(language.name)", systemImage: "checkmark.circle.fill")
+                .foregroundStyle(.green)
+        case .needsPermission:
+            Label("Turn on speech recognition", systemImage: "exclamationmark.circle.fill")
+                .foregroundStyle(.orange)
+        case .needsDownload:
+            Label("Set up for \(language.name)", systemImage: "arrow.down.circle.fill")
+                .foregroundStyle(.orange)
+        case .unsupported:
+            Label("Not available for \(language.name)", systemImage: "info.circle")
+                .foregroundStyle(.secondary)
+        case .busy:
+            Label("Getting ready…", systemImage: "hourglass")
+                .foregroundStyle(.secondary)
+        }
+    }
+
+    private func refreshSpeechAvailability() {
+        guard let learning = progress.learning else { return }
+        speechAvailability = SpeechCheck.availability(locale: learning.speechCode)
     }
 
     // MARK: Reminders

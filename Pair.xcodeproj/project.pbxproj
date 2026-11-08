@@ -35,6 +35,7 @@
 		AC37068D198F3BE3F2EAD3F7 /* PractiseRound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAA843B73D6966D421E9201 /* PractiseRound.swift */; };
 		B3167A3D81D0B577329D8289 /* WidgetSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3655F45D3F60272CAC6213 /* WidgetSnapshot.swift */; };
 		B69C15C45F87B46C50E12CF9 /* WidgetSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03268430705BF0A5883594AC /* WidgetSync.swift */; };
+		D030E497FA47EA0470AA7A2A /* SpeechSetupGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BE77318E16DD648082C3CB /* SpeechSetupGuide.swift */; };
 		D7C7783DBB863737CF8D3BAB /* SpeechPractice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACBBC4790D618A412F8B78D /* SpeechPractice.swift */; };
 		D7E9156989D17EFE2216E21A /* ReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2014A7651F7E34A48ADA638A /* ReviewView.swift */; };
 		E5B2DDF80A993F566C4EAABE /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 656ABB12310E45FB0269130E /* PrivacyInfo.xcprivacy */; };
@@ -107,6 +108,7 @@
 		A6ADE1B6A87FED228480B47C /* PairWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairWidget.swift; sourceTree = "<group>"; };
 		AF60BE4F5D96A5080F42FC5E /* SpeakingDrillView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakingDrillView.swift; sourceTree = "<group>"; };
 		B4A8B9C0905C1B6F78A049D3 /* PairTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairTests.swift; sourceTree = "<group>"; };
+		B9BE77318E16DD648082C3CB /* SpeechSetupGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechSetupGuide.swift; sourceTree = "<group>"; };
 		CC3655F45D3F60272CAC6213 /* WidgetSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetSnapshot.swift; sourceTree = "<group>"; };
 		D13C8AACADF5777AA1D811B5 /* PairWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PairWidget.entitlements; sourceTree = "<group>"; };
 		E35B9498016F5EDB11894842 /* PairTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = PairTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -147,6 +149,7 @@
 				EB870D64CE63CA9AF0610E39 /* SentenceDrillView.swift */,
 				6D2A386643B9DDFD51E910CD /* SettingsView.swift */,
 				AF60BE4F5D96A5080F42FC5E /* SpeakingDrillView.swift */,
+				B9BE77318E16DD648082C3CB /* SpeechSetupGuide.swift */,
 				965BC46B66A2843A16D7B2C7 /* TodayView.swift */,
 				A2C27E9DC5CBC69B3818DAB0 /* WordDetailView.swift */,
 			);
@@ -386,6 +389,7 @@
 				A84BE82FBC21613BDFCDF4D2 /* Speaker.swift in Sources */,
 				AA37F34EAE74C03C4CDD5379 /* SpeakingDrillView.swift in Sources */,
 				D7C7783DBB863737CF8D3BAB /* SpeechPractice.swift in Sources */,
+				D030E497FA47EA0470AA7A2A /* SpeechSetupGuide.swift in Sources */,
 				EDEC23584C5D128D9D1D09CD /* TodayView.swift in Sources */,
 				33E4B429092DE85CE3A6EC1A /* WidgetSnapshot.swift in Sources */,
 				B69C15C45F87B46C50E12CF9 /* WidgetSync.swift in Sources */,
