@@ -84,7 +84,7 @@ enum PractiseRound {
         case .sentence:
             return SentenceBuilder.puzzle(for: word, content: content, using: &rng).map(PractiseItem.sentence)
         case .speaking:
-            return SpeakingItem.item(for: word, content: content).map(PractiseItem.speaking)
+            return SpeakingItem.item(for: word, content: content, using: &rng).map(PractiseItem.speaking)
         }
     }
 }

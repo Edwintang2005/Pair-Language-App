@@ -530,9 +530,19 @@ struct SentencePuzzle: Identifiable, Hashable {
     /// The order they're offered in.
     let shuffled: [SentenceTile]
 
-    /// Compared by text, so two identical tiles ("die … die") can go either way round.
+    /// Compared by text, so two identical tiles ("die … die") can go either way round. Other word
+    /// orders listed in the content count too.
     func isCorrect(_ answer: [SentenceTile]) -> Bool {
-        answer.map(\.text) == tiles.map(\.text)
+        if answer.map(\.text) == tiles.map(\.text) { return true }
+        guard let alternatives = example.alternatives else { return false }
+        switch word.language {
+        case .german:
+            let given = answer.map { $0.text.lowercased() }
+            return alternatives.contains { SentenceBuilder.plainWords($0) == given }
+        case .chinese:
+            let given = answer.map(\.text).joined()
+            return alternatives.contains { SentenceBuilder.plainCharacters($0) == given }
+        }
     }
 }
 
@@ -551,7 +561,8 @@ enum SentenceBuilder {
 
     static func puzzle<G: RandomNumberGenerator>(for word: Word, content: ContentLibrary,
                                                  using rng: inout G) -> SentencePuzzle? {
-        for example in word.examples {
+        // Either example, so the same sentence doesn't come round every time.
+        for example in word.examples.shuffled(using: &rng) {
             guard let tiles = tiles(for: example, language: word.language, content: content) else { continue }
             var shuffled = tiles.shuffled(using: &rng)
             // Never hand over the answer already in order.
@@ -596,6 +607,18 @@ enum SentenceBuilder {
         language == .german
             ? germanTiles(example.text, content: content)
             : chineseTiles(example.text, pinyin: example.pinyin)
+    }
+
+    /// A German sentence as lower-case words without punctuation, for comparing word orders.
+    static func plainWords(_ sentence: String) -> [String] {
+        sentence.split(whereSeparator: \.isWhitespace).map { strip($0).lowercased() }.filter { !$0.isEmpty }
+    }
+
+    /// A Chinese sentence as its characters only, for comparing word orders.
+    static func plainCharacters(_ sentence: String) -> String {
+        String(sentence.unicodeScalars
+            .filter { !punctuation.contains($0) && !CharacterSet.whitespaces.contains($0) }
+            .map(Character.init))
     }
 
     private static func strip(_ token: some StringProtocol) -> String {

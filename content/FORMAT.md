@@ -64,7 +64,12 @@ tools/
       // optional "hint" on noun: a rule that explains the gender when the ending doesn't, e.g.
       // "Compound nouns take the gender of their last part". Endings like -ung, -chen, -e are handled by the app.
       "verb": { "present3sg": "…", "participle": "…", "auxiliary": "haben" },  // verbs only. auxiliary: haben | sein
-      "examples": [ { "text": "Das Haus ist groß.", "english": "The house is big." } ],
+      "examples": [                     // one or two; drills pick between them at random
+        { "text": "Das Haus ist groß.", "english": "The house is big." },
+        { "text": "Wer wohnt in diesem Haus?", "english": "Who lives in this house?" }
+      ],
+      // optional "alternatives" on an example: the same words in other correct orders, so Build the
+      // sentence accepts them, e.g. "text": "Morgen habe ich frei." + "alternatives": ["Ich habe morgen frei."]
       "tip": "Two key phrases: nach Hause (going home) and zu Hause (at home)."
     }
   ]
@@ -132,7 +137,7 @@ struct Word: Codable, Identifiable {
 
 ## Not covered yet
 
-- **Frequency source.** Sessions 1–70 are hand-picked from very common words. Before drafting the rest, pick
+- **Frequency source.** Sessions 1–90 are hand-picked from very common words. Before drafting the rest, pick
   the source lists (e.g. DeReWo or the Leipzig corpora for German, SUBTLEX-CH or the HSK lists for Chinese),
   check their licences, and add an optional `frequencyRank` field.
 - **Traditional characters.** These could be an optional `traditional` field if ever needed.

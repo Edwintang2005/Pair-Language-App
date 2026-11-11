@@ -490,6 +490,146 @@
       "conversationStarter": "Practise saying each little phrase at the right moment: welcome each other, raise a glass, say good night.",
       "de": ["de-willkommen", "de-prost", "de-gute-nacht", "de-viel-spass", "de-gute-besserung"],
       "zh": ["zh-huan-ying", "zh-gan-bei", "zh-wan-an", "zh-jia-you", "zh-man-zou"]
+    },
+    {
+      "number": 71,
+      "theme": "More family",
+      "conversationStarter": "Draw your family tree for each other and name everyone on it. Who is older, who is younger?",
+      "de": ["de-bruder",  "de-schwester",  "de-oma",  "de-opa",  "de-sohn"],
+      "zh": ["zh-ge-ge",  "zh-jie-jie",  "zh-di-di",  "zh-mei-mei",  "zh-fu-mu"]
+    },
+    {
+      "number": 72,
+      "theme": "Something to drink",
+      "conversationStarter": "Play bar: one of you orders drinks, the other serves. Then swap languages.",
+      "de": ["de-tee",  "de-bier",  "de-wein",  "de-flasche",  "de-durst"],
+      "zh": ["zh-ka-fei",  "zh-pi-jiu",  "zh-jiu-alcohol",  "zh-ping-zi",  "zh-ke-thirsty"]
+    },
+    {
+      "number": 73,
+      "theme": "Hungry & full",
+      "conversationStarter": "Plan tomorrow's lunch and dinner together. Say when you're hungry, and when you've had enough.",
+      "de": ["de-hunger",  "de-satt",  "de-mittagessen",  "de-abendessen",  "de-schmecken"],
+      "zh": ["zh-e",  "zh-bao",  "zh-wu-fan",  "zh-wan-fan",  "zh-wei-dao"]
+    },
+    {
+      "number": 74,
+      "theme": "Rooms at home",
+      "conversationStarter": "Give each other a tour of your home (or a dream home), naming each room as you walk in.",
+      "de": ["de-wohnung",  "de-bad",  "de-garten",  "de-toilette",  "de-schlafzimmer"],
+      "zh": ["zh-wo-shi",  "zh-xi-shou-jian",  "zh-ke-ting",  "zh-hua-yuan",  "zh-lou"]
+    },
+    {
+      "number": 75,
+      "theme": "Open, close, look for",
+      "conversationStarter": "Hide a small thing in the room. The other looks for it while you both say what you open, close and use.",
+      "de": ["de-oeffnen",  "de-schliessen",  "de-suchen",  "de-finden",  "de-zeigen"],
+      "zh": ["zh-kai",  "zh-guan",  "zh-zhao",  "zh-fang",  "zh-yong"]
+    },
+    {
+      "number": 76,
+      "theme": "Moving your body",
+      "conversationStarter": "Give each other commands to act out: walk, run, stand, lie down. Fastest reaction wins.",
+      "de": ["de-laufen",  "de-stehen",  "de-sitzen",  "de-schwimmen",  "de-liegen"],
+      "zh": ["zh-zou",  "zh-pao",  "zh-zhan-stand",  "zh-you-yong",  "zh-tang-lie"]
+    },
+    {
+      "number": 77,
+      "theme": "Long, short, heavy, light",
+      "conversationStarter": "Pick up five things around you and compare them: which is longer, shorter, heavier, lighter?",
+      "de": ["de-lang",  "de-kurz",  "de-schwer",  "de-leicht",  "de-voll"],
+      "zh": ["zh-chang",  "zh-duan",  "zh-zhong",  "zh-qing-light",  "zh-man-full"]
+    },
+    {
+      "number": 78,
+      "theme": "More colours",
+      "conversationStarter": "Take turns pointing at things in the room. The other names the colour as fast as they can.",
+      "de": ["de-farbe",  "de-gelb",  "de-grau",  "de-braun",  "de-rosa"],
+      "zh": ["zh-yan-se",  "zh-huang",  "zh-hui-grey",  "zh-zi",  "zh-fen-hong"]
+    },
+    {
+      "number": 79,
+      "theme": "Moods",
+      "conversationStarter": "Tell each other one thing that made you angry, nervous, bored and happy this week.",
+      "de": ["de-wuetend",  "de-nervoes",  "de-langweilig",  "de-sorge",  "de-froh"],
+      "zh": ["zh-sheng-qi",  "zh-jin-zhang",  "zh-wu-liao",  "zh-dan-xin",  "zh-kai-xin"]
+    },
+    {
+      "number": 80,
+      "theme": "At the office",
+      "conversationStarter": "Describe your workplace to each other: your boss, a colleague, your meetings and your breaks.",
+      "de": ["de-buero",  "de-kollege",  "de-chef",  "de-termin",  "de-pause"],
+      "zh": ["zh-ban-gong-shi",  "zh-tong-shi",  "zh-lao-ban",  "zh-kai-hui",  "zh-xiu-xi"]
+    },
+    {
+      "number": 81,
+      "theme": "Hours & minutes",
+      "conversationStarter": "Walk through your day: what do you do in the morning, at noon and in the afternoon, and for how long?",
+      "de": ["de-minute",  "de-stunde",  "de-mittag",  "de-nachmittag",  "de-vormittag"],
+      "zh": ["zh-fen-zhong",  "zh-xiao-shi",  "zh-zhong-wu",  "zh-xia-wu",  "zh-shang-wu"]
+    },
+    {
+      "number": 82,
+      "theme": "Opinions",
+      "conversationStarter": "Pick a film or a dish you disagree about. Give your opinion and say whether you agree with the other.",
+      "de": ["de-meinung",  "de-wichtig",  "de-idee",  "de-stimmen",  "de-komisch"],
+      "zh": ["zh-tong-yi",  "zh-zhong-yao",  "zh-zhu-yi",  "zh-yi-jian",  "zh-qi-guai"]
+    },
+    {
+      "number": 83,
+      "theme": "Wind, snow & sky",
+      "conversationStarter": "Look out of the window together, by day or by night, and describe everything you can see in the sky.",
+      "de": ["de-wind",  "de-schnee",  "de-wolke",  "de-himmel",  "de-mond"],
+      "zh": ["zh-feng",  "zh-xue",  "zh-yun",  "zh-yue-liang",  "zh-xing-xing"]
+    },
+    {
+      "number": 84,
+      "theme": "Stories, songs & TV",
+      "conversationStarter": "Play each other a song you love and tell a short story from your childhood.",
+      "de": ["de-zeitung",  "de-geschichte",  "de-lied",  "de-fernseher",  "de-bild"],
+      "zh": ["zh-dian-shi",  "zh-bao-zhi",  "zh-gu-shi",  "zh-ge-song",  "zh-hua-painting"]
+    },
+    {
+      "number": 85,
+      "theme": "Try, choose, decide",
+      "conversationStarter": "Choose a new dish or activity to try together this week. Decide who organises what.",
+      "de": ["de-versuchen",  "de-entscheiden",  "de-waehlen",  "de-aendern",  "de-schaffen"],
+      "zh": ["zh-shi-try",  "zh-jue-ding",  "zh-xuan",  "zh-huan",  "zh-wan-cheng"]
+    },
+    {
+      "number": 86,
+      "theme": "Having guests",
+      "conversationStarter": "Role-play a visit: one of you is the host, the other the guest. Invite, introduce, and be very polite.",
+      "de": ["de-gast",  "de-einladen",  "de-vorstellen",  "de-hoeflich",  "de-nachbar"],
+      "zh": ["zh-ke-ren",  "zh-yao-qing",  "zh-jie-shao",  "zh-ke-qi",  "zh-lin-ju"]
+    },
+    {
+      "number": 87,
+      "theme": "If, although & that's why",
+      "conversationStarter": "Finish each other's sentences: one starts with 'if…' or 'although…', the other completes it.",
+      "de": ["de-wenn",  "de-dass",  "de-obwohl",  "de-deshalb",  "de-sondern"],
+      "zh": ["zh-ru-guo",  "zh-sui-ran",  "zh-er-qie",  "zh-huo-zhe",  "zh-bu-guo"]
+    },
+    {
+      "number": 88,
+      "theme": "Why, which & how long",
+      "conversationStarter": "Interview each other with five questions using today's question words. Answer as fully as you can.",
+      "de": ["de-warum",  "de-welcher",  "de-wohin",  "de-woher",  "de-wie-viel"],
+      "zh": ["zh-wei-shen-me",  "zh-na-ge",  "zh-ji",  "zh-zen-me-yang",  "zh-duo-jiu"]
+    },
+    {
+      "number": 89,
+      "theme": "Staying safe",
+      "conversationStarter": "Tell each other what you would say and do in an emergency abroad. Practise calling for help out loud.",
+      "de": ["de-hilfe",  "de-polizei",  "de-gefaehrlich",  "de-vorsichtig",  "de-sicher"],
+      "zh": ["zh-jing-cha",  "zh-wei-xian",  "zh-xiao-xin",  "zh-an-quan",  "zh-jiu-ming"]
+    },
+    {
+      "number": 90,
+      "theme": "Arguing & making up",
+      "conversationStarter": "Remember a silly argument you had. Replay it in the other's language, and this time make up properly.",
+      "de": ["de-streiten",  "de-fehler",  "de-verzeihen",  "de-ehrlich",  "de-versprechen"],
+      "zh": ["zh-chao-jia",  "zh-dao-qian",  "zh-yuan-liang",  "zh-wu-hui",  "zh-bao-zheng"]
     }
   ]
 }

@@ -632,10 +632,12 @@ struct PracticeDrillTests {
             // Only two-word sentences ("Danke schön!") are left out.
             #expect(Double(usable.count) / Double(words.count) > 0.9, "\(language): \(usable.count) of \(words.count)")
             for word in usable {
-                let tiles = try #require(SentenceBuilder.tiles(for: word.examples[0], language: language, content: content))
-                let joined = tiles.map(\.text).joined(separator: language == .german ? " " : "")
-                let letters = { (s: String) in s.filter { $0.isLetter || $0.isNumber }.lowercased() }
-                #expect(letters(joined) == letters(word.examples[0].text), "\(word.id)")
+                for example in word.examples {
+                    guard let tiles = SentenceBuilder.tiles(for: example, language: language, content: content) else { continue }
+                    let joined = tiles.map(\.text).joined(separator: language == .german ? " " : "")
+                    let letters = { (s: String) in s.filter { $0.isLetter || $0.isNumber }.lowercased() }
+                    #expect(letters(joined) == letters(example.text), "\(word.id)")
+                }
             }
         }
     }
@@ -873,5 +875,74 @@ struct ReviewFixTests {
         let data = try JSONDecoder().decode(ProgressData.self, from: Data(json.utf8))
         #expect(data.reviews.count == 2)
         #expect(data.reviews["de-tuer"]?.box == 1)
+    }
+}
+
+@MainActor
+struct SecondExampleTests {
+    private struct SeededRNG: RandomNumberGenerator {
+        var state: UInt64
+        mutating func next() -> UInt64 {
+            state = state &* 6364136223846793005 &+ 1442695040888963407
+            return state
+        }
+    }
+
+    @Test func curriculumHasNinetySessions() throws {
+        let content = try ContentLibrary.loadBundled()
+        #expect(content.sessionCount == 90)
+        #expect(content.words.values.filter { $0.language == .german }.count == 450)
+        #expect(content.words.values.filter { $0.language == .chinese }.count == 450)
+    }
+
+    @Test func everyWordInTheFirstTwentySessionsHasTwoExamples() throws {
+        let content = try ContentLibrary.loadBundled()
+        for session in content.sessions.prefix(20) {
+            for id in session.de + session.zh {
+                #expect(content.words[id]?.examples.count == 2, "\(id)")
+            }
+        }
+    }
+
+    @Test func drillsUseBothExamples() throws {
+        let content = try ContentLibrary.loadBundled()
+        let house = try #require(content.words["de-haus"])
+        var rng = SeededRNG(state: 13)
+        var spoken: Set<String> = []
+        var built: Set<String> = []
+        for _ in 0..<40 {
+            if let item = SpeakingItem.item(for: house, content: content, using: &rng) { spoken.insert(item.example.text) }
+            if let puzzle = SentenceBuilder.puzzle(for: house, content: content, using: &rng) { built.insert(puzzle.example.text) }
+        }
+        #expect(spoken.count == 2)
+        #expect(built.count == 2)
+    }
+
+    @Test func otherWordOrdersAreAccepted() throws {
+        let content = try ContentLibrary.loadBundled()
+        let tomorrow = try #require(content.words["de-morgen"])
+        let example = try #require(tomorrow.examples.first { $0.alternatives != nil })
+        let tiles = try #require(SentenceBuilder.tiles(for: example, language: .german, content: content))
+        let puzzle = SentencePuzzle(word: tomorrow, example: example, tiles: tiles, shuffled: tiles)
+        func order(_ words: [String]) -> [SentenceTile] {
+            var left = tiles
+            return words.map { w in left.remove(at: left.firstIndex { $0.text.lowercased() == w }!) }
+        }
+        #expect(puzzle.isCorrect(order(["morgen", "habe", "ich", "frei"])))
+        #expect(puzzle.isCorrect(order(["ich", "habe", "morgen", "frei"])))
+        #expect(!puzzle.isCorrect(order(["habe", "ich", "morgen", "frei"])))
+
+        let year = try #require(content.words["zh-nian"])
+        let zhExample = try #require(year.examples.first { $0.alternatives != nil })
+        let zhTiles = try #require(SentenceBuilder.tiles(for: zhExample, language: .chinese, content: content))
+        let zhPuzzle = SentencePuzzle(word: year, example: zhExample, tiles: zhTiles, shuffled: zhTiles)
+        let byText = Dictionary(uniqueKeysWithValues: zhTiles.map { ($0.text, $0) })
+        #expect(zhPuzzle.isCorrect(["我们", "明年", "去", "中国"].compactMap { byText[$0] }))
+        #expect(!zhPuzzle.isCorrect(["中国", "去", "我们", "明年"].compactMap { byText[$0] }))
+    }
+
+    @Test func newMeasureWordsAreExplained() {
+        #expect(MeasureWords.uses["首"] != nil)
+        #expect(MeasureWords.uses["幅"] != nil)
     }
 }

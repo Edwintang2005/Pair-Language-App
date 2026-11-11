@@ -64,6 +64,26 @@ def appears_in_examples(w, lang):
     return False
 
 
+def check_alternatives(w, wid, lang):
+    """Other word orders must use exactly the same words as the sentence itself."""
+    def words(text):
+        if lang == "zh":
+            return sorted(c for c in text if c not in PUNCTUATION and not c.isspace())
+        return sorted(t.strip(PUNCTUATION).lower() for t in text.split() if t.strip(PUNCTUATION))
+    for ex in w.get("examples", []):
+        alts = ex.get("alternatives")
+        if alts is None:
+            continue
+        if not isinstance(alts, list) or not all(isinstance(a, str) and a for a in alts):
+            err(f"{wid}: 'alternatives' must be a list of sentences")
+            continue
+        for a in alts:
+            if words(a) != words(ex.get("text", "")):
+                err(f"{wid}: alternative '{a}' doesn't use the same words as '{ex.get('text')}'")
+            if a == ex.get("text"):
+                err(f"{wid}: alternative repeats the sentence itself")
+
+
 def warn_digits(w, wid):
     """Numbers in examples should be written as words: text-to-speech and the speaking check both
     handle words more reliably, and learners need to hear the word."""
@@ -75,6 +95,7 @@ def warn_digits(w, wid):
 def check_de(w):
     wid = check_common(w, "de")
     warn_digits(w, wid)
+    check_alternatives(w, wid, "de")
     if not appears_in_examples(w, "de"):
         err(f"{wid}: '{w.get('word')}' doesn't appear in its example sentence")
     pos = w.get("pos")
@@ -140,6 +161,7 @@ def pinyin_lines_up(example):
 def check_zh(w):
     wid = check_common(w, "zh")
     warn_digits(w, wid)
+    check_alternatives(w, wid, "zh")
     if not appears_in_examples(w, "zh"):
         err(f"{wid}: '{w.get('word')}' doesn't appear in its example sentence")
     for ex in w.get("examples", []):

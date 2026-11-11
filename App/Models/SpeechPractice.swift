@@ -15,7 +15,7 @@ struct SpeakingItem: Identifiable, Hashable {
                                                using rng: inout G) -> [SpeakingItem] {
         var items: [SpeakingItem] = []
         for word in wordIDs.compactMap({ content.words[$0] }).shuffled(using: &rng) where items.count < limit {
-            if let item = item(for: word, content: content) { items.append(item) }
+            if let item = item(for: word, content: content, using: &rng) { items.append(item) }
         }
         return items
     }
@@ -25,11 +25,21 @@ struct SpeakingItem: Identifiable, Hashable {
         return items(wordIDs: wordIDs, content: content, limit: limit, using: &rng)
     }
 
+    /// One of the word's example sentences, picked at random so practice doesn't repeat itself.
+    static func item<G: RandomNumberGenerator>(for word: Word, content: ContentLibrary,
+                                              using rng: inout G) -> SpeakingItem? {
+        for example in word.examples.shuffled(using: &rng) {
+            if let words = SentenceBuilder.words(of: example, language: word.language, content: content),
+               !words.isEmpty {
+                return SpeakingItem(word: word, example: example, words: words)
+            }
+        }
+        return nil
+    }
+
     static func item(for word: Word, content: ContentLibrary) -> SpeakingItem? {
-        guard let example = word.examples.first,
-              let words = SentenceBuilder.words(of: example, language: word.language, content: content),
-              !words.isEmpty else { return nil }
-        return SpeakingItem(word: word, example: example, words: words)
+        var rng = SystemRandomNumberGenerator()
+        return item(for: word, content: content, using: &rng)
     }
 
     static func eligibleCount(in wordIDs: [String], content: ContentLibrary) -> Int {

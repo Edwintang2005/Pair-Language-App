@@ -18,6 +18,9 @@ struct Example: Codable, Hashable {
     let text: String
     let pinyin: String?
     let english: String
+    /// The same sentence in other word orders that are just as correct ("Morgen habe ich frei" /
+    /// "Ich habe morgen frei"), so Build the sentence accepts them.
+    var alternatives: [String]? = nil
 }
 
 struct GermanNoun: Codable, Hashable {
