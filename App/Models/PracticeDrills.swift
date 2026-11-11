@@ -110,7 +110,10 @@ enum Plurals {
 
     /// Forms the pattern rules could produce that aren't actually wrong (die Worte, die Dinger,
     /// die Bänke for benches) or are other words entirely (der Busen).
-    static let notWrong: Set<String> = ["Worte", "Dinger", "Bänke", "Busen"]
+    /// Also less common or regional plurals (die Parke, die Lichte), and other senses of the word
+    /// (die Muttern: nuts, for bolts).
+    static let notWrong: Set<String> = ["Worte", "Dinger", "Bänke", "Busen",
+                                        "Parke", "Pärke", "Muttern", "Laden", "Munde", "Münde", "Lichte"]
 
     /// The word with an umlaut on the vowel of its last real syllable: Haus → Häus, Apfel → Äpfel,
     /// Laden → Läden. Nil when that vowel can't take one (Freund, Arbeit, Tier) or ends the word (Auto).
@@ -264,15 +267,21 @@ enum PastTense {
         if participle.hasPrefix("ge") && (!infinitive.hasPrefix("ge") || participle.dropFirst(2).hasPrefix("g")) {
             return .front
         }
+        // Only real separable prefixes: vergessen and begegnen have a "ge" of their own.
         if let range = participle.range(of: "ge"), range.lowerBound != participle.startIndex {
             let prefix = String(participle[..<range.lowerBound])
-            // vergessen keeps its own "ge"; only a ge- that isn't in the infinitive counts.
-            if infinitive.hasPrefix(prefix) && !infinitive.dropFirst(prefix.count).hasPrefix("ge") {
-                return .afterPrefix(prefix)
+            if separablePrefixes.contains(prefix) && infinitive.hasPrefix(prefix) {
+                return .afterPrefix(prefix)  // aufgestanden, and aufgegeben too
             }
         }
         return .none
     }
+
+    /// Prefixes that split off and take the ge- after them.
+    static let separablePrefixes: Set<String> = [
+        "ab", "an", "auf", "aus", "bei", "ein", "fern", "fest", "her", "hin", "los", "mit", "nach",
+        "vor", "weg", "zu", "zurück", "zusammen", "weiter", "heim",
+    ]
 
     /// The participle a regular verb would have: ge- + stem + -t, with the ge- after any separable
     /// prefix (gemacht, aufgeräumt). Nil for verbs that take no ge-.
@@ -286,8 +295,20 @@ enum PastTense {
         case .none: return nil
         }
         let stem = stem(of: String(infinitive.dropFirst(prefix.count)))
-        let t = stem.hasSuffix("t") || stem.hasSuffix("d") ? "et" : "t"
-        return prefix + "ge" + stem + t
+        return prefix + "ge" + stem + weakEnding(for: stem)
+    }
+
+    /// -et after t or d (gearbeitet), and after m or n that follow another consonant (geöffnet,
+    /// geregnet, geatmet); -t otherwise (gelernt, gewohnt).
+    static func weakEnding(for stem: String) -> String {
+        let letters = Array(stem.lowercased())
+        guard let last = letters.last else { return "t" }
+        if last == "t" || last == "d" { return "et" }
+        if (last == "m" || last == "n"), letters.count >= 2 {
+            let before = letters[letters.count - 2]
+            if !"aeiouäöüylrhmn".contains(before) { return "et" }
+        }
+        return "t"
     }
 
     private static func stem(of infinitive: String) -> String {
@@ -347,10 +368,13 @@ enum Listening {
         var seen: Set<String> = [answer.lowercased()]
         var wrong: [String] = []
 
+        let sound = soundKey(word)
         func take(from words: [Word]) {
             for other in words where wrong.count < 3 {
                 let gloss = other.shortGloss
                 guard other.language == word.language, !seen.contains(gloss.lowercased()) else { continue }
+                // Words that sound exactly the same (他/她 tā, 做/坐 zuò) can't be told apart by ear.
+                guard soundKey(other) != sound else { continue }
                 seen.insert(gloss.lowercased())
                 wrong.append(gloss)
             }
@@ -367,6 +391,13 @@ enum Listening {
         guard wrong.count == 3 else { return nil }
         let options = ([answer] + wrong).shuffled(using: &rng)
         return ChoiceQuestion(word: word, options: options, answer: answer, accepted: [answer], kind: .listening)
+    }
+
+    /// What a word sounds like, for spotting homophones: pinyin with tones for Chinese, the spoken
+    /// form for German.
+    static func soundKey(_ word: Word) -> String {
+        let spoken = word.pinyin ?? word.headword
+        return spoken.lowercased().filter { !$0.isWhitespace && $0 != "'" }
     }
 }
 

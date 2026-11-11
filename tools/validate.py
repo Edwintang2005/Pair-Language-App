@@ -64,8 +64,17 @@ def appears_in_examples(w, lang):
     return False
 
 
+def warn_digits(w, wid):
+    """Numbers in examples should be written as words: text-to-speech and the speaking check both
+    handle words more reliably, and learners need to hear the word."""
+    for ex in w.get("examples", []):
+        if re.search(r"\d", ex.get("text", "")):
+            warn(f"{wid}: example has digits; write the number as a word")
+
+
 def check_de(w):
     wid = check_common(w, "de")
+    warn_digits(w, wid)
     if not appears_in_examples(w, "de"):
         err(f"{wid}: '{w.get('word')}' doesn't appear in its example sentence")
     pos = w.get("pos")
@@ -130,6 +139,7 @@ def pinyin_lines_up(example):
 
 def check_zh(w):
     wid = check_common(w, "zh")
+    warn_digits(w, wid)
     if not appears_in_examples(w, "zh"):
         err(f"{wid}: '{w.get('word')}' doesn't appear in its example sentence")
     for ex in w.get("examples", []):

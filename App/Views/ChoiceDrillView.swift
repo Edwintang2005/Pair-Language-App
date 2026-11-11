@@ -41,6 +41,7 @@ struct ChoiceDrillView: View {
         .onAppear {
             if !started { start(with: wordIDs) }
         }
+        .onDisappear { Speaker.shared.stop() }
     }
 
     // MARK: Question

@@ -784,3 +784,94 @@ struct SpeakingAndTonesTests {
                                     content: content, using: &rng).isEmpty)
     }
 }
+
+@MainActor
+struct ReviewFixTests {
+    private struct SeededRNG: RandomNumberGenerator {
+        var state: UInt64
+        mutating func next() -> UInt64 {
+            state = state &* 6364136223846793005 &+ 1442695040888963407
+            return state
+        }
+    }
+
+    @Test func listeningNeverOffersASoundAlike() throws {
+        let content = try ContentLibrary.loadBundled()
+        let he = try #require(content.words["zh-ta-he"])
+        let she = try #require(content.words["zh-ta-she"])
+        #expect(Listening.soundKey(he) == Listening.soundKey(she))
+        var rng = SeededRNG(state: 11)
+        let pool = content.sessions.prefix(5).flatMap(\.zh).compactMap { content.words[$0] }
+        for _ in 0..<50 {
+            let q = try #require(Listening.question(for: he, pool: pool, content: content, using: &rng))
+            #expect(!q.options.contains(she.shortGloss))
+        }
+    }
+
+    @Test func pluralAlternativesAreNeverWrongAnswers() throws {
+        let content = try ContentLibrary.loadBundled()
+        let park = try #require(content.words["de-park"])
+        var rng = SeededRNG(state: 12)
+        for _ in 0..<30 {
+            let q = try #require(Plurals.question(for: park, using: &rng))
+            #expect(!q.options.contains("Parke") && !q.options.contains("Pärke"))
+        }
+    }
+
+    @Test func pastTenseRulesForVerbsNotYetInTheContent() {
+        #expect(PastTense.weakEnding(for: "öffn") == "et")
+        #expect(PastTense.weakEnding(for: "regn") == "et")
+        #expect(PastTense.weakEnding(for: "atm") == "et")
+        #expect(PastTense.weakEnding(for: "lern") == "t")
+        #expect(PastTense.weakEnding(for: "wohn") == "t")
+        #expect(PastTense.weakEnding(for: "arbeit") == "et")
+        #expect(PastTense.gePlacement(infinitive: "aufgeben", participle: "aufgegeben") == .afterPrefix("auf"))
+        #expect(PastTense.gePlacement(infinitive: "weggehen", participle: "weggegangen") == .afterPrefix("weg"))
+        #expect(PastTense.gePlacement(infinitive: "begegnen", participle: "begegnet") == .none)
+        #expect(PastTense.gePlacement(infinitive: "vergessen", participle: "vergessen") == .none)
+    }
+
+    @Test func numbersMatchWhateverTheRecogniserWrites() {
+        #expect(SpeechMatch.heard(["Ich", "habe", "zwei", "Katzen"], in: "Ich habe 2 Katzen", language: .german)
+                == [true, true, true, true])
+        #expect(SpeechMatch.heard(["一百", "块"], in: "100块", language: .chinese) == [true, true])
+        #expect(SpeechMatch.heard(["十"], in: "10", language: .chinese) == [true])
+        #expect(SpeechMatch.chineseNumeral(105) == "一百零五")
+        #expect(SpeechMatch.chineseNumeral(3000) == "三千")
+        #expect(SpeechMatch.chineseNumeral(25) == "二十五")
+        #expect(SpeechMatch.chineseNumeral(12) == "十二")
+    }
+
+    @Test func redoingASessionKeepsItsFirstDate() throws {
+        let content = try ContentLibrary.loadBundled()
+        let store = ProgressStore(fileURL: nil)
+        store.choose(learning: .german)
+        let first = try #require(content.session(1))
+        let day1 = Date(timeIntervalSince1970: 1_800_000_000)
+        for id in first.de { store.toggleTaught(id) }
+        store.finish(first, now: day1)
+        store.setCurrentSession(1)
+        for id in first.de { store.toggleTaught(id) }
+        store.finish(first, now: day1.addingTimeInterval(86_400))
+        #expect(store.data.completed[1] == day1)
+    }
+
+    @Test func unreadableProgressIsKeptAside() throws {
+        let dir = FileManager.default.temporaryDirectory.appending(path: "pair-test-\(UUID().uuidString)")
+        try FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
+        defer { try? FileManager.default.removeItem(at: dir) }
+        let file = dir.appending(path: "progress.json")
+        try Data("{ not json".utf8).write(to: file)
+        let store = ProgressStore(fileURL: file)
+        #expect(store.learning == nil)
+        let names = try FileManager.default.contentsOfDirectory(atPath: dir.path)
+        #expect(names.contains { $0.hasPrefix("progress-unreadable-") })
+    }
+
+    @Test func oneBadReviewEntryDoesntLoseTheRest() throws {
+        let json = #"{"learning":"de","reviews":{"de-haus":{"box":3,"due":800000000},"de-tuer":{"due":800000000}}}"#
+        let data = try JSONDecoder().decode(ProgressData.self, from: Data(json.utf8))
+        #expect(data.reviews.count == 2)
+        #expect(data.reviews["de-tuer"]?.box == 1)
+    }
+}

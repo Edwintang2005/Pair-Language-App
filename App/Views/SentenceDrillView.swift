@@ -10,7 +10,7 @@ struct SentenceDrillView: View {
     @Environment(ContentLibrary.self) private var content
     @Environment(\.dismiss) private var dismiss
 
-    @AppStorage("sentenceDrillListens") private var listenOnly = false
+    @AppStorage(AppSettings.sentenceDrillListens) private var listenOnly = false
     @State private var queue: [SentencePuzzle] = []
     @State private var total = 0
     @State private var correct = 0
@@ -52,6 +52,7 @@ struct SentenceDrillView: View {
         .onAppear {
             if !started { start(with: wordIDs) }
         }
+        .onDisappear { Speaker.shared.stop() }
     }
 
     // MARK: Results
@@ -239,6 +240,7 @@ struct SentencePuzzleCard: View {
             ForEach(puzzle.shuffled) { tile in
                 let used = placed.contains { $0.id == tile.id }
                 Button {
+                    guard !placed.contains(where: { $0.id == tile.id }) else { return }
                     withAnimation(.snappy) { placed.append(tile) }
                 } label: {
                     TileLabel(tile: tile, showsPinyin: !listenOnly)

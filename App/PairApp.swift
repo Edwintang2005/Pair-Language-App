@@ -17,6 +17,8 @@ struct PairApp: App {
         }
         // Set before launch finishes, so tapping a notification on a cold start still opens the right tab.
         UNUserNotificationCenter.current().delegate = router
+        // Recordings are deleted as you go; this catches any left by a run that ended abruptly.
+        VoiceRecorder.removeLeftoverRecordings()
     }
 
     var body: some Scene {
@@ -38,15 +40,20 @@ struct RootView: View {
     @State private var tab: AppTab = .today
     /// Bumped whenever the app comes to the foreground, so reminders are re-planned for the new day.
     @State private var foregroundCount = 0
+    /// The day the screens were last drawn for. When it changes (the app was left open overnight),
+    /// Today and Review are rebuilt so "due", the streak and "next review" are right.
+    @State private var today = Calendar.current.startOfDay(for: .now)
 
     var body: some View {
         Group {
             if let learning = progress.learning {
                 TabView(selection: $tab) {
                     TodayView(learning: learning)
+                        .id(today)
                         .tabItem { Label("Today", systemImage: "sun.max") }
                         .tag(AppTab.today)
                     ReviewView()
+                        .id(today)
                         .tabItem { Label("Review", systemImage: "rectangle.on.rectangle.angled") }
                         .badge(progress.dueWordIDs().count)
                         .tag(AppTab.review)
@@ -60,16 +67,22 @@ struct RootView: View {
         }
         // Any change to progress (a finished session, a review, new settings) re-plans the reminders.
         .task(id: RefreshKey(data: progress.data, foregroundCount: foregroundCount)) {
+            // Grading a round of cards changes progress many times a second: wait for it to settle.
+            try? await Task.sleep(for: .milliseconds(400))
+            guard !Task.isCancelled else { return }
             WidgetSync.update(progress: progress, content: content)
             await ReminderScheduler.refresh(data: progress.data, sessions: content.sessions)
         }
         .onChange(of: scenePhase) { _, phase in
             if phase == .active {
                 foregroundCount += 1
+                let now = Calendar.current.startOfDay(for: .now)
+                if now != today { today = now }
                 ReminderScheduler.clearDelivered()
             }
         }
-        .onChange(of: router.requestedTab) { _, requested in
+        // `initial`: a notification tapped on a cold start can set the tab before the first render.
+        .onChange(of: router.requestedTab, initial: true) { _, requested in
             guard let requested else { return }
             tab = requested
             router.requestedTab = nil

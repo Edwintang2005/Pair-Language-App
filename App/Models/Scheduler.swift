@@ -10,6 +10,17 @@ struct ReviewState: Codable, Hashable {
     var reviewCount: Int = 0
 }
 
+extension ReviewState {
+    // Decode leniently, so a field added later never makes the whole progress file unreadable.
+    init(from decoder: Decoder) throws {
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        box = try c.decodeIfPresent(Int.self, forKey: .box) ?? 1
+        due = try c.decodeIfPresent(Date.self, forKey: .due) ?? .now
+        lastReviewed = try c.decodeIfPresent(Date.self, forKey: .lastReviewed)
+        reviewCount = try c.decodeIfPresent(Int.self, forKey: .reviewCount) ?? 0
+    }
+}
+
 enum ReviewGrade: CaseIterable {
     case again, good, easy
 

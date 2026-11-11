@@ -17,6 +17,7 @@
 		33E4B429092DE85CE3A6EC1A /* WidgetSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3655F45D3F60272CAC6213 /* WidgetSnapshot.swift */; };
 		365F76522408817178E49E1B /* DrillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FF7D80DFA3F2C41670A2BB /* DrillView.swift */; };
 		369CCCBFD94FAFD0549446FF /* SentenceDrillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB870D64CE63CA9AF0610E39 /* SentenceDrillView.swift */; };
+		486D39474B12A88F3CEDA1AA /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3D041E53ABCCCFE304C85A /* AppSettings.swift */; };
 		5B06C457FFB6A2BF73BE07D2 /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4586E464D1A8BC85A163397F /* LibraryView.swift */; };
 		60E48CD82963D678820BAA87 /* PairApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB37A3EA96D7163711F5DEE /* PairApp.swift */; };
 		63D0A484043C09CD8A389335 /* GrammarDrill.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BAEFB63D5D5A17F7708CBF /* GrammarDrill.swift */; };
@@ -102,6 +103,7 @@
 		8BA16D8C8FDA2A87255128F7 /* PractiseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PractiseView.swift; sourceTree = "<group>"; };
 		965BC46B66A2843A16D7B2C7 /* TodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayView.swift; sourceTree = "<group>"; };
 		98B3A7DE26938F0F9FB75843 /* Pair.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Pair.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9B3D041E53ABCCCFE304C85A /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 		9E731E053AAB058F6E438F7D /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		A2C27E9DC5CBC69B3818DAB0 /* WordDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDetailView.swift; sourceTree = "<group>"; };
 		A2FE92115E8721E2DF1B71B0 /* PairWidget.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = PairWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -202,6 +204,7 @@
 		D73BF9AF758CE6A7F4300E81 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				9B3D041E53ABCCCFE304C85A /* AppSettings.swift */,
 				690C505298FEF0F1B9F24335 /* Content.swift */,
 				E8BAEFB63D5D5A17F7708CBF /* GrammarDrill.swift */,
 				1BD725FB43175D468EA0F7EE /* PracticeDrills.swift */,
@@ -368,6 +371,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				486D39474B12A88F3CEDA1AA /* AppSettings.swift in Sources */,
 				0C418B901AFD7BE4D89A7FF2 /* ChoiceDrillView.swift in Sources */,
 				EE66EDAB3EAD0F253C789789 /* Components.swift in Sources */,
 				95A286391A6F4C864FA49477 /* Content.swift in Sources */,

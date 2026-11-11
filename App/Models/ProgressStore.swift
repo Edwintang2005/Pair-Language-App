@@ -44,11 +44,19 @@ final class ProgressStore {
     /// - Parameter fileURL: where to persist. `nil` keeps everything in memory (previews, tests).
     init(fileURL: URL?) {
         self.fileURL = fileURL
-        if let fileURL,
-           let raw = try? Data(contentsOf: fileURL),
-           let decoded = try? JSONDecoder().decode(ProgressData.self, from: raw) {
-            data = decoded
-        } else {
+        guard let fileURL, let raw = try? Data(contentsOf: fileURL) else {
+            data = ProgressData()
+            return
+        }
+        do {
+            data = try JSONDecoder().decode(ProgressData.self, from: raw)
+        } catch {
+            // Never overwrite a file we couldn't read: set it aside so the progress can be recovered,
+            // then start fresh.
+            print("Pair: couldn't read progress, keeping a copy: \(error)")
+            let stamp = Int(Date.now.timeIntervalSince1970)
+            let copy = fileURL.deletingLastPathComponent().appending(path: "progress-unreadable-\(stamp).json")
+            try? FileManager.default.moveItem(at: fileURL, to: copy)
             data = ProgressData()
         }
     }
@@ -140,7 +148,8 @@ final class ProgressStore {
             for id in session.wordIDs(for: learning) where data.reviews[id] == nil {
                 data.reviews[id] = Scheduler.newCard(learnedOn: now, calendar: calendar)
             }
-            data.completed[session.number] = now
+            // Keep the first time a session was finished: redoing one mustn't rewrite the streak.
+            if data.completed[session.number] == nil { data.completed[session.number] = now }
             data.currentSession = session.number + 1
             data.taught = []
         }
@@ -206,6 +215,14 @@ final class ProgressStore {
 
     func resetAll() {
         update { $0 = ProgressData() }
+        // The few settings kept outside the progress file, and any unreadable copy set aside.
+        for key in AppSettings.allKeys { UserDefaults.standard.removeObject(forKey: key) }
+        if let dir = fileURL?.deletingLastPathComponent(),
+           let files = try? FileManager.default.contentsOfDirectory(at: dir, includingPropertiesForKeys: nil) {
+            for file in files where file.lastPathComponent.hasPrefix("progress-unreadable-") {
+                try? FileManager.default.removeItem(at: file)
+            }
+        }
     }
 
     private func update(_ change: (inout ProgressData) -> Void) {

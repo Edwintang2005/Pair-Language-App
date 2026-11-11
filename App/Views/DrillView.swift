@@ -233,7 +233,8 @@ struct DrillView: View {
     }
 
     private func next(gotIt: Bool) {
-        guard let card = queue.first else { return }
+        // Only once per revealed card, so a double tap can't mark the next card unseen.
+        guard revealed, let card = queue.first else { return }
         if gotIt { correct += 1 } else { missed.append(card) }
         answers.append(gotIt)
         withAnimation(.snappy) {

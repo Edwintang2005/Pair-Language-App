@@ -384,6 +384,7 @@ struct ReviewRoundView: View {
         .padding(.horizontal, 16)
         .padding(.bottom, 8)
         .background(Color(.systemGroupedBackground))
+        .onDisappear { Speaker.shared.stop() }
     }
 
     private func card(_ word: Word) -> some View {
@@ -466,6 +467,9 @@ struct ReviewRoundView: View {
     }
 
     private func submit(_ grade: ReviewGrade, for word: Word) {
+        // Two grade buttons tapped at once: only the first counts (a second would grade the next
+        // card unseen, or crash on the last one).
+        guard revealed, queue.first == word.id else { return }
         progress.record(grade, for: word.id)
         withAnimation(.snappy) {
             reviewed += 1

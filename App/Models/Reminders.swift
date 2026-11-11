@@ -11,6 +11,17 @@ struct ReminderSettings: Codable, Equatable {
     var includeSessions = true
 }
 
+extension ReminderSettings {
+    // Decode leniently, like ProgressData.
+    init(from decoder: Decoder) throws {
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        enabled = try c.decodeIfPresent(Bool.self, forKey: .enabled) ?? true
+        hour = try c.decodeIfPresent(Int.self, forKey: .hour) ?? 20
+        minute = try c.decodeIfPresent(Int.self, forKey: .minute) ?? 0
+        includeSessions = try c.decodeIfPresent(Bool.self, forKey: .includeSessions) ?? true
+    }
+}
+
 enum AppTab: String, Hashable {
     case today, review, words
 }
@@ -92,14 +103,17 @@ enum ReminderScheduler {
     static func refresh(data: ProgressData, sessions: [Session], now: Date = .now) async {
         center.removeAllPendingNotificationRequests()
         let status = await center.notificationSettings().authorizationStatus
-        guard status == .authorized || status == .provisional else { return }
+        guard status == .authorized || status == .provisional, !Task.isCancelled else { return }
 
         let enabled = data.reminders?.enabled == true
         let dueNow = data.reviews.values.filter { $0.due <= now }.count
         try? await center.setBadgeCount(enabled ? dueNow : 0)
 
         let calendar = Calendar.current
-        for (index, reminder) in ReminderPlanner.plan(data: data, sessions: sessions, now: now).enumerated() {
+        var planned: Set<String> = []
+        for reminder in ReminderPlanner.plan(data: data, sessions: sessions, now: now) {
+            // A newer refresh has started (progress changed again): leave the scheduling to it.
+            guard !Task.isCancelled else { return }
             let content = UNMutableNotificationContent()
             content.title = reminder.title
             content.body = reminder.body
@@ -109,9 +123,18 @@ enum ReminderScheduler {
 
             let components = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: reminder.date)
             let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
-            let request = UNNotificationRequest(identifier: "pair.reminder.\(index)", content: content, trigger: trigger)
+            // Keyed by the time it's for, not its place in the plan, so skipped days can't shift them.
+            let identifier = "pair.reminder.\(Int(reminder.date.timeIntervalSince1970))"
+            planned.insert(identifier)
+            let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
             try? await center.add(request)
         }
+        // An older refresh that was still running may have added requests after ours cleared them.
+        guard !Task.isCancelled else { return }
+        let stale = await center.pendingNotificationRequests()
+            .map(\.identifier)
+            .filter { $0.hasPrefix("pair.reminder.") && !planned.contains($0) }
+        center.removePendingNotificationRequests(withIdentifiers: stale)
     }
 
     static func clearDelivered() {

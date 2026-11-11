@@ -57,6 +57,9 @@ final class VoiceRecorder {
     private var recorder: AVAudioRecorder?
     private var player: AVAudioPlayer?
     private var autoStop: Task<Void, Never>?
+    /// Bumped whenever playback starts or stops, so a playback that's been superseded can't
+    /// change `isPlaying` when it finishes.
+    private var generation = 0
 
     var recording: URL? {
         if case .recorded(let url) = state { return url }
@@ -80,7 +83,7 @@ final class VoiceRecorder {
         Speaker.shared.stop()
         AudioSession.useRecording()
         let url = FileManager.default.temporaryDirectory
-            .appendingPathComponent("pair-recording-\(UUID().uuidString).m4a")
+            .appendingPathComponent("\(Self.filePrefix)\(UUID().uuidString).m4a")
         let settings: [String: Any] = [
             AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
             AVSampleRateKey: 44_100,
@@ -107,29 +110,37 @@ final class VoiceRecorder {
 
     /// Plays your recording and returns when it's done.
     func playRecording() async {
-        guard let url = recording, let player = try? AVAudioPlayer(contentsOf: url) else { return }
-        Speaker.shared.stop()
-        self.player?.stop()
-        self.player = player
-        isPlaying = true
-        player.play()
-        // AVAudioPlayer's delegate would need its own object; its duration is enough to wait on.
-        try? await Task.sleep(for: .seconds(player.duration + 0.1))
-        if self.player === player { isPlaying = false }
+        stopPlaying()
+        let current = generation
+        await play(current)
+        if generation == current { isPlaying = false }
     }
 
     /// The original, then you, straight after: the comparison the drill is built around.
     func compare(with text: String, in language: Language) async {
         stopPlaying()
+        let current = generation
         isPlaying = true
         await Speaker.shared.speak(text, in: language)
-        guard isPlaying else { return }  // something else took over in the meantime
+        guard generation == current else { return }  // something else took over in the meantime
         try? await Task.sleep(for: .seconds(0.3))
-        await playRecording()
-        isPlaying = false
+        guard generation == current else { return }
+        await play(current)
+        if generation == current { isPlaying = false }
+    }
+
+    private func play(_ current: Int) async {
+        guard let url = recording, let player = try? AVAudioPlayer(contentsOf: url) else { return }
+        self.player = player
+        isPlaying = true
+        player.play()
+        // AVAudioPlayer's delegate would need its own object; its duration is enough to wait on.
+        try? await Task.sleep(for: .seconds(player.duration + 0.1))
+        if generation == current { self.player = nil }
     }
 
     func stopPlaying() {
+        generation += 1
         player?.stop()
         player = nil
         Speaker.shared.stop()
@@ -139,12 +150,27 @@ final class VoiceRecorder {
     /// Stops everything and deletes the recording.
     func discard() {
         autoStop?.cancel()
+        // Still recording: the file is the recorder's, not yet in `state`.
+        let inProgress = recorder?.url
         recorder?.stop()
         recorder = nil
         stopPlaying()
-        if let url = recording { try? FileManager.default.removeItem(at: url) }
+        for url in [inProgress, recording].compactMap({ $0 }) {
+            try? FileManager.default.removeItem(at: url)
+        }
         state = .idle
     }
+
+    /// Deletes any recording left over from a run that ended abruptly (the app was killed mid-drill).
+    static func removeLeftoverRecordings() {
+        let tmp = FileManager.default.temporaryDirectory
+        guard let files = try? FileManager.default.contentsOfDirectory(at: tmp, includingPropertiesForKeys: nil) else { return }
+        for file in files where file.lastPathComponent.hasPrefix(filePrefix) {
+            try? FileManager.default.removeItem(at: file)
+        }
+    }
+
+    private static let filePrefix = "pair-recording-"
 }
 
 /// "Which words did it understand?": on-device speech recognition over your recording.
@@ -213,13 +239,19 @@ nonisolated enum SpeechCheck {
 
         let once = Once()
         let text: String? = await withCheckedContinuation { continuation in
-            once.task = recognizer.recognitionTask(with: request) { result, error in
+            let task = recognizer.recognitionTask(with: request) { result, error in
                 if let result, result.isFinal {
                     once.run { continuation.resume(returning: result.bestTranscription.formattedString) }
                 } else if error != nil {
                     // Includes "no speech detected".
                     once.run { continuation.resume(returning: nil) }
                 }
+            }
+            once.hold(task)
+            // A recording is at most 15 seconds; never leave the spinner up if recognition stalls.
+            Task.detached {
+                try? await Task.sleep(for: .seconds(timeoutSeconds))
+                once.run { continuation.resume(returning: nil) }
             }
         }
         withExtendedLifetime(recognizer) {}
@@ -228,10 +260,19 @@ nonisolated enum SpeechCheck {
     }
 
     /// Makes sure the continuation is resumed exactly once, and keeps the task alive meanwhile.
+    static let timeoutSeconds: Double = 20
+
     private final class Once: @unchecked Sendable {
         private let lock = NSLock()
         private var done = false
-        var task: SFSpeechRecognitionTask?
+        private var task: SFSpeechRecognitionTask?
+
+        /// Keeps the task alive until it finishes; cancels it straight away if it already has.
+        func hold(_ task: SFSpeechRecognitionTask) {
+            lock.lock()
+            defer { lock.unlock() }
+            if done { task.cancel() } else { self.task = task }
+        }
 
         func run(_ body: () -> Void) {
             lock.lock()
@@ -239,6 +280,7 @@ nonisolated enum SpeechCheck {
             guard !done else { return }
             done = true
             body()
+            task?.cancel()
             task = nil
         }
     }
@@ -251,6 +293,7 @@ nonisolated enum SpeechMatch {
         switch language {
         case .german:
             let said = Set(transcript.split(whereSeparator: { $0.isWhitespace }).map(normalisedGerman))
+            // Recognisers often write numbers as digits: "zwei" and "2" both become "2".
             return words.map { said.contains(normalisedGerman($0)) }
         case .chinese:
             let said = normalisedChinese(transcript)
@@ -259,17 +302,63 @@ nonisolated enum SpeechMatch {
     }
 
     private static func normalisedGerman(_ word: some StringProtocol) -> String {
-        word.lowercased().filter { $0.isLetter || $0.isNumber }
+        let plain = word.lowercased().filter { $0.isLetter || $0.isNumber }
+        return germanNumbers[plain] ?? plain
+    }
+
+    /// Number words as digits. "ein/eine" are left alone: they're usually "a", not "one".
+    private static let germanNumbers: [String: String] = [
+        "null": "0", "eins": "1", "zwei": "2", "drei": "3", "vier": "4", "fünf": "5", "sechs": "6",
+        "sieben": "7", "acht": "8", "neun": "9", "zehn": "10", "elf": "11", "zwölf": "12",
+        "zwanzig": "20", "dreißig": "30", "hundert": "100", "tausend": "1000",
+    ]
+
+    /// 2 → 二, 10 → 十, 25 → 二十五, 100 → 一百, 105 → 一百零五, 3000 → 三千 (up to 9999).
+    static func chineseNumeral(_ n: Int) -> String? {
+        guard (0...9999).contains(n) else { return nil }
+        let digits = Array("零一二三四五六七八九")
+        if n < 10 { return String(digits[n]) }
+        if n < 20 { return "十" + (n == 10 ? "" : String(digits[n % 10])) }
+        let units: [(Int, Character)] = [(1000, "千"), (100, "百"), (10, "十")]
+        var result = ""
+        var rest = n
+        var pendingZero = false
+        for (size, name) in units {
+            let d = rest / size
+            rest %= size
+            if d > 0 {
+                if pendingZero { result.append("零"); pendingZero = false }
+                result.append(digits[d]); result.append(name)
+            } else if !result.isEmpty {
+                pendingZero = true
+            }
+        }
+        if rest > 0 {
+            if pendingZero { result.append("零") }
+            result.append(digits[rest])
+        }
+        return result
     }
 
     /// Recognisers can't tell 他/她/它 or 的/得/地 apart by sound, and write numbers as digits,
     /// so those count as the same.
     private static func normalisedChinese(_ text: String) -> String {
-        let same: [Character: Character] = [
-            "她": "他", "它": "他", "得": "的", "地": "的", "两": "二",
-            "0": "零", "1": "一", "2": "二", "3": "三", "4": "四", "5": "五", "6": "六", "7": "七", "8": "八", "9": "九",
-        ]
-        return String(text.compactMap { character -> Character? in
+        let same: [Character: Character] = ["她": "他", "它": "他", "得": "的", "地": "的", "两": "二"]
+        // Digit runs become numerals first: "10" is 十, not 一零.
+        var spelled = ""
+        var run = ""
+        for character in text + " " {
+            if character.isASCII && character.isNumber {
+                run.append(character)
+                continue
+            }
+            if !run.isEmpty {
+                spelled += Int(run).flatMap(chineseNumeral) ?? run
+                run = ""
+            }
+            spelled.append(character)
+        }
+        return String(spelled.compactMap { character -> Character? in
             guard character.isLetter || character.isNumber else { return nil }
             return same[character] ?? character
         })

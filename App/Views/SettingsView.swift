@@ -7,7 +7,7 @@ struct SettingsView: View {
 
     @Environment(\.openURL) private var openURL
 
-    @AppStorage("checksSpeaking") private var checksSpeaking = true
+    @AppStorage(AppSettings.checksSpeaking) private var checksSpeaking = true
     @State private var speechAvailability: SpeechCheck.Availability = .ready
     @Environment(\.scenePhase) private var scenePhase
     @State private var confirmingReset = false

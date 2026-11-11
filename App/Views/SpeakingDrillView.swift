@@ -11,6 +11,7 @@ struct SpeakingDrillView: View {
 
     @State private var queue: [SpeakingItem] = []
     @State private var total = 0
+    @State private var spoken = 0
     @State private var started = false
 
     var body: some View {
@@ -19,7 +20,11 @@ struct SpeakingDrillView: View {
                 if let item = queue.first {
                     VStack(spacing: 16) {
                         RoundProgress(done: total - queue.count, total: total)
-                        SpeakingCard(item: item, nextTitle: queue.count > 1 ? "Next" : "Finish") { next(after: item.id) }
+                        SpeakingCard(item: item, nextTitle: queue.count > 1 ? "Next" : "Finish") { didSpeak in
+                            guard queue.first?.id == item.id else { return }
+                            if didSpeak { spoken += 1 }
+                            next(after: item.id)
+                        }
                             .id(item.id)
                     }
                     .padding(16)
@@ -44,7 +49,10 @@ struct SpeakingDrillView: View {
                 started = true
             }
         }
-        .onDisappear { AudioSession.usePlayback() }
+        .onDisappear {
+            Speaker.shared.stop()
+            AudioSession.usePlayback()
+        }
     }
 
     private var finished: some View {
@@ -54,7 +62,9 @@ struct SpeakingDrillView: View {
                 .font(.system(size: 64))
                 .foregroundStyle(.green)
             Text("Nicely done").font(.title.bold())
-            Text("You practised \(total) sentence\(total == 1 ? "" : "s") out loud.")
+            Text(spoken == 0
+                 ? "Come back when you're somewhere you can talk."
+                 : "You said \(spoken) sentence\(spoken == 1 ? "" : "s") out loud.")
                 .foregroundStyle(.secondary)
             Spacer()
             Button {
@@ -78,9 +88,10 @@ struct SpeakingDrillView: View {
 struct SpeakingCard: View {
     let item: SpeakingItem
     let nextTitle: String
-    let onNext: () -> Void
+    /// Called with whether you recorded yourself at least once (false for Skip).
+    let onNext: (Bool) -> Void
 
-    @AppStorage("checksSpeaking") private var checksSpeaking = true
+    @AppStorage(AppSettings.checksSpeaking) private var checksSpeaking = true
     @Environment(\.openURL) private var openURL
     @Environment(\.scenePhase) private var scenePhase
 
@@ -113,7 +124,7 @@ struct SpeakingCard: View {
 
             Button {
                 recorder.discard()
-                onNext()
+                onNext(attempts > 0)
             } label: {
                 Text(attempts == 0 ? "Skip" : nextTitle)
                     .font(.headline).frame(maxWidth: .infinity).padding(.vertical, 6)
@@ -121,8 +132,9 @@ struct SpeakingCard: View {
             .buttonStyle(.bordered)
         }
         .task {
-            // Hear it first.
+            // Hear it first, unless you've already moved on.
             try? await Task.sleep(for: .seconds(0.3))
+            guard !Task.isCancelled else { return }
             Speaker.shared.say(item.example.text, in: language)
         }
         .onDisappear { recorder.discard() }
@@ -215,6 +227,7 @@ struct SpeakingCard: View {
         }
         micDenied = false
         check = nil
+        checking = false
         recorder.start()
     }
 
@@ -228,7 +241,9 @@ struct SpeakingCard: View {
         if checkTask != nil { checking = true }
         await recorder.compare(with: item.example.text, in: language)
         let result = await checkTask?.value
-        guard recorder.recording == url else { return }  // re-recorded in the meantime
+        // Re-recorded in the meantime: starting the new recording cleared `checking`, and the new
+        // recording gets its own check.
+        guard recorder.recording == url else { return }
         withAnimation(.snappy) {
             check = result
             checking = false

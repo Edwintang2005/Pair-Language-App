@@ -44,7 +44,10 @@ struct PractiseView: View {
         .onAppear {
             if !started { start() }
         }
-        .onDisappear { AudioSession.usePlayback() }
+        .onDisappear {
+            Speaker.shared.stop()
+            AudioSession.usePlayback()
+        }
     }
 
     @ViewBuilder
@@ -58,9 +61,9 @@ struct PractiseView: View {
             SentencePuzzleCard(puzzle: puzzle, listenOnly: true, nextTitle: nextTitle, onCheck: record,
                                onNext: { next(after: item.id) })
         case .speaking(let speaking):
-            SpeakingCard(item: speaking, nextTitle: nextTitle) {
+            SpeakingCard(item: speaking, nextTitle: nextTitle) { didSpeak in
                 guard queue.first?.id == item.id else { return }
-                spoken += 1
+                if didSpeak { spoken += 1 }
                 // Not marked, but it still fills its segment.
                 withAnimation(.snappy) { answers.append(true) }
                 next(after: item.id)
