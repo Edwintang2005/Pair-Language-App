@@ -11,7 +11,7 @@ import unicodedata
 from pathlib import Path
 
 POS = {"noun", "verb", "adjective", "adverb", "pronoun", "interjection", "phrase", "particle",
-       "numeral", "conjunction", "preposition"}
+       "numeral", "conjunction", "preposition", "name"}
 WORDS_PER_SIDE = 5
 ID_RE = re.compile(r"^(de|zh)-[a-z0-9]+(-[a-z0-9]+)*$")
 

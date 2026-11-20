@@ -277,6 +277,11 @@ enum PastTense {
         return .none
     }
 
+    /// The separable prefix a verb starts with, if any (longest match: zurück before zu).
+    static func separablePrefix(of infinitive: String) -> String? {
+        separablePrefixes.sorted { $0.count > $1.count }.first { infinitive.hasPrefix($0) && infinitive.count > $0.count + 3 }
+    }
+
     /// Prefixes that split off and take the ge- after them.
     static let separablePrefixes: Set<String> = [
         "ab", "an", "auf", "aus", "bei", "ein", "fern", "fest", "her", "hin", "los", "mit", "nach",
@@ -319,7 +324,13 @@ enum PastTense {
     /// the -en form for regular ones (gemachen), and a stray ge- for verbs that don't take one (gerepariert).
     static func madeUpParticiple(for word: Word) -> String? {
         guard let participle = word.verb?.participle else { return nil }
-        guard let regular = regularParticiple(for: word) else { return "ge" + participle }
+        guard let regular = regularParticiple(for: word) else {
+            // vorbereitet → the tempting vorgebereitet; verstanden → geverstanden.
+            if let prefix = separablePrefix(of: word.word), participle.hasPrefix(prefix) {
+                return prefix + "ge" + participle.dropFirst(prefix.count)
+            }
+            return "ge" + participle
+        }
         if regular != participle { return regular }
         // Regular verbs: swap the -t for -en (gemacht → gemachen).
         let strong = String(regular.dropLast(regular.hasSuffix("et") ? 2 : 1)) + "en"
@@ -342,9 +353,14 @@ enum PastTense {
         case .afterPrefix(let prefix):
             lines.append("The ge- goes after the prefix: \(prefix)·ge·\(verb.participle.dropFirst(prefix.count + 2)).")
         case .none:
-            lines.append(verb.participle.hasSuffix("iert")
-                ? "Verbs ending in -ieren never take ge-."
-                : "No ge- here: verbs starting with be-, er-, ge-, ver- and similar leave it off.")
+            if let prefix = separablePrefix(of: word.word) {
+                let rest = word.word.dropFirst(prefix.count)
+                lines.append("No ge- here: after \(prefix)-, the rest (\(rest)) starts with be-, er-, ver- or similar, which never take ge-.")
+            } else {
+                lines.append(verb.participle.hasSuffix("iert")
+                    ? "Verbs ending in -ieren never take ge-."
+                    : "No ge- here: verbs starting with be-, er-, ge-, ver- and similar leave it off.")
+            }
         case .front:
             if regular == verb.participle, let ending = ["et", "t"].first(where: verb.participle.hasSuffix) {
                 let stem = verb.participle.dropFirst(2).dropLast(ending.count)

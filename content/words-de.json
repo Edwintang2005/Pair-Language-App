@@ -2621,7 +2621,7 @@
     },
     {
       "id": "de-kollege", "word": "Kollege", "gloss": "colleague", "pos": "noun",
-      "noun": { "gender": "m", "plural": "Kollegen" },
+      "noun": { "gender": "m", "plural": "Kollegen", "hint": "Male people are der, even with an -e ending. A female colleague is die Kollegin." },
       "examples": [{ "text": "Mein Kollege kommt aus China.", "english": "My colleague comes from China." }],
       "tip": "A female colleague is die Kollegin. It adds -n in every form but the basic one: mit meinem Kollegen."
     },
@@ -2935,6 +2935,1758 @@
       "verb": { "present3sg": "verspricht", "participle": "versprochen", "auxiliary": "haben" },
       "examples": [{ "text": "Das kann ich dir versprechen.", "english": "I can promise you that." }],
       "tip": "Vowel change: er verspricht. Versprochen! on its own = I promise! Careful: sich versprechen = to make a slip of the tongue."
+    },
+
+    {
+      "id": "de-in", "word": "in", "gloss": "in, into", "pos": "preposition",
+      "examples": [
+        { "text": "Mein Handy ist in der Küche.", "english": "My phone is in the kitchen.", "alternatives": ["In der Küche ist mein Handy."] },
+        { "text": "Wir gehen heute in den Park.", "english": "We're going to the park today.", "alternatives": ["Heute gehen wir in den Park."] }
+      ],
+      "tip": "Where something is: in + dative (in der Küche). Where it's going: in + accusative (in die Küche). in dem shortens to im, in das to ins."
+    },
+    {
+      "id": "de-auf", "word": "auf", "gloss": "on, onto", "pos": "preposition",
+      "examples": [
+        { "text": "Das Buch liegt auf dem Tisch.", "english": "The book is on the table.", "alternatives": ["Auf dem Tisch liegt das Buch."] },
+        { "text": "Ich warte schon lange auf dich.", "english": "I've been waiting for you for a long time.", "alternatives": ["Schon lange warte ich auf dich."] }
+      ],
+      "tip": "On top of a surface. Same split as in: auf dem Tisch (where), auf den Tisch (where to). Also in fixed pairs: warten auf (wait for), auf Deutsch (in German)."
+    },
+    {
+      "id": "de-unter", "word": "unter", "gloss": "under, below; among", "pos": "preposition",
+      "examples": [
+        { "text": "Deine Schuhe sind unter dem Bett.", "english": "Your shoes are under the bed.", "alternatives": ["Unter dem Bett sind deine Schuhe."] },
+        { "text": "Was liegt da unter dem Sofa?", "english": "What's that lying under the sofa?" }
+      ],
+      "tip": "Under, and also 'among': unter Freunden = among friends. unter der Woche = during the week. Dative for where, accusative for where to."
+    },
+    {
+      "id": "de-vor", "word": "vor", "gloss": "in front of; before; ago", "pos": "preposition",
+      "examples": [
+        { "text": "Ich warte vor dem Haus auf dich.", "english": "I'll wait for you in front of the house.", "alternatives": ["Vor dem Haus warte ich auf dich.", "Ich warte auf dich vor dem Haus."] },
+        { "text": "Vor einem Jahr war ich in China.", "english": "A year ago I was in China.", "alternatives": ["Ich war vor einem Jahr in China."] }
+      ],
+      "tip": "Three jobs: place (vor dem Haus), time (vor dem Essen = before the meal) and 'ago' (vor einem Jahr = a year ago, always dative). V = f."
+    },
+    {
+      "id": "de-hinter", "word": "hinter", "gloss": "behind", "pos": "preposition",
+      "examples": [
+        { "text": "Der Garten ist hinter dem Haus.", "english": "The garden is behind the house.", "alternatives": ["Hinter dem Haus ist der Garten."] },
+        { "text": "Wer sitzt da hinter dir?", "english": "Who's that sitting behind you?" }
+      ],
+      "tip": "Opposite of vor. Dative for where (hinter dem Haus), accusative for movement (hinter das Haus). Hide something and ask: Ist es hinter dem Sofa?"
+    },
+
+    {
+      "id": "de-land", "word": "Land", "gloss": "country; countryside", "pos": "noun",
+      "noun": { "gender": "n", "plural": "Länder" },
+      "examples": [
+        { "text": "Aus welchem Land kommst du?", "english": "Which country are you from?" },
+        { "text": "Meine Oma wohnt auf dem Land.", "english": "My grandma lives in the country." }
+      ],
+      "tip": "Two meanings: a country (zwei Länder) and the countryside (auf dem Land = in the country). The German states are called Bundesländer."
+    },
+    {
+      "id": "de-deutschland", "word": "Deutschland", "gloss": "Germany", "pos": "name",
+      "examples": [
+        { "text": "Wie lange wohnst du schon in Deutschland?", "english": "How long have you been living in Germany?" },
+        { "text": "Deutschland ist im Winter kalt.", "english": "Germany is cold in winter.", "alternatives": ["Im Winter ist Deutschland kalt."] }
+      ],
+      "tip": "Stress the first part: DOYTSH-lant. To Germany is nach Deutschland, in Germany is in Deutschland, both without an article. Almost all countries are das and used without an article: Deutschland, China. A few take one: die Schweiz, die Türkei, die USA."
+    },
+    {
+      "id": "de-china", "word": "China", "gloss": "China", "pos": "name",
+      "examples": [
+        { "text": "In China isst man viel Reis.", "english": "In China people eat a lot of rice.", "alternatives": ["Man isst in China viel Reis."] },
+        { "text": "Warst du schon einmal in China?", "english": "Have you ever been to China?" }
+      ],
+      "tip": "Said 'CHEE-na' with the soft ich-sound in the north, 'KEE-na' in the south and in Austria. The people: der Chinese, die Chinesin. The language: Chinesisch. Almost all countries are das and used without an article: China, Deutschland. A few take one: die Schweiz, die Türkei, die USA."
+    },
+    {
+      "id": "de-deutsch", "word": "Deutsch", "gloss": "German (the language)", "pos": "noun",
+      "noun": { "gender": "n", "plural": null, "hint": "Languages are das, though you rarely need the article: das Deutsch, das Chinesisch, das Englisch." },
+      "examples": [
+        { "text": "Mein Deutsch wird langsam besser.", "english": "My German is slowly getting better.", "alternatives": ["Langsam wird mein Deutsch besser."] },
+        { "text": "Wir sprechen zu Hause Deutsch.", "english": "We speak German at home.", "alternatives": ["Zu Hause sprechen wir Deutsch."] }
+      ],
+      "tip": "auf Deutsch = in German. As an adjective it's lower case: deutsches Brot. A German person is ein Deutscher or eine Deutsche."
+    },
+    {
+      "id": "de-ausland", "word": "Ausland", "gloss": "abroad, foreign countries", "pos": "noun",
+      "noun": { "gender": "n", "plural": null, "hint": "Compound nouns take the gender of their last part: das Land, so das Ausland." },
+      "examples": [
+        { "text": "Meine Schwester wohnt im Ausland.", "english": "My sister lives abroad." },
+        { "text": "Wir fahren oft ins Ausland.", "english": "We often travel abroad." }
+      ],
+      "tip": "Literally 'out-land'. im Ausland = abroad (where), ins Ausland = abroad (where to). A foreigner is ein Ausländer; a foreign language is eine Fremdsprache."
+    },
+
+    {
+      "id": "de-etwas", "word": "etwas", "gloss": "something; a bit, somewhat", "pos": "pronoun",
+      "examples": [
+        { "text": "Ich habe etwas für dich.", "english": "I have something for you." },
+        { "text": "Ich muss dir etwas sagen.", "english": "I have to tell you something." }
+      ],
+      "tip": "Often shortened to was in speech: Willst du was essen? Before an adjective it means 'a bit': etwas müde. etwas Neues = something new, with a capital N."
+    },
+    {
+      "id": "de-nichts", "word": "nichts", "gloss": "nothing", "pos": "pronoun",
+      "examples": [
+        { "text": "Ich habe heute nichts gegessen.", "english": "I haven't eaten anything today.", "alternatives": ["Heute habe ich nichts gegessen."] },
+        { "text": "Ich sehe nichts.", "english": "I can't see anything." }
+      ],
+      "tip": "Don't confuse it with nicht (not): Ich sehe nicht = I can't see; Ich sehe nichts = I see nothing. Das macht nichts = it doesn't matter. Often 'nix' in speech."
+    },
+    {
+      "id": "de-jemand", "word": "jemand", "gloss": "someone, somebody", "pos": "pronoun",
+      "examples": [
+        { "text": "Da ist jemand an der Tür.", "english": "There's someone at the door." },
+        { "text": "Hat jemand meinen Schlüssel gesehen?", "english": "Has anyone seen my key?" }
+      ],
+      "tip": "Stress the first syllable: YEH-mant. It can take endings (jemanden, jemandem), but plain jemand is fine in speech. In questions it also means 'anyone'."
+    },
+    {
+      "id": "de-niemand", "word": "niemand", "gloss": "no one, nobody", "pos": "pronoun",
+      "examples": [
+        { "text": "Niemand ist zu Hause.", "english": "Nobody is at home.", "alternatives": ["Zu Hause ist niemand."] },
+        { "text": "Das weiß niemand.", "english": "Nobody knows that.", "alternatives": ["Niemand weiß das."] }
+      ],
+      "tip": "jemand with an n- in front, like nie (never) and nichts (nothing). German doesn't double its negatives: Niemand hat etwas gesagt, not 'nichts'."
+    },
+    {
+      "id": "de-kein", "word": "kein", "gloss": "no, not a, not any", "pos": "pronoun",
+      "examples": [
+        { "text": "Ich habe kein Auto.", "english": "I don't have a car." },
+        { "text": "Heute habe ich kein Glück.", "english": "I'm having no luck today.", "alternatives": ["Ich habe heute kein Glück."] }
+      ],
+      "tip": "nicht + ein = kein. Use it to negate nouns: kein Geld, keine Zeit, keine Kinder. It takes the same endings as ein and mein. The classic learner mistake is 'nicht ein'."
+    },
+
+    {
+      "id": "de-reis", "word": "Reis", "gloss": "rice", "pos": "noun",
+      "noun": { "gender": "m", "plural": null },
+      "examples": [
+        { "text": "Ich koche heute Reis mit Gemüse.", "english": "I'm cooking rice with vegetables today.", "alternatives": ["Heute koche ich Reis mit Gemüse."] },
+        { "text": "Der Reis ist gleich fertig.", "english": "The rice is nearly ready.", "alternatives": ["Gleich ist der Reis fertig."] }
+      ],
+      "tip": "Sounds like English 'rice' with a German r. No plural. Don't mix it up with die Reise (trip)."
+    },
+    {
+      "id": "de-suppe", "word": "Suppe", "gloss": "soup", "pos": "noun",
+      "noun": { "gender": "f", "plural": "Suppen" },
+      "examples": [
+        { "text": "Die Suppe schmeckt sehr gut.", "english": "The soup tastes very good." },
+        { "text": "Möchtest du noch etwas Suppe?", "english": "Would you like some more soup?" }
+      ],
+      "tip": "You 'eat' soup in German: Suppe essen, never trinken. The s at the start is voiced like an English z: ZOO-peh."
+    },
+    {
+      "id": "de-kartoffel", "word": "Kartoffel", "gloss": "potato", "pos": "noun",
+      "noun": { "gender": "f", "plural": "Kartoffeln" },
+      "examples": [
+        { "text": "Schneidest du bitte noch eine Kartoffel?", "english": "Could you cut up one more potato, please?" },
+        { "text": "Eine Kartoffel liegt noch auf dem Teller.", "english": "There's still one potato on the plate.", "alternatives": ["Auf dem Teller liegt noch eine Kartoffel."] }
+      ],
+      "tip": "The German staple: Bratkartoffeln (fried), Kartoffelsalat (potato salad), Pommes (chips). Stress the middle: kar-TOF-fel. Feminine, although most nouns ending in -el are masculine."
+    },
+    {
+      "id": "de-haehnchen", "word": "Hähnchen", "gloss": "chicken (as food)", "pos": "noun",
+      "noun": { "gender": "n", "plural": "Hähnchen" },
+      "examples": [
+        { "text": "Ich nehme das Hähnchen mit Reis.", "english": "I'll have the chicken with rice." },
+        { "text": "Magst du lieber Hähnchen oder Fisch?", "english": "Do you prefer chicken or fish?" }
+      ],
+      "tip": "-chen makes it 'little' and neuter: a little Hahn (rooster). The live bird is das Huhn. ä = 'eh', and the ch is the soft ich-sound: HEHN-chen."
+    },
+    {
+      "id": "de-wurst", "word": "Wurst", "gloss": "sausage; cold cuts", "pos": "noun",
+      "noun": { "gender": "f", "plural": "Würste" },
+      "examples": [
+        { "text": "Zum Frühstück gibt es Brot mit Wurst.", "english": "For breakfast there's bread with cold cuts.", "alternatives": ["Es gibt zum Frühstück Brot mit Wurst."] },
+        { "text": "Diese Wurst ist sehr lecker.", "english": "This sausage is really tasty." }
+      ],
+      "tip": "Covers sausages and the sliced cold cuts that go on bread. Germany has over a thousand kinds. Das ist mir Wurst = I couldn't care less. W = v."
+    },
+
+    {
+      "id": "de-schlecht", "word": "schlecht", "gloss": "bad", "pos": "adjective",
+      "examples": [
+        { "text": "Der Film war wirklich schlecht.", "english": "The film was really bad." },
+        { "text": "Mir ist ein bisschen schlecht.", "english": "I feel a bit sick." }
+      ],
+      "tip": "Opposite of gut. Mir ist schlecht = I feel sick, not 'I am bad'. Nicht schlecht! is real German praise."
+    },
+    {
+      "id": "de-richtig", "word": "richtig", "gloss": "right, correct; really", "pos": "adjective",
+      "examples": [
+        { "text": "Ist dieser Satz richtig?", "english": "Is this sentence correct?" },
+        { "text": "Das war richtig gut!", "english": "That was really good!" }
+      ],
+      "tip": "Opposite of falsch. As an intensifier it means 'really': richtig lecker. The final -ig sounds like 'ich': RICH-tich."
+    },
+    {
+      "id": "de-toll", "word": "toll", "gloss": "great, fantastic", "pos": "adjective",
+      "examples": [
+        { "text": "Dein Deutsch ist wirklich toll!", "english": "Your German is really great!" },
+        { "text": "Das hast du toll gemacht!", "english": "You did that brilliantly!", "alternatives": ["Du hast das toll gemacht!"] }
+      ],
+      "tip": "Everyday praise, like super or klasse. Short o, as in English 'doll'. Use it generously whenever your partner gets something right."
+    },
+    {
+      "id": "de-schlimm", "word": "schlimm", "gloss": "bad, serious, terrible", "pos": "adjective",
+      "examples": [
+        { "text": "Das ist nicht so schlimm.", "english": "It's not that bad." },
+        { "text": "Wie schlimm sind die Schmerzen?", "english": "How bad is the pain?" }
+      ],
+      "tip": "For bad situations, pain or news; schlecht is about quality. Nicht schlimm! = no harm done, a kind reply to an apology."
+    },
+    {
+      "id": "de-jung", "word": "jung", "gloss": "young", "pos": "adjective",
+      "examples": [
+        { "text": "Meine Mutter ist noch sehr jung.", "english": "My mother is still very young." },
+        { "text": "Wir waren damals so jung.", "english": "We were so young back then.", "alternatives": ["Damals waren wir so jung."] }
+      ],
+      "tip": "Opposite of alt. The comparative takes an umlaut: jünger (mein jüngerer Bruder). J = English y: 'yoong'."
+    },
+
+    {
+      "id": "de-fuer", "word": "für", "gloss": "for", "pos": "preposition",
+      "examples": [
+        { "text": "Das Geschenk ist für dich.", "english": "The present is for you." },
+        { "text": "Ich koche heute für uns.", "english": "I'm cooking for us today.", "alternatives": ["Heute koche ich für uns."] }
+      ],
+      "tip": "Always accusative: für mich, für dich, für den Vater. Was für ein…? = what kind of…? Not for time up to now: 'for two years' is seit zwei Jahren."
+    },
+    {
+      "id": "de-von", "word": "von", "gloss": "from; of; by", "pos": "preposition",
+      "examples": [
+        { "text": "Das ist ein Geschenk von meiner Mutter.", "english": "That's a present from my mother." },
+        { "text": "Wie weit ist es von hier?", "english": "How far is it from here?" }
+      ],
+      "tip": "Always dative. From a person or starting point (von mir, von hier), 'of' (ein Freund von mir) and 'by' (ein Lied von Mozart). von dem = vom. V = f."
+    },
+    {
+      "id": "de-ohne", "word": "ohne", "gloss": "without", "pos": "preposition",
+      "examples": [
+        { "text": "Einen Tee ohne Zucker, bitte.", "english": "A tea without sugar, please.", "alternatives": ["Bitte einen Tee ohne Zucker."] },
+        { "text": "Ohne dich gehe ich nicht.", "english": "I'm not going without you.", "alternatives": ["Ich gehe nicht ohne dich."] }
+      ],
+      "tip": "Opposite of mit, but it takes the accusative: ohne mich, ohne dich. Usually no article after it: ohne Auto, ohne Geld. Long o, silent h."
+    },
+    {
+      "id": "de-zu", "word": "zu", "gloss": "to; too", "pos": "preposition",
+      "examples": [
+        { "text": "Ich gehe jetzt zu meiner Freundin.", "english": "I'm going to my girlfriend's now.", "alternatives": ["Jetzt gehe ich zu meiner Freundin."] },
+        { "text": "Es ist zu spät für Kaffee.", "english": "It's too late for coffee." }
+      ],
+      "tip": "Two words in one. As 'to' it's for people and places, with dative: zu mir, zum Arzt (zu dem), zur Schule (zu der). Before an adjective it means 'too': zu teuer. zu Hause = at home."
+    },
+    {
+      "id": "de-aus", "word": "aus", "gloss": "from, out of; made of", "pos": "preposition",
+      "examples": [
+        { "text": "Ich komme gerade aus dem Büro.", "english": "I've just come from the office.", "alternatives": ["Gerade komme ich aus dem Büro."] },
+        { "text": "Er trinkt Bier aus der Flasche.", "english": "He drinks beer from the bottle." }
+      ],
+      "tip": "Always dative. Where you're from (aus China), out of something (aus der Flasche, aus dem Haus) and material (aus Holz = made of wood). aus = out of an inside; von = from a point or a person."
+    },
+
+    {
+      "id": "de-fuss", "word": "Fuß", "gloss": "foot", "pos": "noun",
+      "noun": { "gender": "m", "plural": "Füße" },
+      "examples": [
+        { "text": "Zu Fuß sind es zehn Minuten.", "english": "It's ten minutes on foot.", "alternatives": ["Es sind zu Fuß zehn Minuten."] },
+        { "text": "Dein Fuß ist ja ganz kalt!", "english": "Your foot is really cold!" }
+      ],
+      "tip": "zu Fuß = on foot. Long u and a sharp ß: 'fooss'. The plural adds an umlaut: die Füße. Germans measure in metres, so nobody gives their height in 'feet'."
+    },
+    {
+      "id": "de-finger", "word": "Finger", "gloss": "finger", "pos": "noun",
+      "noun": { "gender": "m", "plural": "Finger" },
+      "examples": [
+        { "text": "Ich habe mir in den Finger geschnitten.", "english": "I've cut my finger." },
+        { "text": "Welcher Finger tut dir weh?", "english": "Which finger hurts?" }
+      ],
+      "tip": "Plural unchanged: zehn Finger. The ng is soft as in English 'singer', not as in 'finger'. Toes are die Zehen; the thumb is der Daumen (Daumen drücken = fingers crossed)."
+    },
+    {
+      "id": "de-ruecken", "word": "Rücken", "gloss": "back (of the body)", "pos": "noun",
+      "noun": { "gender": "m", "plural": "Rücken" },
+      "examples": [
+        { "text": "Mein Rücken tut seit gestern weh.", "english": "My back has been hurting since yesterday.", "alternatives": ["Seit gestern tut mein Rücken weh."] },
+        { "text": "Ich schlafe immer auf dem Rücken.", "english": "I always sleep on my back." }
+      ],
+      "tip": "Rückenschmerzen (back pain) is the classic office complaint. Short ü, then a sharp ck. Related to zurück (back)."
+    },
+    {
+      "id": "de-bauch", "word": "Bauch", "gloss": "belly, stomach", "pos": "noun",
+      "noun": { "gender": "m", "plural": "Bäuche" },
+      "examples": [
+        { "text": "Mein Bauch ist so voll!", "english": "My belly is so full!" },
+        { "text": "Hast du Schmerzen im Bauch?", "english": "Do you have a pain in your stomach?" }
+      ],
+      "tip": "The everyday word for belly and stomach; Bauchschmerzen = stomach ache. The organ is der Magen. au = 'ow', then the throaty ch as in Buch."
+    },
+    {
+      "id": "de-gesicht", "word": "Gesicht", "gloss": "face", "pos": "noun",
+      "noun": { "gender": "n", "plural": "Gesichter", "hint": "Many nouns starting with Ge- are das: das Gesicht, das Geschenk, das Gemüse." },
+      "examples": [
+        { "text": "Du hast ein schönes Gesicht.", "english": "You have a beautiful face." },
+        { "text": "Ich wasche mir das Gesicht.", "english": "I'm washing my face." }
+      ],
+      "tip": "From sehen: the part that sees and is seen. ein langes Gesicht machen = to pull a long face. Soft ich-sound before the t."
+    },
+
+    {
+      "id": "de-husten", "word": "husten", "gloss": "to cough", "pos": "verb",
+      "verb": { "present3sg": "hustet", "participle": "gehustet", "auxiliary": "haben" },
+      "examples": [
+        { "text": "Ich muss die ganze Nacht husten.", "english": "I keep coughing all night.", "alternatives": ["Die ganze Nacht muss ich husten."] },
+        { "text": "Seit wann husten Sie?", "english": "How long have you been coughing?" }
+      ],
+      "tip": "Also a noun: der Husten (Ich habe Husten = I have a cough). Long u. Hustensaft is cough syrup, literally 'cough juice'."
+    },
+    {
+      "id": "de-erkaeltung", "word": "Erkältung", "gloss": "cold (the illness)", "pos": "noun",
+      "noun": { "gender": "f", "plural": "Erkältungen" },
+      "examples": [
+        { "text": "Ich habe eine Erkältung.", "english": "I have a cold." },
+        { "text": "Meine Erkältung ist fast weg.", "english": "My cold is almost gone." }
+      ],
+      "tip": "From kalt: you 'get cold'. Ich bin erkältet = I have a cold. Stronger and with a fever, it's die Grippe (flu)."
+    },
+    {
+      "id": "de-rezept", "word": "Rezept", "gloss": "prescription; recipe", "pos": "noun",
+      "noun": { "gender": "n", "plural": "Rezepte" },
+      "examples": [
+        { "text": "Für dieses Medikament brauchst du ein Rezept.", "english": "You need a prescription for this medicine.", "alternatives": ["Du brauchst für dieses Medikament ein Rezept."] },
+        { "text": "Hast du ein Rezept für diese Suppe?", "english": "Do you have a recipe for this soup?" }
+      ],
+      "tip": "One word for the doctor's prescription and a cooking recipe. Stress the end, z = ts: re-TSEPT. Many medicines in Germany are only sold auf Rezept."
+    },
+    {
+      "id": "de-untersuchen", "word": "untersuchen", "gloss": "to examine", "pos": "verb",
+      "verb": { "present3sg": "untersucht", "participle": "untersucht", "auxiliary": "haben" },
+      "examples": [
+        { "text": "Der Arzt will mich morgen untersuchen.", "english": "The doctor wants to examine me tomorrow.", "alternatives": ["Morgen will der Arzt mich untersuchen."] },
+        { "text": "Sie untersuchen jetzt mein Bein.", "english": "They're examining my leg now.", "alternatives": ["Jetzt untersuchen sie mein Bein."] }
+      ],
+      "tip": "Not separable, although it starts with unter: the stress is on SU and the participle has no ge- (untersucht). The noun is die Untersuchung (check-up)."
+    },
+    {
+      "id": "de-tablette", "word": "Tablette", "gloss": "tablet, pill", "pos": "noun",
+      "noun": { "gender": "f", "plural": "Tabletten" },
+      "examples": [
+        { "text": "Hast du die Tablette schon genommen?", "english": "Have you taken the tablet yet?" },
+        { "text": "Ich brauche eine Tablette gegen Kopfschmerzen.", "english": "I need a tablet for my headache.", "alternatives": ["Gegen Kopfschmerzen brauche ich eine Tablette."] }
+      ],
+      "tip": "You 'take' one: eine Tablette nehmen. The computer tablet is das Tablet, with one t and the stress at the front; this one is ta-BLET-te."
+    },
+
+    {
+      "id": "de-zahn", "word": "Zahn", "gloss": "tooth", "pos": "noun",
+      "noun": { "gender": "m", "plural": "Zähne" },
+      "examples": [
+        { "text": "Das Baby hat schon einen Zahn.", "english": "The baby already has a tooth." },
+        { "text": "Der Zahn muss leider raus.", "english": "I'm afraid the tooth has to come out." }
+      ],
+      "tip": "Z = ts: 'tsahn'. Plural with umlaut: die Zähne. Zähne putzen = to brush your teeth. Zahnschmerzen = toothache."
+    },
+    {
+      "id": "de-haar", "word": "Haar", "gloss": "hair", "pos": "noun",
+      "noun": { "gender": "n", "plural": "Haare" },
+      "examples": [
+        { "text": "Da ist ein Haar in meiner Suppe!", "english": "There's a hair in my soup!" },
+        { "text": "Ich habe ein graues Haar gefunden.", "english": "I've found a grey hair." }
+      ],
+      "tip": "One hair is ein Haar; the hair on your head is usually plural: Ich wasche mir die Haare, Sie hat lange Haare. Long a."
+    },
+    {
+      "id": "de-friseur", "word": "Friseur", "gloss": "hairdresser", "pos": "noun",
+      "noun": { "gender": "m", "plural": "Friseure", "hint": "Male people are der. A female hairdresser is die Friseurin, and -in endings are always die." },
+      "examples": [
+        { "text": "Ich muss mal wieder zum Friseur.", "english": "I need to go to the hairdresser's again." },
+        { "text": "Wie heißt dein Friseur?", "english": "What's your hairdresser called?" }
+      ],
+      "tip": "A French word with a French ending: fri-ZÖR. Also spelled Frisör. zum Friseur gehen = to go to the hairdresser's; die Frisur is the hairstyle."
+    },
+    {
+      "id": "de-zahnarzt", "word": "Zahnarzt", "gloss": "dentist", "pos": "noun",
+      "noun": { "gender": "m", "plural": "Zahnärzte", "hint": "Compound nouns take the gender of their last part: der Arzt, so der Zahnarzt." },
+      "examples": [
+        { "text": "Morgen muss ich zum Zahnarzt.", "english": "I have to go to the dentist tomorrow.", "alternatives": ["Ich muss morgen zum Zahnarzt."] },
+        { "text": "Hast du Angst vor dem Zahnarzt?", "english": "Are you scared of the dentist?" }
+      ],
+      "tip": "Zahn + Arzt. A woman is die Zahnärztin. beim Zahnarzt = at the dentist's, zum Zahnarzt = to the dentist's."
+    },
+    {
+      "id": "de-bart", "word": "Bart", "gloss": "beard", "pos": "noun",
+      "noun": { "gender": "m", "plural": "Bärte" },
+      "examples": [
+        { "text": "Mein Vater hat einen Bart.", "english": "My father has a beard." },
+        { "text": "Wie findest du meinen Bart?", "english": "What do you think of my beard?" }
+      ],
+      "tip": "Long a. A moustache is der Schnurrbart; shaving is sich rasieren. Ask your partner: mit Bart oder ohne?"
+    },
+
+    {
+      "id": "de-nur", "word": "nur", "gloss": "only, just", "pos": "adverb",
+      "examples": [
+        { "text": "Ich habe nur fünf Minuten Zeit.", "english": "I only have five minutes." },
+        { "text": "Das war nur ein Traum.", "english": "It was only a dream." }
+      ],
+      "tip": "Limits whatever follows: nur du, nur heute. When 'only' means 'not until', German uses erst: erst morgen. Long u."
+    },
+    {
+      "id": "de-wieder", "word": "wieder", "gloss": "again", "pos": "adverb",
+      "examples": [
+        { "text": "Wann sehen wir uns wieder?", "english": "When will we see each other again?" },
+        { "text": "Es regnet schon wieder.", "english": "It's raining yet again.", "alternatives": ["Schon wieder regnet es."] }
+      ],
+      "tip": "Auf Wiedersehen = until we see each other again. schon wieder = yet again (annoyed). Don't confuse it with wider (against), which sounds the same."
+    },
+    {
+      "id": "de-fast", "word": "fast", "gloss": "almost, nearly", "pos": "adverb",
+      "examples": [
+        { "text": "Ich bin fast fertig.", "english": "I'm almost done." },
+        { "text": "Wir sehen uns fast jeden Tag.", "english": "We see each other almost every day.", "alternatives": ["Fast jeden Tag sehen wir uns."] }
+      ],
+      "tip": "A false friend: not 'fast' (that's schnell). fast immer = almost always, fast nie = hardly ever. Short a: 'fust'."
+    },
+    {
+      "id": "de-wirklich", "word": "wirklich", "gloss": "really", "pos": "adverb",
+      "examples": [
+        { "text": "Das ist wirklich nett von dir.", "english": "That's really kind of you." },
+        { "text": "Das Essen war wirklich lecker.", "english": "The food was really delicious." }
+      ],
+      "tip": "Wirklich? on its own = Really? It makes any adjective stronger: wirklich gut. W = v, and a soft ch at the end: VIRK-lich."
+    },
+    {
+      "id": "de-genau", "word": "genau", "gloss": "exactly; exact", "pos": "adverb",
+      "examples": [
+        { "text": "Wie spät ist es genau?", "english": "What time is it exactly?" },
+        { "text": "Genau, das stimmt!", "english": "Exactly, that's right!" }
+      ],
+      "tip": "Genau! on its own is how Germans say 'exactly, that's right', and you'll hear it constantly. Stress the end: ge-NOW."
+    },
+
+    {
+      "id": "de-messer", "word": "Messer", "gloss": "knife", "pos": "noun",
+      "noun": { "gender": "n", "plural": "Messer" },
+      "examples": [
+        { "text": "Dieses Messer schneidet nicht gut.", "english": "This knife doesn't cut well." },
+        { "text": "Ich brauche noch ein Messer.", "english": "I need another knife." }
+      ],
+      "tip": "The cutlery trio has all three genders: das Messer, die Gabel, der Löffel. Plural unchanged: zwei Messer."
+    },
+    {
+      "id": "de-gabel", "word": "Gabel", "gloss": "fork", "pos": "noun",
+      "noun": { "gender": "f", "plural": "Gabeln" },
+      "examples": [
+        { "text": "Die Gabel liegt links neben dem Teller.", "english": "The fork goes on the left next to the plate.", "alternatives": ["Links neben dem Teller liegt die Gabel."] },
+        { "text": "Kannst du mir eine Gabel geben?", "english": "Can you give me a fork?" }
+      ],
+      "tip": "Long a: GAH-bel. Feminine, although most nouns ending in -el are masculine (der Löffel). Germans keep the fork in the left hand for the whole meal."
+    },
+    {
+      "id": "de-loeffel", "word": "Löffel", "gloss": "spoon", "pos": "noun",
+      "noun": { "gender": "m", "plural": "Löffel" },
+      "examples": [
+        { "text": "Für die Suppe brauche ich einen Löffel.", "english": "I need a spoon for the soup.", "alternatives": ["Ich brauche für die Suppe einen Löffel."] },
+        { "text": "Ein Löffel Zucker ist genug.", "english": "One spoonful of sugar is enough." }
+      ],
+      "tip": "ö: say 'eh' with rounded lips. Recipes use ein Esslöffel (tablespoon) and ein Teelöffel (teaspoon)."
+    },
+    {
+      "id": "de-tasse", "word": "Tasse", "gloss": "cup", "pos": "noun",
+      "noun": { "gender": "f", "plural": "Tassen" },
+      "examples": [
+        { "text": "Möchtest du eine Tasse Tee?", "english": "Would you like a cup of tea?" },
+        { "text": "Meine Tasse ist schon leer.", "english": "My cup is already empty." }
+      ],
+      "tip": "For hot drinks, with a handle. No 'of': eine Tasse Kaffee. A mug is der Becher. Don't confuse it with die Tasche (bag)."
+    },
+    {
+      "id": "de-schuessel", "word": "Schüssel", "gloss": "bowl", "pos": "noun",
+      "noun": { "gender": "f", "plural": "Schüsseln" },
+      "examples": [
+        { "text": "Der Reis ist in der großen Schüssel.", "english": "The rice is in the big bowl.", "alternatives": ["In der großen Schüssel ist der Reis."] },
+        { "text": "Gib mir bitte die Schüssel!", "english": "Pass me the bowl, please!" }
+      ],
+      "tip": "A serving or mixing bowl; a small one to eat from is das Schälchen or die Schale. It looks a lot like der Schlüssel (key): practise the pair."
+    },
+
+    {
+      "id": "de-braten", "word": "braten", "gloss": "to fry, to roast", "pos": "verb",
+      "verb": { "present3sg": "brät", "participle": "gebraten", "auxiliary": "haben" },
+      "examples": [
+        { "text": "Wir braten das Fleisch in der Pfanne.", "english": "We're frying the meat in the pan." },
+        { "text": "Soll ich die Eier braten?", "english": "Shall I fry the eggs?" }
+      ],
+      "tip": "Vowel change: er brät. For frying in a pan and roasting in the oven. Der Braten is the Sunday roast; Bratkartoffeln and Bratwurst come from it."
+    },
+    {
+      "id": "de-backen", "word": "backen", "gloss": "to bake", "pos": "verb",
+      "verb": { "present3sg": "backt", "participle": "gebacken", "auxiliary": "haben" },
+      "examples": [
+        { "text": "Am Sonntag backen wir einen Kuchen.", "english": "On Sunday we're baking a cake.", "alternatives": ["Wir backen am Sonntag einen Kuchen."] },
+        { "text": "Kannst du Brot backen?", "english": "Can you bake bread?" }
+      ],
+      "tip": "er backt or er bäckt: both are correct. The Bäcker (baker) works in the Bäckerei. Baking a Kuchen is a weekend ritual in many German homes."
+    },
+    {
+      "id": "de-probieren", "word": "probieren", "gloss": "to try, to taste", "pos": "verb",
+      "verb": { "present3sg": "probiert", "participle": "probiert", "auxiliary": "haben" },
+      "examples": [
+        { "text": "Willst du mal probieren?", "english": "Do you want to try some?" },
+        { "text": "Darf ich deine Suppe probieren?", "english": "May I try your soup?" }
+      ],
+      "tip": "For tasting food and trying things out; versuchen is to attempt something difficult. Verbs in -ieren take no ge-: probiert. Probieren geht über Studieren = just try it."
+    },
+    {
+      "id": "de-pfanne", "word": "Pfanne", "gloss": "frying pan", "pos": "noun",
+      "noun": { "gender": "f", "plural": "Pfannen" },
+      "examples": [
+        { "text": "Das Ei kommt jetzt in die Pfanne.", "english": "The egg goes into the pan now.", "alternatives": ["Jetzt kommt das Ei in die Pfanne."] },
+        { "text": "Wo ist die große Pfanne?", "english": "Where's the big frying pan?" }
+      ],
+      "tip": "Pf: say both letters quickly, p then f. Hence der Pfannkuchen (pancake). A pot for boiling is der Topf."
+    },
+    {
+      "id": "de-heiss", "word": "heiß", "gloss": "hot", "pos": "adjective",
+      "examples": [
+        { "text": "Vorsicht, die Pfanne ist heiß!", "english": "Careful, the pan is hot!" },
+        { "text": "Mir ist heute so heiß.", "english": "I'm so hot today.", "alternatives": ["Heute ist mir so heiß."] }
+      ],
+      "tip": "Hotter than warm. To say you feel hot, use Mir ist heiß; Ich bin heiß means something else entirely! Not for spicy food: that's scharf."
+    },
+
+    {
+      "id": "de-scharf", "word": "scharf", "gloss": "spicy, hot; sharp", "pos": "adjective",
+      "examples": [
+        { "text": "Ist das Essen sehr scharf?", "english": "Is the food very spicy?" },
+        { "text": "Ich esse gern scharf.", "english": "I like eating spicy food." }
+      ],
+      "tip": "Both 'spicy' and 'sharp' (ein scharfes Messer). Ask in a restaurant: Ist das scharf? Chinese 辣 only covers the spicy meaning."
+    },
+    {
+      "id": "de-sauer", "word": "sauer", "gloss": "sour; (colloquial) cross, annoyed", "pos": "adjective",
+      "examples": [
+        { "text": "Die Milch ist sauer.", "english": "The milk has gone sour." },
+        { "text": "Bist du sauer auf mich?", "english": "Are you cross with me?" }
+      ],
+      "tip": "For taste, and in everyday speech for a person who is annoyed: sauer auf jemanden. Sauerkraut is 'sour cabbage'. s = z at the start."
+    },
+    {
+      "id": "de-bitter", "word": "bitter", "gloss": "bitter", "pos": "adjective",
+      "examples": [
+        { "text": "Dieser Tee schmeckt bitter.", "english": "This tea tastes bitter." },
+        { "text": "Ohne Zucker ist der Kaffee bitter.", "english": "Without sugar the coffee is bitter.", "alternatives": ["Der Kaffee ist ohne Zucker bitter."] }
+      ],
+      "tip": "Same word as in English, with a short i and a clear t. Also in bitter kalt (bitterly cold). A bitter beer is ein herbes Bier."
+    },
+    {
+      "id": "de-salzig", "word": "salzig", "gloss": "salty", "pos": "adjective",
+      "examples": [
+        { "text": "Die Suppe ist zu salzig.", "english": "The soup is too salty." },
+        { "text": "Warum ist das Brot so salzig?", "english": "Why is the bread so salty?" }
+      ],
+      "tip": "das Salz + -ig, which makes adjectives (as in lustig, wichtig). Z = ts: ZAL-tsich. A cook who over-salts is said to be in love: verliebt!"
+    },
+    {
+      "id": "de-fettig", "word": "fettig", "gloss": "greasy, fatty", "pos": "adjective",
+      "examples": [
+        { "text": "Das Fleisch ist mir zu fettig.", "english": "The meat is too fatty for me.", "alternatives": ["Mir ist das Fleisch zu fettig."] },
+        { "text": "Ich esse nicht gern fettig.", "english": "I don't like eating greasy food." }
+      ],
+      "tip": "From das Fett (fat). Also for hair and skin: fettige Haare. The double t keeps the e short."
+    },
+
+    {
+      "id": "de-es", "word": "es", "gloss": "it", "pos": "pronoun",
+      "examples": [
+        { "text": "Es gibt heute Fisch.", "english": "There's fish today.", "alternatives": ["Heute gibt es Fisch."] },
+        { "text": "Ich finde es nicht.", "english": "I can't find it." }
+      ],
+      "tip": "For das-nouns (das Buch → es), and as the empty 'it' in Es regnet, Es ist kalt, Wie geht es dir? es gibt = there is, there are. Often shrinks to 's: Wie geht's?"
+    },
+    {
+      "id": "de-man", "word": "man", "gloss": "one, you, people (in general)", "pos": "pronoun",
+      "examples": [
+        { "text": "Wie schreibt man das?", "english": "How do you spell that?" },
+        { "text": "Das macht man hier nicht.", "english": "People don't do that here.", "alternatives": ["Hier macht man das nicht.", "Man macht das hier nicht."] }
+      ],
+      "tip": "For people in general, where English says 'you' or 'they'. The verb is as for er: man sagt. Small m, one n; der Mann is something else."
+    },
+    {
+      "id": "de-mich", "word": "mich", "gloss": "me (direct object)", "pos": "pronoun",
+      "examples": [
+        { "text": "Liebst du mich?", "english": "Do you love me?" },
+        { "text": "Kannst du mich morgen anrufen?", "english": "Can you call me tomorrow?" }
+      ],
+      "tip": "ich as a direct object (accusative): Er sieht mich. Also after für and ohne: für mich. Soft ch. Compare with mir, the 'to me' form."
+    },
+    {
+      "id": "de-mir", "word": "mir", "gloss": "me, to me (indirect object)", "pos": "pronoun",
+      "examples": [
+        { "text": "Zeig mir bitte deine Fotos!", "english": "Show me your photos, please!" },
+        { "text": "Mir tut der Rücken weh.", "english": "My back hurts.", "alternatives": ["Der Rücken tut mir weh."] }
+      ],
+      "tip": "The 'to me' form (dative): with geben, helfen, sagen, and after mit, von, zu, bei. Mir ist kalt = I'm cold. Contrast: Er sieht mich, er hilft mir."
+    },
+    {
+      "id": "de-dich", "word": "dich", "gloss": "you (direct object, informal)", "pos": "pronoun",
+      "examples": [
+        { "text": "Ich hole dich um acht ab.", "english": "I'll pick you up at eight.", "alternatives": ["Um acht hole ich dich ab."] },
+        { "text": "Ich habe dich so vermisst!", "english": "I've missed you so much!" }
+      ],
+      "tip": "du as a direct object (accusative): Ich sehe dich, Ich liebe dich. Its dative partner is dir: Ich helfe dir, mit dir. Drill all four together: mich, mir, dich, dir."
+    },
+
+    {
+      "id": "de-hoch", "word": "hoch", "gloss": "high, tall", "pos": "adjective",
+      "examples": [
+        { "text": "Das Zimmer ist drei Meter hoch.", "english": "The room is three metres high." },
+        { "text": "Wie hoch ist dieses Haus?", "english": "How tall is this building?" }
+      ],
+      "tip": "For mountains, buildings and prices; a tall person is groß. Before a noun the c drops out: ein hoher Berg. Comparative höher, superlative am höchsten."
+    },
+    {
+      "id": "de-dick", "word": "dick", "gloss": "thick; fat", "pos": "adjective",
+      "examples": [
+        { "text": "Das Buch ist ganz schön dick.", "english": "The book is pretty thick." },
+        { "text": "Der Hund ist ein bisschen dick.", "english": "The dog is a bit fat." }
+      ],
+      "tip": "For thick things (ein dickes Buch) and for fat people or pets; about people it's blunt, so be kind. Opposite: dünn."
+    },
+    {
+      "id": "de-duenn", "word": "dünn", "gloss": "thin", "pos": "adjective",
+      "examples": [
+        { "text": "Die Hose ist zu dünn für den Winter.", "english": "The trousers are too thin for winter.", "alternatives": ["Für den Winter ist die Hose zu dünn."] },
+        { "text": "Du bist so dünn geworden!", "english": "You've got so thin!" }
+      ],
+      "tip": "For thin things and thin people. schlank (slim) is the compliment. Short ü: 'ee' with rounded lips."
+    },
+    {
+      "id": "de-stark", "word": "stark", "gloss": "strong", "pos": "adjective",
+      "examples": [
+        { "text": "Ich mag meinen Kaffee stark.", "english": "I like my coffee strong." },
+        { "text": "Du bist stark, du schaffst das!", "english": "You're strong, you can do it!" }
+      ],
+      "tip": "For people, coffee, wind and pain (starke Schmerzen). Young people also say Stark! for 'great!'. st at the start = sht."
+    },
+    {
+      "id": "de-schwach", "word": "schwach", "gloss": "weak", "pos": "adjective",
+      "examples": [
+        { "text": "Nach dem Fieber bin ich noch schwach.", "english": "I'm still weak after the fever.", "alternatives": ["Ich bin nach dem Fieber noch schwach."] },
+        { "text": "Der Tee ist mir zu schwach.", "english": "The tea is too weak for me.", "alternatives": ["Mir ist der Tee zu schwach."] }
+      ],
+      "tip": "Opposite of stark. Throaty ch as in Buch. eine Schwäche für etwas haben = to have a weakness for something."
+    },
+
+    {
+      "id": "de-geradeaus", "word": "geradeaus", "gloss": "straight ahead, straight on", "pos": "adverb",
+      "examples": [
+        { "text": "Gehen Sie hier immer geradeaus!", "english": "Keep going straight on here!" },
+        { "text": "Fahr bitte geradeaus und dann links!", "english": "Please drive straight on and then left!" }
+      ],
+      "tip": "gerade (straight) + aus. immer geradeaus = keep going straight. Stress the end: ge-rah-de-OWS. Draw a map and direct each other."
+    },
+    {
+      "id": "de-ecke", "word": "Ecke", "gloss": "corner", "pos": "noun",
+      "noun": { "gender": "f", "plural": "Ecken" },
+      "examples": [
+        { "text": "Gleich um die Ecke ist ein Park.", "english": "There's a park just round the corner.", "alternatives": ["Ein Park ist gleich um die Ecke."] },
+        { "text": "Wir treffen uns an der Ecke.", "english": "We'll meet at the corner.", "alternatives": ["An der Ecke treffen wir uns."] }
+      ],
+      "tip": "um die Ecke = round the corner, and so 'very near'. an der Ecke = at the corner (outside), in der Ecke = in the corner (of a room)."
+    },
+    {
+      "id": "de-ampel", "word": "Ampel", "gloss": "traffic light", "pos": "noun",
+      "noun": { "gender": "f", "plural": "Ampeln" },
+      "examples": [
+        { "text": "Die Ampel ist rot.", "english": "The light is red." },
+        { "text": "An der Ampel müssen wir rechts.", "english": "We have to go right at the lights.", "alternatives": ["Wir müssen an der Ampel rechts."] }
+      ],
+      "tip": "Germans famously wait at a red Ampel even when no car is coming. Bei Rot stehen, bei Grün gehen. Berlin's Ampelmännchen is a cult figure."
+    },
+    {
+      "id": "de-abbiegen", "word": "abbiegen", "gloss": "to turn (off)", "pos": "verb",
+      "verb": { "present3sg": "biegt ab", "participle": "abgebogen", "auxiliary": "sein" },
+      "examples": [
+        { "text": "An der Bank müssen wir abbiegen.", "english": "We have to turn at the bank.", "alternatives": ["Wir müssen an der Bank abbiegen."] },
+        { "text": "Darf man hier rechts abbiegen?", "english": "Are you allowed to turn right here?" }
+      ],
+      "tip": "Separable: Ich biege links ab. The perfect takes sein because you change direction: Ich bin abgebogen. links / rechts abbiegen is what every sat-nav says."
+    },
+    {
+      "id": "de-gegenueber", "word": "gegenüber", "gloss": "opposite, across from", "pos": "preposition",
+      "examples": [
+        { "text": "Die Apotheke ist gegenüber vom Bahnhof.", "english": "The pharmacy is opposite the station.", "alternatives": ["Gegenüber vom Bahnhof ist die Apotheke."] },
+        { "text": "Wir wohnen direkt gegenüber.", "english": "We live directly opposite.", "alternatives": ["Direkt gegenüber wohnen wir."] }
+      ],
+      "tip": "Takes the dative and can even follow its noun: dem Bahnhof gegenüber. In speech gegenüber von is easiest. Stress the Ü: ge-gen-Ü-ber."
+    },
+
+    {
+      "id": "de-konto", "word": "Konto", "gloss": "(bank) account", "pos": "noun",
+      "noun": { "gender": "n", "plural": "Konten", "hint": "Short words from other languages ending in -o are usually das: das Konto, das Auto, das Büro." },
+      "examples": [
+        { "text": "Ich habe ein Konto bei dieser Bank.", "english": "I have an account with this bank.", "alternatives": ["Bei dieser Bank habe ich ein Konto."] },
+        { "text": "Auf meinem Konto ist kein Geld mehr.", "english": "There's no money left in my account." }
+      ],
+      "tip": "Plural die Konten. You need a Girokonto (current account) for rent and salary. auf dem Konto = in the account."
+    },
+    {
+      "id": "de-sparen", "word": "sparen", "gloss": "to save (money, time)", "pos": "verb",
+      "verb": { "present3sg": "spart", "participle": "gespart", "auxiliary": "haben" },
+      "examples": [
+        { "text": "Wir sparen für eine Reise nach China.", "english": "We're saving for a trip to China." },
+        { "text": "Ich muss diesen Monat sparen.", "english": "I have to save money this month.", "alternatives": ["Diesen Monat muss ich sparen."] }
+      ],
+      "tip": "sp at the start = shp. sparen für or auf etwas = to save up for something. Germans are known as keen savers; a piggy bank is das Sparschwein."
+    },
+    {
+      "id": "de-ausgeben", "word": "ausgeben", "gloss": "to spend (money)", "pos": "verb",
+      "verb": { "present3sg": "gibt aus", "participle": "ausgegeben", "auxiliary": "haben" },
+      "examples": [
+        { "text": "Wie viel willst du ausgeben?", "english": "How much do you want to spend?" },
+        { "text": "Dafür möchte ich kein Geld ausgeben.", "english": "I don't want to spend money on that.", "alternatives": ["Ich möchte dafür kein Geld ausgeben."] }
+      ],
+      "tip": "Separable, with the vowel change of geben: Er gibt viel Geld aus. Only for money; spending time is Zeit verbringen. Geld ausgeben für… = to spend money on…"
+    },
+    {
+      "id": "de-verdienen", "word": "verdienen", "gloss": "to earn; to deserve", "pos": "verb",
+      "verb": { "present3sg": "verdient", "participle": "verdient", "auxiliary": "haben" },
+      "examples": [
+        { "text": "Wie viel verdienen Ärzte in Deutschland?", "english": "How much do doctors earn in Germany?" },
+        { "text": "Ich möchte mehr Geld verdienen.", "english": "I'd like to earn more money." }
+      ],
+      "tip": "No ge- in the participle: verdient. Also 'to deserve': Das hast du verdient! Asking what someone earns is far more private in Germany than in China."
+    },
+    {
+      "id": "de-bargeld", "word": "Bargeld", "gloss": "cash", "pos": "noun",
+      "noun": { "gender": "n", "plural": null, "hint": "Compound nouns take the gender of their last part: das Geld, so das Bargeld." },
+      "examples": [
+        { "text": "Hast du Bargeld dabei?", "english": "Have you got cash on you?" },
+        { "text": "Hier kann man nur mit Bargeld bezahlen.", "english": "You can only pay in cash here.", "alternatives": ["Man kann hier nur mit Bargeld bezahlen."] }
+      ],
+      "tip": "bar = in cash: Ich zahle bar. Germany still loves cash, and small shops and bakeries may refuse cards. Worth comparing with paying by phone in China."
+    },
+
+    {
+      "id": "de-miete", "word": "Miete", "gloss": "rent", "pos": "noun",
+      "noun": { "gender": "f", "plural": "Mieten" },
+      "examples": [
+        { "text": "Die Miete ist hier sehr hoch.", "english": "The rent is very high here.", "alternatives": ["Hier ist die Miete sehr hoch."] },
+        { "text": "Wie viel Miete bezahlst du?", "english": "How much rent do you pay?" }
+      ],
+      "tip": "The verb is mieten (to rent); der Mieter is the tenant, der Vermieter the landlord. Warmmiete includes heating, Kaltmiete doesn't."
+    },
+    {
+      "id": "de-vertrag", "word": "Vertrag", "gloss": "contract", "pos": "noun",
+      "noun": { "gender": "m", "plural": "Verträge" },
+      "examples": [
+        { "text": "Hast du den Vertrag schon gelesen?", "english": "Have you read the contract yet?" },
+        { "text": "Der Vertrag ist für zwei Jahre.", "english": "The contract is for two years." }
+      ],
+      "tip": "For flats (Mietvertrag), jobs (Arbeitsvertrag) and phones (Handyvertrag). einen Vertrag unterschreiben = to sign one, kündigen = to cancel one. V = f."
+    },
+    {
+      "id": "de-strom", "word": "Strom", "gloss": "electricity, power", "pos": "noun",
+      "noun": { "gender": "m", "plural": null },
+      "examples": [
+        { "text": "Wir haben heute keinen Strom.", "english": "We have no electricity today.", "alternatives": ["Heute haben wir keinen Strom."] },
+        { "text": "Der Strom ist sehr teuer geworden.", "english": "Electricity has become very expensive." }
+      ],
+      "tip": "Literally 'stream, current'. Strom sparen = to save electricity. st = sht. A power cut is der Stromausfall."
+    },
+    {
+      "id": "de-versicherung", "word": "Versicherung", "gloss": "insurance", "pos": "noun",
+      "noun": { "gender": "f", "plural": "Versicherungen" },
+      "examples": [
+        { "text": "Hast du eine Versicherung für das Auto?", "english": "Do you have insurance for the car?" },
+        { "text": "Die Versicherung bezahlt das.", "english": "The insurance will pay for that.", "alternatives": ["Das bezahlt die Versicherung."] }
+      ],
+      "tip": "From sicher (safe). The must-haves are the Krankenversicherung (health) and the Haftpflichtversicherung (liability). Germans insure almost everything."
+    },
+    {
+      "id": "de-ueberweisen", "word": "überweisen", "gloss": "to transfer (money)", "pos": "verb",
+      "verb": { "present3sg": "überweist", "participle": "überwiesen", "auxiliary": "haben" },
+      "examples": [
+        { "text": "Kannst du mir das Geld überweisen?", "english": "Can you transfer the money to me?" },
+        { "text": "Wir überweisen die Miete jeden Monat.", "english": "We transfer the rent every month.", "alternatives": ["Jeden Monat überweisen wir die Miete."] }
+      ],
+      "tip": "Not separable: stress on WEI, participle überwiesen without ge-. The usual way to pay rent and bills in Germany; the noun is die Überweisung."
+    },
+
+    {
+      "id": "de-ziemlich", "word": "ziemlich", "gloss": "quite, rather, pretty", "pos": "adverb",
+      "examples": [
+        { "text": "Ich bin heute ziemlich müde.", "english": "I'm pretty tired today.", "alternatives": ["Heute bin ich ziemlich müde."] },
+        { "text": "Das war ziemlich teuer.", "english": "That was quite expensive." }
+      ],
+      "tip": "Stronger than ein bisschen, weaker than sehr. Z = ts: TSEEM-lich. Line up the scale together: ein bisschen, ziemlich, sehr."
+    },
+    {
+      "id": "de-besonders", "word": "besonders", "gloss": "especially, particularly", "pos": "adverb",
+      "examples": [
+        { "text": "Dieser Wein ist besonders gut.", "english": "This wine is especially good." },
+        { "text": "Wie war der Film? Nicht besonders.", "english": "How was the film? Not great." }
+      ],
+      "tip": "nicht besonders = not great, a typically understated German answer. The adjective is besondere: ein besonderer Tag (a special day)."
+    },
+    {
+      "id": "de-so", "word": "so", "gloss": "so; like this", "pos": "adverb",
+      "examples": [
+        { "text": "Ich bin so froh!", "english": "I'm so glad!" },
+        { "text": "So macht man das.", "english": "That's how it's done.", "alternatives": ["Das macht man so."] }
+      ],
+      "tip": "Sounds like 'zo'. Before an adjective it's 'so' (so schön); on its own it's 'like this'. so … wie = as … as: so groß wie du. Ach so! = oh, I see!"
+    },
+    {
+      "id": "de-ein-bisschen", "word": "ein bisschen", "gloss": "a little, a bit", "pos": "phrase",
+      "examples": [
+        { "text": "Ich spreche ein bisschen Deutsch.", "english": "I speak a little German." },
+        { "text": "Kannst du ein bisschen warten?", "english": "Can you wait a bit?" }
+      ],
+      "tip": "Literally 'a little bite' (from beißen). It never changes: ein bisschen Zeit, mit ein bisschen Glück. Short i before the ss, and -chen has the soft ich-sound."
+    },
+    {
+      "id": "de-echt", "word": "echt", "gloss": "really; real, genuine", "pos": "adverb",
+      "examples": [
+        { "text": "Der Film war echt gut!", "english": "The film was really good!" },
+        { "text": "Echt? Das wusste ich nicht.", "english": "Really? I didn't know that." }
+      ],
+      "tip": "Everyday speech for 'really': echt gut, echt jetzt? As an adjective it means genuine: echtes Gold. Soft ich-sound before the t."
+    },
+
+    {
+      "id": "de-hell", "word": "hell", "gloss": "bright, light", "pos": "adjective",
+      "examples": [
+        { "text": "Das Zimmer ist schön hell.", "english": "The room is nice and bright." },
+        { "text": "Um fünf Uhr ist es schon hell.", "english": "It's already light at five o'clock.", "alternatives": ["Es ist um fünf Uhr schon hell."] }
+      ],
+      "tip": "A false friend: nothing to do with English 'hell' (die Hölle). Also for colours: hellblau = light blue. Ein Helles is a pale lager."
+    },
+    {
+      "id": "de-dunkel", "word": "dunkel", "gloss": "dark", "pos": "adjective",
+      "examples": [
+        { "text": "Im Winter wird es früh dunkel.", "english": "In winter it gets dark early.", "alternatives": ["Es wird im Winter früh dunkel."] },
+        { "text": "Hier ist es mir zu dunkel.", "english": "It's too dark for me here.", "alternatives": ["Es ist mir hier zu dunkel.", "Mir ist es hier zu dunkel."] }
+      ],
+      "tip": "Loses an e when it takes an ending: ein dunkles Zimmer. dunkelblau = dark blue; ein Dunkles is a dark beer. Opposite: hell."
+    },
+    {
+      "id": "de-laut", "word": "laut", "gloss": "loud, noisy", "pos": "adjective",
+      "examples": [
+        { "text": "Die Musik ist zu laut.", "english": "The music is too loud." },
+        { "text": "Sprich bitte laut und langsam!", "english": "Please speak loudly and slowly!", "alternatives": ["Sprich bitte langsam und laut!"] }
+      ],
+      "tip": "au = 'ow'. Louder is lauter: Kannst du lauter sprechen? laut lesen = to read aloud. Germany has quiet hours (Ruhezeit) at night and on Sundays."
+    },
+    {
+      "id": "de-leise", "word": "leise", "gloss": "quiet, soft (not loud)", "pos": "adjective",
+      "examples": [
+        { "text": "Sei bitte leise, das Kind schläft.", "english": "Please be quiet, the child is asleep." },
+        { "text": "Warum sprichst du so leise?", "english": "Why are you speaking so quietly?" }
+      ],
+      "tip": "About volume; ruhig is calm and peaceful. Two syllables: LY-zeh. Leise! as a command = quiet!"
+    },
+    {
+      "id": "de-bequem", "word": "bequem", "gloss": "comfortable", "pos": "adjective",
+      "examples": [
+        { "text": "Das Sofa ist sehr bequem.", "english": "The sofa is very comfortable." },
+        { "text": "Sind die neuen Schuhe bequem?", "english": "Are the new shoes comfortable?" }
+      ],
+      "tip": "For furniture, clothes and shoes, and for people who avoid effort (a bit lazy). qu = kv: be-KVEHM. Mach es dir bequem! = make yourself comfortable."
+    },
+
+    {
+      "id": "de-buchen", "word": "buchen", "gloss": "to book", "pos": "verb",
+      "verb": { "present3sg": "bucht", "participle": "gebucht", "auxiliary": "haben" },
+      "examples": [
+        { "text": "Wann buchen wir unseren Urlaub?", "english": "When are we booking our holiday?" },
+        { "text": "Ich möchte ein Zimmer buchen.", "english": "I'd like to book a room." }
+      ],
+      "tip": "For flights, hotels and trips; a restaurant table you reservieren. Long u and throaty ch, just like das Buch."
+    },
+    {
+      "id": "de-hotel", "word": "Hotel", "gloss": "hotel", "pos": "noun",
+      "noun": { "gender": "n", "plural": "Hotels" },
+      "examples": [
+        { "text": "Das Hotel liegt direkt am Meer.", "english": "The hotel is right by the sea.", "alternatives": ["Direkt am Meer liegt das Hotel."] },
+        { "text": "In welchem Hotel wohnt ihr?", "english": "Which hotel are you staying at?" }
+      ],
+      "tip": "Stress the end and pronounce the h: ho-TEL. Plural in -s, like many borrowed words. im Hotel = at the hotel."
+    },
+    {
+      "id": "de-strand", "word": "Strand", "gloss": "beach", "pos": "noun",
+      "noun": { "gender": "m", "plural": "Strände" },
+      "examples": [
+        { "text": "Wir gehen heute an den Strand.", "english": "We're going to the beach today.", "alternatives": ["Heute gehen wir an den Strand."] },
+        { "text": "Der Strand ist heute ganz leer.", "english": "The beach is completely empty today.", "alternatives": ["Heute ist der Strand ganz leer."] }
+      ],
+      "tip": "st = sht, and the final d sounds like t: 'shtrant'. an den Strand = to the beach, am Strand = on the beach."
+    },
+    {
+      "id": "de-ausflug", "word": "Ausflug", "gloss": "outing, day trip", "pos": "noun",
+      "noun": { "gender": "m", "plural": "Ausflüge", "hint": "Compound nouns take the gender of their last part: der Flug, so der Ausflug." },
+      "examples": [
+        { "text": "Am Sonntag machen wir einen Ausflug.", "english": "On Sunday we're going on an outing.", "alternatives": ["Wir machen am Sonntag einen Ausflug."] },
+        { "text": "Wohin geht der Ausflug?", "english": "Where is the outing to?" }
+      ],
+      "tip": "A day trip; a longer journey is die Reise. You 'make' one: einen Ausflug machen. Literally a 'flight out'."
+    },
+    {
+      "id": "de-packen", "word": "packen", "gloss": "to pack", "pos": "verb",
+      "verb": { "present3sg": "packt", "participle": "gepackt", "auxiliary": "haben" },
+      "examples": [
+        { "text": "Ich muss noch meinen Koffer packen.", "english": "I still have to pack my suitcase." },
+        { "text": "Wir packen heute Abend.", "english": "We're packing tonight.", "alternatives": ["Heute Abend packen wir."] }
+      ],
+      "tip": "den Koffer packen = to pack your case. Unpacking is auspacken; wrapping a present is einpacken. Colloquially: Das packen wir! = we'll manage that."
+    },
+
+    {
+      "id": "de-flug", "word": "Flug", "gloss": "flight", "pos": "noun",
+      "noun": { "gender": "m", "plural": "Flüge" },
+      "examples": [
+        { "text": "Unser Flug geht um zehn Uhr.", "english": "Our flight leaves at ten o'clock.", "alternatives": ["Um zehn Uhr geht unser Flug."] },
+        { "text": "Wie war dein Flug?", "english": "How was your flight?" }
+      ],
+      "tip": "From fliegen. Guten Flug! = have a good flight. Long u, and the final g sounds like k. The airport is der Flughafen, the plane das Flugzeug."
+    },
+    {
+      "id": "de-gepaeck", "word": "Gepäck", "gloss": "luggage, baggage", "pos": "noun",
+      "noun": { "gender": "n", "plural": null, "hint": "Many nouns starting with Ge- are das: das Gepäck, das Geschenk, das Gemüse." },
+      "examples": [
+        { "text": "Wo ist unser Gepäck?", "english": "Where's our luggage?" },
+        { "text": "Ich habe nicht viel Gepäck.", "english": "I don't have much luggage." }
+      ],
+      "tip": "A collective that is never plural: one piece is ein Gepäckstück. Handgepäck = hand luggage. Same root as packen."
+    },
+    {
+      "id": "de-verspaetung", "word": "Verspätung", "gloss": "delay", "pos": "noun",
+      "noun": { "gender": "f", "plural": "Verspätungen" },
+      "examples": [
+        { "text": "Unser Flug hat zwei Stunden Verspätung.", "english": "Our flight is two hours late." },
+        { "text": "Entschuldigung für die Verspätung!", "english": "Sorry for being late!" }
+      ],
+      "tip": "From spät. Trains 'have' a delay: Der Zug hat Verspätung, a sentence heard often at German stations. Ich bin spät dran = I'm running late."
+    },
+    {
+      "id": "de-verpassen", "word": "verpassen", "gloss": "to miss (a train, a chance)", "pos": "verb",
+      "verb": { "present3sg": "verpasst", "participle": "verpasst", "auxiliary": "haben" },
+      "examples": [
+        { "text": "Schnell, wir verpassen den Bus!", "english": "Quick, we're going to miss the bus!" },
+        { "text": "Ich will den Zug nicht verpassen.", "english": "I don't want to miss the train." }
+      ],
+      "tip": "For trains, flights, films and chances. Missing a person is vermissen. No ge-: Ich habe den Bus verpasst."
+    },
+    {
+      "id": "de-abholen", "word": "abholen", "gloss": "to pick up, to collect", "pos": "verb",
+      "verb": { "present3sg": "holt ab", "participle": "abgeholt", "auxiliary": "haben" },
+      "examples": [
+        { "text": "Kannst du mich vom Bahnhof abholen?", "english": "Can you pick me up from the station?" },
+        { "text": "Wann soll ich dich abholen?", "english": "When shall I pick you up?" }
+      ],
+      "tip": "Separable: Ich hole dich um acht ab. For people and parcels. holen on its own is 'to fetch'."
+    },
+
+    {
+      "id": "de-kino", "word": "Kino", "gloss": "cinema", "pos": "noun",
+      "noun": { "gender": "n", "plural": "Kinos", "hint": "Short words from other languages ending in -o are usually das: das Kino, das Auto, das Büro." },
+      "examples": [
+        { "text": "Was läuft heute im Kino?", "english": "What's on at the cinema today?" },
+        { "text": "Ich war lange nicht im Kino.", "english": "I haven't been to the cinema for a long time.", "alternatives": ["Im Kino war ich lange nicht."] }
+      ],
+      "tip": "ins Kino gehen = to go to the cinema, im Kino = at the cinema. Films in Germany are usually dubbed; look for OmU (original with subtitles)."
+    },
+    {
+      "id": "de-museum", "word": "Museum", "gloss": "museum", "pos": "noun",
+      "noun": { "gender": "n", "plural": "Museen", "hint": "Nouns ending in -um are das: das Museum, das Zentrum, das Datum." },
+      "examples": [
+        { "text": "Das Museum ist am Montag geschlossen.", "english": "The museum is closed on Monday.", "alternatives": ["Am Montag ist das Museum geschlossen."] },
+        { "text": "Kommst du mit ins Museum?", "english": "Are you coming along to the museum?" }
+      ],
+      "tip": "Stress the middle: mu-ZEH-um. Latin plural: die Museen. Many German museums close on Mondays."
+    },
+    {
+      "id": "de-konzert", "word": "Konzert", "gloss": "concert", "pos": "noun",
+      "noun": { "gender": "n", "plural": "Konzerte" },
+      "examples": [
+        { "text": "Wann fängt das Konzert an?", "english": "When does the concert start?" },
+        { "text": "Hast du Lust auf ein Konzert?", "english": "Do you fancy going to a concert?" }
+      ],
+      "tip": "Stress the end, and z = ts: kon-TSERT. ins Konzert gehen = to go to a concert. The tickets are Karten."
+    },
+    {
+      "id": "de-karte", "word": "Karte", "gloss": "card; ticket; map", "pos": "noun",
+      "noun": { "gender": "f", "plural": "Karten" },
+      "examples": [
+        { "text": "Hast du eine Karte von Berlin?", "english": "Have you got a map of Berlin?" },
+        { "text": "Ich schreibe dir eine Karte aus China.", "english": "I'll write you a card from China.", "alternatives": ["Aus China schreibe ich dir eine Karte."] }
+      ],
+      "tip": "One word, many cards: Postkarte, Kreditkarte, Landkarte (map), Speisekarte (menu), and a ticket for a concert or the cinema. Karten spielen = to play cards."
+    },
+    {
+      "id": "de-ausgehen", "word": "ausgehen", "gloss": "to go out", "pos": "verb",
+      "verb": { "present3sg": "geht aus", "participle": "ausgegangen", "auxiliary": "sein" },
+      "examples": [
+        { "text": "Wollen wir heute Abend ausgehen?", "english": "Shall we go out tonight?" },
+        { "text": "Wir können am Samstag ausgehen.", "english": "We can go out on Saturday.", "alternatives": ["Am Samstag können wir ausgehen."] }
+      ],
+      "tip": "Separable, with sein: Wir sind gestern ausgegangen. For an evening out. Also for lights and supplies: Das Licht geht aus."
+    },
+
+    {
+      "id": "de-doch", "word": "doch", "gloss": "yes (contradicting a no); do, after all", "pos": "particle",
+      "examples": [
+        { "text": "Du kommst nicht mit? Doch!", "english": "You're not coming? Yes, I am!" },
+        { "text": "Komm doch mit!", "english": "Do come along!" }
+      ],
+      "tip": "No English equivalent. Doch! contradicts a negative question or statement: 'oh yes I am!'. Inside a sentence it coaxes or insists: Komm doch mit! Demonstrate with lots of mini-dialogues."
+    },
+    {
+      "id": "de-mal", "word": "mal", "gloss": "just, for a moment (softens requests)", "pos": "particle",
+      "examples": [
+        { "text": "Komm mal bitte her!", "english": "Come here a moment, please!", "alternatives": ["Komm bitte mal her!"] },
+        { "text": "Kannst du mal kurz helfen?", "english": "Can you just help for a second?", "alternatives": ["Kannst du kurz mal helfen?"] }
+      ],
+      "tip": "Short for einmal. It makes requests friendly and casual: Schau mal! Warte mal! Without it, orders sound harsh. Also 'times' in sums: drei mal vier."
+    },
+    {
+      "id": "de-denn", "word": "denn", "gloss": "(in questions) then, so; because", "pos": "particle",
+      "examples": [
+        { "text": "Was machst du denn hier?", "english": "So what are you doing here?" },
+        { "text": "Ich bleibe zu Hause, denn ich bin krank.", "english": "I'm staying at home because I'm ill." }
+      ],
+      "tip": "In questions it adds friendly interest or surprise: Was ist denn los? As a joining word it means 'because' and, unlike weil, keeps the normal word order. Not 'then' in time: that's dann."
+    },
+    {
+      "id": "de-also", "word": "also", "gloss": "so, well; therefore", "pos": "adverb",
+      "examples": [
+        { "text": "Also, was machen wir jetzt?", "english": "So, what do we do now?" },
+        { "text": "Du hast also keine Zeit?", "english": "So you don't have time?" }
+      ],
+      "tip": "A false friend: never 'also' (that's auch). It opens sentences like 'so…' or 'right then…' and draws conclusions. Also gut! = all right then."
+    },
+    {
+      "id": "de-eigentlich", "word": "eigentlich", "gloss": "actually, really", "pos": "adverb",
+      "examples": [
+        { "text": "Eigentlich wollte ich früh schlafen.", "english": "Actually, I wanted to go to sleep early.", "alternatives": ["Ich wollte eigentlich früh schlafen."] },
+        { "text": "Was machst du eigentlich am Wochenende?", "english": "What are you doing at the weekend, by the way?" }
+      ],
+      "tip": "In statements: 'actually, in theory', and a but usually follows. In questions: 'by the way, tell me'. Three syllables with a hard g: EYE-gent-lich."
+    },
+
+    {
+      "id": "de-passieren", "word": "passieren", "gloss": "to happen", "pos": "verb",
+      "verb": { "present3sg": "passiert", "participle": "passiert", "auxiliary": "sein" },
+      "examples": [
+        { "text": "Das kann jedem mal passieren.", "english": "That can happen to anyone." },
+        { "text": "Solche Fehler passieren oft.", "english": "Mistakes like that happen often." }
+      ],
+      "tip": "Mostly heard in the past: Was ist passiert? = what happened? It takes sein. Nichts passiert! = no harm done. A verb in -ieren, so no ge-."
+    },
+    {
+      "id": "de-ploetzlich", "word": "plötzlich", "gloss": "suddenly", "pos": "adverb",
+      "examples": [
+        { "text": "Plötzlich war das Licht aus.", "english": "Suddenly the light was off.", "alternatives": ["Das Licht war plötzlich aus."] },
+        { "text": "Warum bist du plötzlich so ruhig?", "english": "Why are you so quiet all of a sudden?" }
+      ],
+      "tip": "The storyteller's word. Put it first and the verb follows straight after: Plötzlich kam… ö with rounded lips, tz = ts."
+    },
+    {
+      "id": "de-gerade", "word": "gerade", "gloss": "just (now), right now; straight", "pos": "adverb",
+      "examples": [
+        { "text": "Ich koche gerade.", "english": "I'm cooking right now.", "alternatives": ["Gerade koche ich."] },
+        { "text": "Er ist gerade nach Hause gekommen.", "english": "He has just come home.", "alternatives": ["Gerade ist er nach Hause gekommen."] }
+      ],
+      "tip": "German has no -ing form; gerade does that job: Ich esse gerade = I'm eating. With the past it means 'just': Ich bin gerade angekommen. Also 'straight', as in geradeaus."
+    },
+    {
+      "id": "de-vorher", "word": "vorher", "gloss": "before(hand), earlier", "pos": "adverb",
+      "examples": [
+        { "text": "Ruf mich bitte vorher an!", "english": "Please call me beforehand!" },
+        { "text": "Vorher war ich in der Stadt.", "english": "Before that I was in town.", "alternatives": ["Ich war vorher in der Stadt."] }
+      ],
+      "tip": "Stands alone, with no noun after it. Before a noun use vor (vor dem Essen); before a clause use bevor. Its partner is nachher (afterwards)."
+    },
+    {
+      "id": "de-einmal", "word": "einmal", "gloss": "once; one time", "pos": "adverb",
+      "examples": [
+        { "text": "Ich war erst einmal in China.", "english": "I've only been to China once." },
+        { "text": "Noch einmal, bitte!", "english": "Once more, please!", "alternatives": ["Bitte noch einmal!"] }
+      ],
+      "tip": "ein + Mal. noch einmal = once more, a learner's best friend. Fairy tales begin Es war einmal… (once upon a time). In speech it often shrinks to mal."
+    },
+
+    {
+      "id": "de-seit", "word": "seit", "gloss": "since; for (a time up to now)", "pos": "preposition",
+      "examples": [
+        { "text": "Ich lerne seit einem Jahr Deutsch.", "english": "I've been learning German for a year.", "alternatives": ["Seit einem Jahr lerne ich Deutsch."] },
+        { "text": "Seit wann wohnst du hier?", "english": "How long have you been living here?" }
+      ],
+      "tip": "Used with the present tense, not the perfect: Ich wohne seit drei Jahren hier = I've lived here for three years. Always dative. Don't confuse it with seid (you are)."
+    },
+    {
+      "id": "de-bis", "word": "bis", "gloss": "until; to, as far as", "pos": "preposition",
+      "examples": [
+        { "text": "Ich arbeite heute bis sechs.", "english": "I'm working until six today.", "alternatives": ["Heute arbeite ich bis sechs."] },
+        { "text": "Bis morgen, schlaf gut!", "english": "See you tomorrow, sleep well!" }
+      ],
+      "tip": "Goodbyes are built with it: Bis bald! Bis morgen! Bis später! von … bis = from … to: von neun bis fünf. For places: bis zum Bahnhof."
+    },
+    {
+      "id": "de-bevor", "word": "bevor", "gloss": "before", "pos": "conjunction",
+      "examples": [
+        { "text": "Ruf mich an, bevor du kommst.", "english": "Call me before you come.", "alternatives": ["Bevor du kommst, ruf mich an."] },
+        { "text": "Bevor wir essen, waschen wir uns die Hände.", "english": "Before we eat, we wash our hands.", "alternatives": ["Wir waschen uns die Hände, bevor wir essen."] }
+      ],
+      "tip": "Joins two clauses and sends the verb to the end: bevor ich gehe. Compare the trio: vor dem Essen (with a noun), vorher (alone), bevor wir essen (with a clause)."
+    },
+    {
+      "id": "de-nach", "word": "nach", "gloss": "after; to (cities, countries)", "pos": "preposition",
+      "examples": [
+        { "text": "Nach der Arbeit gehe ich zum Sport.", "english": "After work I go and exercise.", "alternatives": ["Ich gehe nach der Arbeit zum Sport."] },
+        { "text": "Wann fliegst du nach China?", "english": "When are you flying to China?" }
+      ],
+      "tip": "Always dative. 'After' in time (nach dem Essen), 'to' for cities and countries without an article (nach Berlin, nach China), and nach Hause = (to) home. Throaty ch."
+    },
+    {
+      "id": "de-waehrend", "word": "während", "gloss": "while; during", "pos": "conjunction",
+      "examples": [
+        { "text": "Ich höre Musik, während ich koche.", "english": "I listen to music while I cook.", "alternatives": ["Während ich koche, höre ich Musik."] },
+        { "text": "Während der Arbeit habe ich keine Zeit.", "english": "I have no time during work.", "alternatives": ["Ich habe während der Arbeit keine Zeit."] }
+      ],
+      "tip": "With a clause it means 'while' and sends the verb to the end. With a noun it means 'during' and takes the genitive: während des Films (in speech often the dative). ä = 'eh'."
+    },
+
+    {
+      "id": "de-umarmen", "word": "umarmen", "gloss": "to hug", "pos": "verb",
+      "verb": { "present3sg": "umarmt", "participle": "umarmt", "auxiliary": "haben" },
+      "examples": [
+        { "text": "Darf ich dich umarmen?", "english": "May I hug you?" },
+        { "text": "Wir umarmen uns jeden Morgen.", "english": "We hug each other every morning.", "alternatives": ["Jeden Morgen umarmen wir uns."] }
+      ],
+      "tip": "um + Arm: to put your arms around someone. Not separable: stress on ARM, participle umarmt. A hug is eine Umarmung. Fühl dich umarmt! closes a warm message."
+    },
+    {
+      "id": "de-kuss", "word": "Kuss", "gloss": "kiss", "pos": "noun",
+      "noun": { "gender": "m", "plural": "Küsse" },
+      "examples": [
+        { "text": "Gib mir einen Kuss!", "english": "Give me a kiss!" },
+        { "text": "Der erste Kuss war im Park.", "english": "The first kiss was in the park." }
+      ],
+      "tip": "Short u in Kuss, short ü in the plural Küsse and the verb küssen. Ein Küsschen is a peck. Messages often end with Kuss or, in the south, Bussi."
+    },
+    {
+      "id": "de-kuscheln", "word": "kuscheln", "gloss": "to cuddle, to snuggle", "pos": "verb",
+      "verb": { "present3sg": "kuschelt", "participle": "gekuschelt", "auxiliary": "haben" },
+      "examples": [
+        { "text": "Wollen wir auf dem Sofa kuscheln?", "english": "Shall we cuddle on the sofa?" },
+        { "text": "Am Sonntag kuscheln wir lange im Bett.", "english": "On Sundays we cuddle in bed for a long time.", "alternatives": ["Wir kuscheln am Sonntag lange im Bett."] }
+      ],
+      "tip": "A cosy word with no hard edges: KOO-sheln. mit jemandem kuscheln. A cuddly toy is das Kuscheltier, a snuggly blanket die Kuscheldecke."
+    },
+    {
+      "id": "de-schatz", "word": "Schatz", "gloss": "darling; treasure", "pos": "noun",
+      "noun": { "gender": "m", "plural": "Schätze" },
+      "examples": [
+        { "text": "Guten Morgen, mein Schatz!", "english": "Good morning, my darling!" },
+        { "text": "Schatz, kommst du bitte mal?", "english": "Darling, could you come here a moment?", "alternatives": ["Schatz, kommst du mal bitte?"] }
+      ],
+      "tip": "Literally 'treasure', and the number one German pet name for partners and children, whatever their sex. Also Schatzi or Schätzchen. tz = ts."
+    },
+    {
+      "id": "de-liebe", "word": "Liebe", "gloss": "love", "pos": "noun",
+      "noun": { "gender": "f", "plural": null },
+      "examples": [
+        { "text": "Das war Liebe auf den ersten Blick.", "english": "It was love at first sight." },
+        { "text": "Ist das die große Liebe?", "english": "Is this true love?" }
+      ],
+      "tip": "The noun for lieben. Letters to friends begin Liebe Anna or Lieber Tom (dear) and end Liebe Grüße. Long ie."
+    },
+
+    {
+      "id": "de-gefuehl", "word": "Gefühl", "gloss": "feeling", "pos": "noun",
+      "noun": { "gender": "n", "plural": "Gefühle", "hint": "Many nouns starting with Ge- are das: das Gefühl, das Gesicht, das Geschenk." },
+      "examples": [
+        { "text": "Ich habe ein gutes Gefühl.", "english": "I have a good feeling." },
+        { "text": "Das Gefühl kenne ich.", "english": "I know that feeling.", "alternatives": ["Ich kenne das Gefühl."] }
+      ],
+      "tip": "From fühlen (to feel). ein gutes / komisches Gefühl haben = to have a good / funny feeling. In the plural it's emotions: Gefühle zeigen = to show your feelings."
+    },
+    {
+      "id": "de-vertrauen", "word": "vertrauen", "gloss": "to trust", "pos": "verb",
+      "verb": { "present3sg": "vertraut", "participle": "vertraut", "auxiliary": "haben" },
+      "examples": [
+        { "text": "Du kannst mir vertrauen.", "english": "You can trust me." },
+        { "text": "Wir vertrauen uns.", "english": "We trust each other." }
+      ],
+      "tip": "The person trusted is in the dative: Ich vertraue dir. Also a noun: das Vertrauen (trust). No ge-. V = f, and au = 'ow'."
+    },
+    {
+      "id": "de-eifersuechtig", "word": "eifersüchtig", "gloss": "jealous", "pos": "adjective",
+      "examples": [
+        { "text": "Bist du etwa eifersüchtig?", "english": "You're not jealous, are you?" },
+        { "text": "Mein Freund ist nie eifersüchtig.", "english": "My boyfriend is never jealous." }
+      ],
+      "tip": "Jealous of someone = eifersüchtig auf + accusative. The noun is die Eifersucht. Envious of things is neidisch. Four syllables: EYE-fer-zuech-tich."
+    },
+    {
+      "id": "de-stolz", "word": "stolz", "gloss": "proud", "pos": "adjective",
+      "examples": [
+        { "text": "Ich bin so stolz auf dich!", "english": "I'm so proud of you!" },
+        { "text": "Darauf kannst du stolz sein.", "english": "You can be proud of that.", "alternatives": ["Du kannst darauf stolz sein.", "Du kannst stolz darauf sein."] }
+      ],
+      "tip": "Proud of = stolz auf + accusative. st = sht and z = ts: 'shtolts'. Say it whenever your partner masters a new word."
+    },
+    {
+      "id": "de-enttaeuscht", "word": "enttäuscht", "gloss": "disappointed", "pos": "adjective",
+      "examples": [
+        { "text": "Bist du enttäuscht von mir?", "english": "Are you disappointed in me?" },
+        { "text": "Ich war ein bisschen enttäuscht.", "english": "I was a bit disappointed." }
+      ],
+      "tip": "Disappointed in or by = enttäuscht von. Really the participle of enttäuschen (to disappoint). Two t's meet in the middle: ent-TOYSHT."
+    },
+
+    {
+      "id": "de-bitten", "word": "bitten", "gloss": "to ask (for), to request", "pos": "verb",
+      "verb": { "present3sg": "bittet", "participle": "gebeten", "auxiliary": "haben" },
+      "examples": [
+        { "text": "Darf ich dich um etwas bitten?", "english": "May I ask you for something?" },
+        { "text": "Wir bitten unsere Nachbarn um Hilfe.", "english": "We're asking our neighbours for help." }
+      ],
+      "tip": "bitten um = to ask for something. Not for questions: that's fragen. Irregular past: hat gebeten. The little word bitte comes from it."
+    },
+    {
+      "id": "de-stoeren", "word": "stören", "gloss": "to disturb, to bother", "pos": "verb",
+      "verb": { "present3sg": "stört", "participle": "gestört", "auxiliary": "haben" },
+      "examples": [
+        { "text": "Entschuldigung, darf ich kurz stören?", "english": "Excuse me, may I interrupt for a moment?" },
+        { "text": "Die Nachbarn stören mich nicht.", "english": "The neighbours don't bother me." }
+      ],
+      "tip": "A polite opener: Störe ich? (am I disturbing you?). Bitte nicht stören is the sign on a hotel door. st = sht, long ö."
+    },
+    {
+      "id": "de-gefallen", "word": "Gefallen", "gloss": "favour", "pos": "noun",
+      "noun": { "gender": "m", "plural": "Gefallen", "hint": "An exception: most nouns starting with Ge- are das, but the favour is der Gefallen." },
+      "examples": [
+        { "text": "Kannst du mir einen Gefallen tun?", "english": "Can you do me a favour?" },
+        { "text": "Ich brauche einen kleinen Gefallen von dir.", "english": "I need a small favour from you." }
+      ],
+      "tip": "jemandem einen Gefallen tun = to do someone a favour. Don't mix it up with the verb gefallen (to please): Das gefällt mir = I like it."
+    },
+    {
+      "id": "de-moment", "word": "Moment", "gloss": "moment", "pos": "noun",
+      "noun": { "gender": "m", "plural": "Momente" },
+      "examples": [
+        { "text": "Einen Moment, bitte!", "english": "One moment, please!", "alternatives": ["Bitte einen Moment!"] },
+        { "text": "Hast du einen Moment Zeit?", "english": "Have you got a moment?" }
+      ],
+      "tip": "Stress the end: mo-MENT. Moment mal! = hang on a minute! im Moment = at the moment."
+    },
+    {
+      "id": "de-kein-problem", "word": "kein Problem", "gloss": "no problem", "pos": "phrase",
+      "examples": [
+        { "text": "Kein Problem, das mache ich gern.", "english": "No problem, I'm happy to do it.", "alternatives": ["Kein Problem, ich mache das gern."] },
+        { "text": "Das ist kein Problem für mich.", "english": "That's no problem for me.", "alternatives": ["Für mich ist das kein Problem."] }
+      ],
+      "tip": "The relaxed answer to a request or an apology. das Problem is neuter, with the stress at the end: pro-BLEHM. Similar: Macht nichts! Gern geschehen!"
+    },
+
+    {
+      "id": "de-internet", "word": "Internet", "gloss": "internet", "pos": "noun",
+      "noun": { "gender": "n", "plural": null },
+      "examples": [
+        { "text": "Das Internet ist heute sehr langsam.", "english": "The internet is very slow today.", "alternatives": ["Heute ist das Internet sehr langsam."] },
+        { "text": "Ich habe es im Internet gelesen.", "english": "I read it on the internet.", "alternatives": ["Im Internet habe ich es gelesen."] }
+      ],
+      "tip": "im Internet = on the internet (German says 'in'). online and offline are used as in English. Das Netz is the everyday short form."
+    },
+    {
+      "id": "de-e-mail", "word": "E-Mail", "gloss": "email", "pos": "noun",
+      "noun": { "gender": "f", "plural": "E-Mails", "hint": "Feminine like die Post and die Nachricht: die E-Mail." },
+      "examples": [
+        { "text": "Ich schreibe dir morgen eine E-Mail.", "english": "I'll write you an email tomorrow.", "alternatives": ["Morgen schreibe ich dir eine E-Mail."] },
+        { "text": "Hast du meine E-Mail bekommen?", "english": "Did you get my email?" }
+      ],
+      "tip": "Pronounced as in English, and often just die Mail. The @ sign is called at or, jokingly, Klammeraffe (spider monkey)."
+    },
+    {
+      "id": "de-passwort", "word": "Passwort", "gloss": "password", "pos": "noun",
+      "noun": { "gender": "n", "plural": "Passwörter", "hint": "Compound nouns take the gender of their last part: das Wort, so das Passwort." },
+      "examples": [
+        { "text": "Ich habe mein Passwort vergessen.", "english": "I've forgotten my password." },
+        { "text": "Wie ist das Passwort?", "english": "What's the password?" }
+      ],
+      "tip": "Plural with umlaut: Passwörter. The WLAN-Passwort is the first thing every guest asks for. ss, then w = v."
+    },
+    {
+      "id": "de-schicken", "word": "schicken", "gloss": "to send", "pos": "verb",
+      "verb": { "present3sg": "schickt", "participle": "geschickt", "auxiliary": "haben" },
+      "examples": [
+        { "text": "Kannst du mir die Adresse schicken?", "english": "Can you send me the address?" },
+        { "text": "Wir schicken dir eine Karte.", "english": "We'll send you a card." }
+      ],
+      "tip": "For messages, photos and parcels; the person is in the dative: Schick mir… senden is more formal. As an adjective, schick means smart, chic."
+    },
+    {
+      "id": "de-wlan", "word": "WLAN", "gloss": "Wi-Fi", "pos": "noun",
+      "noun": { "gender": "n", "plural": null },
+      "examples": [
+        { "text": "Gibt es hier WLAN?", "english": "Is there Wi-Fi here?" },
+        { "text": "Wie heißt euer WLAN?", "english": "What's your Wi-Fi called?" }
+      ],
+      "tip": "Germans don't say Wi-Fi. Say the W as a letter: VEH-lahn. A practical first question in every café, hotel and friend's flat."
+    },
+
+    {
+      "id": "de-bildschirm", "word": "Bildschirm", "gloss": "screen", "pos": "noun",
+      "noun": { "gender": "m", "plural": "Bildschirme", "hint": "Compound nouns take the gender of their last part: der Schirm, so der Bildschirm." },
+      "examples": [
+        { "text": "Mein Bildschirm ist kaputt.", "english": "My screen is broken." },
+        { "text": "Ich sitze den ganzen Tag vor dem Bildschirm.", "english": "I sit in front of the screen all day.", "alternatives": ["Den ganzen Tag sitze ich vor dem Bildschirm."] }
+      ],
+      "tip": "Bild (picture) + Schirm (shield, as in Regenschirm, umbrella). For phones people also say das Display. Bildschirmzeit = screen time."
+    },
+    {
+      "id": "de-akku", "word": "Akku", "gloss": "(rechargeable) battery", "pos": "noun",
+      "noun": { "gender": "m", "plural": "Akkus" },
+      "examples": [
+        { "text": "Mein Akku ist fast leer.", "english": "My battery is almost empty." },
+        { "text": "Hast du noch genug Akku?", "english": "Have you still got enough battery?" }
+      ],
+      "tip": "Short for Akkumulator: the rechargeable battery in phones and laptops. Throwaway ones are Batterien. Mein Akku ist leer is also said by tired people."
+    },
+    {
+      "id": "de-aufladen", "word": "aufladen", "gloss": "to charge (up)", "pos": "verb",
+      "verb": { "present3sg": "lädt auf", "participle": "aufgeladen", "auxiliary": "haben" },
+      "examples": [
+        { "text": "Ich muss mein Handy aufladen.", "english": "I need to charge my phone." },
+        { "text": "Wo kann ich das hier aufladen?", "english": "Where can I charge this?" }
+      ],
+      "tip": "Separable, with a vowel change: Er lädt sein Handy auf. The cable is das Ladekabel. Same family as einladen (to invite)."
+    },
+    {
+      "id": "de-ausschalten", "word": "ausschalten", "gloss": "to switch off", "pos": "verb",
+      "verb": { "present3sg": "schaltet aus", "participle": "ausgeschaltet", "auxiliary": "haben" },
+      "examples": [
+        { "text": "Kannst du bitte das Licht ausschalten?", "english": "Can you switch off the light, please?", "alternatives": ["Kannst du das Licht bitte ausschalten?"] },
+        { "text": "Bitte alle Handys ausschalten!", "english": "Please switch off all phones!", "alternatives": ["Alle Handys bitte ausschalten!"] }
+      ],
+      "tip": "Separable: Schalte den Fernseher aus! The opposite is einschalten. In speech ausmachen and anmachen are just as common."
+    },
+    {
+      "id": "de-kopfhoerer", "word": "Kopfhörer", "gloss": "headphones", "pos": "noun",
+      "noun": { "gender": "m", "plural": "Kopfhörer" },
+      "examples": [
+        { "text": "Wo ist mein Kopfhörer?", "english": "Where are my headphones?" },
+        { "text": "Ich habe einen neuen Kopfhörer gekauft.", "english": "I've bought new headphones." }
+      ],
+      "tip": "Kopf + hören: a 'head-hearer'. One pair is ein Kopfhörer, singular; many people also just say die Kopfhörer in the plural."
+    },
+
+    {
+      "id": "de-ausweis", "word": "Ausweis", "gloss": "ID card", "pos": "noun",
+      "noun": { "gender": "m", "plural": "Ausweise" },
+      "examples": [
+        { "text": "Haben Sie Ihren Ausweis dabei?", "english": "Do you have your ID with you?" },
+        { "text": "Ich finde meinen Ausweis nicht.", "english": "I can't find my ID." }
+      ],
+      "tip": "The Personalausweis is the national ID card; for a foreigner the passport (der Reisepass) does the job. Ihren Ausweis, bitte! is what officials say."
+    },
+    {
+      "id": "de-formular", "word": "Formular", "gloss": "form", "pos": "noun",
+      "noun": { "gender": "n", "plural": "Formulare" },
+      "examples": [
+        { "text": "Wo bekomme ich das Formular?", "english": "Where do I get the form?" },
+        { "text": "Dieses Formular verstehe ich nicht.", "english": "I don't understand this form.", "alternatives": ["Ich verstehe dieses Formular nicht."] }
+      ],
+      "tip": "Stress the end: for-mu-LAHR. German offices run on them. ein Formular ausfüllen = to fill in a form. Not 'formula' (that's die Formel)."
+    },
+    {
+      "id": "de-unterschreiben", "word": "unterschreiben", "gloss": "to sign", "pos": "verb",
+      "verb": { "present3sg": "unterschreibt", "participle": "unterschrieben", "auxiliary": "haben" },
+      "examples": [
+        { "text": "Wo muss ich unterschreiben?", "english": "Where do I have to sign?" },
+        { "text": "Bitte hier unten unterschreiben!", "english": "Please sign down here!", "alternatives": ["Hier unten bitte unterschreiben!"] }
+      ],
+      "tip": "Literally 'under-write'. Not separable: participle unterschrieben, no ge-. The signature is die Unterschrift."
+    },
+    {
+      "id": "de-ausfuellen", "word": "ausfüllen", "gloss": "to fill in (a form)", "pos": "verb",
+      "verb": { "present3sg": "füllt aus", "participle": "ausgefüllt", "auxiliary": "haben" },
+      "examples": [
+        { "text": "Muss ich das alles ausfüllen?", "english": "Do I have to fill all this in?" },
+        { "text": "Bitte das Formular hier ausfüllen!", "english": "Please fill in the form here!", "alternatives": ["Das Formular bitte hier ausfüllen!"] }
+      ],
+      "tip": "Separable: Ich fülle das Formular aus. From voll (full): you make the form full. The participle is ausgefüllt."
+    },
+    {
+      "id": "de-amt", "word": "Amt", "gloss": "(government) office, authority", "pos": "noun",
+      "noun": { "gender": "n", "plural": "Ämter" },
+      "examples": [
+        { "text": "Ich muss morgen aufs Amt.", "english": "I have to go to the council office tomorrow.", "alternatives": ["Morgen muss ich aufs Amt."] },
+        { "text": "Das Amt ist heute geschlossen.", "english": "The office is closed today.", "alternatives": ["Heute ist das Amt geschlossen."] }
+      ],
+      "tip": "Any government office: Bürgeramt (registration), Finanzamt (tax), Standesamt (weddings). aufs Amt gehen = to go and deal with officialdom. Book a Termin first!"
+    },
+
+    {
+      "id": "de-beschaeftigt", "word": "beschäftigt", "gloss": "busy", "pos": "adjective",
+      "examples": [
+        { "text": "Ich bin gerade sehr beschäftigt.", "english": "I'm very busy right now.", "alternatives": ["Gerade bin ich sehr beschäftigt."] },
+        { "text": "Bist du morgen auch so beschäftigt?", "english": "Are you going to be this busy tomorrow too?" }
+      ],
+      "tip": "About people who have a lot to do. A busy street is belebt, a phone line is besetzt. In speech you'll also hear Ich habe viel zu tun. be-SHEF-ticht."
+    },
+    {
+      "id": "de-stress", "word": "Stress", "gloss": "stress", "pos": "noun",
+      "noun": { "gender": "m", "plural": null },
+      "examples": [
+        { "text": "Ich habe gerade viel Stress.", "english": "I'm under a lot of stress at the moment.", "alternatives": ["Gerade habe ich viel Stress."] },
+        { "text": "Mach dir keinen Stress!", "english": "Don't stress yourself!" }
+      ],
+      "tip": "An English word with a German sound: st = sht, so 'shtress'. Kein Stress! = no rush, take it easy. The adjective is stressig; Ich bin gestresst = I'm stressed."
+    },
+    {
+      "id": "de-kunde", "word": "Kunde", "gloss": "customer, client", "pos": "noun",
+      "noun": { "gender": "m", "plural": "Kunden", "hint": "Male people are der, even with an -e ending. A female customer is die Kundin." },
+      "examples": [
+        { "text": "Der Kunde wartet schon.", "english": "The customer is already waiting." },
+        { "text": "Heute kommt ein wichtiger Kunde.", "english": "An important client is coming today.", "alternatives": ["Ein wichtiger Kunde kommt heute."] }
+      ],
+      "tip": "Like Kollege, it adds -n in every form but the basic one: mit dem Kunden. Der Kunde ist König = the customer is king."
+    },
+    {
+      "id": "de-projekt", "word": "Projekt", "gloss": "project", "pos": "noun",
+      "noun": { "gender": "n", "plural": "Projekte" },
+      "examples": [
+        { "text": "Wir haben ein neues Projekt.", "english": "We have a new project." },
+        { "text": "Wie läuft dein Projekt?", "english": "How's your project going?" }
+      ],
+      "tip": "Stress the end, and j sounds like an English y: pro-YEKT. It works for the office and for home: Unser nächstes Projekt ist die Küche."
+    },
+    {
+      "id": "de-feierabend", "word": "Feierabend", "gloss": "end of the working day", "pos": "noun",
+      "noun": { "gender": "m", "plural": "Feierabende", "hint": "Compound nouns take the gender of their last part: der Abend, so der Feierabend." },
+      "examples": [
+        { "text": "Wann hast du heute Feierabend?", "english": "When do you finish work today?" },
+        { "text": "Endlich habe ich Feierabend!", "english": "At last I've finished work!", "alternatives": ["Ich habe endlich Feierabend!"] }
+      ],
+      "tip": "A very German idea: the moment work stops and free time begins. Feierabend machen = to finish for the day. Colleagues wish each other Schönen Feierabend!"
+    },
+
+    {
+      "id": "de-wahrscheinlich", "word": "wahrscheinlich", "gloss": "probably", "pos": "adverb",
+      "examples": [
+        { "text": "Ich komme wahrscheinlich später.", "english": "I'll probably come later.", "alternatives": ["Wahrscheinlich komme ich später."] },
+        { "text": "Wahrscheinlich regnet es morgen.", "english": "It will probably rain tomorrow.", "alternatives": ["Morgen regnet es wahrscheinlich.", "Es regnet morgen wahrscheinlich."] }
+      ],
+      "tip": "More likely than vielleicht, less sure than bestimmt. A long word in three parts: vahr-SHINE-lich. Rank the three with your partner."
+    },
+    {
+      "id": "de-endlich", "word": "endlich", "gloss": "finally, at last", "pos": "adverb",
+      "examples": [
+        { "text": "Endlich bist du da!", "english": "You're here at last!", "alternatives": ["Du bist endlich da!"] },
+        { "text": "Wann kommt endlich der Bus?", "english": "When is the bus finally going to come?" }
+      ],
+      "tip": "Shows relief or impatience after waiting. For the last step in a list use zuletzt or schließlich. Na endlich! = about time!"
+    },
+    {
+      "id": "de-hoffentlich", "word": "hoffentlich", "gloss": "hopefully", "pos": "adverb",
+      "examples": [
+        { "text": "Hoffentlich wird das Wetter gut.", "english": "Hopefully the weather will be good.", "alternatives": ["Das Wetter wird hoffentlich gut."] },
+        { "text": "Du kommst hoffentlich gut nach Hause.", "english": "I hope you get home safely.", "alternatives": ["Hoffentlich kommst du gut nach Hause."] }
+      ],
+      "tip": "From hoffen. One word instead of 'I hope that…': Hoffentlich geht es dir gut. Hoffentlich! on its own = let's hope so."
+    },
+    {
+      "id": "de-bestimmt", "word": "bestimmt", "gloss": "definitely, surely", "pos": "adverb",
+      "examples": [
+        { "text": "Das schaffst du bestimmt!", "english": "You'll definitely manage that!", "alternatives": ["Du schaffst das bestimmt!", "Bestimmt schaffst du das!"] },
+        { "text": "Sie hat es bestimmt vergessen.", "english": "She's bound to have forgotten it.", "alternatives": ["Bestimmt hat sie es vergessen."] }
+      ],
+      "tip": "A confident guess: 'I'm sure…'. Ganz bestimmt! = definitely! The st after be- is 'sht': be-SHTIMT."
+    },
+    {
+      "id": "de-leider", "word": "leider", "gloss": "unfortunately", "pos": "adverb",
+      "examples": [
+        { "text": "Ich kann leider nicht kommen.", "english": "Unfortunately I can't come.", "alternatives": ["Leider kann ich nicht kommen."] },
+        { "text": "Leider ist das Restaurant heute geschlossen.", "english": "Unfortunately the restaurant is closed today.", "alternatives": ["Das Restaurant ist heute leider geschlossen.", "Heute ist das Restaurant leider geschlossen."] }
+      ],
+      "tip": "Softens every no: Leider nicht. Leider nein. Related to Es tut mir leid. Essential for polite refusals."
+    },
+
+    {
+      "id": "de-luft", "word": "Luft", "gloss": "air", "pos": "noun",
+      "noun": { "gender": "f", "plural": null },
+      "examples": [
+        { "text": "Die Luft im Wald ist gut.", "english": "The air in the forest is good." },
+        { "text": "Ich brauche ein bisschen frische Luft.", "english": "I need a bit of fresh air." }
+      ],
+      "tip": "frische Luft = fresh air. Germans air their rooms religiously: lüften, with the windows wide open even in winter. Luftpost = airmail."
+    },
+    {
+      "id": "de-feuer", "word": "Feuer", "gloss": "fire", "pos": "noun",
+      "noun": { "gender": "n", "plural": "Feuer" },
+      "examples": [
+        { "text": "Wir machen am Abend ein Feuer.", "english": "We'll make a fire in the evening.", "alternatives": ["Am Abend machen wir ein Feuer."] },
+        { "text": "Hast du Feuer?", "english": "Have you got a light?" }
+      ],
+      "tip": "eu = 'oy': FOY-er. Hast du Feuer? asks for a light. The fire brigade is die Feuerwehr (call 112); fireworks are das Feuerwerk."
+    },
+    {
+      "id": "de-erde", "word": "Erde", "gloss": "earth; soil, ground", "pos": "noun",
+      "noun": { "gender": "f", "plural": null },
+      "examples": [
+        { "text": "Die Erde ist rund.", "english": "The Earth is round." },
+        { "text": "Die Blume braucht neue Erde.", "english": "The flower needs new soil." }
+      ],
+      "tip": "The planet, the ground and the soil in a flowerpot. Long first e: EHR-deh. auf der Erde = on earth. Hence die Erdbeere (strawberry), the 'earth berry'."
+    },
+    {
+      "id": "de-stein", "word": "Stein", "gloss": "stone", "pos": "noun",
+      "noun": { "gender": "m", "plural": "Steine" },
+      "examples": [
+        { "text": "Ich habe einen Stein im Schuh.", "english": "I've got a stone in my shoe." },
+        { "text": "Das Haus ist aus Stein.", "english": "The house is made of stone." }
+      ],
+      "tip": "st = sht and ei = 'eye': 'shtine'. Mir fällt ein Stein vom Herzen = that's a load off my mind. Einstein means 'one stone'."
+    },
+    {
+      "id": "de-stern", "word": "Stern", "gloss": "star", "pos": "noun",
+      "noun": { "gender": "m", "plural": "Sterne" },
+      "examples": [
+        { "text": "Siehst du den hellen Stern dort?", "english": "Can you see that bright star over there?" },
+        { "text": "Heute sieht man keinen Stern.", "english": "You can't see a single star today.", "alternatives": ["Man sieht heute keinen Stern."] }
+      ],
+      "tip": "st = sht: 'shtern'. Hotels and restaurants collect Sterne too. A film star is der Star."
+    },
+
+    {
+      "id": "de-wandern", "word": "wandern", "gloss": "to hike", "pos": "verb",
+      "verb": { "present3sg": "wandert", "participle": "gewandert", "auxiliary": "sein" },
+      "examples": [
+        { "text": "Am Wochenende wandern wir in den Bergen.", "english": "At the weekend we're hiking in the mountains.", "alternatives": ["Wir wandern am Wochenende in den Bergen."] },
+        { "text": "Gehst du gern wandern?", "english": "Do you like going hiking?" }
+      ],
+      "tip": "A national pastime. It takes sein: Wir sind zehn Kilometer gewandert. wandern gehen = to go hiking. Not 'to wander'; W = v."
+    },
+    {
+      "id": "de-spazieren", "word": "spazieren", "gloss": "to stroll, to walk", "pos": "verb",
+      "verb": { "present3sg": "spaziert", "participle": "spaziert", "auxiliary": "sein" },
+      "examples": [
+        { "text": "Wir gehen jeden Abend spazieren.", "english": "We go for a walk every evening.", "alternatives": ["Jeden Abend gehen wir spazieren."] },
+        { "text": "Ich möchte am Meer spazieren gehen.", "english": "I'd like to go for a walk by the sea." }
+      ],
+      "tip": "Almost always spazieren gehen = to go for a walk. The Sonntagsspaziergang (Sunday walk) is an institution. sp = shp, z = ts: shpa-TSEE-ren."
+    },
+    {
+      "id": "de-rucksack", "word": "Rucksack", "gloss": "backpack, rucksack", "pos": "noun",
+      "noun": { "gender": "m", "plural": "Rucksäcke", "hint": "Compound nouns take the gender of their last part: der Sack, so der Rucksack." },
+      "examples": [
+        { "text": "Dein Rucksack ist offen!", "english": "Your backpack is open!" },
+        { "text": "Was hast du im Rucksack?", "english": "What have you got in your backpack?" }
+      ],
+      "tip": "English borrowed this word from German: 'back sack'. Short u (not Rück-). Plural with umlaut: Rucksäcke."
+    },
+    {
+      "id": "de-weg", "word": "Weg", "gloss": "path, way", "pos": "noun",
+      "noun": { "gender": "m", "plural": "Wege" },
+      "examples": [
+        { "text": "Ist das der Weg zum See?", "english": "Is this the way to the lake?" },
+        { "text": "Ich bin auf dem Weg nach Hause.", "english": "I'm on my way home." }
+      ],
+      "tip": "Long e as a noun: 'vehk'. The adverb weg (away) has a short e: Er ist weg. auf dem Weg = on the way. A Radweg is a cycle path, so don't walk on it!"
+    },
+    {
+      "id": "de-aussicht", "word": "Aussicht", "gloss": "view", "pos": "noun",
+      "noun": { "gender": "f", "plural": "Aussichten", "hint": "Compound nouns take the gender of their last part: die Sicht, so die Aussicht." },
+      "examples": [
+        { "text": "Die Aussicht von hier ist toll.", "english": "The view from here is great.", "alternatives": ["Von hier ist die Aussicht toll."] },
+        { "text": "Wir haben ein Zimmer mit Aussicht.", "english": "We have a room with a view." }
+      ],
+      "tip": "aus + Sicht (from sehen): what you see looking out. In the plural also 'prospects': gute Aussichten. die Aussicht genießen = to enjoy the view."
+    },
+
+    {
+      "id": "de-ueben", "word": "üben", "gloss": "to practise", "pos": "verb",
+      "verb": { "present3sg": "übt", "participle": "geübt", "auxiliary": "haben" },
+      "examples": [
+        { "text": "Wir üben jeden Tag zusammen.", "english": "We practise together every day.", "alternatives": ["Jeden Tag üben wir zusammen."] },
+        { "text": "Ich muss die Aussprache üben.", "english": "I need to practise my pronunciation." }
+      ],
+      "tip": "Übung macht den Meister = practice makes perfect. Eine Übung is an exercise. Long ü: say 'ee' with rounded lips."
+    },
+    {
+      "id": "de-wiederholen", "word": "wiederholen", "gloss": "to repeat; to revise", "pos": "verb",
+      "verb": { "present3sg": "wiederholt", "participle": "wiederholt", "auxiliary": "haben" },
+      "examples": [
+        { "text": "Können Sie das bitte wiederholen?", "english": "Could you repeat that, please?" },
+        { "text": "Wir wiederholen die Wörter von gestern.", "english": "We're revising yesterday's words." }
+      ],
+      "tip": "Not separable in this meaning: stress on HO, participle wiederholt. The classroom lifesaver: Kannst du das bitte wiederholen?"
+    },
+    {
+      "id": "de-uebersetzen", "word": "übersetzen", "gloss": "to translate", "pos": "verb",
+      "verb": { "present3sg": "übersetzt", "participle": "übersetzt", "auxiliary": "haben" },
+      "examples": [
+        { "text": "Kannst du das für mich übersetzen?", "english": "Can you translate that for me?" },
+        { "text": "Manche Wörter kann man nicht übersetzen.", "english": "Some words can't be translated.", "alternatives": ["Man kann manche Wörter nicht übersetzen."] }
+      ],
+      "tip": "Not separable: stress on SETZ, no ge-. aus dem Chinesischen ins Deutsche übersetzen. The translation is die Übersetzung."
+    },
+    {
+      "id": "de-bedeuten", "word": "bedeuten", "gloss": "to mean", "pos": "verb",
+      "verb": { "present3sg": "bedeutet", "participle": "bedeutet", "auxiliary": "haben" },
+      "examples": [
+        { "text": "Was bedeuten diese zwei Wörter?", "english": "What do these two words mean?" },
+        { "text": "Was soll das bedeuten?", "english": "What's that supposed to mean?" }
+      ],
+      "tip": "For words, signs and events: Was bedeutet das? = what does that mean? The noun is die Bedeutung. What a person means is meinen. eu = 'oy'."
+    },
+    {
+      "id": "de-aussprache", "word": "Aussprache", "gloss": "pronunciation", "pos": "noun",
+      "noun": { "gender": "f", "plural": "Aussprachen" },
+      "examples": [
+        { "text": "Deine Aussprache ist sehr gut.", "english": "Your pronunciation is very good." },
+        { "text": "Die Aussprache finde ich schwierig.", "english": "I find the pronunciation difficult.", "alternatives": ["Ich finde die Aussprache schwierig."] }
+      ],
+      "tip": "aus + Sprache: how the language comes out. The verb is aussprechen: Wie spricht man das aus? Praise it often!"
+    },
+
+    {
+      "id": "de-leer", "word": "leer", "gloss": "empty", "pos": "adjective",
+      "examples": [
+        { "text": "Die Flasche ist leer.", "english": "The bottle is empty." },
+        { "text": "Warum ist das Restaurant so leer?", "english": "Why is the restaurant so empty?" }
+      ],
+      "tip": "Opposite of voll. Long e, close to English 'lair'. Mein Akku ist leer = my battery is dead. Sounds almost like lehren (to teach), but there's no connection."
+    },
+    {
+      "id": "de-fertig", "word": "fertig", "gloss": "finished, done; ready", "pos": "adjective",
+      "examples": [
+        { "text": "Das Essen ist fertig!", "english": "Dinner's ready!" },
+        { "text": "Bist du bald fertig?", "english": "Will you be done soon?" }
+      ],
+      "tip": "Both 'finished' and 'ready to go': Ich bin fertig. Colloquially also 'worn out'. -ig sounds like 'ich': FAIR-tich."
+    },
+    {
+      "id": "de-bereit", "word": "bereit", "gloss": "ready, prepared", "pos": "adjective",
+      "examples": [
+        { "text": "Bist du bereit?", "english": "Are you ready?" },
+        { "text": "Ich bin für alles bereit.", "english": "I'm ready for anything." }
+      ],
+      "tip": "Ready and willing for something that's coming; fertig is finished with something. The starting call is Auf die Plätze, fertig, los! ei = 'eye'."
+    },
+    {
+      "id": "de-frei", "word": "frei", "gloss": "free; vacant", "pos": "adjective",
+      "examples": [
+        { "text": "Der Stuhl neben mir ist frei.", "english": "The chair next to me is free." },
+        { "text": "Ist hier noch frei?", "english": "Is this seat taken?" }
+      ],
+      "tip": "Free as in available or not working: Ist hier noch frei? Ich habe heute frei. Free of charge is kostenlos or gratis. Hence Freitag and die Freizeit (free time)."
+    },
+    {
+      "id": "de-offen", "word": "offen", "gloss": "open", "pos": "adjective",
+      "examples": [
+        { "text": "Das Fenster ist offen.", "english": "The window is open." },
+        { "text": "Ist der Supermarkt noch offen?", "english": "Is the supermarket still open?" }
+      ],
+      "tip": "The state of being open; the action is öffnen. Shops also say geöffnet. About people: frank and direct. Short o, unlike the ö in öffnen."
+    },
+
+    {
+      "id": "de-weihnachten", "word": "Weihnachten", "gloss": "Christmas", "pos": "name",
+      "examples": [
+        { "text": "Was wünschst du dir zu Weihnachten?", "english": "What would you like for Christmas?" },
+        { "text": "Weihnachten feiern wir bei meiner Familie.", "english": "We celebrate Christmas with my family.", "alternatives": ["Wir feiern Weihnachten bei meiner Familie."] }
+      ],
+      "tip": "Used without an article: an Weihnachten or zu Weihnachten. The big evening is the 24th, Heiligabend, when presents are opened. Frohe Weihnachten!"
+    },
+    {
+      "id": "de-ostern", "word": "Ostern", "gloss": "Easter", "pos": "name",
+      "examples": [
+        { "text": "An Ostern suchen die Kinder Eier.", "english": "At Easter the children hunt for eggs.", "alternatives": ["Die Kinder suchen an Ostern Eier."] },
+        { "text": "Frohe Ostern, mein Schatz!", "english": "Happy Easter, my darling!" }
+      ],
+      "tip": "Long o: OHS-tern. The Osterhase (Easter bunny) hides eggs in the garden. Good Friday and Easter Monday are public holidays. Frohe Ostern!"
+    },
+    {
+      "id": "de-silvester", "word": "Silvester", "gloss": "New Year's Eve", "pos": "name",
+      "examples": [
+        { "text": "Was machen wir an Silvester?", "english": "What are we doing on New Year's Eve?" },
+        { "text": "Silvester feiern wir mit Freunden.", "english": "We celebrate New Year's Eve with friends.", "alternatives": ["Wir feiern Silvester mit Freunden."] }
+      ],
+      "tip": "31 December, named after a saint. Fireworks at midnight, and everyone wishes Guten Rutsch! (a good slide into the new year). S = z, and the v is a real v: zil-VES-ter."
+    },
+    {
+      "id": "de-feiertag", "word": "Feiertag", "gloss": "public holiday", "pos": "noun",
+      "noun": { "gender": "m", "plural": "Feiertage", "hint": "Compound nouns take the gender of their last part: der Tag, so der Feiertag." },
+      "examples": [
+        { "text": "Morgen ist ein Feiertag.", "english": "Tomorrow is a public holiday." },
+        { "text": "An einem Feiertag sind alle Läden zu.", "english": "On a public holiday all the shops are shut.", "alternatives": ["Alle Läden sind an einem Feiertag zu."] }
+      ],
+      "tip": "A day to feiern. Shops close on Feiertage as they do on Sundays, so plan your shopping. Which days are free depends on the Bundesland."
+    },
+    {
+      "id": "de-schenken", "word": "schenken", "gloss": "to give (as a present)", "pos": "verb",
+      "verb": { "present3sg": "schenkt", "participle": "geschenkt", "auxiliary": "haben" },
+      "examples": [
+        { "text": "Was schenken wir deiner Mutter?", "english": "What shall we give your mother?" },
+        { "text": "Ich möchte dir etwas schenken.", "english": "I'd like to give you something." }
+      ],
+      "tip": "The verb behind das Geschenk. Person in the dative, present in the accusative: Ich schenke dir ein Buch. Geschenkt! = forget it, it's nothing."
+    },
+
+    {
+      "id": "de-erwarten", "word": "erwarten", "gloss": "to expect", "pos": "verb",
+      "verb": { "present3sg": "erwartet", "participle": "erwartet", "auxiliary": "haben" },
+      "examples": [
+        { "text": "Wir erwarten ein Kind.", "english": "We're expecting a baby." },
+        { "text": "Wann können wir dich erwarten?", "english": "When can we expect you?" }
+      ],
+      "tip": "warten is to wait; erwarten is to expect. No ge-: Das habe ich nicht erwartet. Ich kann es kaum erwarten = I can hardly wait."
+    },
+    {
+      "id": "de-ziel", "word": "Ziel", "gloss": "goal, aim; destination", "pos": "noun",
+      "noun": { "gender": "n", "plural": "Ziele" },
+      "examples": [
+        { "text": "Was ist dein Ziel für nächstes Jahr?", "english": "What's your goal for next year?" },
+        { "text": "Wir sind fast am Ziel.", "english": "We're almost there." }
+      ],
+      "tip": "Z = ts: 'tseel'. Both the goal you aim for and the place a journey ends. am Ziel sein = to have arrived, to have made it. A goal in football is das Tor."
+    },
+    {
+      "id": "de-chance", "word": "Chance", "gloss": "chance, opportunity", "pos": "noun",
+      "noun": { "gender": "f", "plural": "Chancen" },
+      "examples": [
+        { "text": "Gib mir noch eine Chance!", "english": "Give me another chance!" },
+        { "text": "Das ist eine große Chance für uns.", "english": "This is a great opportunity for us.", "alternatives": ["Für uns ist das eine große Chance."] }
+      ],
+      "tip": "A French word: SHAHN-seh, also heard as SHANG-seh. An opportunity, not randomness; 'by chance' is zufällig. Keine Chance! = no way."
+    },
+    {
+      "id": "de-gespannt", "word": "gespannt", "gloss": "excited, curious (to see what happens)", "pos": "adjective",
+      "examples": [
+        { "text": "Ich bin gespannt auf deine Familie.", "english": "I'm excited to meet your family.", "alternatives": ["Auf deine Familie bin ich gespannt."] },
+        { "text": "Wir sind schon sehr gespannt.", "english": "We can't wait to find out." }
+      ],
+      "tip": "Pleasantly tense about what's coming: Ich bin gespannt, wie es wird. Related to spannend (exciting, gripping). sp = shp."
+    },
+    {
+      "id": "de-vorbereiten", "word": "vorbereiten", "gloss": "to prepare", "pos": "verb",
+      "verb": { "present3sg": "bereitet vor", "participle": "vorbereitet", "auxiliary": "haben" },
+      "examples": [
+        { "text": "Ich muss die Reise vorbereiten.", "english": "I have to prepare for the trip." },
+        { "text": "Lass uns alles zusammen vorbereiten.", "english": "Let's prepare everything together." }
+      ],
+      "tip": "Separable, but with no extra ge-: Ich bereite das Essen vor; ich habe es vorbereitet. sich auf etwas vorbereiten = to get ready for something. From bereit (ready)."
     }
   ]
 }

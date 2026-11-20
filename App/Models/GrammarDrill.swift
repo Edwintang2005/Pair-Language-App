@@ -79,6 +79,10 @@ enum MeasureWords {
         "句": "sentences and lines of speech",
         "首": "songs and poems",
         "幅": "paintings and pictures",
+        "根": "long, thin things like sticks: fingers, hairs, bananas",
+        "封": "letters and emails",
+        "副": "sets worn as a pair: earphones, glasses, gloves",
+        "节": "sections: batteries, lessons, train carriages",
     ]
 
     /// Wrong answers the drill can offer. 个 comes first because it's the tempting guess.

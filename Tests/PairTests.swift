@@ -888,11 +888,11 @@ struct SecondExampleTests {
         }
     }
 
-    @Test func curriculumHasNinetySessions() throws {
+    @Test func curriculumHasOneHundredThirtySessions() throws {
         let content = try ContentLibrary.loadBundled()
-        #expect(content.sessionCount == 90)
-        #expect(content.words.values.filter { $0.language == .german }.count == 450)
-        #expect(content.words.values.filter { $0.language == .chinese }.count == 450)
+        #expect(content.sessionCount == 130)
+        #expect(content.words.values.filter { $0.language == .german }.count == 650)
+        #expect(content.words.values.filter { $0.language == .chinese }.count == 650)
     }
 
     @Test func everyWordInTheFirstTwentySessionsHasTwoExamples() throws {
@@ -944,5 +944,24 @@ struct SecondExampleTests {
     @Test func newMeasureWordsAreExplained() {
         #expect(MeasureWords.uses["首"] != nil)
         #expect(MeasureWords.uses["幅"] != nil)
+    }
+}
+
+@MainActor
+struct LessonsNinetyOneOnTests {
+    @Test func countriesAndHolidaysHaveNoArticle() throws {
+        let content = try ContentLibrary.loadBundled()
+        for id in ["de-deutschland", "de-china", "de-weihnachten", "de-ostern", "de-silvester"] {
+            let word = try #require(content.words[id])
+            #expect(word.noun == nil && word.headword == word.word, "\(id)")
+            #expect(!GrammarDrill.isEligible(word), "\(id)")
+        }
+    }
+
+    @Test func separableVerbWithAnInseparableRest() throws {
+        let content = try ContentLibrary.loadBundled()
+        let prepare = try #require(content.words["de-vorbereiten"])
+        #expect(PastTense.madeUpParticiple(for: prepare) == "vorgebereitet")
+        #expect(PastTense.explanation(for: prepare)?.contains("after vor-") == true)
     }
 }
