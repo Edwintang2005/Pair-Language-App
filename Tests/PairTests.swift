@@ -888,16 +888,16 @@ struct SecondExampleTests {
         }
     }
 
-    @Test func curriculumHasOneHundredThirtySessions() throws {
+    @Test func curriculumSize() throws {
         let content = try ContentLibrary.loadBundled()
-        #expect(content.sessionCount == 130)
-        #expect(content.words.values.filter { $0.language == .german }.count == 650)
-        #expect(content.words.values.filter { $0.language == .chinese }.count == 650)
+        #expect(content.sessionCount == 180)
+        #expect(content.words.values.filter { $0.language == .german }.count == 900)
+        #expect(content.words.values.filter { $0.language == .chinese }.count == 900)
     }
 
-    @Test func everyWordInTheFirstTwentySessionsHasTwoExamples() throws {
+    @Test func everyWordHasTwoExamples() throws {
         let content = try ContentLibrary.loadBundled()
-        for session in content.sessions.prefix(20) {
+        for session in content.sessions {
             for id in session.de + session.zh {
                 #expect(content.words[id]?.examples.count == 2, "\(id)")
             }
