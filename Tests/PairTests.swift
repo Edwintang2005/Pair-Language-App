@@ -890,9 +890,9 @@ struct SecondExampleTests {
 
     @Test func curriculumSize() throws {
         let content = try ContentLibrary.loadBundled()
-        #expect(content.sessionCount == 180)
-        #expect(content.words.values.filter { $0.language == .german }.count == 900)
-        #expect(content.words.values.filter { $0.language == .chinese }.count == 900)
+        #expect(content.sessionCount == 200)
+        #expect(content.words.values.filter { $0.language == .german }.count == 1000)
+        #expect(content.words.values.filter { $0.language == .chinese }.count == 1000)
     }
 
     @Test func everyWordHasTwoExamples() throws {

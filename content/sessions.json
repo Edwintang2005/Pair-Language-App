@@ -1260,6 +1260,146 @@
       "conversationStarter": "Show each other the last video or post that made you laugh and explain it in the other's language. Then compare your apps: what do WhatsApp and WeChat each do, and which family groups are you in?",
       "de": ["de-video", "de-teilen", "de-kommentar", "de-folgen", "de-link"],
       "zh": ["zh-wei-xin", "zh-shi-pin", "zh-fen-xiang", "zh-guan-zhu", "zh-dian-zan"]
+    },
+    {
+      "number": 181,
+      "theme": "What are you called?",
+      "conversationStarter": "Introduce yourselves as if you were meeting each other's parents for the first time: first name, surname, and what your friends call you. Then tell each other your childhood nicknames and who gave them to you.",
+      "de": ["de-heissen", "de-herr", "de-vorname", "de-nachname", "de-nennen"],
+      "zh": ["zh-jiao-called", "zh-xing-surname", "zh-xian-sheng", "zh-nv-shi", "zh-xiao-ming"]
+    },
+    {
+      "number": 182,
+      "theme": "January to May",
+      "conversationStarter": "Go through the first five months of the year together: whose birthday falls when, what the weather is like in each of your home towns, and what you did this year. Say every date out loud in the other's language.",
+      "de": ["de-januar", "de-februar", "de-maerz", "de-april", "de-mai"],
+      "zh": ["zh-yi-yue", "zh-jin-nian", "zh-qu-nian", "zh-ming-nian", "zh-yue-chu"]
+    },
+    {
+      "number": 183,
+      "theme": "June to October",
+      "conversationStarter": "Plan a summer and an autumn together, month by month from June to October: holidays, festivals, visits home. Then explain one festival from your country that falls in these months and what people eat for it.",
+      "de": ["de-juni", "de-juli", "de-august", "de-september", "de-oktober"],
+      "zh": ["zh-duan-wu-jie", "zh-shu-jia-summer", "zh-zhong-qiu-jie", "zh-yue-bing", "zh-guo-qing-jie"]
+    },
+    {
+      "number": 184,
+      "theme": "The turn of the year",
+      "conversationStarter": "Tell each other how the year ends where you grew up: what happens in November and December, and which season you love most? Then put your important dates in one calendar: anniversaries, and any birthdays kept by the lunar calendar.",
+      "de": ["de-november", "de-dezember", "de-jahreszeit", "de-jahrestag", "de-advent"],
+      "zh": ["zh-ji-jie", "zh-nian-di", "zh-nong-li", "zh-ji-nian-ri", "zh-yuan-dan"]
+    },
+    {
+      "number": 185,
+      "theme": "Sometimes, rarely & usually",
+      "conversationStarter": "Describe a normal week to each other without using 'always' or 'never': what you usually do, sometimes do, and hardly ever do. Then guess each other's habits: 'You rarely…', 'You usually…'. Who knows whom better?",
+      "de": ["de-manchmal", "de-selten", "de-meistens", "de-normalerweise", "de-taeglich"],
+      "zh": ["zh-you-shi-hou", "zh-jing-chang", "zh-ou-er", "zh-yi-ban", "zh-mei-tian"]
+    },
+    {
+      "number": 186,
+      "theme": "Eleven, twelve, twenty & a million",
+      "conversationStarter": "Trade numbers that matter: your ages, your parents' ages, the population of your home towns, a monthly rent, the price of a flight. Write each one down as the other says it and check. Chinese counts in ten-thousands, so take your time!",
+      "de": ["de-elf", "de-zwoelf", "de-zwanzig", "de-million", "de-zaehlen"],
+      "zh": ["zh-liang-two", "zh-wan-ten-thousand", "zh-shu-zi", "zh-suan-calculate", "zh-zuo-you"]
+    },
+    {
+      "number": 187,
+      "theme": "Problems & reasons",
+      "conversationStarter": "Each bring one small real problem from this week (a broken thing, a full calendar, a misunderstanding). Explain what happened and why, then work out a solution together in the other's language. End with: 'It'll work out!'",
+      "de": ["de-problem", "de-grund", "de-sache", "de-loesen", "de-klappen"],
+      "zh": ["zh-shi-qing", "zh-yuan-yin", "zh-jie-jue", "zh-zen-me-ban", "zh-qing-kuang"]
+    },
+    {
+      "number": 188,
+      "theme": "Noticing & mix-ups",
+      "conversationStarter": "Tell each other about a time you got something completely wrong: you mixed up two words, two people or two days. When did you notice? Then test each other on pairs of words that are easy to confuse in each language.",
+      "de": ["de-merken", "de-meinen", "de-erkennen", "de-klar", "de-verwechseln"],
+      "zh": ["zh-ming-bai", "zh-qing-chu", "zh-fa-xian", "zh-zhu-yi-attention", "zh-yi-wei"]
+    },
+    {
+      "number": 189,
+      "theme": "Rules: allowed & forbidden",
+      "conversationStarter": "Compare the rules you grew up with: what did your parents allow and forbid, and at what age? Then write three house rules for your own home, each of you in the other's language, and negotiate them.",
+      "de": ["de-erlauben", "de-verbieten", "de-regel", "de-lassen", "de-rauchen"],
+      "zh": ["zh-bie-dont", "zh-bu-yong", "zh-rang", "zh-yun-xu", "zh-chou-yan"]
+    },
+    {
+      "number": 190,
+      "theme": "Put, lay, hang & fetch",
+      "conversationStarter": "Rearrange a corner of your home together. One of you gives the orders in the other's language (put this there, hang that here, fetch the box), the other carries them out and says what they are doing.",
+      "de": ["de-stellen", "de-legen", "de-haengen", "de-holen", "de-halten"],
+      "zh": ["zh-gua", "zh-bai-arrange", "zh-ban-move", "zh-jian-pick-up", "zh-zhuang-pack"]
+    },
+    {
+      "number": 191,
+      "theme": "Everywhere & nowhere",
+      "conversationStarter": "Play hide-and-seek with a small object. The seeker asks questions in the other's language (Is it somewhere in the kitchen? Inside something? Outside?) and complains: 'I've looked everywhere!' Then swap.",
+      "de": ["de-ueberall", "de-nirgends", "de-irgendwo", "de-draussen", "de-drinnen"],
+      "zh": ["zh-dao-chu", "zh-di-fang", "zh-nar-where", "zh-zhe-bian", "zh-li-mian"]
+    },
+    {
+      "number": 192,
+      "theme": "Teaching & university",
+      "conversationStarter": "Tell each other about school and student days: your best and worst teacher, what you studied (or wanted to) and what student life was like. Then grade each other as language teachers this year, with reasons!",
+      "de": ["de-lehrer", "de-universitaet", "de-studieren", "de-student", "de-klasse"],
+      "zh": ["zh-da-xue", "zh-tong-xue", "zh-bi-ye", "zh-de-yu", "zh-jiao-teach"]
+    },
+    {
+      "number": 193,
+      "theme": "At, by & because of",
+      "conversationStarter": "Describe your day with as many place and reason words as you can: who you were with, where you waited, what you did instead of something else, and what went wrong because of what. Your partner counts the little words.",
+      "de": ["de-an", "de-bei", "de-wegen", "de-ausser", "de-statt"],
+      "zh": ["zh-ba-object", "zh-bei-passive", "zh-xiang-towards", "zh-guan-yu", "zh-ti-for"]
+    },
+    {
+      "number": 194,
+      "theme": "Likes, dislikes & interests",
+      "conversationStarter": "Each of you names three things you love doing, three you can't stand and one you simply don't care about. The other has to guess the reasons. Then find one new hobby you'd both be willing to try together.",
+      "de": ["de-hobby", "de-interesse", "de-interessant", "de-hassen", "de-lust"],
+      "zh": ["zh-ai-hao", "zh-xing-qu", "zh-tao-yan", "zh-fan-annoyed", "zh-wu-suo-wei"]
+    },
+    {
+      "number": 195,
+      "theme": "The world & the news",
+      "conversationStarter": "Each pick one piece of news from this week, from your own country, and explain it simply in the other's language: where, who, what happened? Then tell each other what you wish for the world.",
+      "de": ["de-welt", "de-politik", "de-krieg", "de-frieden", "de-gesellschaft"],
+      "zh": ["zh-shi-jie", "zh-xin-wen", "zh-she-hui", "zh-li-shi", "zh-he-ping"]
+    },
+    {
+      "number": 196,
+      "theme": "How far we've come",
+      "conversationStarter": "Open session one and flip through your first words together. Tell each other the first sentence you remember saying, the word that took you longest, and three things you can do now that you couldn't at the start.",
+      "de": ["de-fortschritt", "de-verbessern", "de-fliessend", "de-erinnerung", "de-anfaenger"],
+      "zh": ["zh-ti-gao", "zh-shui-ping", "zh-liu-li", "zh-hui-yi", "zh-xue-hui"]
+    },
+    {
+      "number": 197,
+      "theme": "Praise & thanks",
+      "conversationStarter": "Thank each other properly, in the other's language, for three specific things from this year of teaching: a correction, a patient explanation, a laugh. Then pay each other two compliments and practise accepting them.",
+      "de": ["de-danken", "de-loben", "de-kompliment", "de-glueckwunsch", "de-grossartig"],
+      "zh": ["zh-gong-xi", "zh-gan-xie", "zh-xin-ku", "zh-kua", "zh-liao-bu-qi"]
+    },
+    {
+      "number": 198,
+      "theme": "A surprise & a toast",
+      "conversationStarter": "Each secretly prepare a tiny surprise for the other: a note, a snack, a song. Present it with a short toast in the other's language, look each other in the eye, and clink glasses.",
+      "de": ["de-ueberraschung", "de-anstossen", "de-sekt", "de-kerze", "de-feuerwerk"],
+      "zh": ["zh-jing-xi", "zh-la-zhu", "zh-xiang-bin", "zh-yan-hua", "zh-jing-toast"]
+    },
+    {
+      "number": 199,
+      "theme": "Growing old together",
+      "conversationStarter": "Imagine yourselves at eighty. Where is your home, who cooks, which language do you argue in, and what adventures are behind you? Tell the story to each other in the other's language, then say one thing you promise to keep doing.",
+      "de": ["de-gemeinsam", "de-fuer-immer", "de-zuhause", "de-abenteuer", "de-begleiten"],
+      "zh": ["zh-yong-yuan", "zh-yi-bei-zi", "zh-pei", "zh-lao-gong", "zh-lao-po"]
+    },
+    {
+      "number": 200,
+      "theme": "The last lesson & the next step",
+      "conversationStarter": "Celebrate: you have taught each other a thousand words! Each give a little speech in the other's language: your favourite word, your funniest mistake, and what made this year unforgettable. Then agree on your next step together: a trip, a film without subtitles, a phone call with the family.",
+      "de": ["de-abschluss", "de-weitermachen", "de-schritt", "de-unvergesslich", "de-wunderbar"],
+      "zh": ["zh-ji-xu", "zh-zhi-de", "zh-bu-step", "zh-nan-wang", "zh-jing-cai"]
     }
   ]
 }
